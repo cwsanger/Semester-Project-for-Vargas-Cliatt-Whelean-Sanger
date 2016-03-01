@@ -7,9 +7,13 @@ class NeighborhoodsController < ApplicationController
     @neighborhoods = Neighborhood.all
   end
 
-  # GET /neighborhoods/1
-  # GET /neighborhoods/1.json
+  # GET /neighborhoods/neighborhood-slug
+  # GET /neighborhoods/neighborhood-slug.json
   def show
+    @posts = Post.joins(:users).where(users: { neighborhood_id: @neighborhood.id })
+    @alerts = Alert.all
+    @broadcasts = Broadcast.all
+    @advertisements = Advertisement.all
   end
 
   # GET /neighborhoods/new
@@ -17,7 +21,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.new
   end
 
-  # GET /neighborhoods/1/edit
+  # GET /neighborhoods/neighborhood-slug/edit
   def edit
   end
 
@@ -37,8 +41,8 @@ class NeighborhoodsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /neighborhoods/1
-  # PATCH/PUT /neighborhoods/1.json
+  # PATCH/PUT /neighborhoods/neighborhood-slug
+  # PATCH/PUT /neighborhoods/neighborhood-slug.json
   def update
     respond_to do |format|
       if @neighborhood.update(neighborhood_params)
@@ -51,8 +55,8 @@ class NeighborhoodsController < ApplicationController
     end
   end
 
-  # DELETE /neighborhoods/1
-  # DELETE /neighborhoods/1.json
+  # DELETE /neighborhoods/neighborhood-slug
+  # DELETE /neighborhoods/neighborhood-slug.json
   def destroy
     @neighborhood.destroy
     respond_to do |format|

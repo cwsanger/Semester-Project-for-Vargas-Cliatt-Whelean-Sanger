@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   controller :welcome do
     get 'login' => :login
     post 'login' => :post_login
@@ -6,10 +7,34 @@ Rails.application.routes.draw do
     post 'start' => :post_start
   end
 
+  get 'advertisement/create'
+
+  get 'advertisement/destroy'
+
+  get 'advertisement/edit'
+
+  get 'broadcast/create'
+
+  get 'broadcast/destroy'
+
+  get 'broadcast/edit'
+
+  get 'alert/create'
+
+  get 'alert/destroy'
+
+  get 'alert/edit'
+
+  get 'welcome/start'
+
+  get 'welcome/login'
+
   get 'welcome/search'
 
   get 'post/destroy'
+
   get 'post/edit'
+
   post 'post/create'
 
   root 'welcome#start'
