@@ -9,3 +9,20 @@ the login.html.erb view.
 -->
 
 <h1>FriendsNextDoor</h1>
+
+<%= button_to 'Login!', login_path, method: :get %>
+
+<br />
+
+<%= form_tag do %>
+  <fieldset>
+    <legend>Find your neighborhood!</legend>
+    <div>
+      <%= label_tag :search_key %>
+      <%= text_field_tag :search_key, params[:search_key] %>
+    </div>
+    <div>
+      <%= submit_tag "Search" %>
+    </div>
+  </fieldset>
+<% end %>

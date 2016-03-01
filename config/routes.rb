@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  get 'welcome/start'
-
-  get 'welcome/login'
+  controller :welcome do
+    get 'login' => :login
+    post 'login' => :post_login
+    get 'start' => :start
+    post 'start' => :post_start
+  end
 
   get 'welcome/search'
 
@@ -9,7 +12,7 @@ Rails.application.routes.draw do
   get 'post/edit'
   post 'post/create'
 
-  root 'welcome#start', as: 'start'
+  root 'welcome#start'
 
   resources :neighborhoods
   resources :users
