@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  get 'post/create'
-
   get 'post/destroy'
-
   get 'post/edit'
+  post 'post/create'
 
   resources :neighborhoods
   resources :users
