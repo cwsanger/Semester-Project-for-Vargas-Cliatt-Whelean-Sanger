@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'post/create'
+
+  get 'post/destroy'
+
+  get 'post/edit'
+
+  resources :neighborhoods
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
