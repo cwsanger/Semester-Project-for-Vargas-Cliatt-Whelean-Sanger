@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  get 'advertisement/create'
+
+  get 'advertisement/destroy'
+
+  get 'advertisement/edit'
+
+  get 'broadcast/create'
+
+  get 'broadcast/destroy'
+
+  get 'broadcast/edit'
+
+  get 'alert/create'
+
+  get 'alert/destroy'
+
+  get 'alert/edit'
+
   get 'post/create'
 
   get 'post/destroy'
