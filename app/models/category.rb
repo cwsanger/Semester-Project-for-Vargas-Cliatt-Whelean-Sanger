@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
   has_many :posts
 
-  validates :type, presence: true
+  validates :title, presence: true
 end
