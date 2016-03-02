@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   get 'advertisement/create'
 
   get 'advertisement/destroy'
