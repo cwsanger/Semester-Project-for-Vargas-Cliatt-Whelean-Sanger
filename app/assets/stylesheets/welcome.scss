@@ -1,22 +1,40 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body{
-  background-size:cover;
-  background-image: url("http://jonathanosman.com/charlotterealestateupdate/wp-content/uploads/2011/05/iStock_000002749321Medium.jpg");
-  background-repeat: repeat-y;
+
+.background-div {
+  z-index: -5;
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
 }
-.mySearch{
+
+.background-div img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+
+.mySearch {
   margin-top: 10vh;
   position: relative;
   z-index: 100000;
   color:black;
 }
+
 .myImage {
   height: 60vh;
   display: block;
   margin: auto;
 }
+
 .backDiv{
   background-color: grey;
   position:absolute;
@@ -29,6 +47,7 @@ body{
   z-index: -1;
   color: black;
 }
+
 .logIn{
   margin-top: 3px;
   padding-top: 2px;
@@ -41,14 +60,81 @@ body{
   border: 2px solid white;
   border-radius: 25px
 }
+
 .logIn:hover{
   background-color: white;
 }
+
 .linkys:visited, .linkys:link{
   color:white;
 }
+
 .linkys:hover{
   color:green;
   text-decoration: none;
   background-color: white;
+}
+
+.v-center {
+  position: relative;
+  top: 50vh;
+  transform: translateY(-50%);
+}
+
+.spaced-out {
+  margin: 5px;
+}
+
+/* custom inclusion of left tabs shamlessly copied from Skelly on Stack Overflow */
+
+.tabs-left > .nav-tabs {
+  border-bottom: 0;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+}
+
+.tabs-left > .nav-tabs > li {
+  float: none;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  min-width: 74px;
+  margin-right: 0;
+  margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+  float: left;
+  margin-right: 19px;
+  border-right: 1px solid #ddd;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  margin-right: -1px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+
+  font-size: 30px;
+  color: green;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+  border-color: #ddd transparent #ddd #ddd;
+  *border-right-color: #ffffff;
 }

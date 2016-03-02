@@ -1,0 +1,16 @@
+<div>
+  <legend><h2><%= title %></h2></legend>
+  <%= form_tag(url: url) do %>
+    <div class="input-group">
+      <div>
+        <%= text_field_tag :email, params[:email], placeholder: 'Email', class: 'spaced-out' %>
+      </div>
+      <div>
+        <%= password_field_tag :password, params[:password], placeholder: 'Password', class: 'spaced-out' %>
+      </div>
+      <div>
+        <%= submit_tag "Login", class: 'btn btn-success spaced-out' %>
+      </div>
+    </div>
+  <% end %>
+</div>
