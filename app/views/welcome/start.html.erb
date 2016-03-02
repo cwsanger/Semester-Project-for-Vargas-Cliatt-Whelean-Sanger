@@ -14,7 +14,7 @@ the login.html.erb view.
 
 <br />
 
-<%= form_tag do %>
+<%= form_tag(search_path, method: :get) do %>
   <fieldset>
     <legend>Find your neighborhood!</legend>
     <div>
