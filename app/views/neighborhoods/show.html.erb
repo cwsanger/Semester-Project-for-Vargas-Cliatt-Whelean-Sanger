@@ -3,6 +3,10 @@
 <p>
   <strong>Name:</strong>
   <%= @neighborhood.name %>
+
+  <%= @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_neighborhood_path(@neighborhood) %> |

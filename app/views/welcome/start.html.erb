@@ -8,21 +8,17 @@ the login.html.erb view.
 
 -->
 
-<h1>FriendsNextDoor</h1>
-
-<%= button_to 'Login!', login_path, method: :get %>
-
-<br />
-
-<%= form_tag do %>
-  <fieldset>
-    <legend>Find your neighborhood!</legend>
-    <div>
-      <%= label_tag :search_key %>
-      <%= text_field_tag :search_key, params[:search_key] %>
-    </div>
-    <div>
-      <%= submit_tag "Search" %>
-    </div>
-  </fieldset>
-<% end %>
+<div class='backDiv'></div>
+	<div class="logIn"><strong><%= link_to "LOG IN", welcome_login_path,:class =>"linkys" %></strong></div>
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">
+          <%= image_tag '1000.png', :class => '' %>
+		<div class="input-group  mySearch">
+		      <input type="text" class="form-control " placeholder="Search for your neighborhood">
+		      <span class="input-group-btn ">
+		        <button class="btn btn-default" type="button"><%= link_to "GO!", welcome_search_path,:class =>"linky" %></button>
+		      </span>
+		</div><!-- /input-group -->
+	</div><!-- /.col-lg-6 -->
+	<div>
+</div>

@@ -1,3 +1,51 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ body{
+ 	background-size:cover;
+ 	background-image: url("http://jonathanosman.com/charlotterealestateupdate/wp-content/uploads/2011/05/iStock_000002749321Medium.jpg");
+ 	background-repeat: repeat-y;
+ }
+ .mySearch{
+ 	margin-top: 70%;
+ 	position: relative;
+ 	z-index: 100000;
+ 	color:black;
+ 
+  
+ }
+.backDiv{
+ 	background-color: grey;
+ 	position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    overflow:hidden;
+    opacity: .6 ;
+    z-index: -1;
+    color: black;
+ }
+ .logIn{
+  margin-top: 3px;
+  padding-top: 2px;
+  margin-left: 93%;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  height: 2em;
+  width: 5%;
+  border: 2px solid white;
+  border-radius: 25px
+ }
+.linkys:visited,.linkys:link{
+    color:white;
+}
+.linkys:hover{
+    color:green;
+    background: none;
+}
+.linky:visited,.linky:link,.linky:link{
+    color:black;
+    background: none;
+}
