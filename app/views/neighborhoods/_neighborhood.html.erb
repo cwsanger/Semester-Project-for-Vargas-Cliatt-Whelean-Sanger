@@ -8,15 +8,5 @@
         Community size: <%= neighborhood.users.count %>
       </div>
     </div>
-    <div class="panel-body">
-      <u>Neighbors</u>
-        <% neighborhood.users.each do |user| %>
-          <br />
-          <%= link_to user, class: "btn btn-default" do %>
-            <span class="glyphicon glyphicon-home"></span>
-            <span class="label label-default"><%= user.name %></span>
-          <% end %>
-        <% end %>
-    </div>
   </div>
 </div>
