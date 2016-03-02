@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get 'advertisement/create'
 
   get 'advertisement/destroy'
@@ -17,11 +18,19 @@ Rails.application.routes.draw do
 
   get 'alert/edit'
 
-  get 'post/create'
+  get 'welcome/start'
+
+  get 'welcome/login'
+
+  get 'welcome/search'
 
   get 'post/destroy'
 
   get 'post/edit'
+
+  post 'post/create'
+
+  root 'welcome#start', as: 'start'
 
   resources :neighborhoods
   resources :users
