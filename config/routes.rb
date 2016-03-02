@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     post 'login' => :post_login
     get 'start' => :start
     post 'start' => :post_start
+    get 'search' => :search
   end
 
   get 'advertisement/create'
@@ -24,12 +25,6 @@ Rails.application.routes.draw do
   get 'alert/destroy'
 
   get 'alert/edit'
-
-  get 'welcome/start'
-
-  get 'welcome/login'
-
-  get 'welcome/search'
 
   get 'post/destroy'
 

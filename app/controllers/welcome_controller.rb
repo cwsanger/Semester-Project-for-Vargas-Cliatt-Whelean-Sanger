@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
     if user and user.authenticate(params[:password])
       session[:user_id] = user.id
       neighborhood = Neighborhood.find(user.neighborhood_id)
-      redirect_to neighborhoods_url(neighborhood)
+      redirect_to neighborhood
     else
       redirect_to "/"
     end
