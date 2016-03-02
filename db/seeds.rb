@@ -10,18 +10,18 @@ Neighborhood.delete_all
 Post.delete_all
 Category.delete_all
 
-User.create(:email => "djohnson@gmail.com", :name => "Dwayne Johnson",  :password => 'password', :password_confirmation=> 'password')
-User.create(:email => "blesnar@gmail.com", :name => "Brock Lesnar",  :password => 'password', :password_confirmation=> 'password')
-User.create(:email => "hhh@gmail.com", :name => "Hunter Helmsley",  :password => 'password', :password_confirmation=> 'password')
-User.create(:email => "smichaels@gmail.com", :name => "Shawn Michaels",  :password => 'password', :password_confirmation=> 'password')
+wwf = Neighborhood.create(:name => "World Wrestling Federation")
 
-Neighborhood.create(:name => "World Wrestling Federation")
+dwayne = User.create(:email => "djohnson@gmail.com", :name => "Dwayne Johnson",  :password => 'password', :password_confirmation=> 'password', :neighborhood_id => wwf.id)
+brock = User.create(:email => "blesnar@gmail.com", :name => "Brock Lesnar",  :password => 'password', :password_confirmation=> 'password', :neighborhood_id => wwf.id)
+hunter = User.create(:email => "hhh@gmail.com", :name => "Hunter Helmsley",  :password => 'password', :password_confirmation=> 'password', :neighborhood_id => wwf.id)
+shawn = User.create(:email => "smichaels@gmail.com", :name => "Shawn Michaels",  :password => 'password', :password_confirmation=> 'password', :neighborhood_id => wwf.id)
 
-#lost = Category.create(:title => "Lost Pet")
-#misc = Category.create(:title => "Miscellaneous")
-#item = Category.create(:title => "Item for Sale")
-#job = Category.create(:title => "Job Posting")
+lost = Category.create(:title => "Lost Pet")
+misc = Category.create(:title => "Miscellaneous")
+item = Category.create(:title => "Item for Sale")
+job = Category.create(:title => "Job Posting")
 
-#Post.create(:category => lost, :body => "My labradoodle Rover has been missing for three days. I am lost without his touch. Please help.")
-#Post.create(:category => misc, :body => "The Rock is overrated.")
-#Post.create(:category => item, :body => "Gently used championship belt.")
+Post.create(:category_id => lost.id, :body => "My labradoodle Rover has been missing for three days. I am lost without his touch. Please help.", :user_id => shawn.id)
+Post.create(:category_id => misc.id, :body => "The Rock is overrated.", :user_id => brock.id)
+Post.create(:category_id => item.id, :body => "Gently used championship belt.", :user_id => hunter.id)
