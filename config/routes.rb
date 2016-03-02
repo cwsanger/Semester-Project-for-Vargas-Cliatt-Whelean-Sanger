@@ -1,17 +1,43 @@
 Rails.application.routes.draw do
+
+  controller :welcome do
+    get 'login' => :login
+    post 'login' => :post_login
+    get 'start' => :start
+    post 'start' => :post_start
+  end
+
+  get 'advertisement/create'
+
+  get 'advertisement/destroy'
+
+  get 'advertisement/edit'
+
+  get 'broadcast/create'
+
+  get 'broadcast/destroy'
+
+  get 'broadcast/edit'
+
+  get 'alert/create'
+
+  get 'alert/destroy'
+
+  get 'alert/edit'
+
   get 'welcome/start'
 
   get 'welcome/login'
 
   get 'welcome/search'
 
-  get 'post/create'
-
   get 'post/destroy'
 
   get 'post/edit'
 
-  root 'welcome#start', as: 'start'
+  post 'post/create'
+
+  root 'welcome#start'
 
   resources :neighborhoods
   resources :users

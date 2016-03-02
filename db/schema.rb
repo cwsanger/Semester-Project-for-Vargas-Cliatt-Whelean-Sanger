@@ -13,6 +13,25 @@
 
 ActiveRecord::Schema.define(version: 20160302042850) do
 
+  create_table "advertisements", force: :cascade do |t|
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "alerts", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "severity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "broadcasts", force: :cascade do |t|
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
@@ -41,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160302042850) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "neighborhood_id"
+    t.string   "address"
   end
 
 end
