@@ -1,12 +1,3 @@
 <p id="notice"><%= notice %></p>
 
-<div class="jumbotron">
-  <h1><%= @user.name %></h2>
-  <p>123 Street Road, Valdosta NY, 90210</p>
-  <a class="btn btn-primary" href="mailto:<%= @user.email %>">
-    <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
-  </a>
-  <%= link_to @user.neighborhood, class:"btn btn-primary" do %>
-    <span class="glyphicon glyphicon-home">&nbsp;Neighborood</span>
-  <% end %>
-</div>
+<%= render @user %>

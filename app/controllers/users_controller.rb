@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @users = @users.sort_by( &:neighborhood )
   end
 
   # GET /users/1
