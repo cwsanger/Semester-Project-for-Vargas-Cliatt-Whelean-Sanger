@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
+  get 'welcome/start'
+
+  get 'welcome/login'
+
+  get 'welcome/search'
+
   get 'post/create'
 
   get 'post/destroy'
 
   get 'post/edit'
+
+  root 'welcome#start', as: 'start'
 
   resources :neighborhoods
   resources :users
