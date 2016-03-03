@@ -17,17 +17,17 @@ populate with addresses.
 <h2>There are <%= @neighborhoods.count %> neighborhoods in your area</h2>
 <br />
 
-<div class="col-sm-6">
+<div class="col-sm-4">
   <% @neighborhoods.each do |n| %>
     <div class="row">
       <%= render n %>
     </div>
   <% end %>
+
+  <p>Can't find your neighborhood? <%= button_to 'Create Neighborhood', {}, class: 'btn btn-primary' %></p>
 </div>
 
-<p>Can't find your neighborhood? <%= button_to 'Create Neighborhood', {}, class: 'btn btn-primary' %></p>
-
-<div id="map" class="col-sm-6"></div>
+<div id="map" class="col-sm-offset-1 col-sm-5"></div>
 
 <script type="text/javascript">
   handler = Gmaps.build('Google');
