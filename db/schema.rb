@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302050236) do
+ActiveRecord::Schema.define(version: 20160303032724) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "body"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20160302050236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -61,6 +64,8 @@ ActiveRecord::Schema.define(version: 20160302050236) do
     t.datetime "updated_at",      null: false
     t.integer  "neighborhood_id"
     t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
 end
