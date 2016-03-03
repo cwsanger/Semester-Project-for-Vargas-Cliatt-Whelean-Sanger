@@ -22,5 +22,6 @@ class WelcomeController < ApplicationController
   end
 
   def search
+    @neighborhoods = Neighborhood.all
   end
 end

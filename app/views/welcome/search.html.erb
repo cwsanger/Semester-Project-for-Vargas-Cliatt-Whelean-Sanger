@@ -11,5 +11,11 @@ populate with addresses.
 
 -->
 
-<h1>Welcome#search</h1>
-<p>Find me in app/views/welcome/search.html.erb</p>
+<h1><u>Neighborhoods</u></h1>
+<br />
+
+<% @neighborhoods.each do |n| %>
+  <div class="row">
+    <%= render n %>
+  </div>
+<% end %>
