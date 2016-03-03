@@ -1,7 +1,9 @@
 <div class="post">
-  <h2><u><%= User.find(post.user_id).name %></u></h2>
+  <h2><u><%= post.user.name %></u></h2>
   <p class="body"><%= post.body %></p>
   <p class="date"><small>
-  <%= post.created_at.strftime("%A, %B #{post.created_at.day.ordinalize} - %l:%M%P") %>
+  Category: <%= post.category.title %>
+  <br />
+  <i><small> <%= post.created_at.strftime("%A, %B #{post.created_at.day.ordinalize} - %l:%M%P") %></i></small>
   </small></p>
 </div>

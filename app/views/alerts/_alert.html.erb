@@ -1,7 +1,10 @@
 <div class="alert alert-danger" role="alert">
-  <%= alert.body %>
-  <br />
-  <small>Last updated:
+  Current severity: <%= alert.severity %>
+  <br/>
+  <p><%= alert.body %></p>
+  <i>
+    <small>Last updated:
     <%= alert.updated_at.strftime("%A, %B #{alert.created_at.day.ordinalize} - %l:%M%P") %>
-  </small>
+    </small>
+  </i>
 </div>

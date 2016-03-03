@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
       neighborhood = Neighborhood.find(user.neighborhood_id)
       redirect_to neighborhood
     else
-      redirect_to "/"
+      redirect_to login_path
     end
   end
 
