@@ -1,0 +1,7 @@
+<div class="alert alert-success" role="alert">
+  <%= broadcast.body %>
+  <br />
+  <small>
+    <%= broadcast.created_at.strftime("%A, %B #{broadcast.created_at.day.ordinalize} - %l:%M%P") %>
+  </small>
+</div>

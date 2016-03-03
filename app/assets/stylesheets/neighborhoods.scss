@@ -1,3 +1,33 @@
 // Place all the styles related to the Neighborhoods controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.round_border {
+  border-radius: 25px;
+  border: 2px solid #308014;
+}
+
+.right_bar {
+  background: #aaaaaa;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.alert_div {
+  height: 30%;
+  overflow-y: scroll;
+}
+
+.broadcast_div {
+  height: 30%;
+  overflow-y: scroll;
+}
+
+.advertisement_div {
+  height: 30%;
+  overflow-y: scroll;
+}
