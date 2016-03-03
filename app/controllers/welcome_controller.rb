@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
       neighborhood = Neighborhood.find(user.neighborhood_id)
       redirect_to neighborhood
     else
-      redirect_to login_path
+      redirect_to login_path, alert: "Invalid user/password combination"
     end
   end
 

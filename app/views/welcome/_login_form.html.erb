@@ -1,5 +1,8 @@
 <div>
   <legend><h2><%= title %></h2></legend>
+  <% if flash[:alert] %>
+    <p id="notice"><%= flash[:alert] %></p>
+  <% end %>
   <%= form_tag(url: url) do %>
     <div class="input-group">
       <div>
