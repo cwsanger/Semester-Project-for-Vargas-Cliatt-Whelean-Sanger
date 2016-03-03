@@ -14,6 +14,7 @@ class NeighborhoodsController < ApplicationController
     @alerts = Alert.all
     @broadcasts = Broadcast.all
     @advertisements = Advertisement.all
+    @categories = Category.all
   end
 
   # GET /neighborhoods/new
