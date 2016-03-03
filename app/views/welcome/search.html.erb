@@ -17,6 +17,11 @@ populate with addresses.
 <h2>There are <%= @neighborhoods.count %> neighborhoods in your area</h2>
 <br />
 
+<div class='backDiv'></div>
+<div class="background-div">
+  <%= image_tag 'houses' %>
+</div>
+
 <div class="col-sm-4">
   <% @neighborhoods.each do |n| %>
     <div class="row">

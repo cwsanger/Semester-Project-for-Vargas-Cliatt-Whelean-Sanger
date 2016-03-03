@@ -137,3 +137,9 @@
   border-color: #ddd transparent #ddd #ddd;
   *border-right-color: #ffffff;
 }
+
+.box-shadow {
+  background-color: #dddddd;
+  box-shadow: 0 0 30px black;
+  padding: 20px;
+}
