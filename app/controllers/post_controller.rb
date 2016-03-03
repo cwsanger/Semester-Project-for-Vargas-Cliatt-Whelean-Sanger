@@ -2,13 +2,15 @@ class PostController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def create
-    print "\n\n\n\n\n\n\n\n\n\n\nMATT IS HERE\n\n\n\n\n\n\n\n\n\n\n\n"
+    @post = Post.new(body: params[:body],
+                     category_id: params[:category_id],
+                     user_id: @current_user.id)
 
-    @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
-        format.json { render :show, status: :created }
+        format.html { redirect_to @current_user.neighborhood }
       else
+        format.html { redirect_to @current_user.neighborhood, notice: 'you are bad' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -41,9 +43,4 @@ class PostController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
-
-    def post_params
-      params.require(:post).permit(:body)
-    end
-
 end

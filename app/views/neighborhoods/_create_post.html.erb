@@ -1,0 +1,19 @@
+<div>
+  <h3> Post</h3>
+  <%= form_tag(post_create_url) do %>
+    <div class="input-group">
+      <div>
+        <%= text_area_tag :body, params[:body], placeholder: 'Type post here' %> 
+      </div>
+      <div>
+        <% categories.each do |category| %>
+          <%= radio_button_tag :category_id, category.id %>
+          <%= label_tag :category_id, category.title %>
+        <% end %>
+      </div>
+      <div>
+        <%= submit_tag "Post", class: 'btn' %>
+      </div> 
+    </div>
+  <% end %>
+</div>

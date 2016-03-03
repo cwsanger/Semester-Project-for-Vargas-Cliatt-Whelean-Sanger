@@ -10,10 +10,14 @@ class NeighborhoodsController < ApplicationController
   # GET /neighborhoods/neighborhood-slug
   # GET /neighborhoods/neighborhood-slug.json
   def show
-    @posts = Post.joins(:user).where(users: { neighborhood_id: @neighborhood.id })
+    @posts = Post.joins(:user)
+                 .where(users: { neighborhood_id: @neighborhood.id })
+                 .order(created_at: :desc)
+
     @alerts = Alert.all
     @broadcasts = Broadcast.all
     @advertisements = Advertisement.all
+    @categories = Category.all
   end
 
   # GET /neighborhoods/new
