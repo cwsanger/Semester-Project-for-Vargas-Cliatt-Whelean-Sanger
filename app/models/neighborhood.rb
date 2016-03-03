@@ -1,7 +1,11 @@
 class Neighborhood < ActiveRecord::Base
+  geocoded_by :address
+  after_validation :geocode
+
   has_many :users
 
   validates :name, presence: true, uniqueness: true
+  validates :address, presence: true
   after_validation :create_slug
 
   def to_param

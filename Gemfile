@@ -26,6 +26,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# geocoding
+gem 'geocoder'
+
+# google maps
+gem 'gmaps4rails'
+
 # Use validates :email, email: true
 gem 'email_validator'
 

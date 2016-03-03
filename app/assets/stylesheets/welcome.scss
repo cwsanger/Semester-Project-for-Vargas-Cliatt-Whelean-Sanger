@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#map {
+  height: 400px;
+}
+
 .background-div {
   z-index: -5;
   position: fixed; 
@@ -49,23 +53,19 @@
 }
 
 .logIn{
-  margin-top: 3px;
-  padding-top: 2px;
+  margin-top: 9px;
   margin-left: 93%;
+}
+
+.linkys:visited, .linkys:link{
+  padding: 5px 10px 5px 10px;
   color: white;
   cursor: pointer;
   text-align: center;
   height: 2em;
   width: 5%;
   border: 2px solid white;
-  border-radius: 25px
-}
-
-.logIn:hover{
-  background-color: white;
-}
-
-.linkys:visited, .linkys:link{
+  border-radius: 25px;
   color:white;
 }
 
