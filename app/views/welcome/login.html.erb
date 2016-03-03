@@ -12,29 +12,31 @@ will be four tabs: user, admin, agency, business.
 
 <div class="container v-center">
   <div class="tabbable tabs-left">
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#a" data-toggle="tab">
-          <span class="glyphicon-user glyphicon"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#b" data-toggle="tab">
-          <span class="glyphicon-tag glyphicon"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#c" data-toggle="tab">
-          <span class="glyphicon-flash glyphicon"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#d" data-toggle="tab">
-          <span class="glyphicon-cog glyphicon"></span>
-        </a>
-      </li>
-    </ul>
-    <div class="tab-content">
+    <div class="col-sm-2">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#a" data-toggle="tab">
+            <span class="glyphicon-user glyphicon"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#b" data-toggle="tab">
+            <span class="glyphicon-tag glyphicon"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#c" data-toggle="tab">
+            <span class="glyphicon-flash glyphicon"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#d" data-toggle="tab">
+            <span class="glyphicon-cog glyphicon"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6 tab-content">
       <div class="tab-pane active" id="a">
         <%= render partial:'login_form', locals: { title: 'User', url: login_path } %>
       </div>
