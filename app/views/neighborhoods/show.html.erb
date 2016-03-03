@@ -1,13 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @neighborhood.name %>
+<div class="col-md-2 round_border">
+  <div class="page-header">
+    <h1><%= @neighborhood.name %></h1>
+  </div>
+</div>
 
-  <%= @posts.each do |post| %>
+<div class="col-md-5 col-md-offset-1 round_border">
+  <% @posts.each do |post| %>
     <%= render post %>
   <% end %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_neighborhood_path(@neighborhood) %> |
-<%= link_to 'Back', neighborhoods_path %>
+
+<div class="col-md-2 col-md-offset-1 round_border right_bar">
+
+    <div class="alert_div">
+      <% @alerts.each do |alert| %>
+        <%= render alert %>
+      <% end %>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="broadcast_div">
+      <% @broadcasts.each do |bc| %>
+        <%= render bc %>
+      <% end %>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="advertisement_div">
+      <% @advertisements.each do |ad| %>
+        <%= render ad %>
+      <% end %>
+    </div>
+
+</div>
+
