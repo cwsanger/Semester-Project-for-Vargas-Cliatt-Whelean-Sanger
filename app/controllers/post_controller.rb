@@ -18,7 +18,6 @@ class PostController < ApplicationController
 
   def destroy
     @post.destroy
-
   end
 
   def edit

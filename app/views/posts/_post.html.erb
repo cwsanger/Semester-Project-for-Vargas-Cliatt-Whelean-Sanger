@@ -5,5 +5,12 @@
   Category: <%= post.category.title %>
   <br />
   <i><small> <%= post.created_at.strftime("%A, %B #{post.created_at.day.ordinalize} - %l:%M%P") %></i></small>
-  </small></p>
+  </small>
+  </p>
+  <p>
+  Number of comments involved: <%= post.comments.count %>
+  </p>
+  <p>
+  Number of likes: <%= post.like %>
+  </p>
 </div>
