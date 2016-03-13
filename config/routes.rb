@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  post 'comment/create'
+
+  patch 'comment/:id/like', to: 'comment#like'
+
+  get 'comment/destroy'
+
   controller :welcome do
     get 'login' => :login
     post 'login' => :post_login

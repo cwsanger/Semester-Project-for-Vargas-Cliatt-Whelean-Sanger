@@ -33,6 +33,12 @@ gem 'gmaps4rails'
 # Use validates :email, email: true
 gem 'email_validator'
 
+# Use react
+gem 'react-rails'
+
+# Browserify to allow npm usage
+gem 'browserify-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 #Bootstrap
