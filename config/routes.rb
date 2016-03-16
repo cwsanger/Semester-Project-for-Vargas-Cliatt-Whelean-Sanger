@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  post 'comment/create'
+  post 'comment/:id/create', to: 'comment#create', as: :create_comment
 
-  patch 'comment/:id/like', to: 'comment#like'
+  put 'comment/:id/like', to: 'comment#like', as: :like_comment
 
   get 'comment/destroy'
 
@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get 'post/edit'
 
   post 'post/create'
+
+  put 'post/:id/like', to: 'post#like', as: :like_post
 
   root 'welcome#start'
 

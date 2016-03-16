@@ -1,16 +1,22 @@
 <div class="post">
   <h2><u><%= post.user.name %></u></h2>
   <p class="body"><%= post.body %></p>
-  <p class="date"><small>
-  Category: <%= post.category.title %>
-  <br />
-  <i><small> <%= post.created_at.strftime("%A, %B #{post.created_at.day.ordinalize} - %l:%M%P") %></i></small>
-  </small>
+  <p class="date">
+    <small>
+      Category: <%= post.category.title %>
+      <br />
+      <i><%= post.created_at.strftime("%A, %B #{post.created_at.day.ordinalize} - %l:%M%P") %></i>
+    </small>
   </p>
   <p>
-  Number of comments involved: <%= post.comments.count %>
+    Number of comments involved: <%= post.comments.count %>
   </p>
   <p>
-  Number of likes: <%= post.like %>
+  Number of likes: <%= post.likes %>
+<%= link_to "Like", like_post_path(post), method: :put %>
   </p>
+  <% post.comments.each do |comment| %>
+    <%= render comment %>
+  <% end %>
+  <%= render partial: 'create_comment', locals: { post: post } %> 
 </div>
