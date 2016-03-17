@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :businesses
+  resources :agencies
   controller :welcome do
     get 'login' => :login
     post 'login' => :post_login
