@@ -1,4 +1,6 @@
 class AdvertisementController < ApplicationController
+  before_action :set_advertisement, only: [:like]
+
   def create
   end
 
@@ -19,4 +21,9 @@ class AdvertisementController < ApplicationController
       end
     end
   end
+
+  private
+    def set_advertisement
+      @advertisement = Advertisement.find(params[:id])
+    end
 end

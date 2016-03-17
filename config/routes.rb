@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get 'advertisement/edit'
 
+  put 'advertisement/:id/like', to: 'advertisement#like', as: :like_advertisement
+
   get 'broadcast/create'
 
   get 'broadcast/destroy'
