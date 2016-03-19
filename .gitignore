@@ -7,10 +7,6 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore all node module files
-node_modules/
-node_modules/**
-
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -19,3 +15,7 @@ node_modules/**
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore Node Modules
+node_modules/
+node_modules/**
