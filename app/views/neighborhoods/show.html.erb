@@ -8,9 +8,7 @@
 
 <div class="col-md-5 col-md-offset-1 round_border">
   <%= render partial: 'create_post', locals: { categories: @categories } %>
-  <% @posts.each do |post| %>
-    <%= render post %>
-  <% end %>
+  <%= render partial: 'post_list', locals: { categories: @categories } %>
 </div>
 
 
@@ -41,4 +39,3 @@
     </div>
 
 </div>
-
