@@ -12,7 +12,7 @@
     Number of comments involved: <%= post.comments.count %>
   </p>
   <p>
-  Number of likes: <%= post.likes %>
+  Number of likes: <%= post.likes.count %>
 <%= link_to "Like", like_post_path(post), method: :put %>
   </p>
   <% post.comments.each do |comment| %>

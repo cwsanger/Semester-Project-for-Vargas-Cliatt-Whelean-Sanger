@@ -39,7 +39,7 @@ class PostController < ApplicationController
   end
 
   def like
-    @post.like
+    @post.like @current_user.id
 
     respond_to do |format|
       if @post.save

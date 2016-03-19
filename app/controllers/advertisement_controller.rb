@@ -11,7 +11,7 @@ class AdvertisementController < ApplicationController
   end
 
   def like
-    @advertisement.like
+    @advertisement.like @current_user.id
 
     respond_to do |format|
       if @advertisement.save

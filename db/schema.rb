@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316004924) do
+ActiveRecord::Schema.define(version: 20160319224723) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "body"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "likes",      default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "alerts", force: :cascade do |t|
@@ -41,11 +40,18 @@ ActiveRecord::Schema.define(version: 20160316004924) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
-    t.integer  "likes",      default: 0
     t.integer  "post_id"
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "likeable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "likeable_type"
   end
 
   create_table "neighborhoods", force: :cascade do |t|
@@ -60,11 +66,10 @@ ActiveRecord::Schema.define(version: 20160316004924) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "body"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "category_id"
-    t.integer  "likes",       default: 0
   end
 
   create_table "users", force: :cascade do |t|

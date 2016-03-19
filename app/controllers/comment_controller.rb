@@ -15,7 +15,7 @@ class CommentController < ApplicationController
   end
 
   def like
-    @comment.like
+    @comment.like @current_user.id
 
     respond_to do |format|
       if @comment.save
