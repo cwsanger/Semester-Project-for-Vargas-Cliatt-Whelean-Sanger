@@ -8,19 +8,11 @@ class WelcomeController < ApplicationController
     redirect_to "/welcome/search"
   end
 
-  def business_login
+  def login
 
   end
 
-  def agency_login
-
-  end
-
-  def admin_login
-
-  end
-
-  def user_login
+  def post_login
     user = User.find_by(email: params[:email])
     if user and user.authenticate(params[:password])
       session[:user_id] = user.id

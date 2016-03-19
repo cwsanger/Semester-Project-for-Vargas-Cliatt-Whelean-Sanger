@@ -3,7 +3,7 @@
   <% if flash[:alert] %>
     <p id="notice"><%= flash[:alert] %></p>
   <% end %>
-  <%= form_tag(url) do %>
+  <%= form_tag(url: url) do %>
     <div class="input-group">
       <div>
         <%= text_field_tag :email, params[:email], placeholder: 'Email', class: 'spaced-out' %>
