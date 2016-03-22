@@ -45,7 +45,7 @@ class WelcomeController < ApplicationController
         @member = account.member
 
         if @member.is_a? type
-          session[:user_id] = @member.id
+          session[:account_id] = account.id
           return true
         end
       end
