@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322074249) do
+ActiveRecord::Schema.define(version: 20160322084956) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -95,13 +95,14 @@ ActiveRecord::Schema.define(version: 20160322074249) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "neighborhood_id"
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "account_id"
+    t.integer  "role",            default: 0
   end
 
 end
