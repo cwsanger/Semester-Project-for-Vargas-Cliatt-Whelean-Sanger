@@ -31,10 +31,13 @@
   position: relative;
   z-index: 100000;
   color:black;
+  left: 35%;
+  width: 30%
 }
 
 .myImage {
-  height: 60vh;
+  margin-top: 15%;
+  height: 30vh;
   display: block;
   margin: auto;
 }
