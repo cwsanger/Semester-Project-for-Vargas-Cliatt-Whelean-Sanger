@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :groups
   resources :businesses
   resources :agencies
   controller :welcome do
