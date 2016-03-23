@@ -3,11 +3,12 @@ class User < ActiveRecord::Base
 #  geocoded_by :address
 #  after_validation :geocode
 
+  enum role: [:normy, :lead, :hoa]
+
   belongs_to :neighborhood
   has_many :posts
+  has_one :account, as: :member, dependent: :destroy
 
-  has_secure_password
-  validates :email, presence: true, uniqueness: true, email: true
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 #  validates :address, presence: true
 end
