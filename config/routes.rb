@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :groups
   resources :businesses
   resources :agencies
   controller :welcome do
@@ -9,6 +8,8 @@ Rails.application.routes.draw do
     post 'start' => :post_start
     get 'search' => :search
   end
+
+  post 'message/create', to: 'message#create', as: :create_message
 
   get 'advertisement/create'
 
@@ -44,7 +45,10 @@ Rails.application.routes.draw do
 
   root 'welcome#start'
 
-  resources :neighborhoods
+  resources :neighborhoods do
+    resources :groups, path: 'chat'
+  end
+
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
