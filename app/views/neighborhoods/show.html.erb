@@ -1,18 +1,16 @@
+<%= render partial:'navbar'%>
 <p id="notice"><%= notice %></p>
-
-<div class="col-md-2 round_border">
-  <div class="page-header">
-    <h1><%= @neighborhood.name %></h1>
-  </div>
+<br><br><br><br>
+<div class="col-md-2">
 </div>
 
-<div class="col-md-5 col-md-offset-1 round_border">
+<div class="col-md-5 col-md-offset-1 ">
   <%= render partial: 'create_post', locals: { categories: @categories } %>
   <%= render partial: 'post_list', locals: { categories: @categories } %>
 </div>
 
 
-<div class="round_border right_bar">
+<div class="right_bar">
 
     <div class="alert_div">
       <% @alerts.each do |alert| %>
