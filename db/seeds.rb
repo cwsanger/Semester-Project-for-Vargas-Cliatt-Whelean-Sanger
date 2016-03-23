@@ -17,6 +17,7 @@ Advertisement.delete_all
 kanto = Neighborhood.create(:name => "Kanto", :address => '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto, Japan')
 wwf = Neighborhood.create(:name => "World Wrestling Federation", :address => '1241 East Main Street Stamford, CT')
 bikini_bottom = Neighborhood.create(:name => "Bikini Bottom", :address => '300 Rodgers Blvd Honolulu, HI')
+bikini_mexico = Neighborhood.create(:name => "Badsfa", :address => '300 Rsdfaers Blvd Honolulu, HI')
 
 dwayne = User.create(:email => "djohnson@gmail.com", :name => "Dwayne Johnson",  :password => 'password', :password_confirmation=> 'password', :neighborhood_id => wwf.id)
 daniel = User.create(:email => "dbryant@gmail.com", :name => "Daniel Bryant",  :password => 'password', :password_confirmation=> 'password', :neighborhood_id => wwf.id)
