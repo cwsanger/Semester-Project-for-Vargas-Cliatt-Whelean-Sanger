@@ -8,15 +8,21 @@ class WelcomeController < ApplicationController
     redirect_to "/welcome/search"
   end
 
-  def login
+  def admin_login
 
   end
 
-  def post_login
-    user = User.find_by(email: params[:email])
-    if user and user.authenticate(params[:password])
-      session[:user_id] = user.id
-      neighborhood = Neighborhood.find(user.neighborhood_id)
+  def business_login
+
+  end
+
+  def agency_login
+
+  end
+
+  def user_login
+    if account_validated?(User)
+      neighborhood = Neighborhood.find(@member.neighborhood_id)
       redirect_to neighborhood
     else
       redirect_to login_path, alert: "Invalid user/password combination"
@@ -31,4 +37,19 @@ class WelcomeController < ApplicationController
       marker.title neighborhood.name
     end
   end
+
+  private
+    def account_validated?(type)
+      account = Account.find_by(email: params[:email])
+      if account and account.authenticate(params[:password])
+        @member = account.member
+
+        if @member.is_a? type
+          session[:account_id] = account.id
+          return true
+        end
+      end
+
+      return false
+    end
 end

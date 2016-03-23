@@ -6,9 +6,10 @@ Rails.application.routes.draw do
 
   get 'comment/destroy'
 
+  resources :businesses
+  resources :agencies
   controller :welcome do
     get 'login' => :login
-    post 'login' => :post_login
     get 'start' => :start
     post 'start' => :post_start
     get 'search' => :search
@@ -41,6 +42,14 @@ Rails.application.routes.draw do
   post 'post/create'
 
   put 'post/:id/like', to: 'post#like', as: :like_post
+
+  post 'login/user', to: 'welcome#user_login', as: :user_login
+
+  post 'login/agency', to: 'welcome#agency_login', as: :agency_login
+
+  post 'login/business', to: 'welcome#business_login', as: :business_login
+
+  post 'login/admin', to: 'welcome#admin_login', as: :admin_login
 
   root 'welcome#start'
 

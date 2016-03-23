@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319224723) do
+ActiveRecord::Schema.define(version: 20160322084956) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "member_id"
+    t.string   "member_type"
+  end
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "agencies", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,6 +43,12 @@ ActiveRecord::Schema.define(version: 20160319224723) do
 
   create_table "broadcasts", force: :cascade do |t|
     t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,15 +94,15 @@ ActiveRecord::Schema.define(version: 20160319224723) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
     t.string   "name"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "neighborhood_id"
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "account_id"
+    t.integer  "role",            default: 0
   end
 
 end

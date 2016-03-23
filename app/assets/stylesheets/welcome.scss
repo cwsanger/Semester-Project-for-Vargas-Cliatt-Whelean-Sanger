@@ -31,10 +31,13 @@
   position: relative;
   z-index: 100000;
   color:black;
+  left: 35%;
+  width: 30%
 }
 
 .myImage {
-  height: 60vh;
+  margin-top: 15%;
+  height: 30vh;
   display: block;
   margin: auto;
 }
@@ -85,57 +88,34 @@
   margin: 5px;
 }
 
-/* custom inclusion of left tabs shamlessly copied from Skelly on Stack Overflow */
-
-.tabs-left > div > .nav-tabs {
-  border-bottom: 0;
-}
-
-.tab-content > .tab-pane,
-.pill-content > .pill-pane {
-  display: none;
-}
-
-.tab-content > .active,
-.pill-content > .active {
-  display: inline-block;
-}
-
-.tabs-left > div > .nav-tabs > li {
+.tabs-left > .nav-tabs > li{
   float: none;
+   font-size: 40px;
 }
-
-.tabs-left > div > .nav-tabs > li > a {
+.tabs-left > .nav-tabs > li > a{
   min-width: 74px;
   margin-right: 0;
-  margin-bottom: 3px;
+  background-color:#308014;
+  color:white;
+  font-size: 40px;
 }
-
-.tabs-left > div > .nav-tabs {
+.tabs-left > .nav-tabs {
+  float: left;
   margin-right: 19px;
-  border-right: 1px solid #ddd;
+  font-size: 40px;
 }
-
-.tabs-left > div > .nav-tabs > li > a {
-  margin-right: -1px;
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
-
-  font-size: 30px;
-  color: green;
+.tabs-left > .nav-tabs .active > a,.tabs-left > .nav-tabs > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+  min-width: 74px;
+  background-color: white;
+  color:#308014;
+  font-size: 40px;
 }
-
-.tabs-left > div > .nav-tabs > li > a:hover,
-.tabs-left > div > .nav-tabs > li > a:focus {
-  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
-}
-
-.tabs-left > div > .nav-tabs .active > a,
-.tabs-left > div > .nav-tabs .active > a:hover,
-.tabs-left > div > .nav-tabs .active > a:focus {
-  border-color: #ddd transparent #ddd #ddd;
-  *border-right-color: #ffffff;
+.tab-content{
+  padding-top: 2%;
+  background-color: white;
+  height: 22.4em;
+  box-shadow: 1px 1px 9px 5px #4c4c4c;
 }
 
 .box-shadow {
@@ -143,3 +123,24 @@
   box-shadow: 0 0 30px black;
   padding: 20px;
 }
+.pass{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.xy{
+  margin-top: 25%;
+  box-shadow: 7px 7px 5px #888888;
+}
+.myLogin{
+  width:45%;
+
+}
+.btn{
+  color: white;
+  margin-top: 1%;
+  background-color:#308014;
+}
+#notice{
+  color:red;
+}
+

@@ -4,13 +4,13 @@ class PostController < ApplicationController
   def create
     @post = Post.new(body: params[:body],
                      category_id: params[:category_id],
-                     user_id: @current_user.id)
+                     user_id: @current_member.id)
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @current_user.neighborhood }
+        format.html { redirect_to @current_member.neighborhood }
       else
-        format.html { redirect_to @current_user.neighborhood, notice: 'you are bad' }
+        format.html { redirect_to @current_member.neighborhood, notice: 'you are bad' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end

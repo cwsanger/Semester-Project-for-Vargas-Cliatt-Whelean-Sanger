@@ -1,19 +1,23 @@
-<div>
-  <legend><h2><%= title %></h2></legend>
+<div class="logInBox">
+  <h3><%= title %></h3>
+  <hr>
   <% if flash[:alert] %>
     <p id="notice"><%= flash[:alert] %></p>
   <% end %>
-  <%= form_tag(url: url) do %>
-    <div class="input-group">
+  <div class="col-sm-2"></div>
+  <%= form_tag(url) do %>
+    <fieldset class="myLogin">    
       <div>
-        <%= text_field_tag :email, params[:email], placeholder: 'Email', class: 'spaced-out' %>
+        <%= label_tag :email, 'Email:',:class=>"labels" %>
+        <%= text_field_tag :email, params[:email],:class=>"form-control" %>
       </div>
       <div>
-        <%= password_field_tag :password, params[:password], placeholder: 'Password', class: 'spaced-out' %>
+        <%= label_tag :password, 'Password:',:class=>"labels" %>
+        <%= password_field_tag :password, params[:password],:class=>"form-control" %>
       </div>
       <div>
-        <%= submit_tag "Login", class: 'btn btn-success spaced-out' %>
+        <%= submit_tag "Login", :class=>"btn" %>
       </div>
-    </div>
+    </fieldset>
   <% end %>
 </div>

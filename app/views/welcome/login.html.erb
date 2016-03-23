@@ -9,51 +9,59 @@ which tabs correlate to which login state. There
 will be four tabs: user, admin, agency, business.
 
 -->
-
 <div class='backDiv'></div>
 <div class="background-div">
   <%= image_tag 'houses' %>
 </div>
+<div class="container ">
+  <div class="col-sm-2"></div>
+      <div class="col-md-8 col-sm-8 xy">
+        <div class="tabs-left row">
+          <ul class="nav nav-tabs ">
+            <li class="active"><a href="#a" data-toggle="tab"><span class="glyphicon glyphicon-user"></span></a></li>
+            <li><a href="#b" data-toggle="tab"><span class="glyphicon glyphicon-bell"></span></a></li>
+            <li><a href="#c" data-toggle="tab"><span class="glyphicon glyphicon glyphicon-shopping-cart"></span></a></li>
+            <li><a href="#d" data-toggle="tab"><span class="glyphicon glyphicon-lock"></span></a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="a">
+              <%= render partial:'login_form', locals: { title: 'User', url: user_login_path } %>
+            </div>
+            <div class="tab-pane" id="b">
+              <%= render partial:'login_form', locals: { title: 'Business', url: business_login_path } %>                   
+            </div>
+            <div class="tab-pane" id="c">
+              <%= render partial:'login_form', locals: { title: 'Agency', url: agency_login_path } %>    
+            </div>
+            <div class="tab-pane" id="d">
+              <%= render partial:'login_form', locals: { title: 'Admin', url: admin_login_path } %> 
+            </div>
+          </div><!-- /tab-content -->
+        </div><!-- /tabbable -->
+      </div><!-- /col -->
+    <!-- /row -->
+</div> 
 
-<div class="container v-center box-shadow">
-  <div class="tabbable tabs-left">
-    <div class="col-sm-2">
-      <ul class="nav nav-tabs">
-        <li class="active">
-          <a href="#a" data-toggle="tab">
-            <span class="glyphicon-user glyphicon"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#b" data-toggle="tab">
-            <span class="glyphicon-tag glyphicon"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#c" data-toggle="tab">
-            <span class="glyphicon-flash glyphicon"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#d" data-toggle="tab">
-            <span class="glyphicon-cog glyphicon"></span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-6 tab-content">
-      <div class="tab-pane active" id="a">
-        <%= render partial:'login_form', locals: { title: 'User', url: login_path } %>
-      </div>
-      <div class="tab-pane" id="b">
-        <%= render partial:'login_form', locals: { title: 'Buisiness', url: '#' } %>
-      </div>
-      <div class="tab-pane" id="c">
-        <%= render partial:'login_form', locals: { title: 'Agency', url: '#' } %>
-      </div>
-      <div class="tab-pane" id="d">
-        <%= render partial:'login_form', locals: { title: 'Admin', url: '#' } %>
-      </div>
-    </div>
-  </div>
-</div>
+<script>
+  var tabsFn = (function() {
+  function init() {
+    setHeight();
+  }
+  
+  function setHeight() {
+    var $tabPane = $('.tab-pane'),
+        tabsHeight = $('.nav-tabs').height();
+    
+    $tabPane.css({
+      height: tabsHeight
+    });
+  }
+    
+    $(init);
+  })();
+</script>
+    
+    
+  
+  
+  
