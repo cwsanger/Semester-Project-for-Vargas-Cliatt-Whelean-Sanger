@@ -1,3 +1,3 @@
 class Business < ActiveRecord::Base
-  has_secure_password
+  has_one :account, as: :member, dependent: :destroy
 end
