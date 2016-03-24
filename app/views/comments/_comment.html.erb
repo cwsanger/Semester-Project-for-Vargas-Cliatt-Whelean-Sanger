@@ -1,0 +1,4 @@
+<div class="comment">
+  <p><%= comment.body %></p>
+  <p>Likes: <%= comment.likes.count %> <%= button_to "Like", like_comment_path(comment), method: :put %></p>
+</div>
