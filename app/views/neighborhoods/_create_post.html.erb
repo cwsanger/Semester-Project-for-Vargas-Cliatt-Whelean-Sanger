@@ -1,9 +1,8 @@
 <div>
-  <h3> Post</h3>
   <%= form_tag(post_create_url) do %>
     <div class="input-group">
       <div>
-        <%= text_area_tag :body, params[:body], placeholder: 'Type post here' %> 
+        <%= text_area_tag :body, params[:body], placeholder: 'Type post here', :class=>"postArea" %> 
       </div>
       <div>
         <% categories.each do |category| %>
@@ -17,3 +16,4 @@
     </div>
   <% end %>
 </div>
+

@@ -6,6 +6,8 @@
 
 <div class="col-md-5 col-md-offset-1 ">
   <%= render partial: 'create_post', locals: { categories: @categories } %>
+  <hr>
+  <br>
   <%= render partial: 'post_list', locals: { categories: @categories } %>
 </div>
 <div class="right_bar">
@@ -53,7 +55,6 @@
       }
             
     });
-
     $('#closeBroad').click(function(){
       if(alertFlag){
         $('.broadcast_div').hide();
@@ -68,7 +69,6 @@
       }
             
     });
-
     $('#closeAd').click(function(){
       if(alertFlag){
         $('.advertisement_div').hide();
@@ -84,7 +84,5 @@
             
     });
  }
-
  
-
 </script>
