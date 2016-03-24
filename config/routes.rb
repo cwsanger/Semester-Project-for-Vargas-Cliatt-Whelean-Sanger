@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :businesses
   resources :agencies
   controller :welcome do
+    post 'logout' => :logout
+
     get 'login' => :login
     get 'start' => :start
     post 'start' => :post_start
