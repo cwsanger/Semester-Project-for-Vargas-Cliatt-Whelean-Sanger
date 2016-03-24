@@ -39,13 +39,13 @@ class PostController < ApplicationController
   end
 
   def like
-    @post.like @current_user.id
+    @post.like @current_member.id
 
     respond_to do |format|
       if @post.save
-          format.html { redirect_to @current_user.neighborhood }
+          format.html { redirect_to @current_member.neighborhood }
         else
-          format.html { redirect_to @current_user.neighborhood, notice: 'you are bad' }
+          format.html { redirect_to @current_member.neighborhood, notice: 'you are bad' }
       end
     end
   end

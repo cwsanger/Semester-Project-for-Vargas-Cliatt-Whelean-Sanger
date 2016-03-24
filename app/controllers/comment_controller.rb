@@ -7,19 +7,19 @@ class CommentController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @current_user.neighborhood }
+        format.html { redirect_to @current_member.neighborhood }
       else
-        format.html { redirect_to @current_user,neighborhood, notice: 'your comments are bad' }
+        format.html { redirect_to @current_member,neighborhood, notice: 'your comments are bad' }
       end
     end
   end
 
   def like
-    @comment.like @current_user.id
+    @comment.like @current_member.id
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @current_user.neighborhood }
+        format.html { redirect_to @current_member.neighborhood }
       else
         format.html { redirect_to @currnet_user.neighborhood, notice: 'your like was bad' }
       end
