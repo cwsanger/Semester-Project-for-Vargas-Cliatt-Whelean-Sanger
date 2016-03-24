@@ -1,0 +1,17 @@
+<%= render partial:'neighborhoods/navbar'%>
+<br><br><br><br>
+<div class="col-xs-4">
+  <%= render partial: 'create_group' %>
+
+  <%= render partial: 'group_list' %>
+</div>
+
+<div class="col-xs-8">
+  <div class= "messages">
+    <% @group.messages.each do |message| %>
+      <%= render message %>
+    <% end %>
+  </div>
+
+  <%= render partial: 'create_message' %>
+</div>

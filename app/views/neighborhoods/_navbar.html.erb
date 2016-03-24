@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-           <a class="navbar-brand page-scroll maHood" href="<%= root_path %>"><%= @neighborhood.name%></a>
+            <%= link_to @current_member.neighborhood.name, @current_member.neighborhood, class: 'navbar-brand page-scroll maHood' %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,14 +20,14 @@
                     <a class="page-scroll" href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="<%= about_path %>">About</a>
+                    <%= link_to "Chat", groups_url, class: 'page-scroll' %>
                 </li>
-                <li>
-                    <a class="page-scroll" href="<%= contact_path %>">Contact</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="<%= doc_path %>">Documentation</a>
-                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <%= link_to "Logout", logout_path, method: :post, class: 'page-scroll' %>
+              </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
