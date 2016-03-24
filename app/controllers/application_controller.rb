@@ -7,8 +7,11 @@ class ApplicationController < ActionController::Base
 
   protected
     def authorize
-      @current_user = User.find_by(id: session[:user_id])
-      unless @current_user
+      @current_account = Account.find_by(id: session[:account_id])
+
+      if @current_account
+        @current_member = @current_account.member
+      else
         redirect_to login_url, notice: 'Log in required'
       end
     end
