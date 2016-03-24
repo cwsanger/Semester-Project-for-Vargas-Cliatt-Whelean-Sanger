@@ -8,28 +8,26 @@
   <%= render partial: 'create_post', locals: { categories: @categories } %>
   <%= render partial: 'post_list', locals: { categories: @categories } %>
 </div>
-
-
 <div class="right_bar">
-
+    <div>
+      <p class="alert-danger semiTitle">Alerts<i id="closeAlert" class="glyphicon glyphicon-chevron-up pull-right closeAlert close"></i></p>
+    </div>  
     <div class="alert_div">
       <% @alerts.each do |alert| %>
         <%= render alert %>
       <% end %>
     </div>
-
-    <br />
-    <br />
-
+    <div>
+      <p class="alert-warning semiTitle">Broadcast<i id="closeBroad" class="glyphicon glyphicon-chevron-up pull-right closeBroad close"></i></p>
+    </div>  
     <div class="broadcast_div">
       <% @broadcasts.each do |bc| %>
         <%= render bc %>
       <% end %>
     </div>
-
-    <br />
-    <br />
-
+    <div>
+      <p class="alert-info semiTitle">Advertisement<i id="closeAd" class="glyphicon glyphicon-chevron-up pull-right closeAd close"></i></p>
+    </div>  
     <div class="advertisement_div">
       <% @advertisements.each do |ad| %>
         <%= render ad %>
@@ -37,3 +35,56 @@
     </div>
 
 </div>
+
+<script>
+ var alertFlag = true;
+ if(alertFlag){
+    $('#closeAlert').click(function(){
+      if(alertFlag){
+        $('.alert_div').hide();
+        $('#closeAlert').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeAlert');
+        alertFlag = false;
+        return;
+      }else{
+        $('.alert_div').show();
+        $('#closeAlert').removeClass('glyphicon glyphicon-chevron-down pull-right closeAlert').addClass('glyphicon glyphicon-chevron-up pull-right closeAlert');
+        alertFlag = true;
+        return;
+      }
+            
+    });
+
+    $('#closeBroad').click(function(){
+      if(alertFlag){
+        $('.broadcast_div').hide();
+        $('#closeBroad').removeClass('glyphicon glyphicon-chevron-up pull-right closeBroad').addClass('glyphicon glyphicon-chevron-down pull-right closeBroad');
+        alertFlag = false;
+        return;
+      }else{
+        $('.broadcast_div').show();
+        $('#closeBroad').removeClass('glyphicon glyphicon-chevron-down pull-right closeBroad').addClass('glyphicon glyphicon-chevron-up pull-right closeBroad');
+        alertFlag = true;
+        return;
+      }
+            
+    });
+
+    $('#closeAd').click(function(){
+      if(alertFlag){
+        $('.advertisement_div').hide();
+        $('#closeAd').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeAd');
+        alertFlag = false;
+        return;
+      }else{
+        $('.advertisement_div').show();
+        $('#closeAd').removeClass('glyphicon glyphicon-chevron-down pull-right closeAd').addClass('glyphicon glyphicon-chevron-up pull-right closeAd');
+        alertFlag = true;
+        return;
+      }
+            
+    });
+ }
+
+ 
+
+</script>
