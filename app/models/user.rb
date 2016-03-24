@@ -6,7 +6,11 @@ class User < ActiveRecord::Base
   enum role: [:normy, :lead, :hoa]
 
   belongs_to :neighborhood
+
+  has_and_belongs_to_many :groups
+
   has_many :posts
+  has_many :messages
   has_many :comments
   has_one :account, as: :member, dependent: :destroy
 

@@ -34,6 +34,11 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def logout
+    session[:account_id] = nil
+    redirect_to login_path, notice: "Logout Successfull"
+  end
+
   def search
     @neighborhoods = Neighborhood.all
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
