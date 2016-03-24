@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322084956) do
+ActiveRecord::Schema.define(version: 20160324073905) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(version: 20160322084956) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "business_id"
   end
 
   create_table "agencies", force: :cascade do |t|
@@ -51,12 +52,29 @@ ActiveRecord::Schema.define(version: 20160322084956) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "likeable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "likeable_type"
   end
 
   create_table "neighborhoods", force: :cascade do |t|

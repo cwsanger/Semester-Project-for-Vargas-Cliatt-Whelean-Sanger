@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'doc' => :doc
   end
 
-  get 'advertisement/create'
+  post 'advertisement/create'
 
   get 'advertisement/destroy'
 
