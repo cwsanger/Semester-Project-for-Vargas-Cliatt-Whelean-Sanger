@@ -12,6 +12,15 @@
   }
 }
 
+.messages {
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.create-message {
+  height: 10vh;
+}
+
 .message {
   border-top: 1px solid gray;
 
