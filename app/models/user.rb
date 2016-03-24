@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :messages
+  has_many :comments
   has_one :account, as: :member, dependent: :destroy
 
   validates :name, presence: true

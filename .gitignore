@@ -16,6 +16,10 @@
 !/log/.keep
 /tmp
 
+# Ignore Node Modules
+node_modules/
+node_modules/**
+
 # Ignore Vim temp files
 *.swp
 *.swo
