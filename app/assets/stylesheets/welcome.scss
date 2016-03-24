@@ -13,6 +13,7 @@
   left: -50%; 
   width: 200%; 
   height: 200%;
+  color: white;
 }
 
 .background-div img {
@@ -44,6 +45,18 @@
 
 .backDiv{
   background-color: grey;
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  overflow:hidden;
+  opacity: .6 ;
+  z-index: -1;
+  color: black;
+}
+.backDiv2{
+  background-color: white;
   position:absolute;
   top:0;
   bottom:0;
@@ -143,4 +156,38 @@
 #notice{
   color:red;
 }
+@media(min-width:767px) {
+    .navbar {
+        padding: 5px 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+    .top-nav-collapse {
+        padding: 0;
+    }
+}
 
+a{
+  font-size: 16px;
+}
+p{
+  font-size: 16px;
+}
+.hoods{
+  border-color: #308014;
+}
+.staff{
+  margin-left: 10%;
+}
+.myFooter{
+  background-color: #308014;
+  color: white;
+  height: 10%;
+}
+.aboutTitle{
+  color: #308014;
+}
+.theTeam{
+  font-size: 70px;
+}

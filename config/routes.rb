@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     get 'start' => :start
     post 'start' => :post_start
     get 'search' => :search
+    get 'about' => :about
+    get 'contact' => :contact
+    get 'doc' => :doc
   end
 
   get 'advertisement/create'
