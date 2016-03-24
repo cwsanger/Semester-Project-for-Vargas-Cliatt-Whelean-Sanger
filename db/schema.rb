@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 20160324051034) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -71,6 +79,14 @@ ActiveRecord::Schema.define(version: 20160324051034) do
   end
 
   add_index "groups_users", ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "likeable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "likeable_type"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.string   "body"
