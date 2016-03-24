@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   belongs_to :neighborhood
   has_many :posts
+  has_many :comments
   has_one :account, as: :member, dependent: :destroy
 
   validates :name, presence: true

@@ -1,5 +1,5 @@
 class PostController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
 
   def create
     @post = Post.new(body: params[:body],
@@ -18,7 +18,6 @@ class PostController < ApplicationController
 
   def destroy
     @post.destroy
-
   end
 
   def edit
@@ -37,6 +36,18 @@ class PostController < ApplicationController
 
   def show
     @post = Post.find(params[:post_id])
+  end
+
+  def like
+    @post.like @current_user.id
+
+    respond_to do |format|
+      if @post.save
+          format.html { redirect_to @current_user.neighborhood }
+        else
+          format.html { redirect_to @current_user.neighborhood, notice: 'you are bad' }
+      end
+    end
   end
 
   private
