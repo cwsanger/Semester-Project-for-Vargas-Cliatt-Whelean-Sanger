@@ -13,7 +13,12 @@ class WelcomeController < ApplicationController
   end
 
   def business_login
-
+    if account_validated?(Business)
+      business = Business.find(@member.business_id)
+      redirect_to business
+    else
+      redirect_to login_path, alert: "Invalid user/password combination"
+    end
   end
 
   def agency_login

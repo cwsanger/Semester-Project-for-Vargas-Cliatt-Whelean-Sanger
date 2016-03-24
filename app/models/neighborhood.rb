@@ -2,7 +2,9 @@ class Neighborhood < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode
 
+  has_many :advertisements, through: :businesses
   has_many :users
+  has_and_belongs_to_many :businesses
 
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true

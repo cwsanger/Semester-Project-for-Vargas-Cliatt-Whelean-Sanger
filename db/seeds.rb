@@ -75,6 +75,15 @@ Post.create(:category_id => item.id, :body => "Gently used championship belt.", 
 #Post.create(:category_id => item.id, :body => "Selling a lightly used clarinet. Serious replies only.", :user_id => squidward.id)
 
 
+bk = Business.create(:name => "Burger King")
+bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
+bk.save
+
+bk.neighborhoods << wwf
+
+Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
+Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
+
 Alert.create(:body => "Alert 1", :severity => 1)
 Alert.create(:body => "Alert 2", :severity => 1)
 Alert.create(:body => "Alert 3", :severity => 1)
@@ -93,14 +102,3 @@ Broadcast.create(:body => "Broadcast 5")
 Broadcast.create(:body => "Broadcast 6")
 Broadcast.create(:body => "Broadcast 7")
 Broadcast.create(:body => "Broadcast 8")
-
-Advertisement.create(:body => "Ad 1")
-Advertisement.create(:body => "Ad 2")
-Advertisement.create(:body => "Ad 3")
-Advertisement.create(:body => "Ad 4")
-Advertisement.create(:body => "Ad 5")
-Advertisement.create(:body => "Ad 6")
-Advertisement.create(:body => "Ad 7")
-Advertisement.create(:body => "Ad 8")
-Advertisement.create(:body => "Ad 9")
-Advertisement.create(:body => "Ad 10")
