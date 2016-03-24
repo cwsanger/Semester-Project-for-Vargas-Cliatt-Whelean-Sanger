@@ -1,27 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Groups</h1>
+<div class="col-xs-4">
+  <%= render partial: 'create_group' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%= render partial: 'group_list' %>
+</div>
 
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.name %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_neighborhood_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Group', new_neighborhood_group_path %>
+<div class="col-xs-8">
+  <h2>Please select a group</h2>
+</div>

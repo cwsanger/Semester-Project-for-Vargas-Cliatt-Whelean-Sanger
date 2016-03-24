@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     get 'search' => :search
   end
 
-  post 'message/create', to: 'message#create', as: :create_message
 
   get 'advertisement/create'
 
@@ -45,8 +44,10 @@ Rails.application.routes.draw do
 
   root 'welcome#start'
 
-  resources :neighborhoods do
-    resources :groups, path: 'chat'
+  resources :neighborhoods
+
+  resources :groups, path: 'chat' do
+    post 'message/create', to: 'message#create', as: :create_message
   end
 
   resources :users

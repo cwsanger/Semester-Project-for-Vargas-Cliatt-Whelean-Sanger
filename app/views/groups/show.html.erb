@@ -1,9 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="col-xs-4">
+  <%= render partial: 'create_group' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+  <%= render partial: 'group_list' %>
+</div>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<div class="col-xs-8">
+  <div class= "messages">
+    <% @group.messages.each do |message| %>
+      <%= render message %>
+    <% end %>
+  </div>
+
+  <%= render partial: 'create_message' %>
+</div>
