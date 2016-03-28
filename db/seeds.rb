@@ -78,20 +78,21 @@ Post.create(:category_id => item.id, :body => "Gently used championship belt.", 
 bk = Business.create(:name => "Burger King")
 bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
 bk.save
-
 bk.neighborhoods << wwf
 
 Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
 Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
 
+police = Agency.create(:name => "Pigs")
+police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")
+
+police.alerts.create(:body => "Alert from seeds.rb with police.alerts.create!", :severity => 100)
+police.alerts.create(:body => "Alert 2 from seeds.rb with police.alerts.create!", :severity => 100)
+police.alerts.create(:body => "Alert 3 from seeds.rb with police.alerts.create!", :severity => 100)
+
 Alert.create(:body => "Alert 1", :severity => 1)
 Alert.create(:body => "Alert 2", :severity => 1)
 Alert.create(:body => "Alert 3", :severity => 1)
-Alert.create(:body => "Alert 4", :severity => 1)
-Alert.create(:body => "Alert 5", :severity => 1)
-Alert.create(:body => "Alert 6", :severity => 1)
-Alert.create(:body => "Alert 7", :severity => 1)
-Alert.create(:body => "Alert 8", :severity => 1)
 Alert.create(:body => "Alert 9", :severity => 1)
 
 Broadcast.create(:body => "Broadcast 1")
