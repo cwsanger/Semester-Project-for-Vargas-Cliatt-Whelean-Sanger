@@ -1,12 +1,12 @@
-<%= render partial:'neighborhoods/navbar'%>
+<%= render partial: 'neighborhoods/navbar' %>
 <br><br><br><br>
-<div class="col-xs-4">
+<div class="col-md-4">
   <%= render partial: 'create_group' %>
 
   <%= render partial: 'group_list' %>
 </div>
 
-<div class="col-xs-8">
+<div class="col-md-6">
   <div class= "messages">
     <% @group.messages.each do |message| %>
       <%= render message %>
@@ -14,4 +14,22 @@
   </div>
 
   <%= render partial: 'create_message' %>
+</div>
+
+<div class="col-md-2">
+  <div>
+    <h3>Current Members</h3>
+
+    <% @group.users.each do |user| %>
+      <%= render partial: 'users/tag', locals: { user: user } %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Add Members</h3>
+
+    <% @current_member.neighborhood.users.each do |user| %>
+      <%= render partial: 'users/tag', locals: { user: user } %>
+    <% end %>
+  </div>
 </div>
