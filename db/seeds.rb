@@ -10,6 +10,7 @@ Neighborhood.delete_all
 Post.delete_all
 Category.delete_all
 Alert.delete_all
+Agency.delete_all
 Broadcast.delete_all
 Advertisement.delete_all
 
@@ -83,12 +84,21 @@ bk.neighborhoods << wwf
 Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
 Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
 
-police = Agency.create(:name => "Pigs")
+police = Agency.create(:name => "The Police Dept.")
 police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")
+police.save
 
-police.alerts.create(:body => "Alert from seeds.rb with police.alerts.create!", :severity => 100)
-police.alerts.create(:body => "Alert 2 from seeds.rb with police.alerts.create!", :severity => 100)
-police.alerts.create(:body => "Alert 3 from seeds.rb with police.alerts.create!", :severity => 100)
+police.alerts.create(:body => "Bad guy on the loose!", :severity => 100)
+police.alerts.create(:body => "We got that bad guy!", :severity => 100)
+police.alerts.create(:body => "Don't do school, stay in drugs.", :severity => 100)
+
+fire = Agency.create(:name => "Fire dept.")
+fire.build_account(:email => "fire@gmail.com", :password => "password", :password_confirmation => "password")
+fire.save
+
+fire.alerts.create(:body => "There is a big fire!", :severity => 100)
+fire.alerts.create(:body => "We got that damn fire.", :severity => 100)
+fire.alerts.create(:body => "Cats are in trees.", :severity => 100)
 
 Alert.create(:body => "Alert 1", :severity => 1)
 Alert.create(:body => "Alert 2", :severity => 1)
