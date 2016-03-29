@@ -83,22 +83,3 @@ bk.neighborhoods << wwf
 
 Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
 Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
-
-Alert.create(:body => "Alert 1", :severity => 1)
-Alert.create(:body => "Alert 2", :severity => 1)
-Alert.create(:body => "Alert 3", :severity => 1)
-Alert.create(:body => "Alert 4", :severity => 1)
-Alert.create(:body => "Alert 5", :severity => 1)
-Alert.create(:body => "Alert 6", :severity => 1)
-Alert.create(:body => "Alert 7", :severity => 1)
-Alert.create(:body => "Alert 8", :severity => 1)
-Alert.create(:body => "Alert 9", :severity => 1)
-
-Broadcast.create(:body => "Broadcast 1")
-Broadcast.create(:body => "Broadcast 2")
-Broadcast.create(:body => "Broadcast 3")
-Broadcast.create(:body => "Broadcast 4")
-Broadcast.create(:body => "Broadcast 5")
-Broadcast.create(:body => "Broadcast 6")
-Broadcast.create(:body => "Broadcast 7")
-Broadcast.create(:body => "Broadcast 8")
