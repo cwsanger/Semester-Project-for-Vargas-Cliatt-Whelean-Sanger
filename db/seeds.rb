@@ -89,6 +89,7 @@ police.build_account(:email => "popo@gmail.com", :password => "password", :passw
 police.alerts.create(:body => "Alert from seeds.rb with police.alerts.create!", :severity => 100)
 police.alerts.create(:body => "Alert 2 from seeds.rb with police.alerts.create!", :severity => 100)
 police.alerts.create(:body => "Alert 3 from seeds.rb with police.alerts.create!", :severity => 100)
+police.save
 
 Alert.create(:body => "Alert 1", :severity => 1)
 Alert.create(:body => "Alert 2", :severity => 1)
