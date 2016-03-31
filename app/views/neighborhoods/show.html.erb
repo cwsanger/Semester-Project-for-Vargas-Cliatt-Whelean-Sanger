@@ -5,7 +5,7 @@
 </div>
 
 <div class="col-md-5 col-md-offset-1 ">
-  <%= render partial: 'create_post', locals: { categories: @categories } %>
+  <%= render partial: 'posts/form', locals: { categories: @categories } %>
   <hr>
   <br>
   <%= render partial: 'post_list', locals: { categories: @categories } %>

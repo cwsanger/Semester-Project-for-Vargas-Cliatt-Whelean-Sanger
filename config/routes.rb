@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  post 'comment/:id/create', to: 'comment#create', as: :create_comment
-
-  put 'comment/:id/like', to: 'comment#like', as: :like_comment
-
-  get 'comment/destroy'
-
   resources :businesses
   resources :agencies
   controller :welcome do
@@ -21,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :alerts
+
+  resources :posts, only: [:destroy, :edit, :create]
 
   post 'advertisement/create'
 
@@ -38,13 +34,14 @@ Rails.application.routes.draw do
 
   get 'broadcast/edit'
 
-  get 'post/destroy'
 
-  get 'post/edit'
+  put 'posts/:id/like', to: 'posts#like', as: :like_post
 
-  post 'post/create'
+  post 'comment/:id/create', to: 'comment#create', as: :create_comment
 
-  put 'post/:id/like', to: 'post#like', as: :like_post
+  put 'comment/:id/like', to: 'comment#like', as: :like_comment
+
+  get 'comment/destroy'
 
   post 'login/user', to: 'welcome#user_login', as: :user_login
 

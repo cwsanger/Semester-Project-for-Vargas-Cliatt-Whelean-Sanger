@@ -18,6 +18,8 @@ class NeighborhoodsController < ApplicationController
     @broadcasts = Broadcast.all
     @advertisements = Advertisement.all
     @categories = Category.all
+
+    @post = Post.new
   end
 
   # GET /neighborhoods/new
