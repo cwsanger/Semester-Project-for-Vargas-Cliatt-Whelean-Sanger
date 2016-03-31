@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'doc' => :doc
   end
 
+  resources :alerts
 
   post 'advertisement/create'
 
@@ -36,12 +37,6 @@ Rails.application.routes.draw do
   get 'broadcast/destroy'
 
   get 'broadcast/edit'
-
-  get 'alert/create'
-
-  get 'alert/destroy'
-
-  get 'alert/edit'
 
   get 'post/destroy'
 

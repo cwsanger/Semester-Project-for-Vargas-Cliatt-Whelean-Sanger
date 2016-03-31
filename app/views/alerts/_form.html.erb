@@ -1,0 +1,17 @@
+<div>
+  <%= form_for(@alert) do |f| %>
+    <div class="input-group">
+      <div class="field">
+        <%= f.label :body %><br>
+        <%= f.text_field :body %>
+      </div>
+      <div class="field">
+        <%= f.label :severity %><br>
+        <%= f.number_field :severity %>
+      </div>
+      <div class="action">
+        <%= f.submit %>
+      </div>
+    </div>
+  <% end %>
+</div>
