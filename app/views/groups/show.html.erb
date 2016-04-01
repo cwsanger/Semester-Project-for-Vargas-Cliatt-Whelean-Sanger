@@ -28,8 +28,9 @@
   <div>
     <h3>Add Members</h3>
 
-    <% @current_member.neighborhood.users.each do |user| %>
+    <% not_users(@group).each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
+      <%= button_to "Add", group_add_user_url(@group, user), method: :post %>
     <% end %>
   </div>
 </div>

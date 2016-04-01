@@ -3,6 +3,7 @@ class Neighborhood < ActiveRecord::Base
   after_validation :geocode
 
   has_many :users
+  has_many :groups
 
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true

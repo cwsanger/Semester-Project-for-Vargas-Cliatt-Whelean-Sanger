@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   resources :neighborhoods
 
   resources :groups, path: 'chat' do
+    post 'add/:user_id', to: 'groups#add_user', as: :add_user
     post 'message/create', to: 'message#create', as: :create_message
   end
 
