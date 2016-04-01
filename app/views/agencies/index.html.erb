@@ -15,7 +15,7 @@
     <% @agencies.each do |agency| %>
       <tr>
         <td><%= agency.name %></td>
-        <td><%= agency.email %></td>
+        <td><%= agency.account.email %></td>
         <td><%= link_to 'Show', agency %></td>
         <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
         <td><%= link_to 'Destroy', agency, method: :delete, data: { confirm: 'Are you sure?' } %></td>

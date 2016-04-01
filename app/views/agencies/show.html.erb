@@ -1,14 +1,25 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
 <p>
-  <strong>Name:</strong>
+  <strong>Logged in as:</strong>
   <%= @agency.name %>
-</p>
 
-<p>
+  <br />
+
   <strong>Email:</strong>
-  <%= @agency.email %>
+  <%= @agency.account.email %>
 </p>
+</div>
 
-<%= link_to 'Edit', edit_agency_path(@agency) %> |
-<%= link_to 'Back', agencies_path %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+    <%= render 'alerts/form' %>
+  </div>
+
+  <div class="col-md-3 col-md-offset-1">
+    <% @alerts.each do |alert| %>
+      <%= render alert %>
+    <% end %>
+  </div>
+</div>
