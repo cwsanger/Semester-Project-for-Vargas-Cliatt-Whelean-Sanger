@@ -3,7 +3,7 @@
 
   <div>
     <% @current_member.neighborhood.users.each do |user| %>
-      <p><%= user.name %> <%= link_to 'Chat', groups_url %></p>
+      <%= render partial: 'direct_messages/user', locals: {user: user} %>
     <% end %>
   </div>
 </div>

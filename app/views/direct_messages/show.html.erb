@@ -1,0 +1,23 @@
+<%= render partial:'neighborhoods/navbar'%>
+<br><br><br><br>
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-4">
+  <%= render partial: 'groups/create_group' %>
+
+  <%= render partial: 'groups/group_list' %>
+
+  <%= render partial: 'direct_messages/users_list' %>
+</div>
+
+<div class="col-md-8">
+  <h2>Chatting with <%= @to_user.name %></h2>
+
+  <div class="messages">
+    <% @messages.each do |message| %>
+      <%= render message %>
+    <% end %>
+  </div>
+
+  <%= render partial: 'create' %>
+</div>

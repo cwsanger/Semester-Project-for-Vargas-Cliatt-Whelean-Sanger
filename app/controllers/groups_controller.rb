@@ -1,16 +1,16 @@
 class GroupsController < ApplicationController
+  include CurrentGroups
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_groups, only: [:index, :show]
 
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @groups = @current_member.groups
   end
 
   # GET /groups/new
