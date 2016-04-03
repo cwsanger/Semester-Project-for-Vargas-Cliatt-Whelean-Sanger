@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328181905) do
+ActiveRecord::Schema.define(version: 20160402041048) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -74,10 +74,19 @@ ActiveRecord::Schema.define(version: 20160328181905) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.string   "name"
+  create_table "direct_messages", force: :cascade do |t|
+    t.integer  "to_id"
+    t.integer  "from_id"
+    t.string   "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "neighborhood_id"
   end
 
   create_table "groups_users", id: false, force: :cascade do |t|

@@ -13,6 +13,7 @@ Alert.delete_all
 Agency.delete_all
 Broadcast.delete_all
 Advertisement.delete_all
+Group.delete_all
 
 
 kanto = Neighborhood.create(:name => "Kanto", :address => '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto, Japan')
