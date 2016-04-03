@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .round_border {
   border-radius: 25px;
-  border: 2px solid #308014;
+  border: 2px solid #3A66A7	;
 }
 
 .right_bar {
@@ -28,18 +28,20 @@
   height: 30%;
   overflow-y: scroll;
 }
-
+.smallBox{
+  border-style: solid;
+}
 .advertisement_div {
   height: 30%;
   overflow-y: scroll;
 }
 .panel-heading{
-  background-color:#308014;
+  background-color:#3A66A7	;
   color:white;
 }
 .panel{
   border-style: solid;
-  border-color: #308014;
+  border-color: #3A66A7	;
 }
 .neighborhoods{
     width: 110%;
@@ -48,16 +50,15 @@
     overflow-y: display;
 }
 .centralBox{
-  margin-top: 5%;
+  margin-top: 3%;
   background-color: white;
   padding-top: 3%;
   border-style: solid;
-  border-color: #308014;
+  border-top: 1px;
+  border-width: 1px;
+  border-color: grey;
 }
-#map{
-  border-style: solid;
-  border-color: #308014;
-}
+
 .box-shadow2{
   background-color: white;
   box-shadow: 1px 1px 9px 5px #4c4c4c;
@@ -79,6 +80,10 @@
 .alert{
   padding-bottom: 0vh;
   margin-bottom: 0;
+}
+.panel-body{
+  border-style:solid;
+  border-color: black;
 }
 //***********************************************************************
 
@@ -628,7 +633,7 @@
   transform: scale(1);
 }
 .ih-item.square.effect6 .info {
-  background: #C0D9AF;//rgba(0, 0, 0, 0.6)
+  background: #7EC0EE;//rgba(0, 0, 0, 0.6)
   color:white;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
