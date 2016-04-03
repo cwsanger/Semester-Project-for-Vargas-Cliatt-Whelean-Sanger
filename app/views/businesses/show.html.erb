@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Name:</strong>
-  <%= @business.name %>
-</p>
+  <div class="row vert-half outlined">
+    <div class="col-xs-6">
+      <%= render partial: 'create_ad', locals: { categories: @categories } %>
+    </div>
+  </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @business.email %>
-</p>
+  <div class="row vert-half outlined">
+    <div class="col-md-6">
+      <%= render partial: 'ad_list', locals: { categories: @categories } %>
+    </div>
+    <div class="col-md-6">
+      This is where the statistics will go
+    </div>
 
-<%= link_to 'Edit', edit_business_path(@business) %> |
-<%= link_to 'Back', businesses_path %>
+  </div>
+</div>

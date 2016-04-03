@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(version: 20160402041048) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "business_id"
   end
 
   create_table "agencies", force: :cascade do |t|
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160402041048) do
     t.integer  "severity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "agency_id"
   end
 
   create_table "broadcasts", force: :cascade do |t|
@@ -51,6 +53,11 @@ ActiveRecord::Schema.define(version: 20160402041048) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "businesses_neighborhoods", force: :cascade do |t|
+    t.integer "business_id"
+    t.integer "neighborhood_id"
   end
 
   create_table "categories", force: :cascade do |t|

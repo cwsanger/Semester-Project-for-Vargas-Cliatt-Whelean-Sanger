@@ -1,0 +1,12 @@
+<div>
+  <%= form_tag(advertisement_create_url) do %>
+    <div class="input-group">
+      <div>
+        <%= text_area_tag :body, params[:body], placeholder: 'Type advertisement here', :class=>"adArea" %>
+      </div>
+      <div>
+        <%= submit_tag "Submit", class: 'btn linky' %>
+      </div>
+    </div>
+  <% end %>
+</div>

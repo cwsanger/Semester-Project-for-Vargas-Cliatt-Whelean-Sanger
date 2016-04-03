@@ -1,10 +1,8 @@
-class PostController < ApplicationController
+class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
 
   def create
-    @post = Post.new(body: params[:body],
-                     category_id: params[:category_id],
-                     user_id: @current_member.id)
+    @post = Post.new(post_params.merge(user_id: @current_member.id))
 
     respond_to do |format|
       if @post.save
@@ -53,5 +51,9 @@ class PostController < ApplicationController
   private
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def post_params
+      params.require(:post).permit(:body, :category_id)
     end
 end

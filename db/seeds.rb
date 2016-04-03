@@ -10,6 +10,7 @@ Neighborhood.delete_all
 Post.delete_all
 Category.delete_all
 Alert.delete_all
+Agency.delete_all
 Broadcast.delete_all
 Advertisement.delete_all
 Group.delete_all
@@ -76,14 +77,33 @@ Post.create(:category_id => item.id, :body => "Gently used championship belt.", 
 #Post.create(:category_id => item.id, :body => "Selling a lightly used clarinet. Serious replies only.", :user_id => squidward.id)
 
 
+bk = Business.create(:name => "Burger King")
+bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
+bk.save
+bk.neighborhoods << wwf
+
+Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
+Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
+
+police = Agency.create(:name => "The Police Dept.")
+police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")
+police.save
+
+police.alerts.create(:body => "Bad guy on the loose!", :severity => 10)
+police.alerts.create(:body => "We got that bad guy!", :severity => 1)
+police.alerts.create(:body => "Don't do school, stay in drugs.", :severity => 100)
+
+fire = Agency.create(:name => "Fire dept.")
+fire.build_account(:email => "fire@gmail.com", :password => "password", :password_confirmation => "password")
+fire.save
+
+fire.alerts.create(:body => "There is a big fire!", :severity => 100)
+fire.alerts.create(:body => "We got that damn fire.", :severity => 10)
+fire.alerts.create(:body => "Cats are in trees.", :severity => 1000)
+
 Alert.create(:body => "Alert 1", :severity => 1)
 Alert.create(:body => "Alert 2", :severity => 1)
 Alert.create(:body => "Alert 3", :severity => 1)
-Alert.create(:body => "Alert 4", :severity => 1)
-Alert.create(:body => "Alert 5", :severity => 1)
-Alert.create(:body => "Alert 6", :severity => 1)
-Alert.create(:body => "Alert 7", :severity => 1)
-Alert.create(:body => "Alert 8", :severity => 1)
 Alert.create(:body => "Alert 9", :severity => 1)
 
 Broadcast.create(:body => "Broadcast 1")
@@ -94,14 +114,3 @@ Broadcast.create(:body => "Broadcast 5")
 Broadcast.create(:body => "Broadcast 6")
 Broadcast.create(:body => "Broadcast 7")
 Broadcast.create(:body => "Broadcast 8")
-
-Advertisement.create(:body => "Ad 1")
-Advertisement.create(:body => "Ad 2")
-Advertisement.create(:body => "Ad 3")
-Advertisement.create(:body => "Ad 4")
-Advertisement.create(:body => "Ad 5")
-Advertisement.create(:body => "Ad 6")
-Advertisement.create(:body => "Ad 7")
-Advertisement.create(:body => "Ad 8")
-Advertisement.create(:body => "Ad 9")
-Advertisement.create(:body => "Ad 10")

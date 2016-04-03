@@ -1,6 +1,6 @@
 class Advertisement < ActiveRecord::Base
   has_many :likes, as: :likeable
-
+  belongs_to :business
   validates :body, presence: true
 
   def like(user_id)
