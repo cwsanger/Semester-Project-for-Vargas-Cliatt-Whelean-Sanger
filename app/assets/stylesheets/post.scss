@@ -2,14 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .postArea{
-	width: 135%;
+	  width: 135%;
 	 resize: none;
 }
 .post{
 	background-color:#F0F0F0;
-	width: 72%;
+	width: 100%;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #E8E8E8;
 	padding-left: 2vh;
+}
+.myPost{
+	width: 100%;
+	height: 35px;
+	border-style:none;
+	resize: none;
+	outline: none;
+}
+.myPost:active{
+	border-style:none;
+	 outline:none !important;
+}
+input{
+	outline: none;
+}
+.glyphicon-hand-right:visited{
+	color:green;
 }
