@@ -1,10 +1,10 @@
 <%= render partial: 'neighborhoods/navbar' %>
 <br><br><br><br>
-<div class="col-md-4">
+<div class="col-md-3">
   <%= render partial: 'create_group' %>
-
+  <br>
   <%= render partial: 'group_list' %>
-
+  <hr>
   <%= render partial: 'direct_messages/users_list' %>
 </div>
 
@@ -20,7 +20,7 @@
 
 <div class="col-md-2">
   <div>
-    <h3>Current Members</h3>
+    <h3>Current Members <%= @group.users.length %></h3>
 
     <% @group.users.each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
@@ -32,7 +32,7 @@
 
     <% not_users(@group).each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
-      <%= button_to "Add", group_add_user_url(@group, user), method: :post %>
+      <%= link_to "", group_add_user_url(@group, user), method: :post,class:"glyphicon glyphicon-plus" %>
     <% end %>
   </div>
 </div>

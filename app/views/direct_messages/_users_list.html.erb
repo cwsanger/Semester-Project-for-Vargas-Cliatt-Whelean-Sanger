@@ -2,8 +2,8 @@
   <h3>Direct Message</h3>
 
   <div>
-    <% @current_member.neighborhood.users.each do |user| %>
-      <%= render partial: 'direct_messages/user', locals: {user: user} %>
-    <% end %>
+  
+      <%= render partial: 'direct_messages/user'%>
+
   </div>
 </div>
