@@ -2,8 +2,20 @@
 <div class="create-message">
   <%= form_tag(group_create_message_url(@group)) do %>
     <div class="input-group">
-        <%= text_field_tag :body, nil, placeholder: 'message' %>
+        <%= text_area_tag :body, nil, placeholder: 'message',:id=>"mytext"%>
         <%= submit_tag "Send", class: 'btn linky' %>
     </div>
   <% end %>
 </div>
+<script>
+var count= 1;
+var chars= 10;
+	$('#mytext').keydown(function() {
+        var v = $(this).val();
+        var vl = v.replace(/(\r\n|\n|\r)/gm,"").length;   
+    if (parseInt(vl/count) == chars) {
+        $(this).val(v + '\n');
+    count++;
+    }
+});
+</script>
