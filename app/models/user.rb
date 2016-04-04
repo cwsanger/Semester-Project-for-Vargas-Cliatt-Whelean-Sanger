@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 #  validates :address, presence: true
+
+  def is_in_group(group)
+    self.groups.inject(false) {|acc, g| acc || (g.id == group.id)}
+  end
 end

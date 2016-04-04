@@ -3,7 +3,9 @@
 
   <div>
     <% @current_member.neighborhood.users.each do |user| %>
-      <%= render partial: 'direct_messages/user', locals: {user: user} %>
+      <% unless @current_member.id == user.id %>
+        <%= render partial: 'direct_messages/user', locals: {user: user} %>
+      <% end %>
     <% end %>
   </div>
 </div>
