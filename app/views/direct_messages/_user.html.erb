@@ -3,7 +3,7 @@
 
 <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
 
-   <input id="filter" type="text" class="form-control" placeholder="Type here...">
+   <input id="filter" type="text" class="form-control" placeholder="Find user...">
    </div>
    <br>
 <table class="table table-striped">
@@ -16,7 +16,7 @@
   <tbody class="searchable">
      <% @current_member.neighborhood.users.each do |user| %>
       <tr>
-        <td><%= user.name %> <%= link_to '', direct_message_url(user.id),:class=>"glyphicon glyphicon-circle-arrow-right" %></td>
+        <td><%= user.name %> <%= link_to '', direct_message_url(user.id),:class=>"glyphicon glyphicon-circle-arrow-right pull-right" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,7 +36,7 @@
 
         })
 
-    }(jQuery));
+    }($));
 
 });
 </script>

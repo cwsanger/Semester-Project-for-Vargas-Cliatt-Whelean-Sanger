@@ -17,11 +17,14 @@ strong{
 }
 .talk-bubble {
 	margin: 40px;
-  display: inline-block;
-  position: relative;
+  	display: inline-block;
+  	position: relative;
 	width: 200px;
 	height: auto;
 	background-color: #0198E1;
+}
+.talktext{
+	color: white;
 }
 .border{
   border: 8px solid #666;
