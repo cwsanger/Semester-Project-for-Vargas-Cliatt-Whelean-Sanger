@@ -5,14 +5,14 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :exception
 
-  before_action :authentication
+  before_action :authenticate
 
   def pundit_user
     @current_member
   end
 
   protected
-    def authentication
+    def authenticate
       @current_account = Account.find_by(id: session[:account_id])
 
       if @current_account
