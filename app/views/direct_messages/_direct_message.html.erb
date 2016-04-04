@@ -1,7 +1,12 @@
 <div class="message">
   <div class="from">
-    <strong><%= direct_message.from.name %></strong>
-  </div>
-
-  <p><%= direct_message.body %></p>
-</div>
+		<div class="talk-bubble tri-right round btm-left">
+		  <div class="talktext">
+		    <p class="messageSent"><%= direct_message.body %></p>
+		  </div>
+		</div>
+		<br>
+		<strong><%= direct_message.from.name %></strong>
+	
+<br>
+	
