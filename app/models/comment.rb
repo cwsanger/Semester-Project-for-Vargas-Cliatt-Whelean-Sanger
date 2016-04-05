@@ -9,6 +9,10 @@ class Comment < ActiveRecord::Base
   def like(user_id)
     if likes.where(user_id: user_id).count.zero?
       likes.build(user_id: user_id)
+
+      return save
     end
+
+    return false
   end
 end

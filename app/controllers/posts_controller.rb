@@ -2,10 +2,10 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
 
   def create
-    @post = Post.new(post_params.merge(user_id: @current_member.id))
+    @current_member.post(post_params)
 
     respond_to do |format|
-      if @post.save
+      if @current_member.save
         format.html { redirect_to @current_member.neighborhood }
       else
         format.html { redirect_to @current_member.neighborhood, notice: 'you are bad' }
@@ -37,10 +37,10 @@ class PostsController < ApplicationController
   end
 
   def like
-    @post.like @current_member.id
+    @current_member.like(@post)
 
     respond_to do |format|
-      if @post.save
+      if @current_member.save
           format.html { redirect_to @current_member.neighborhood }
         else
           format.html { redirect_to @current_member.neighborhood, notice: 'you are bad' }

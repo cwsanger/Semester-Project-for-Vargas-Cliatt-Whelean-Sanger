@@ -3,10 +3,10 @@ class CommentController < ApplicationController
   before_action :set_comment, only: [:like]
 
   def create
-    @post.comments.build(comment_params)
+    @current_member.comment(@post, comment_params)
 
     respond_to do |format|
-      if @post.save
+      if @current_member.save
         format.html { redirect_to @current_member.neighborhood }
       else
         format.html { redirect_to @current_member,neighborhood, notice: 'your comments are bad' }
@@ -15,10 +15,10 @@ class CommentController < ApplicationController
   end
 
   def like
-    @comment.like @current_member.id
+    @current_member.like(@comment)
 
     respond_to do |format|
-      if @comment.save
+      if @current_member.save
         format.html { redirect_to @current_member.neighborhood }
       else
         format.html { redirect_to @currnet_user.neighborhood, notice: 'your like was bad' }
