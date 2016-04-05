@@ -1,14 +1,15 @@
 <div>
   <%= form_for(@post) do |f| %>
     <div class="input-group">
+    <hr >
       <div class="field">
-        <hr>
           <%= f.text_area :body,:class=>"myPost",placeholder: 'Type post here...'%>
-        <hr>
       </div>
+     <hr> 
       <div>
         <% categories.each do |category| %>
           <%= f.radio_button :category_id, category.id %>
+          <%= f.collection_select :category_id,category.id,include_blank: true %>
           <%= f.label :category_id, category.title %>
         <% end %>
       </div>

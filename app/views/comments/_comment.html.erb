@@ -1,4 +1,4 @@
 <div class="comment">
   <p><%= comment.body %></p>
-  <p>Like: <%= comment.likes.count %> <%= button_to "Like", like_comment_path(comment), method: :put %></p>
+  <p><%= link_to "", like_comment_path(comment), method: :put,:class=>'glyphicon glyphicon-hand-right likes' %><%= comment.likes.count %> </p>
 </div>
