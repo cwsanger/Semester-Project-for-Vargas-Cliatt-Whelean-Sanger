@@ -13,7 +13,9 @@ class BroadcastsController < ApplicationController
   end
 
   def destroy
+    @broadcast.destroy
 
+    redirect_to neighborhood_admin_url(@neighborhood)
   end
 
   def edit
@@ -29,6 +31,6 @@ class BroadcastsController < ApplicationController
     end
 
     def set_broadcast
-      @broadcast = Broadcast.find(params[:broadcast_id])
+      @broadcast = Broadcast.find(params[:id])
     end
 end
