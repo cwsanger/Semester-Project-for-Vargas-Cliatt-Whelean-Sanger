@@ -28,6 +28,8 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
     authorize @neighborhood
 
+    @temp_users = @neighborhood.temp_users
+
     @broadcast = Broadcast.new
     @broadcasts = @neighborhood.broadcasts
   end

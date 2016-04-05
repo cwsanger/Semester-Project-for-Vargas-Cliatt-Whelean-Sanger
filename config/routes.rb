@@ -65,6 +65,9 @@ Rails.application.routes.draw do
   root 'welcome#start'
 
   resources :neighborhoods do
+    post 'lead/:id/accept', to: 'leads#accept', as: :lead_accept
+    post 'lead/:id/deny', to: 'leads#deny', as: :lead_deny
+
     resources :broadcasts, only: [:create, :destroy, :edit]
     get 'admin', to: 'neighborhoods#admin', as: :admin
   end
