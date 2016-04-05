@@ -22,6 +22,11 @@
                 <li>
                     <%= link_to "", groups_url, class: 'page-scroll glyphicon glyphicon-comment inbox' %>
                 </li>
+                <% unless @current_member.normy? %>
+                  <li>
+                    <%= link_to "Admin", neighborhood_admin_url(@current_member.neighborhood), class: 'page-scroll' %>
+                  </li>
+                <% end %>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

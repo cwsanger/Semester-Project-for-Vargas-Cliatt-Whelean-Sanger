@@ -1,0 +1,13 @@
+<div>
+  <%= form_for([@current_member.neighborhood, @broadcast]) do |f| %>
+    <div class="input-group">
+      <div class="field">
+        <%= f.text_area :body, placeholder: 'Body' %>
+      </div>
+      <div>
+        <%= f.submit class: 'btn linky' %>
+      </div> 
+    </div>
+  <% end %>
+</div>
+

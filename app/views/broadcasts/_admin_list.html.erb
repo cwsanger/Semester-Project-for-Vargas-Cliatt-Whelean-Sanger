@@ -1,0 +1,9 @@
+<div>
+<table class="table table-striped table-bordered">
+  <caption>Broadcasts</caption>
+
+  <% broadcasts.each do |broadcast|%>
+    <%= render partial: 'broadcasts/admin_broadcast', locals: { broadcast: broadcast } %> 
+  <% end %>
+</table>
+</div>
