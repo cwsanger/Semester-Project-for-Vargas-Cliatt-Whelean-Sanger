@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405030317) do
+ActiveRecord::Schema.define(version: 20160405032948) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20160405030317) do
   create_table "temp_neighborhoods", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.string "contact_email"
   end
 
   create_table "temp_users", force: :cascade do |t|
