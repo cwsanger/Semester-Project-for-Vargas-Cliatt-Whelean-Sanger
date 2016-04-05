@@ -1,26 +1,24 @@
 <div class="col-md-6">
-  <h1>Users waiting approval</h1>
 
-  <% @temp_users.each do |user| %>
+  <table class="table table-bordered">
+    <caption>Perspective Users</caption>
 
-    Name: <%= user.name %><br />
-    Email: <%= user.email %>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Neighborhood</th>
+      <th>Address</th>
+    </tr>
+    <% @temp_users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.hood.name %></td>
+        <td><%= user.hood.address %></td>
 
-  <%= button_to 'Accept!!!!', accept_path, params: {:temp_id => user.id, :is_user => 1}, :class => "btn btn-success" %></td>
-  
-  <hr>
-
-  <% end %>
-</div>
-
-<div class="col-md-6">
-  <h2>Hoods waiting approval</h2>
-  <% @temp_neighborhoods.each do |neighborhood| %>
-    Name: <%= neighborhood.name %><br />
-    Address: <%= neighborhood.address %><br />
-    Contact: <%= neighborhood.contact_email%><br />
-
-  <%= button_to 'Accept!!!!', accept_path, params: {temp_id: neighborhood.id, is_user: false}, :class => "btn btn-success" %></td>
-    <hr>
-  <% end %>
+        <td><%= button_to 'Accept', admin_accept_url(user), method: :post %></td>
+        <td><%= button_to 'Deny', admin_deny_url(user), method: :post %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>

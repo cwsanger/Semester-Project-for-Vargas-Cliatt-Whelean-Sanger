@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   resources :posts, only: [:destroy, :edit, :create]
 
   get 'admins/', to: 'admins#index', as: :admins
-  post 'admins/:id/accept' => 'admins#accept', as: :admin_accept
+  post 'admins/:id/accept', to: 'admins#accept', as: :admin_accept
+  post 'admins/:id/deny', to: 'admins#deny', as: :admin_deny
 
   get 'signups/register'
   post 'signups/register', to: 'signups#create', as: :signups
