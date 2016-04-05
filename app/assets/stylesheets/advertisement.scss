@@ -1,7 +1,13 @@
 // Place all the styles related to the Advertisement controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.adArea{
-	width: 135%;
-	 resize: none;
+.myPostAd{
+	width: 300%;
+	height: 35px;
+	border-style:none;
+	resize: none;
+	outline: none;
+}
+.hrAd{
+	width: 300%; 
 }

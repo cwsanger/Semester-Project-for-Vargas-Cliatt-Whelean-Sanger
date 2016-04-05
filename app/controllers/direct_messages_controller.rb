@@ -5,7 +5,6 @@ class DirectMessagesController < ApplicationController
 
   def create
     @current_member.sent_messages.build(direct_message_params.merge(to_id: @to_user.id))
-
     if @current_member.save
       redirect_to direct_message_url(@to_user)
     else

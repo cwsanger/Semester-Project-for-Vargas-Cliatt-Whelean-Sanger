@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to @group }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -74,6 +74,21 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @group }
       format.json { head :no_content }
+    end
+  end
+
+  def remove_user
+    @group = Group.find(params[:group_id])
+    @group.users.delete(@current_member)
+
+    if @group.save
+      if @group.users.empty?
+        @group.destroy
+      end
+
+      redirect_to groups_url
+    else
+      redirect_to @group, notice: 'failed to leave group'
     end
   end
 

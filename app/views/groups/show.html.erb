@@ -1,38 +1,45 @@
 <%= render partial: 'neighborhoods/navbar' %>
 <br><br><br><br>
-<div class="col-md-4">
+<div class="col-md-3 boxy">
   <%= render partial: 'create_group' %>
-
+  <br>
   <%= render partial: 'group_list' %>
-
+  <hr>
   <%= render partial: 'direct_messages/users_list' %>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-7">
+  <p><%= @group.name %></p>
   <div class= "messages">
     <% @group.messages.each do |message| %>
       <%= render message %>
     <% end %>
   </div>
-
+  <hr>
   <%= render partial: 'create_message' %>
 </div>
 
 <div class="col-md-2">
   <div>
-    <h3>Current Members</h3>
+    <h3>Current Members <%= @group.users.length %></h3>
 
     <% @group.users.each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
+      <% if user.id == @current_member.id %>
+        <%= link_to "", group_remove_user_url(@group), method: :post,class:"glyphicon glyphicon-minus" %>
+        <% end %>
+      <hr>
     <% end %>
   </div>
 
   <div>
+  <% if not_users(@group).length > 0 %>
     <h3>Add Members</h3>
-
+  <% end %>
     <% not_users(@group).each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
-      <%= button_to "Add", group_add_user_url(@group, user), method: :post %>
+      <%= link_to "", group_add_user_url(@group, user), method: :post,class:"glyphicon glyphicon-plus" %>
+      <hr>
     <% end %>
   </div>
 </div>

@@ -6,6 +6,7 @@ class DirectMessagePolicy
 
   def show?
     @current_member.is_a?(User) and
-      (@current_member.neighborhood.id == @to_user.neighborhood.id)
+      (@current_member.neighborhood.id == @to_user.neighborhood.id) and
+      (@current_member.id != @to_user.id)
   end
 end
