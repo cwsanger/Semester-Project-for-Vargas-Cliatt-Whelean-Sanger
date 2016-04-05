@@ -6,10 +6,29 @@
 
 <div class="col-md-5 col-md-offset-1 ">
   <%= render partial: 'posts/form', locals: { categories: @categories } %>
-  <hr>
   <br>
-  <%= render partial: 'post_list', locals: { categories: @categories } %>
+  <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
+   <input id="filter" type="text" class="form-control" placeholder="Type here...">
+  </div>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="searchable">
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= render post %></td>          
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
 </div>
+<br>
+ 
+  
+
 <div class="right_bar">
   <div>
     <p class="alert-danger semiTitle "><i class="glyphicon glyphicon-bell"></i> Alerts<i id="closeAlert" class="glyphicon glyphicon-chevron-up pull-right closeAlert close"></i></p>
@@ -85,4 +104,23 @@ if(alertFlag){
   });
 }
 
+</script>
+<script>
+  $(document).ready(function () {
+
+    (function ($) {
+
+        $('#filter').keyup(function () {
+
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+
+});
 </script>
