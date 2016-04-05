@@ -28,8 +28,6 @@ Rails.application.routes.draw do
 
   put 'advertisement/:id/like', to: 'advertisement#like', as: :like_advertisement
 
-  resources :broadcasts, only: [:create, :destroy, :edit]
-
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
   post 'comment/:id/create', to: 'comment#create', as: :create_comment
@@ -49,6 +47,7 @@ Rails.application.routes.draw do
   root 'welcome#start'
 
   resources :neighborhoods do
+    resources :broadcasts, only: [:create, :destroy, :edit]
     get 'admin', to: 'neighborhoods#admin', as: :admin
   end
 

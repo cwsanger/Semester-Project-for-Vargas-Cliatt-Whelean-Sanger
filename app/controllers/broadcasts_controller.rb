@@ -1,6 +1,14 @@
 class BroadcastsController < ApplicationController
-  def create
+  before_action :set_neighborhood
 
+  def create
+    @neighborhood.broadcasts.build(broadcast_params)
+
+    if @neighborhood.save
+      redirect_to neighborhood_admin_url(@neighborhood)
+    else
+      redirect_to neighborhood_admin_url(@neighborhood), notice: 'notice'
+    end
   end
 
   def destroy
@@ -10,7 +18,11 @@ class BroadcastsController < ApplicationController
   end
 
   private
-    def broadcasts_params
+    def broadcast_params
+      params.require(:broadcast).permit(:body)
+    end
 
+    def set_neighborhood
+      @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
     end
 end

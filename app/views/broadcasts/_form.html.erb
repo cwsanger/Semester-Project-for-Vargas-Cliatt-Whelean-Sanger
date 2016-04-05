@@ -1,9 +1,8 @@
 <div>
-  <%= form_for(@broadcast) do |f| %>
+  <%= form_for([@current_member.neighborhood, @broadcast]) do |f| %>
     <div class="input-group">
       <div class="field">
-        <%= f.label :body %>
-        <%= f.text_area :body %>
+        <%= f.text_area :body, placeholder: 'Body' %>
       </div>
       <div>
         <%= f.submit class: 'btn linky' %>
