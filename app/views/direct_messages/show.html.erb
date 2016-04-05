@@ -1,23 +1,23 @@
 <%= render partial:'neighborhoods/navbar'%>
 <br><br><br><br>
-<p id="notice"><%= notice %></p>
-
 <div class="col-md-3">
   <%= render partial: 'groups/create_group' %>
-
+  <br>
   <%= render partial: 'groups/group_list' %>
-
+  <br>
   <%= render partial: 'direct_messages/users_list' %>
 </div>
 
-<div class="col-md-8">
-  <h2>Chatting with <%= @to_user.name %></h2>
 
-  <div class="messages">
+<div class="col-md-9">
+<p>Chatting with <%= @to_user.name %></p>
+  <div class= "messages">
     <% @messages.each do |message| %>
       <%= render message %>
     <% end %>
   </div>
-
+</div>
+<div class="col-md-3"></div>
+<div class="col-md-9">
   <%= render partial: 'create' %>
 </div>

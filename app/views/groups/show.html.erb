@@ -8,7 +8,7 @@
   <%= render partial: 'direct_messages/users_list' %>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-7">
   <div class= "messages">
     <% @group.messages.each do |message| %>
       <%= render message %>
@@ -24,6 +24,7 @@
 
     <% @group.users.each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
+      <hr>
     <% end %>
   </div>
 
@@ -33,6 +34,7 @@
     <% not_users(@group).each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
       <%= link_to "", group_add_user_url(@group, user), method: :post,class:"glyphicon glyphicon-plus" %>
+      <hr>
     <% end %>
   </div>
 </div>
