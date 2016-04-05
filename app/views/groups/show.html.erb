@@ -35,4 +35,9 @@
       <%= button_to "Add", group_add_user_url(@group, user), method: :post %>
     <% end %>
   </div>
+
+  <div>
+    <h3>Want to Leave?</h3>
+    <%= button_to "Leave", group_remove_user_url(@group) %>
+  </div>
 </div>
