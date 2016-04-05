@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <%= link_to @current_member.neighborhood.name, @current_member.neighborhood, class: 'navbar-brand page-scroll maHood' %>
+            <%= link_to @agency.name, @current_member.neighborhood, class: 'navbar-brand page-scroll maHood' %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,9 +18,6 @@
                 <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                 <li class="hidden">
                     <a class="page-scroll" href="#page-top"></a>
-                </li>
-                <li>
-                    <%= link_to "", groups_url, class: 'page-scroll glyphicon glyphicon-comment inbox' %>
                 </li>
             </ul>
 

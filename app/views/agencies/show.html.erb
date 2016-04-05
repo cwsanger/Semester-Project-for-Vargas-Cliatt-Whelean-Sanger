@@ -1,19 +1,9 @@
+<%= render partial: 'navbar' %>
+<br><br><br><br>
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-<p>
-  <strong>Logged in as:</strong>
-  <%= @agency.name %>
-
-  <br />
-
-  <strong>Email:</strong>
-  <%= @agency.account.email %>
-</p>
-</div>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-1">
+  <div class="col-md-3 col-md-offset-1">
     <%= render 'alerts/form' %>
   </div>
 

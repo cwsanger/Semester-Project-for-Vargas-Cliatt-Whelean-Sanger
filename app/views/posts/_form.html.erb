@@ -2,8 +2,9 @@
   <%= form_for(@post) do |f| %>
     <div class="input-group">
       <div class="field">
-        <%= f.label :body %>
-        <%= f.text_field :body %>
+        <hr>
+          <%= f.text_area :body,:class=>"myPost",placeholder: 'Type comment here'%>
+        <hr>
       </div>
       <div>
         <% categories.each do |category| %>
