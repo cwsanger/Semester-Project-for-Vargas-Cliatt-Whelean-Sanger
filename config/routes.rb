@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   get 'broadcast/edit'
 
+  get 'alerts/agencyAlert'
 
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
