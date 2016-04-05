@@ -9,4 +9,8 @@ class NeighborhoodPolicy
   def show?
     @current_member.is_a?(User) and (@current_member.neighborhood.id == neighborhood.id)
   end
+
+  def admin?
+    show? and !@current_member.normy?
+  end
 end
