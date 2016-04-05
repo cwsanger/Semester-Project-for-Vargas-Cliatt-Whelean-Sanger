@@ -48,10 +48,10 @@ class User < ActiveRecord::Base
 
   private
     def add_points(value)
-      points += value
+      self.points += value
 
-      if points >= 100 and normy?
-        lead!
+      if self.points >= 100 and self.normy?
+        self.lead!
       end
     end
 end

@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
     if likes.where(user_id: user_id).count.zero?
       likes.build(user_id: user_id)
 
-      return true
+      return save
     end
 
     return false
