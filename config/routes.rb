@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :businesses
   resources :agencies
+
   controller :welcome do
     post 'logout' => :logout
 
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   resources :alerts
 
   resources :posts, only: [:destroy, :edit, :create]
+
+  get 'signups/register' => 'signups#register'
 
   post 'advertisement/create'
 
