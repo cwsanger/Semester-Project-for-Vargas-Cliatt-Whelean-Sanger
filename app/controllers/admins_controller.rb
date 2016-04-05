@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  def review
+  def index
     @temp_users = TempUser.all
     @temp_neighborhoods = TempNeighborhood.all
   end

@@ -19,15 +19,8 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:destroy, :edit, :create]
 
-  get 'admins/', to: 'admin#index', as: :admins
-
-  post 'admins/review' => 'admins#accept', as: 'accept'
-
-  get 'admins/review' => 'admins#review', as: 'reviews'
-
-  #Delete this route before making an admin dashboard.
-  #It's only purpose is to forward us from /admins/ to /admins/approve
-  get 'admins/' => 'admins#review'
+  get 'admins/', to: 'admins#index', as: :admins
+  post 'admins/:id/accept' => 'admins#accept', as: :admin_accept
 
   get 'signups/register'
   post 'signups/register', to: 'signups#create', as: :signups

@@ -11,6 +11,7 @@ Neighborhood.delete_all
 Post.delete_all
 Category.delete_all
 Alert.delete_all
+Admin.delete_all
 Agency.delete_all
 Broadcast.delete_all
 Advertisement.delete_all
@@ -18,6 +19,9 @@ Group.delete_all
 TempUser.delete_all
 TempNeighborhood.delete_all
 
+admin = Admin.create(:name => "admin")
+admin.build_account(:email => "admin@gmail.com", :password => "password", :password_confirmation => "password")
+admin.save
 
 kanto = Neighborhood.create(:name => "Kanto", :address => '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto, Japan')
 wwf = Neighborhood.create(:name => "World Wrestling Federation", :address => '1241 East Main Street Stamford, CT')
