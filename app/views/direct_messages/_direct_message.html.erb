@@ -1,7 +1,34 @@
 <div class="message">
-  <div class="from">
-    <strong><%= direct_message.from.name %></strong>
-  </div>
-
-  <p><%= direct_message.body %></p>
+<br>
+<% if direct_message.from_id == @current_member.id %>
+	<div class="talk-bubble tri-right round btm-left">
+	  <div class="talktext">
+	    <p class="messageSent"><%= direct_message.body %></p>
+	  </div>
+	</div>
+	<br>
+	<strong><%= direct_message.from.name %></strong>
+<% else %>
+<div class="col-sm-8"></div>
+	<div class="talk-bubble tri-right round btm-right" style="background-color: green">
+	  <div class="talktext">
+	    <p class="messageSent"><%= direct_message.body %></p>
+	  </div>
+	</div>
+	<br>
+	<div class="col-md-10"></div><strong><%= direct_message.from.name %></strong>
+<% end %>
+<br> 
 </div>
+<script>
+ //readonly data-autoresize rows="auto"
+ //<textarea  class="messageSent"><%= direct_message.body %></textarea>
+	$.each(jQuery('textarea[data-autoresize]'), function() {
+    var offset = this.offsetHeight - this.clientHeight;
+ 
+    var resizeTextarea = function(el) {
+        $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+    };
+    $(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+});
+</script>

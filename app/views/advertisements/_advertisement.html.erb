@@ -4,5 +4,7 @@
   <small>
     <%= advertisement.created_at.strftime("%A, %B #{advertisement.created_at.day.ordinalize} - %l:%M%P") %>
   </small>
-  <p>Likes: <%= advertisement.likes.count %> <%= button_to "Like", like_advertisement_path(advertisement), method: :put %></p>
+  <p>
+  <%= link_to "",like_advertisement_path(advertisement), method: :put,:class=>'glyphicon glyphicon-hand-right likes'%><%= advertisement.likes.count%>
+  </p>
 </div>

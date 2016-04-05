@@ -1,13 +1,13 @@
 <div>
-  <h3>Comment</h3>
   <%= form_tag(create_comment_path(post)) do %>
     <div class="input-group">
       <div>
-        <%= text_area_tag :body, params[:body], placeholder: 'Type comment here' %> 
+        <%= text_area_tag :body, params[:body], placeholder: 'Type comment here',:class=>'myComment' %> 
       </div>
       <div>
         <%= submit_tag "Comment", class: 'btn' %>
       </div> 
     </div>
   <% end %>
+  <br>
 </div>

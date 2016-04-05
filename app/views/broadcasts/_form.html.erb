@@ -1,0 +1,15 @@
+<div class="col-sm-offset-3">
+  <%= form_for([@current_member.neighborhood, @broadcast]) do |f| %>
+    <div class="input-group">
+      <div class="field">
+      <hr class="hrAdmin">
+        <%= f.text_area :body, placeholder: 'Body',:class=>"myPost" %>
+      <hr class="hrAdmin"> 
+      </div>
+      <div>
+        <%= f.submit class: 'btn linky' %>
+      </div> 
+    </div>
+  <% end %>
+</div>
+

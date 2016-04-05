@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :events
   resources :businesses
   resources :agencies
 
@@ -20,17 +21,15 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:destroy, :edit, :create]
 
-  post 'admins/review' => 'admins#accept', as: 'accept'
+  get 'admins/', to: 'admins#index', as: :admins
+  post 'admins/:id/accept', to: 'admins#accept', as: :admin_accept
+  post 'admins/:id/deny', to: 'admins#deny', as: :admin_deny
 
-  get 'admins/review' => 'admins#review', as: 'reviews'
+  get 'signups/register'
+  post 'signups/register', to: 'signups#create', as: :signups
 
-  #Delete this route before making an admin dashboard.
-  #It's only purpose is to forward us from /admins/ to /admins/approve
-  get 'admins/' => 'admins#review'
-
-  get 'signups/register' => 'signups#register'
-
-  post 'signups/register', to: 'signups#create', as: 'signups'
+  get 'signups/:id/register', to: 'signups#register_user', as: :signups_neighborhood
+  post 'signups/:id/register', to: 'signups#join', as: :signups_join
 
   get 'signups/temps' => 'signups#temps', as: 'temps'
 
@@ -44,11 +43,9 @@ Rails.application.routes.draw do
 
   put 'advertisement/:id/like', to: 'advertisement#like', as: :like_advertisement
 
-  get 'broadcast/create'
+  get 'alerts/agencyAlert'
 
-  get 'broadcast/destroy'
-
-  get 'broadcast/edit'
+  get 'advertisements/adv'
 
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
@@ -68,13 +65,20 @@ Rails.application.routes.draw do
 
   root 'welcome#start'
 
-  resources :neighborhoods
+  resources :neighborhoods do
+    post 'lead/:id/accept', to: 'leads#accept', as: :lead_accept
+    post 'lead/:id/deny', to: 'leads#deny', as: :lead_deny
+
+    resources :broadcasts, only: [:create, :destroy, :edit]
+    get 'admin', to: 'neighborhoods#admin', as: :admin
+  end
 
   get 'direct-message/:id', to: 'direct_messages#show', as: :direct_message
   post 'direct-message/:id/create', to: 'direct_messages#create', as: :create_direct_message
 
   resources :groups, path: 'chat' do
     post 'add/:user_id', to: 'groups#add_user', as: :add_user
+    post 'remove/', to: 'groups#remove_user', as: :remove_user
     post 'message/create', to: 'message#create', as: :create_message
   end
 

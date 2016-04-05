@@ -24,6 +24,16 @@ class NeighborhoodsController < ApplicationController
     @post = Post.new
   end
 
+  def admin
+    @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
+    authorize @neighborhood
+
+    @temp_users = @neighborhood.temp_users
+
+    @broadcast = Broadcast.new
+    @broadcasts = @neighborhood.broadcasts
+  end
+
   # GET /neighborhoods/new
   def new
     @neighborhood = Neighborhood.new

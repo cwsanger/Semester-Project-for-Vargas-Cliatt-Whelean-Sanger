@@ -7,6 +7,6 @@ class AgencyPolicy
   end
 
   def show?
-    @current_member.is_a?(Agency) and (@current_member.id == agency.id)
+    @current_member.is_a?(Agency) and (@current_member.id == @agency.id)
   end
 end

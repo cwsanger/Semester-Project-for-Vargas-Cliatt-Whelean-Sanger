@@ -1,9 +1,6 @@
-<div class="col-md-6">
-  <h1>User sign up</h1>
+<%= form_tag(signups_url) do %>
   <%= render 'user_form' %>
-</div>
-
-<div class="col-md-6">
-  <h2>Hood sign up</h2>
   <%= render 'neighborhood_form' %>
-</div>
+
+  <%= submit_tag 'Submit' %>
+<% end %>

@@ -26,4 +26,32 @@ class User < ActiveRecord::Base
   def is_in_group(group)
     self.groups.inject(false) {|acc, g| acc || (g.id == group.id)}
   end
+
+  def post(post_params)
+    posts.build(post_params)
+    add_points(3)
+  end
+
+  def comment(post, comment_params)
+    post.comments.build(comment_params.merge(user_id: id))
+
+    if post.save
+      add_points(2)
+    end
+  end
+
+  def like(likeable)
+    if likeable.like(id)
+      add_points(1)
+    end
+  end
+
+  private
+    def add_points(value)
+      self.points += value
+
+      if self.points >= 100 and self.normy?
+        self.lead!
+      end
+    end
 end

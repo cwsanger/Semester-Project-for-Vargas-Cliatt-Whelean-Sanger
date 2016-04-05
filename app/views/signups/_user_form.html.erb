@@ -1,5 +1,6 @@
 <div>
-  <%= form_for @temp_user, url: signups_path(@temp_user), html: { method: :post } do |f| %>
+  <h3>User</h3>
+  <%= fields_for :temp_user, @temp_user do |f| %>
     <div class="input-group">
       <div class="field">
         <%= f.label :name %><br>
@@ -8,9 +9,6 @@
       <div class="field">
         <%= f.label :email %><br>
         <%= f.email_field :email %>
-      </div>
-      <div class="action">
-        <%= f.submit %>
       </div>
     </div>
   <% end %>

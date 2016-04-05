@@ -28,7 +28,7 @@ class AlertsController < ApplicationController
 
     respond_to do |format|
       if @alert.save
-        format.html { redirect_to @alert.agency, notice: 'Alert was successfully created.' }
+        format.html { redirect_to @current_member, notice: 'Alert was successfully created.' }
         format.json { render :show, status: :created, location: @alert}
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class AlertsController < ApplicationController
   def destroy
     @alert.destroy
     respond_to do |format|
-      format.html { redirect_to agencies_url, notice: 'Alert was successfully destroyed.' }
+      format.html { redirect_to @current_member, notice: 'Alert was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

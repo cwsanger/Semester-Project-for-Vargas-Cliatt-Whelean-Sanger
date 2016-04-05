@@ -36,6 +36,9 @@ gem 'email_validator'
 # User authorization
 gem 'pundit'
 
+# Calendar
+gem "simple_calendar", "~> 2.0"
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 #Bootstrap
