@@ -1,15 +1,12 @@
 <%= render partial: 'navbar' %>
-<br><br><br><br>
-<p id="notice"><%= notice %></p>
-
+<br><br><br><br><br><br>
 <div class="row">
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-2 col-md-offset-1">
     <%= render 'alerts/form' %>
   </div>
-
-  <div class="col-md-3 col-md-offset-1">
-    <% @alerts.each do |alert| %>
-      <%= render alert %>
-    <% end %>
+  <div class="col-md-6">
+      <%= render partial: 'alerts/agencyAlert' %>
   </div>
 </div>
+
+
