@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:destroy, :edit, :create]
 
+  get 'admins/', to: 'admin#index', as: :admins
+
   post 'admins/review' => 'admins#accept', as: 'accept'
 
   get 'admins/review' => 'admins#review', as: 'reviews'
@@ -27,9 +29,11 @@ Rails.application.routes.draw do
   #It's only purpose is to forward us from /admins/ to /admins/approve
   get 'admins/' => 'admins#review'
 
-  get 'signups/register' => 'signups#register'
+  get 'signups/register'
+  post 'signups/register', to: 'signups#create', as: :signups
 
-  post 'signups/register', to: 'signups#create', as: 'signups'
+  get 'signups/:id/register', to: 'signups#register_user', as: :signups_neighborhood
+  post 'signups/:id/register', to: 'signups#join', as: :signups_join
 
   get 'signups/temps' => 'signups#temps', as: 'temps'
 

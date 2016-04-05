@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405032948) do
+ActiveRecord::Schema.define(version: 20160405111633) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(version: 20160405032948) do
 
   create_table "broadcasts", force: :cascade do |t|
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "neighborhood_id"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -80,6 +81,17 @@ ActiveRecord::Schema.define(version: 20160405032948) do
     t.string   "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "neighborhood_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "body"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "groups", force: :cascade do |t|
@@ -137,8 +149,10 @@ ActiveRecord::Schema.define(version: 20160405032948) do
   end
 
   create_table "temp_users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
+    t.string  "name"
+    t.string  "email"
+    t.integer "hood_id"
+    t.string  "hood_type"
   end
 
   create_table "users", force: :cascade do |t|
@@ -151,6 +165,7 @@ ActiveRecord::Schema.define(version: 20160405032948) do
     t.float    "longitude"
     t.integer  "account_id"
     t.integer  "role",            default: 0
+    t.integer  "points",          default: 0
   end
 
 end
