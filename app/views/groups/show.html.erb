@@ -1,6 +1,6 @@
 <%= render partial: 'neighborhoods/navbar' %>
 <br><br><br><br>
-<div class="col-md-3">
+<div class="col-md-3 boxy">
   <%= render partial: 'create_group' %>
   <br>
   <%= render partial: 'group_list' %>
@@ -9,6 +9,7 @@
 </div>
 
 <div class="col-md-7">
+  <p><%= @group.name %></p>
   <div class= "messages">
     <% @group.messages.each do |message| %>
       <%= render message %>
