@@ -47,7 +47,14 @@ class WelcomeController < ApplicationController
   end
 
   def search
+
     @neighborhoods = Neighborhood.all
+
+    if params[:search]
+      @neighborhoods = Neighborhood.where("name LIKE ? or address LIKE ?",
+                                          params[:search], params[:search])
+    end
+
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
       marker.lat neighborhood.latitude
       marker.lng neighborhood.longitude
