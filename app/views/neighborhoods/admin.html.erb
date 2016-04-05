@@ -4,10 +4,10 @@
 
 <div class="container">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#a" data-toggle="tab">Lead</a></li>
+    <li ><a href="#a" data-toggle="tab">Lead</a></li>
 
     <% if @current_member.hoa? %>
-      <li><a href="#b" data-toggle="tab">Broadcast</a></li>
+      <li class="active"><a href="#b" data-toggle="tab">Broadcast</a></li>
     <% end %>
   </ul>   
   <div class="tab-content">
@@ -35,7 +35,7 @@
   </table>
     </div> 
 
-    <div class="tab-pane" id="b">
+    <div class="tab-pane active" id="b">
       <%= render 'broadcasts/form' %>
 
       <%= render partial: 'broadcasts/admin_list', locals: { broadcasts: @broadcasts } %>
