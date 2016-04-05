@@ -19,11 +19,13 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:destroy, :edit, :create]
 
-  get 'admins/approve' => 'admins#approve', as: 'approvals'
+  post 'admins/review' => 'admins#accept', as: 'accept'
+
+  get 'admins/review' => 'admins#review', as: 'reviews'
 
   #Delete this route before making an admin dashboard.
   #It's only purpose is to forward us from /admins/ to /admins/approve
-  get 'admins/' => 'admins#approve'
+  get 'admins/' => 'admins#review'
 
   get 'signups/register' => 'signups#register'
 
@@ -46,7 +48,6 @@ Rails.application.routes.draw do
   get 'broadcast/destroy'
 
   get 'broadcast/edit'
-
 
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
