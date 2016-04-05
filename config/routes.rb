@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   get 'alerts/agencyAlert'
 
+  get 'advertisements/adv'
+
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
   post 'comment/:id/create', to: 'comment#create', as: :create_comment
