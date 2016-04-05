@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get 'signups/register' => 'signups#register'
 
- post 'signups/register', to: 'signups#create', as: 'signups'
+  post 'signups/register', to: 'signups#create', as: 'signups'
 
   get 'signups/temps' => 'signups#temps', as: 'temps'
 

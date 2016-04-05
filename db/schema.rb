@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405021626) do
+ActiveRecord::Schema.define(version: 20160405030317) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -128,6 +128,11 @@ ActiveRecord::Schema.define(version: 20160405021626) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "category_id"
+  end
+
+  create_table "temp_neighborhoods", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
   end
 
   create_table "temp_users", force: :cascade do |t|
