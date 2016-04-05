@@ -6,12 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.delete_all
+Account.delete_all
 Neighborhood.delete_all
 Post.delete_all
 Category.delete_all
 Alert.delete_all
+Agency.delete_all
 Broadcast.delete_all
 Advertisement.delete_all
+Group.delete_all
 
 
 kanto = Neighborhood.create(:name => "Kanto", :address => '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto, Japan')
@@ -78,8 +81,37 @@ Post.create(:category_id => item.id, :body => "Gently used championship belt.", 
 bk = Business.create(:name => "Burger King")
 bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
 bk.save
-
 bk.neighborhoods << wwf
 
 Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
 Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
+
+police = Agency.create(:name => "The Police Dept.")
+police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")
+police.save
+
+police.alerts.create(:body => "Bad guy on the loose!", :severity => 10)
+police.alerts.create(:body => "We got that bad guy!", :severity => 1)
+police.alerts.create(:body => "Don't do school, stay in drugs.", :severity => 100)
+
+fire = Agency.create(:name => "Fire dept.")
+fire.build_account(:email => "fire@gmail.com", :password => "password", :password_confirmation => "password")
+fire.save
+
+fire.alerts.create(:body => "There is a big fire!", :severity => 100)
+fire.alerts.create(:body => "We got that damn fire.", :severity => 10)
+fire.alerts.create(:body => "Cats are in trees.", :severity => 1000)
+
+Alert.create(:body => "Alert 1", :severity => 1)
+Alert.create(:body => "Alert 2", :severity => 1)
+Alert.create(:body => "Alert 3", :severity => 1)
+Alert.create(:body => "Alert 9", :severity => 1)
+
+Broadcast.create(:body => "Broadcast 1")
+Broadcast.create(:body => "Broadcast 2")
+Broadcast.create(:body => "Broadcast 3")
+Broadcast.create(:body => "Broadcast 4")
+Broadcast.create(:body => "Broadcast 5")
+Broadcast.create(:body => "Broadcast 6")
+Broadcast.create(:body => "Broadcast 7")
+Broadcast.create(:body => "Broadcast 8")

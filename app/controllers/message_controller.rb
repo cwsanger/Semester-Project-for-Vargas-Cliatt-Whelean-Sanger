@@ -2,11 +2,9 @@ class MessageController < ApplicationController
   before_action :set_group
 
   def create
-    @message = Message.new(body: params[:body],
-                          user_id: @current_member.id,
-                          group_id: @group.id)
+    @group.messages.build(body: params[:body], user_id: @current_member.id)
 
-    if @message.save
+    if @group.save
       redirect_to @group
     else
       redirect_to @group, notice: 'message creation failed'

@@ -1,17 +1,40 @@
-<%= render partial:'neighborhoods/navbar'%>
+<%= render partial: 'neighborhoods/navbar' %>
 <br><br><br><br>
-<div class="col-xs-4">
+<div class="col-md-3">
   <%= render partial: 'create_group' %>
-
+  <br>
   <%= render partial: 'group_list' %>
+  <hr>
+  <%= render partial: 'direct_messages/users_list' %>
 </div>
 
-<div class="col-xs-8">
+<div class="col-md-7">
   <div class= "messages">
     <% @group.messages.each do |message| %>
       <%= render message %>
     <% end %>
   </div>
-
+  <hr>
   <%= render partial: 'create_message' %>
+</div>
+
+<div class="col-md-2">
+  <div>
+    <h3>Current Members <%= @group.users.length %></h3>
+
+    <% @group.users.each do |user| %>
+      <%= render partial: 'users/tag', locals: { user: user } %>
+      <hr>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Add Members</h3>
+
+    <% not_users(@group).each do |user| %>
+      <%= render partial: 'users/tag', locals: { user: user } %>
+      <%= link_to "", group_add_user_url(@group, user), method: :post,class:"glyphicon glyphicon-plus" %>
+      <hr>
+    <% end %>
+  </div>
 </div>

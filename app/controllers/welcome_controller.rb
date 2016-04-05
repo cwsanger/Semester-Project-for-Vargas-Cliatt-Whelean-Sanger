@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  skip_before_action :authorize
+  skip_before_action :authenticate
 
   def start
   end
@@ -22,7 +22,12 @@ class WelcomeController < ApplicationController
   end
 
   def agency_login
-
+    if account_validated?(Agency)
+      agency = Agency.find(@member.id)
+      redirect_to agency
+    else
+      redirect_to login_path, alert: "Invalid user/password combination"
+    end
   end
 
   def user_login

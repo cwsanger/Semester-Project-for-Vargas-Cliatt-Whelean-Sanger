@@ -1,3 +1,16 @@
 // Place all the styles related to the Comment controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.myComment{
+	width: 200%;
+	height: 35px;
+	border-style:none;
+	resize: none;
+	outline: none;
+	background-color: #F0F0F0;
+}
+.hrComments{
+	width: 200%;
+	border-color:white;
+}
