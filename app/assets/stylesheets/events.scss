@@ -56,6 +56,16 @@
   overflow-y:auto
 }
 
+.selectable{
+  .ui-selecting {
+    background: #FECA40;
+  }
+  .ui-selected {
+    background: #F39814;
+    color: white;
+  }
+}
+
 .square{
   height: 100 px;
   width: 100 px;

@@ -6,7 +6,7 @@
     <%= link_to "Next", calendar.url_for_next_view %>
     </h3>
 
-    <table class="table table-bordered">
+    <table id="cool" class="table table-bordered">
       <thead>
         <tr>
           <% date_range.slice(0, 7).each do |day| %>
@@ -19,7 +19,7 @@
         <% date_range.each_slice(7) do |week| %>
           <tr>
             <% week.each do |day| %>
-              <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <%= content_tag :td, class: [calendar.td_classes_for(day), "selectable"] do %>
                 <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
                   <% capture_haml do %>
                     <% block.call day, sorted_events.fetch(day, []) %>
@@ -35,14 +35,14 @@
     </table>
   </div>
   <div class="row">
-    <div class>
-      <%= date.day %>
+    <div class="col-sm-5 test">
+      <p id="myDate"><%= @chosen_date %></p>
     </div>
-    <div>
-      List
+    <div class="col-sm-4">
+      List events of the selected day
     </div>
-    <div>
-      Create Event Button
+    <div class="col-sm-3">
+      <%= button_to "Create Event", new_event_url, method: :get %></p>
     </div>
   </div>
 </div>
@@ -53,7 +53,7 @@
   <table class="table table-striped">
       <tbody>
         <% @events.each do |event| %>
-          <th><%= event.name %></th>
+          <th><h4><%= event.name %></h4></th>
           <tr>
             <td><%= event.body %></td>
           </tr>
@@ -61,3 +61,20 @@
       </tbody>
   </table>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $('#cool .selectable').click(function(){
+        var selected = $(this).html();
+        var theDate = $('#myDate').text(selected);
+      }
+    );
+  });
+</script>
+
+
+
+$('#mytable .customerIDCell').each(function()
+{
+  alert($(this).html());
+});
