@@ -11,8 +11,28 @@
     <% end %>
   </ul>   
   <div class="tab-content">
-    <div class="tab-pane" id="a">
-      perspective users list
+    <div class="tab-pane active" id="a">
+  <table class="table table-bordered">
+    <caption>Perspective Users</caption>
+
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Neighborhood</th>
+      <th>Address</th>
+    </tr>
+    <% @temp_users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.hood.name %></td>
+        <td><%= user.hood.address %></td>
+
+        <td><%= button_to 'Accept', neighborhood_lead_accept_url(@current_member.neighborhood, user), method: :post %></td>
+        <td><%= button_to 'Deny', neighborhood_lead_deny_url(@current_member.neighborhood, user), method: :post %></td>
+      </tr>
+    <% end %>
+  </table>
     </div> 
 
     <div class="tab-pane active" id="b">
