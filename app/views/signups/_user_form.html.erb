@@ -1,0 +1,17 @@
+<div>
+  <%= form_for @temp_user, url: signups_path(@temp_user), html: { method: :post } do |f| %>
+    <div class="input-group">
+      <div class="field">
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :email %><br>
+        <%= f.email_field :email %>
+      </div>
+      <div class="action">
+        <%= f.submit %>
+      </div>
+    </div>
+  <% end %>
+</div>
