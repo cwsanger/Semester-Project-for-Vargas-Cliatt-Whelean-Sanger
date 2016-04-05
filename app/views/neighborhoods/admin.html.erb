@@ -17,6 +17,8 @@
 
     <div class="tab-pane" id="b">
       <%= render 'broadcasts/form' %>
+
+      <%= render partial: 'broadcasts/admin_list', locals: { broadcasts: @broadcasts } %>
     </div>
   </div>
 </div>

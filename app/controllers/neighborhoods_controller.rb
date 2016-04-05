@@ -25,7 +25,11 @@ class NeighborhoodsController < ApplicationController
   end
 
   def admin
+    @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
+    authorize @neighborhood
+
     @broadcast = Broadcast.new
+    @broadcasts = @neighborhood.broadcasts
   end
 
   # GET /neighborhoods/new

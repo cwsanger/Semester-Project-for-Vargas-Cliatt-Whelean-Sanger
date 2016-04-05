@@ -1,5 +1,6 @@
 class BroadcastsController < ApplicationController
   before_action :set_neighborhood
+  before_action :set_broadcast, only: [:destroy]
 
   def create
     @neighborhood.broadcasts.build(broadcast_params)
@@ -12,6 +13,7 @@ class BroadcastsController < ApplicationController
   end
 
   def destroy
+
   end
 
   def edit
@@ -24,5 +26,9 @@ class BroadcastsController < ApplicationController
 
     def set_neighborhood
       @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
+    end
+
+    def set_broadcast
+      @broadcast = Broadcast.find(params[:broadcast_id])
     end
 end
