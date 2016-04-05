@@ -24,7 +24,8 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    @neighborhood.events.build(event_params.merge(user_id:@current_member.id))
+    #@event = Event.new(event_params)
 
     respond_to do |format|
       if @event.save
