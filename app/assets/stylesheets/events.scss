@@ -3,7 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .simple-calendar {
   .day {
-    text-align: center;
+    //text-align: center;
+    vertical-align: top;
+    text-align: left;
+    height: 80px;
+    width: 80px;
+
+    &:hover{
+      background-color: #F9F9F9;
+    }
   }
 
   .wday-0 {}
@@ -14,19 +22,41 @@
   .wday-5 {}
   .wday-6 {}
 
-  .today {}
+
   .past {}
   .future {}
 
   .start-date {}
 
   .prev-month {
-    background-color: gray;
+    background-color: #f2f2f2;
   }
   .next-month {
-    background-color: gray;
+    background-color: #f2f2f2;
   }
   .current-month {}
 
-  .has-events {}
+  .has-events {
+    background-color: #C9C9F9;
+
+    &:hover{
+      background-color: #C2C2F0;
+    }
+  }
+  .today {
+    background-color: #F5F589;
+
+    &:hover{
+      background-color: #F5F57A;
+    }
+  }
+}
+
+.tbody{
+  overflow-y:auto
+}
+
+.square{
+  height: 100 px;
+  width: 100 px;
 }

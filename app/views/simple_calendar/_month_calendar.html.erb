@@ -1,15 +1,10 @@
-<style>
-  .sizeBox{
-    height: 25px;
-    width: 25px;
-  }
 
-</style>
-<div class = "col-sm-6 col-sm-offset-3">
-  <div class="simple-calendar">
-    <%= link_to "Previous", calendar.url_for_previous_view %>
+<div class = "col-sm-8 col-sm-offset-1">
+  <div class="simple-calendar row">
+    <h3><%= link_to "Previous", calendar.url_for_previous_view %>
     <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
     <%= link_to "Next", calendar.url_for_next_view %>
+    </h3>
 
     <table class="table table-bordered">
       <thead>
@@ -22,7 +17,7 @@
 
       <tbody>
         <% date_range.each_slice(7) do |week| %>
-          <tr class="sizeBox">
+          <tr>
             <% week.each do |day| %>
               <%= content_tag :td, class: calendar.td_classes_for(day) do %>
                 <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
@@ -39,4 +34,30 @@
       </tbody>
     </table>
   </div>
+  <div class="row">
+    <div class>
+      <%= date.day %>
+    </div>
+    <div>
+      List
+    </div>
+    <div>
+      Create Event Button
+    </div>
+  </div>
+</div>
+
+<div class="scrolling col-sm-3">
+  <h2><u><%= I18n.t("date.month_names")[start_date.month] %> Events</u></h2>
+
+  <table class="table table-striped">
+      <tbody>
+        <% @events.each do |event| %>
+          <th><%= event.name %></th>
+          <tr>
+            <td><%= event.body %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
 </div>

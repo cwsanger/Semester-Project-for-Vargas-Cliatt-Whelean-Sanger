@@ -54,7 +54,10 @@ Rails.application.routes.draw do
 
   root 'welcome#start'
 
-  resources :neighborhoods
+  resources :neighborhoods do
+    resources :broadcasts, only: [:create, :destroy, :edit]
+    get 'admin', to: 'neighborhoods#admin', as: :admin
+  end
 
   get 'direct-message/:id', to: 'direct_messages#show', as: :direct_message
   post 'direct-message/:id/create', to: 'direct_messages#create', as: :create_direct_message

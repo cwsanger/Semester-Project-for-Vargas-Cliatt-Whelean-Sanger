@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(version: 20160405072802) do
 
   create_table "broadcasts", force: :cascade do |t|
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "neighborhood_id"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -139,6 +140,17 @@ ActiveRecord::Schema.define(version: 20160405072802) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "category_id"
+  end
+
+  create_table "temp_neighborhoods", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "contact_email"
+  end
+
+  create_table "temp_users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
   end
 
   create_table "users", force: :cascade do |t|
