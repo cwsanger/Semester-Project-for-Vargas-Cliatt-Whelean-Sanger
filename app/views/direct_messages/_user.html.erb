@@ -16,7 +16,9 @@
   <tbody class="searchable">
      <% @current_member.neighborhood.users.each do |user| %>
       <tr>
-        <td><%= user.name %> <%= link_to '', direct_message_url(user.id),:class=>"glyphicon glyphicon-circle-arrow-right pull-right" %></td>
+        <% unless @current_member.id == user.id %>
+          <td><%= user.name %> <%= link_to '', direct_message_url(user.id),:class=>"glyphicon glyphicon-circle-arrow-right pull-right" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
