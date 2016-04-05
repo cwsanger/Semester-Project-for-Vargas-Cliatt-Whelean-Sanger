@@ -1,7 +1,12 @@
 class SignupsController < ApplicationController
-  def register
+  before_action :initialize_temps
+
+  def initialize_temps
     @temp_user = TempUser.new
     @temp_neighborhood = TempNeighborhood.new
+  end
+
+  def register
   end
 
   def temps
@@ -22,7 +27,7 @@ class SignupsController < ApplicationController
         format.html { redirect_to temps_path, notice: 'You should be approved soon' }
         format.json { render :show, status: :created, location: @registrant }
       else
-        format.html { render :new }
+        format.html { render :register }
         format.json { render json: @registrant.errors, status: :unprocessable_entity }
       end
     end
