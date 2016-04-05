@@ -28,12 +28,7 @@ Rails.application.routes.draw do
 
   put 'advertisement/:id/like', to: 'advertisement#like', as: :like_advertisement
 
-  get 'broadcast/create'
-
-  get 'broadcast/destroy'
-
-  get 'broadcast/edit'
-
+  resources :broadcasts, only: [:create, :destroy, :edit]
 
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
@@ -53,7 +48,9 @@ Rails.application.routes.draw do
 
   root 'welcome#start'
 
-  resources :neighborhoods
+  resources :neighborhoods do
+    get 'admin', to: 'neighborhoods#admin', as: :admin
+  end
 
   resources :groups, path: 'chat' do
     post 'message/create', to: 'message#create', as: :create_message

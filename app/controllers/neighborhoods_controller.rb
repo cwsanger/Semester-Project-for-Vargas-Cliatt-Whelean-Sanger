@@ -22,6 +22,10 @@ class NeighborhoodsController < ApplicationController
     @post = Post.new
   end
 
+  def admin
+    @broadcast = Broadcast.new
+  end
+
   # GET /neighborhoods/new
   def new
     @neighborhood = Neighborhood.new

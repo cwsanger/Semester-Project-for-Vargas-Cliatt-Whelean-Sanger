@@ -1,0 +1,22 @@
+<%= render partial:'navbar'%>
+<p id="notice"><%= notice %></p>
+<br><br><br><br>
+
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#a" data-toggle="tab">Lead</a></li>
+
+    <% if @current_member.hoa? %>
+      <li><a href="#b" data-toggle="tab">Broadcast</a></li>
+    <% end %>
+  </ul>   
+  <div class="tab-content">
+    <div class="tab-pane active" id="a">
+      perspective users list
+    </div> 
+
+    <div class="tab-pane" id="b">
+      <%= render 'broadcasts/form' %>
+    </div>
+  </div>
+</div>

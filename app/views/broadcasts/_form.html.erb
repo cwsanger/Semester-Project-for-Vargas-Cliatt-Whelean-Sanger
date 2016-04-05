@@ -1,0 +1,14 @@
+<div>
+  <%= form_for(@broadcast) do |f| %>
+    <div class="input-group">
+      <div class="field">
+        <%= f.label :body %>
+        <%= f.text_area :body %>
+      </div>
+      <div>
+        <%= f.submit class: 'btn linky' %>
+      </div> 
+    </div>
+  <% end %>
+</div>
+

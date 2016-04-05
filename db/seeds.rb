@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.delete_all
+Account.delete_all
 Neighborhood.delete_all
 Post.delete_all
 Category.delete_all
@@ -26,7 +27,7 @@ dwayne.save
 daniel = User.create(:name => "Daniel Bryant", :neighborhood_id => wwf.id)
 daniel.build_account(:email => "dbryant@gmail.com", :password => 'password', :password_confirmation=> 'password')
 daniel.save
-hunter = User.create(:name => "Hunter Helmsley", :neighborhood_id => wwf.id)
+hunter = User.create(:name => "Hunter Helmsley", :neighborhood_id => wwf.id, :role => 2)
 hunter.build_account(:email => "hhh@gmail.com", :password => 'password', :password_confirmation=> 'password')
 hunter.save
 shawn = User.create(:name => "Shawn Michaels", :neighborhood_id => wwf.id)
