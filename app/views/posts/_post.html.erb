@@ -14,14 +14,15 @@
     <p class="body"><%= post.body %></p>
     
       
-      <div class="theComments">
-      <hr class="hrComments">
-      <% post.comments.each do |comment| %>
-          <%= render comment %>
-          <hr class="hrComments">
-      <% end %>
-
+    <div id="<%= post.id %>x" class="hideComments"><small><%=post.comments.length%> Comments</small></div>
+      <div id="<%= post.id %>y" class="theComments">
+        <hr class="hrComments">
+        <% post.comments.each do |comment| %>
+            <%= render comment %>
+            <hr class="hrComments">
+        <% end %>
     </div>
+     <hr class="postComments">
     <%= render partial: 'create_comment', locals: { post: post } %> 
 
   </div>
@@ -41,6 +42,9 @@
       alertFlag = true;
       return;
     }
+  })
+  $('#<%= post.id %>x').click(function(){
+      $('#<%= post.id %>y').toggle();
   })
 </script>
 

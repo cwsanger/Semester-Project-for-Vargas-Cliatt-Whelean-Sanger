@@ -16,7 +16,17 @@
 .theComments{
 	background-color: white;
 	margin-left: -3%;
+	display:none;
+	margin-bottom: -18px;
 }
 .comment{
 	padding-left: 3%;
+}
+.hideComments{
+	cursor:pointer;
+	color: #3A66A7;
+}
+.postComments{
+	margin-top: 0px;
+	border-color: white;
 }
