@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <%= link_to @agency.name, @current_member, class: 'navbar-brand page-scroll maHood' %>
+            <%= link_to @business.name, @current_member, class: 'navbar-brand page-scroll maHood' %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,7 +20,6 @@
                     <a class="page-scroll" href="#page-top"></a>
                 </li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
               <li>
                 <%= link_to "", logout_path, method: :post, class: 'page-scroll glyphicon glyphicon-log-out' %>

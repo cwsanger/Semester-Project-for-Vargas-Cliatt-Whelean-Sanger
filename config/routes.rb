@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :events
   resources :businesses
   resources :agencies
   controller :welcome do
@@ -28,12 +29,9 @@ Rails.application.routes.draw do
 
   put 'advertisement/:id/like', to: 'advertisement#like', as: :like_advertisement
 
-  get 'broadcast/create'
+  get 'alerts/agencyAlert'
 
-  get 'broadcast/destroy'
-
-  get 'broadcast/edit'
-
+  get 'advertisements/adv'
 
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
@@ -53,7 +51,10 @@ Rails.application.routes.draw do
 
   root 'welcome#start'
 
-  resources :neighborhoods
+  resources :neighborhoods do
+    resources :broadcasts, only: [:create, :destroy, :edit]
+    get 'admin', to: 'neighborhoods#admin', as: :admin
+  end
 
   get 'direct-message/:id', to: 'direct_messages#show', as: :direct_message
   post 'direct-message/:id/create', to: 'direct_messages#create', as: :create_direct_message

@@ -7,7 +7,7 @@
   padding: 5px;
   margin: 5px;
   &.active {
-    box-shadow: 5px 5px 5px #F0F0F0;
+    box-shadow: 5px 5px 5px #CDCDCD;
   }
 }
 
@@ -27,8 +27,9 @@
     color: #308014;
   }
 }
-
 .user-tag {
   border: 1px solid black;
 }
-
+.boxy{
+  border-right: 1px solid #F0F0F0;
+}

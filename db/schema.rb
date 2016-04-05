@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 20160405082753) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "neighborhood_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "body"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",      null: false
