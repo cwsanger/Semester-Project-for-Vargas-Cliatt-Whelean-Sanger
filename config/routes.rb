@@ -51,7 +51,11 @@ Rails.application.routes.draw do
     get 'admin', to: 'neighborhoods#admin', as: :admin
   end
 
+  get 'direct-message/:id', to: 'direct_messages#show', as: :direct_message
+  post 'direct-message/:id/create', to: 'direct_messages#create', as: :create_direct_message
+
   resources :groups, path: 'chat' do
+    post 'add/:user_id', to: 'groups#add_user', as: :add_user
     post 'message/create', to: 'message#create', as: :create_message
   end
 

@@ -33,6 +33,9 @@ gem 'gmaps4rails'
 # Use validates :email, email: true
 gem 'email_validator'
 
+# User authorization
+gem 'pundit'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 #Bootstrap

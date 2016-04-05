@@ -1,0 +1,9 @@
+
+<div class="create-message">
+  <%= form_tag(create_direct_message_url(@to_user)) do %>
+    <div class="input-group">
+        <%= text_field_tag :body, nil, placeholder: 'message' %>
+        <%= submit_tag "Send", class: 'btn linky' %>
+    </div>
+  <% end %>
+</div>
