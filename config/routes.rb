@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :events
   resources :businesses
   resources :agencies
+
   controller :welcome do
     post 'logout' => :logout
 
@@ -18,6 +19,18 @@ Rails.application.routes.draw do
   resources :alerts
 
   resources :posts, only: [:destroy, :edit, :create]
+
+  get 'admins/', to: 'admins#index', as: :admins
+  post 'admins/:id/accept', to: 'admins#accept', as: :admin_accept
+  post 'admins/:id/deny', to: 'admins#deny', as: :admin_deny
+
+  get 'signups/register'
+  post 'signups/register', to: 'signups#create', as: :signups
+
+  get 'signups/:id/register', to: 'signups#register_user', as: :signups_neighborhood
+  post 'signups/:id/register', to: 'signups#join', as: :signups_join
+
+  get 'signups/temps' => 'signups#temps', as: 'temps'
 
   post 'advertisement/create'
 
@@ -52,6 +65,9 @@ Rails.application.routes.draw do
   root 'welcome#start'
 
   resources :neighborhoods do
+    post 'lead/:id/accept', to: 'leads#accept', as: :lead_accept
+    post 'lead/:id/deny', to: 'leads#deny', as: :lead_deny
+
     resources :broadcasts, only: [:create, :destroy, :edit]
     get 'admin', to: 'neighborhoods#admin', as: :admin
   end
