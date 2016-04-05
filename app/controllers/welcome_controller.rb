@@ -14,7 +14,7 @@ class WelcomeController < ApplicationController
 
   def business_login
     if account_validated?(Business)
-      business = Business.find(@member.business_id)
+      business = Business.find(@member.id)
       redirect_to business
     else
       redirect_to login_path, alert: "Invalid user/password combination"
