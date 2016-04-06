@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate
+  before_action :registration 
 
   def start
   end
@@ -47,7 +48,14 @@ class WelcomeController < ApplicationController
   end
 
   def search
+
     @neighborhoods = Neighborhood.all
+
+    if params[:search]
+      @neighborhoods = Neighborhood.where("name LIKE ? or address LIKE ?",
+                                          params[:search], params[:search])
+    end
+
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
       marker.lat neighborhood.latitude
       marker.lng neighborhood.longitude
@@ -68,5 +76,9 @@ class WelcomeController < ApplicationController
       end
 
       return false
+    end
+
+    def registration
+      @agency = Agency.new
     end
 end

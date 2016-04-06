@@ -24,8 +24,7 @@
                 </li>
                 <% unless @current_member.normy? %>
                   <li>
-                    <%= link_to "", neighborhood_admin_url(@current_member.neighborhood), class: 'page-scroll
-glyphicon glyphicon-user' %>
+                    <%= link_to "", neighborhood_admin_url(@current_member.neighborhood), class: 'page-scroll glyphicon glyphicon-user' %>
                   </li>
                 <% end %>
             </ul>
