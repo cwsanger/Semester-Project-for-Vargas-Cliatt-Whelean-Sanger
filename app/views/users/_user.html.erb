@@ -1,7 +1,7 @@
 <div class="jumbotron">
-  <h1><%= user.name %></h2>
-  <p>123 Street Road, Valdosta NY, 90210</p>
-  <a class="btn btn-primary" href="mailto:<%= user.email %>">
+  <h1><%= user.name %></h1>
+  <h4><%= user.address %></h4>
+  <a class="btn btn-primary" href="mailto:<%= user.account.email %>">
     <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
   </a>
   <%= link_to user.neighborhood, class:"btn btn-primary" do %>
