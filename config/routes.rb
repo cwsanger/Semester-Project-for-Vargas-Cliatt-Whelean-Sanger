@@ -21,13 +21,26 @@ Rails.application.routes.draw do
   resources :posts, only: [:destroy, :edit, :create]
 
   get 'admins/', to: 'admins#index', as: :admins
-  post 'admins/:id/accept', to: 'admins#accept', as: :admin_accept
-  post 'admins/:id/deny', to: 'admins#deny', as: :admin_deny
 
-  get 'signups/register'
-  post 'signups/register', to: 'signups#create', as: :signups
+  post 'admins/accept/user/:id', to: 'admins#accept_user', as: :admin_accept_user
+  post 'admins/deny/user/:id', to: 'admins#deny_user', as: :admin_deny_user
 
-  get 'signups/:id/register', to: 'signups#register_user', as: :signups_neighborhood
+  post 'admins/accept/business/:id', to: 'admins#accept_business', as: :admin_accept_business
+  post 'admins/deny/business/:id', to: 'admins#deny_business', as: :admin_deny_business
+
+  post 'admins/accept/agency/:id', to: 'admins#accept_agency', as: :admin_accept_agency
+  post 'admins/deny/agency/:id', to: 'admins#deny_agency', as: :admin_deny_agency
+
+  get 'signups/register/business', to: 'signups#register_business', as: :signups_business
+  post 'signups/register/business', to: 'signups#create_business', as: :signups_create_business
+
+  get 'signups/register/agency', to: 'signups#register_agency', as: :signups_agency
+  post 'signups/register/agency', to: 'signups#create_agency', as: :signups_create_agency
+
+  get 'signups/register/neighborhood', to: 'signups#register_neighborhood', as: :signups_neighborhood
+  post 'signups/register/neighborhood', to: 'signups#create', as: :signups
+
+  get 'signups/:id/register', to: 'signups#register_user', as: :signups_user
   post 'signups/:id/register', to: 'signups#join', as: :signups_join
 
   get 'signups/temps' => 'signups#temps', as: 'temps'

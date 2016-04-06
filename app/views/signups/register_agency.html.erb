@@ -1,0 +1,24 @@
+<h1>Agency</h1>
+
+<%= form_tag(signups_create_agency_url) do %>
+  <div>
+    <%= fields_for :temp_agency, @temp_agency do |f| %>
+      <div class="input-group">
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :address %><br>
+          <%= f.text_field :address %>
+        </div>
+        <div class="field">
+          <%= f.label :email %><br>
+          <%= f.email_field :email %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= submit_tag 'Submit' %>
+<% end %>
