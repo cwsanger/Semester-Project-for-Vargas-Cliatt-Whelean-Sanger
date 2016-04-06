@@ -12,7 +12,26 @@
   <% @temp_neighborhoods.each do |neighborhood| %>
     Name: <%= neighborhood.name %><br />
     Address: <%= neighborhood.address %><br />
-    Contact: <%= neighborhood.contact_email%><br />
+    <hr>
+  <% end %>
+</div>
+
+<div class="col-md-6">
+  <h2>Businesses waiting approval</h2>
+  <% @temp_businesses.each do |business| %>
+    Name: <%= business.name %><br />
+    Address: <%= business.address %><br />
+    Contact: <%= business.email%><br />
+    <hr>
+  <% end %>
+</div>
+
+<div class="col-md-6">
+  <h2>Agencies waiting approval</h2>
+  <% @temp_agencies.each do |agency| %>
+    Name: <%= agency.name %><br />
+    Address: <%= agency.address %><br />
+    Contact: <%= agency.email%><br />
     <hr>
   <% end %>
 </div>

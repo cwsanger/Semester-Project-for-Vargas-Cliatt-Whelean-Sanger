@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate
-  before_action :registration 
+  before_action :registration
 
   def start
   end
@@ -79,6 +79,9 @@ class WelcomeController < ApplicationController
     end
 
     def registration
-      @agency = Agency.new
+      @temp_user = TempUser.new
+      @temp_neighborhood = TempNeighborhood.new
+      @temp_business = TempBusiness.new
+      @temp_agency = TempAgency.new
     end
 end

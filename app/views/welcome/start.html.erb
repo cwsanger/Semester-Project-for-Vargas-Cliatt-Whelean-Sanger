@@ -17,6 +17,12 @@ the login.html.erb view.
   <%= image_tag 'houses' %>
 </div>
 <div class="container">
+  <% if notice %>
+         <div class="alert alert-success" role="alert"><%= notice %></div>
+  <% end %>
+  <% if alert %>
+         <div class="alert alert-danger" role="alert"><%= alert %></div>
+  <% end %>
   <%= image_tag "1000.png", :class => "myImage" %>
 
   <!--
@@ -25,6 +31,7 @@ the login.html.erb view.
     <span class="input-group-btn ">
         %= link_to "GO!", search_url, :class => "btn btn-default linky" %>
     </span>
+  </div><!-- /input-group -->
   </div>
   -->
 
