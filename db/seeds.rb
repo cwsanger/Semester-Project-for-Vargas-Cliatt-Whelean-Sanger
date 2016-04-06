@@ -107,7 +107,7 @@ fire.build_account(:email => "fire@gmail.com", :password => "password", :passwor
 fire.save
 
 fire.alerts.create(:body => "There is a big fire!", :severity => 100)
-fire.alerts.create(:body => "We got that damn fire.", :severity => 10)
+fire.alerts.create(:body => "We got that fire.", :severity => 10)
 fire.alerts.create(:body => "Cats are in trees.", :severity => 1000)
 
 Alert.create(:body => "Alert 1", :severity => 1)

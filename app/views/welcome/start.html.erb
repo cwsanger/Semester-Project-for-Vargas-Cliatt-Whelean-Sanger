@@ -1,13 +1,9 @@
-<!-- Pato will make this look pretty
 
-This is the opening page. We will need to have a
-search bar and a confirm button, which will take the
-user to the search.html.erb view. There will also be
-a button for logging in, which will take the user to
-the login.html.erb view.
-
--->
 <%= render partial:'welcome/navbar'%>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -25,34 +21,16 @@ the login.html.erb view.
   <% end %>
   <%= image_tag "1000.png", :class => "myImage" %>
 
-  <!--
-  <div class="input-group  mySearch">
-    <input type="text" class="form-control " placeholder="Search for your neighborhood">
-    <span class="input-group-btn ">
-        %= link_to "GO!", search_url, :class => "btn btn-default linky" %>
-    </span>
-  </div><!-- /input-group -->
-  </div>
-  -->
+  <%= form_tag(search_path) do %>
+    <div class="input-group mySearch">
+        <%= text_field_tag 'search', nil,
+          placeholder: 'Search for neighborhoods!',
+          class: 'form-control', type:"text"
+        %>
+        <span class="input-group-btn">
+        <button class="btn btn-default linky searchy" type="submit"><i class="glyphicon glyphicon-map-marker"></i></button>
+        </span>
+    </div>
+  <% end %>
 
-  <div class="input-group mySearch">
-
-    <%= form_tag(search_path) do %>
-
-      <%= text_field_tag 'search', nil,
-        placeholder: 'Search for hoods!',
-        class: 'form-control'
-      %>
-
-      <span class="input-group-btn ">
-        <%= submit_tag "Find!", class: 'btn btn-default linky' %>
-      </span>
-
-    <% end %>
-
-  </div>
-
-
-</div><!-- /.col-lg-6 -->
-<div>
 </div>
