@@ -38,72 +38,89 @@
       <%= render alert %>
     <% end %>
   </div>
-  <div>
-    <p class="alert-warning semiTitle"><i class="glyphicon glyphicon-bullhorn"></i> Broadcast<i id="closeBroad" class="glyphicon glyphicon-chevron-up pull-right closeBroad close"></i></p>
+  <div class="broadcast_div_bar">
+    <div>
+      <p class="alert-warning semiTitle "><i class="glyphicon glyphicon-bullhorn"></i> Broadcast<i id="closeBroad" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i></p>
+    </div>  
+    <div class="broadcast_div">
+      <% @broadcasts.each do |bc| %>
+        <%= render bc %>
+      <% end %>
+    </div>
   </div>  
-  <div class="broadcast_div">
-    <% @broadcasts.each do |bc| %>
-      <%= render bc %>
-    <% end %>
+  <div  class="advertisement_div_bar">
+    <div>
+      <p class="alert-info semiTitle"><i class="glyphicon glyphicon-tag"></i> Advertisement<i id="closeAd" class="glyphicon glyphicon-chevron-down pull-right closeAd close"></i></p>
+    </div>  
+    <div class="advertisement_div">
+      <% @advertisements.each do |ad| %>
+        <%= render ad %>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <p class="alert-info semiTitle"><i class="glyphicon glyphicon-tag"></i> Advertisement<i id="closeAd" class="glyphicon glyphicon-chevron-up pull-right closeAd close"></i></p>
-  </div>  
-  <div class="advertisement_div">
-    <% @advertisements.each do |ad| %>
-      <%= render ad %>
-    <% end %>
-  </div>
-
 </div>
 
 <script>
-var alertFlag = true;
-if(alertFlag){
-  $('#closeAlert').click(function(){
-    if(alertFlag){
-      $('.alert_div').hide();
-      $('#closeAlert').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeAlert');
-      alertFlag = false;
-      return;
-    }else{
-      $('.alert_div').show();
-      $('#closeAlert').removeClass('glyphicon glyphicon-chevron-down pull-right closeAlert').addClass('glyphicon glyphicon-chevron-up pull-right closeAlert');
-      alertFlag = true;
-      return;
-    }
+  $('.broadcast_div_').hide();
+  $('.advertisement_div').hide();
+  var alertFlag = true;
+  if(alertFlag){
+    $('#closeAlert').click(function(){
+      if(alertFlag){
+        $('.alert_div').hide();
+        $('#closeAlert').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeAlert');
+        $('#closeAd').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeAd');
+        $('#closeBroad').removeClass('glyphicon glyphicon-chevron-up pull-right closeBroad').addClass('glyphicon glyphicon-chevron-down pull-right closeBroad');
+        alertFlag = false;
+        return;
+      }else{
+        $('.alert_div').show();
+        $('#closeAlert').removeClass('glyphicon glyphicon-chevron-down pull-right closeAlert').addClass('glyphicon glyphicon-chevron-up pull-right closeAlert');
+        alertFlag = true;
+         $('.broadcast_div').hide();
+        $('.advertisement_div').hide();
+        return;
+      }
 
-  });
-  $('#closeBroad').click(function(){
-    if(alertFlag){
-      $('.broadcast_div').hide();
-      $('#closeBroad').removeClass('glyphicon glyphicon-chevron-up pull-right closeBroad').addClass('glyphicon glyphicon-chevron-down pull-right closeBroad');
-      alertFlag = false;
-      return;
-    }else{
-      $('.broadcast_div').show();
-      $('#closeBroad').removeClass('glyphicon glyphicon-chevron-down pull-right closeBroad').addClass('glyphicon glyphicon-chevron-up pull-right closeBroad');
-      alertFlag = true;
-      return;
-    }
+    });
+    $('#closeBroad').click(function(){
+      if(alertFlag){
+        $('#closeBroad').removeClass('glyphicon glyphicon-chevron-down pull-right closeBroad').addClass('glyphicon glyphicon-chevron-up pull-right closeBroad');
+        $('#closeAlert').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeAlert');
+        $('#closeAd').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeAd');
+        alertFlag = false;
+        $('.alert_div').hide();
+        $('.advertisement_div').hide();
+        $('.broadcast_div').show();
+        return;
+      }else{
+        $('.broadcast_div').hide();        
+        $('#closeBroad').removeClass('glyphicon glyphicon-chevron-up pull-right closeBroad').addClass('glyphicon glyphicon-chevron-down pull-right closeBroad');
+        $('#closeAd').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeAd');
+        alertFlag = true;
+        return;
+      }
 
-  });
-  $('#closeAd').click(function(){
-    if(alertFlag){
-      $('.advertisement_div').hide();
-      $('#closeAd').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeAd');
-      alertFlag = false;
-      return;
-    }else{
-      $('.advertisement_div').show();
-      $('#closeAd').removeClass('glyphicon glyphicon-chevron-down pull-right closeAd').addClass('glyphicon glyphicon-chevron-up pull-right closeAd');
-      alertFlag = true;
-      return;
-    }
+    });
+    $('#closeAd').click(function(){
+      if(alertFlag){
+        $('.advertisement_div').hide();
+        $('#closeAd').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeAd');
+        alertFlag = false;
+        return;
+      }else{
+        $('.advertisement_div').show();
+        $('.alert_div').hide();
+        $('.broadcast_div').hide();
+        $('#closeAlert').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeAlert');
+        $('#closeBroad').removeClass('glyphicon glyphicon-chevron-up pull-right closeBroad').addClass('glyphicon glyphicon-chevron-down pull-right closeBroad');
+        $('#closeAd').removeClass('glyphicon glyphicon-chevron-down pull-right closeAd').addClass('glyphicon glyphicon-chevron-up pull-right closeAd');
+        alertFlag = true;
+        return;
+      }
 
-  });
-}
-
+    });
+  }
 </script>
 <script>
   $(document).ready(function () {

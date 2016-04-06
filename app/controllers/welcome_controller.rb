@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate
+  before_action :registration 
 
   def start
   end
@@ -68,5 +69,9 @@ class WelcomeController < ApplicationController
       end
 
       return false
+    end
+
+    def registration
+      @agency = Agency.new
     end
 end

@@ -4,41 +4,60 @@
 
 <div class="container">
   <ul class="nav nav-tabs">
-    <li ><a href="#a" data-toggle="tab">Lead</a></li>
-
+    <li class="active"><a href="#a" data-toggle="tab">Lead</a></li>
     <% if @current_member.hoa? %>
-      <li class="active"><a href="#b" data-toggle="tab">Broadcast</a></li>
+      <li ><a href="#b" data-toggle="tab">Broadcast</a></li>
     <% end %>
   </ul>   
   <div class="tab-content">
     <div class="tab-pane active" id="a">
-  <table class="table table-bordered">
-    <caption>Perspective Users</caption>
+      <table class="table table-hover table-bordered">
+        <h1><center>Perspective Users</center></h1>
+        <hr class="hrPers">
+        <% if @temp_users.length > 0%>
+          <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
+             <input id="filter" type="text" class="form-control" placeholder="Find broadcast...">
+          </div>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Neighborhood</th>
+            <th>Address</th>
+          </tr>
+          <tbody class="searchable">
+            <% @temp_users.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.hood.name %></td>
+                <td><%= user.hood.address %></td>
 
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Neighborhood</th>
-      <th>Address</th>
-    </tr>
-    <% @temp_users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.hood.name %></td>
-        <td><%= user.hood.address %></td>
-
-        <td><%= button_to 'Accept', neighborhood_lead_accept_url(@current_member.neighborhood, user), method: :post %></td>
-        <td><%= button_to 'Deny', neighborhood_lead_deny_url(@current_member.neighborhood, user), method: :post %></td>
-      </tr>
-    <% end %>
-  </table>
+                <td><%= link_to '', neighborhood_lead_accept_url(@current_member.neighborhood, user), method: :post,class:"glyphicon glyphicon-ok accept" %></td>
+                <td><%= link_to '', neighborhood_lead_deny_url(@current_member.neighborhood, user), method: :post,class:"glyphicon glyphicon glyphicon-remove deny"%></td>
+              </tr>
+            <% end %>
+        <% end %>
+        </tbody> 
+      </table>
     </div> 
-
-    <div class="tab-pane active" id="b">
+    <div class="tab-pane" id="b">
       <%= render 'broadcasts/form' %>
 
       <%= render partial: 'broadcasts/admin_list', locals: { broadcasts: @broadcasts } %>
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function () {
+    (function ($) {
+        $('#filter').keyup(function () {
+
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+        })
+    }($));
+});
+</script>

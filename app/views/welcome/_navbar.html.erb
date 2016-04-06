@@ -28,6 +28,19 @@
                 <li>
                     <a class="page-scroll" href="<%= doc_path %>">Documentation</a>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Neighborhood</a></li>
+                      <li><a href="#"data-toggle="modal" data-target="#myModal">Agency</a></li>
+                      <li><a href="#">Business</a></li>
+                    </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <%= link_to "Log In", login_path%>
+              </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -55,3 +68,44 @@
         });
     });
 </script>
+<!-- /.Modal -->
+<div class="container">
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agency Registration</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-4"></div>
+            <%= form_for(@agency) do |f| %>
+                <% if @agency.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@agency.errors.count, "error") %> prohibited this agency from being saved:</h2>
+
+                    <ul>
+                    <% @agency.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <div class="field">
+                  <hr>
+                    <%= f.text_field :name,placeholder: 'Type Name here...',class:"myPost" %>
+                  <hr>
+                </div>
+                <div class="actions">
+                  <%= f.submit class: 'btn linky' %>
+                </div>
+              <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>      
+    </div>
+  </div>  
+</div>
