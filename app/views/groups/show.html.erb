@@ -1,6 +1,6 @@
 <%= render partial: 'neighborhoods/navbar' %>
 <br><br><br><br>
-<div class="col-md-3">
+<div class="col-md-3 boxy">
   <%= render partial: 'create_group' %>
   <br>
   <%= render partial: 'group_list' %>
@@ -9,6 +9,7 @@
 </div>
 
 <div class="col-md-7">
+  <p><%= @group.name %></p>
   <div class= "messages">
     <% @group.messages.each do |message| %>
       <%= render message %>
@@ -24,22 +25,21 @@
 
     <% @group.users.each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
+      <% if user.id == @current_member.id %>
+        <%= link_to "", group_remove_user_url(@group), method: :post,class:"glyphicon glyphicon-minus" %>
+        <% end %>
       <hr>
     <% end %>
   </div>
 
   <div>
+  <% if not_users(@group).length > 0 %>
     <h3>Add Members</h3>
-
+  <% end %>
     <% not_users(@group).each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
       <%= link_to "", group_add_user_url(@group, user), method: :post,class:"glyphicon glyphicon-plus" %>
       <hr>
     <% end %>
-  </div>
-
-  <div>
-    <h3>Want to Leave?</h3>
-    <%= button_to "Leave", group_remove_user_url(@group) %>
   </div>
 </div>

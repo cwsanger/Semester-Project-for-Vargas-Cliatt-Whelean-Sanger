@@ -1,11 +1,9 @@
 <div>
   <%= form_tag(create_comment_path(post)) do %>
     <div class="input-group">
-    <hr class="hrComments">
       <div>
         <%= text_area_tag :body, params[:body], placeholder: 'Type comment here',:class=>'myComment' %> 
       </div>
-     <hr class="hrComments"> 
       <div>
         <%= submit_tag "Comment", class: 'btn' %>
       </div> 

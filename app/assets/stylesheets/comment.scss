@@ -11,6 +11,22 @@
 	background-color: #F0F0F0;
 }
 .hrComments{
-	width: 200%;
-	border-color:white;
+	border-color:#F0F0F0;
+}
+.theComments{
+	background-color: white;
+	margin-left: -3%;
+	display:none;
+	margin-bottom: -18px;
+}
+.comment{
+	padding-left: 3%;
+}
+.hideComments{
+	cursor:pointer;
+	color: #3A66A7;
+}
+.postComments{
+	margin-top: 0px;
+	border-color: white;
 }

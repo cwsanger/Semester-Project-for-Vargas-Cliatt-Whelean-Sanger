@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate
+  before_action :registration 
 
   def start
   end
@@ -9,24 +10,26 @@ class WelcomeController < ApplicationController
   end
 
   def admin_login
-
+    if account_validated?(Admin)
+      redirect_to admins_url
+    else
+      redirect_to login_path, alert: "Invalid email/password combination"
+    end
   end
 
   def business_login
     if account_validated?(Business)
-      business = Business.find(@member.id)
-      redirect_to business
+      redirect_to @member
     else
-      redirect_to login_path, alert: "Invalid user/password combination"
+      redirect_to login_path, alert: "Invalid email/password combination"
     end
   end
 
   def agency_login
     if account_validated?(Agency)
-      agency = Agency.find(@member.id)
-      redirect_to agency
+      redirect_to @member
     else
-      redirect_to login_path, alert: "Invalid user/password combination"
+      redirect_to login_path, alert: "Invalid email/password combination"
     end
   end
 
@@ -35,7 +38,7 @@ class WelcomeController < ApplicationController
       neighborhood = Neighborhood.find(@member.neighborhood_id)
       redirect_to neighborhood
     else
-      redirect_to login_path, alert: "Invalid user/password combination"
+      redirect_to login_path, alert: "Invalid email/password combination"
     end
   end
 
@@ -45,7 +48,14 @@ class WelcomeController < ApplicationController
   end
 
   def search
+
     @neighborhoods = Neighborhood.all
+
+    if params[:search]
+      @neighborhoods = Neighborhood.where("name LIKE ? or address LIKE ?",
+                                          params[:search], params[:search])
+    end
+
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
       marker.lat neighborhood.latitude
       marker.lng neighborhood.longitude
@@ -66,5 +76,9 @@ class WelcomeController < ApplicationController
       end
 
       return false
+    end
+
+    def registration
+      @agency = Agency.new
     end
 end

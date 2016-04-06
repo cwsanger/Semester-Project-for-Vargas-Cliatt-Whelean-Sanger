@@ -17,7 +17,7 @@ class NeighborhoodsController < ApplicationController
                  .order(created_at: :desc)
 
     @alerts = Alert.all
-    @broadcasts = Broadcast.all
+    @broadcasts = @neighborhood.broadcasts
     @advertisements = Advertisement.all
     @categories = Category.all
 
@@ -28,6 +28,8 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
     authorize @neighborhood
 
+
+    @temp_users = @neighborhood.temp_users
     @broadcast = Broadcast.new
     @broadcasts = @neighborhood.broadcasts
   end

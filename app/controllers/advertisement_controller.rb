@@ -21,10 +21,10 @@ class AdvertisementController < ApplicationController
   end
 
   def like
-    @advertisement.like @current_member.id
+    @current_member.like(@advertisement)
 
     respond_to do |format|
-      if @advertisement.save
+      if @current_member.save
         format.html { redirect_to @current_member.neighborhood }
       else
         format.html { redirect_to @current_member.neighborhood, notice: 'like ad failed' }
