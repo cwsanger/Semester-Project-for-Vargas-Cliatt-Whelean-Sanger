@@ -1,3 +1,10 @@
+<%= render 'neighborhoods/navbar' %>
+
+<br />
+<br />
+<br />
+<br />
+
 <div class = "col-sm-8 col-sm-offset-1">
   <div class="simple-calendar row">
     <h3><%= link_to calendar.url_for_previous_view do %>
@@ -46,7 +53,9 @@
 
     </div>
     <div class="col-sm-2">
-      <%= button_to "Create Event", new_event_url, method: :get, class: 'btn linky'%></p>
+      <% unless @current_member.normy? %>
+        <%= button_to "Create Event", new_event_url, method: :get, class: 'btn linky'%></p>
+      <% end%>
     </div>
   </div>
 </div>
