@@ -28,12 +28,7 @@
 
   .start-date {}
 
-  .prev-month {
-    background-color: #f2f2f2;
-  }
-  .next-month {
-    background-color: #f2f2f2;
-  }
+
   .current-month {}
 
   .has-events {
@@ -50,6 +45,14 @@
       background-color: #F5F57A;
     }
   }
+
+  .prev-month {
+    background-color: #f2f2f2;
+  }
+  .next-month {
+    background-color: #f2f2f2;
+  }
+
 }
 
 .tbody{
@@ -66,7 +69,13 @@
   }
 }
 
-.square{
-  height: 100 px;
-  width: 100 px;
+.squareCalendar{
+  border-radius: 25px;
+  background: #3A66A7;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  text-align: center;
+  vertical-align: center;
+  color: white;
 }

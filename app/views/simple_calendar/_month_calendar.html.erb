@@ -35,14 +35,18 @@
     </table>
   </div>
   <div class="row">
-    <div class="col-sm-5 test">
-      <p id="myDate"><%= @chosen_date %></p>
+    <div class="col-sm-3 test">
+      <p id="myDate" class="squareCalendar"><%= @chosen_date %></p>
     </div>
-    <div class="col-sm-4">
-      List events of the selected day
+    <div class="col-sm-6 squareCalendar">
+      <% @events.each do |event| %>
+        <% if event.start_time.day == @chosen_date%>
+          <%= event.name %>
+        <% end %>
+      <% end %>
     </div>
     <div class="col-sm-3">
-      <%= button_to "Create Event", new_event_url, method: :get %></p>
+      <%= button_to "Create Event", new_event_url, method: :get, class: 'btn linky'%></p>
     </div>
   </div>
 </div>
@@ -51,14 +55,14 @@
   <h2><u><%= I18n.t("date.month_names")[start_date.month] %> Events</u></h2>
 
   <table class="table table-striped">
-      <tbody>
-        <% @events.each do |event| %>
+    <tbody>
+      <% @events.each do |event| %>
+        <% if event.start_time.month == Date::MONTHNAMES.index(I18n.t("date.month_names")[start_date.month]) %>
           <th><h4><%= event.name %></h4></th>
-          <tr>
-            <td><%= event.body %></td>
-          </tr>
+          <tr><td><%= event.body %></td></tr>
         <% end %>
-      </tbody>
+      <% end %>
+    </tbody>
   </table>
 </div>
 
@@ -71,10 +75,3 @@
     );
   });
 </script>
-
-
-
-$('#mytable .customerIDCell').each(function()
-{
-  alert($(this).html());
-});

@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
-    @chosen_date = Time.now()
+    @chosen_date = Integer(Time.now.strftime("%d"))
   end
 
   # GET /events/1
