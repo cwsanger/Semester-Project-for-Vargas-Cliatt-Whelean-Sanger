@@ -1,6 +1,17 @@
-<h1>Editing Business</h1>
+<h1>Make changes to your profile!</h1>
 
-<%= render 'form' %>
+<%= render @current_member %>
 
-<%= link_to 'Show', @business %> |
-<%= link_to 'Back', businesses_path %>
+<% if notice %><p><%= notice %></p><% end %>
+
+<div class="col-md-4 col-md-offset-4">
+
+  <%= render partial: 'form_builder', locals:
+              {param: 'name', text: ''} %>
+
+  <br />
+
+  <%= render partial: 'form_builder', locals: 
+              {param: 'email', text: @current_member.account.email} %>
+            
+</div>

@@ -1,23 +1,37 @@
 class SignupsController < ApplicationController
   skip_before_action :authenticate
 
-  before_action :initialize_temps, only: [:register, :register_user]
   before_action :set_neighborhood, only: [:join, :register_user]
-
-  def initialize_temps
-    @temp_user = TempUser.new
-    @temp_neighborhood = TempNeighborhood.new
-  end
-
-  def register
-  end
-
-  def register_user
-  end
 
   def temps
     @temp_users = TempUser.all
     @temp_neighborhoods = TempNeighborhood.all
+    @temp_businesses = TempBusiness.all
+    @temp_agencies = TempAgency.all
+  end
+
+  def create_business
+    @temp_business = TempBusiness.new(temp_business_params)
+
+    respond_to do |format|
+      if @temp_business.save
+        format.html { redirect_to root_path, notice: 'You should be approved soon' }
+      else
+        format.html { redirect_to root_path, alert: 'You should be approved soon' }
+      end
+    end
+  end
+
+  def create_agency
+    @temp_agency = TempAgency.new(temp_agency_params)
+
+    respond_to do |format|
+      if @temp_agency.save
+        format.html { redirect_to root_path, notice: 'You should be approved soon' }
+      else
+        format.html { redirect_to root_path, alert: 'You should be approved soon' }
+      end
+    end
   end
 
   def create
@@ -26,11 +40,9 @@ class SignupsController < ApplicationController
 
     respond_to do |format|
       if @temp_neighborhood.save
-        format.html { redirect_to temps_path, notice: 'You should be approved soon' }
-        format.json { render :show, status: :created, location: @registrant }
+        format.html { redirect_to root_path, notice: 'You should be approved soon' }
       else
-        format.html { render :register }
-        format.json { render json: @registrant.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, alert: 'Failed to register' }
       end
     end
   end
@@ -56,6 +68,14 @@ class SignupsController < ApplicationController
 
     def temp_neighborhood_params
       params.require(:temp_neighborhood).permit(:name, :address)
+    end
+
+    def temp_business_params
+      params.require(:temp_business).permit(:name, :email, :address)
+    end
+
+    def temp_agency_params
+      params.require(:temp_agency).permit(:name, :email, :address)
     end
 
     def set_neighborhood

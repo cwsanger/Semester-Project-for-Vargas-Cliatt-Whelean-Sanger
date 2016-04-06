@@ -4,24 +4,78 @@
 <br />
 <br />
 <div class="container">
-  <table class="table table-bordered">
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Neighborhood</th>
-      <th>Address</th>
-    </tr>
-    <% @temp_users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.hood.name %></td>
-        <td><%= user.hood.address %></td>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#a" data-toggle="tab">Users</a></li>
+    <li><a href="#b" data-toggle="tab">Businesses</a></li>
+    <li><a href="#c" data-toggle="tab">Agencies</a></li>
+  </ul>   
+  <div class="tab-content">
+    <div class="tab-pane active" id="a">
+      <table class="table table-bordered">
+        <caption>Perspective Users</caption>
 
-        <td><%= button_to 'Accept', admin_accept_url(user), method: :post %></td>
-        <td><%= button_to 'Deny', admin_deny_url(user), method: :post %></td>
-      </tr>
-    <% end %>
-  </table>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Neighborhood</th>
+          <th>Address</th>
+        </tr>
+        <% @temp_users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.hood.name %></td>
+            <td><%= user.hood.address %></td>
+
+            <td><%= button_to 'Accept', admin_accept_user_url(user), method: :post %></td>
+            <td><%= button_to 'Deny', admin_deny_user_url(user), method: :post %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="b">
+      <table class="table table-bordered">
+        <caption>Perspective Businesses</caption>
+
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Address</th>
+        </tr>
+        <% @temp_businesses.each do |business| %>
+          <tr>
+            <td><%= business.name %></td>
+            <td><%= business.email %></td>
+            <td><%= business.address %></td>
+
+            <td><%= button_to 'Accept', admin_accept_business_url(business), method: :post %></td>
+            <td><%= button_to 'Deny', admin_deny_business_url(business), method: :post %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="c">
+      <table class="table table-bordered">
+        <caption>Perspective Agencies</caption>
+
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Neighborhood</th>
+          <th>Address</th>
+        </tr>
+        <% @temp_agencies.each do |agency| %>
+          <tr>
+            <td><%= agency.name %></td>
+            <td><%= agency.email %></td>
+            <td><%= agency.address %></td>
+
+            <td><%= button_to 'Accept', admin_accept_agency_url(agency), method: :post %></td>
+            <td><%= button_to 'Deny', admin_deny_agency_url(agency), method: :post %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>
 
