@@ -5,7 +5,7 @@
       <div class="field">
           <%= f.text_area :body,:class=>"myPost",placeholder: 'Type post here...'%>
       </div>
-     <hr> 
+     <hr>
       <div>
         <% categories.each do |category| %>
           <%= f.radio_button :category_id, category.id %>

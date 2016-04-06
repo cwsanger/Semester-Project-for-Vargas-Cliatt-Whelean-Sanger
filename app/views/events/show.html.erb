@@ -1,3 +1,19 @@
-<%= month_calendar do |date| %>
-  <%= date.day %>
-<% end %>
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @event.body %>
+</p>
+
+<p>
+  <strong>Neighborhood:</strong>
+  <%= @event.neighborhood.name %>
+</p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @event.user.name %>
+</p>

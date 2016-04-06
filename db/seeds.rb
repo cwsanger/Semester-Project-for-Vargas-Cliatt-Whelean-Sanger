@@ -16,6 +16,7 @@ Agency.delete_all
 Broadcast.delete_all
 Advertisement.delete_all
 Group.delete_all
+Event.delete_all
 TempUser.delete_all
 TempNeighborhood.delete_all
 TempBusiness.delete_all
@@ -123,3 +124,9 @@ Broadcast.create(:body => "Broadcast 5")
 Broadcast.create(:body => "Broadcast 6")
 Broadcast.create(:body => "Broadcast 7")
 Broadcast.create(:body => "Broadcast 8")
+
+Event.create(:name => "Pool Party", :body => "Suntan lotion will be provided", :start_time => Time.now, :end_time => Time.now + 2.days, :neighborhood_id => wwf.id, :user_id => daniel.id)
+Event.create(:name => "BBQ", :body => "Bring your own beef", :start_time => Time.now + 3.days, :end_time => Time.now + 3.days, :neighborhood_id => wwf.id, :user_id => dwayne.id)
+Event.create(:name => "Salsa Dancing Lessons", :body => "Learn to dance at Maggie's house this week", :start_time => Time.now - 6.days, :end_time => Time.now - 6.days, :neighborhood_id => wwf.id, :user_id => hunter.id)
+Event.create(:name => "Block Party", :body => "Fireworks and music for the whole neighborhood", :start_time => Time.now - 16.days, :end_time => Time.now - 16.days, :neighborhood_id => wwf.id, :user_id => hunter.id)
+Event.create(:name => "Battle of the Bands", :body => "Come support your local artists", :start_time => Time.now + 12.days, :end_time => Time.now + 12.days, :neighborhood_id => wwf.id, :user_id => daniel.id)
