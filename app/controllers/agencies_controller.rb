@@ -54,7 +54,7 @@ class AgenciesController < ApplicationController
         notice = 'good job, admin was updated'
       else
         @current_member.update_attribute(paramName, paramValue)
-        notice = 'good job, user was updated'
+        notice = 'good job, agency was updated'
       end
 
     elsif paramValue.empty?
