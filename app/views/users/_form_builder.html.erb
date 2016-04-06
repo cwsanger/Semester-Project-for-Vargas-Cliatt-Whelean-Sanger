@@ -1,0 +1,23 @@
+  <%= form_tag(user_path(@current_member.id), method: :put) do %>
+
+    <%= label_tag param %>
+
+    <% if not text.empty? %>
+
+      <%= text_field_tag param, nil,
+        placeholder: text,
+        class: 'form-control'
+      %>
+
+    <% else %>
+
+      <%= text_field_tag param, nil,
+        placeholder: @current_member.read_attribute("#{param}"),
+        class: 'form-control'
+      %>
+
+    <% end %>
+
+    <%= hidden_field_tag 'updateParam', param %>
+    <%= submit_tag "Update!", class: 'btn btn-default linky' %>
+  <% end %>
