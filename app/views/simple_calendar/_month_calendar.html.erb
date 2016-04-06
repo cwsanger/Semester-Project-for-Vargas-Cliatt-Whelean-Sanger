@@ -1,11 +1,15 @@
 <div class = "col-sm-8 col-sm-offset-1">
   <div class="simple-calendar row">
-    <h3><%= link_to "Previous", calendar.url_for_previous_view %>
+    <h3><%= link_to calendar.url_for_previous_view do %>
+      <i class="glyphicon glyphicon-chevron-left"></i>
+    <% end %>
     <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
-    <%= link_to "Next", calendar.url_for_next_view %>
+    <%= link_to calendar.url_for_next_view do %>
+      <i class="glyphicon glyphicon-chevron-right"></i>
+    <% end %>
     </h3>
 
-    <table id="cool" class="table table-bordered">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <% date_range.slice(0, 7).each do |day| %>
@@ -35,13 +39,13 @@
     </table>
   </div>
   <div class="row">
-    <div class="col-sm-3 test">
-      <p id="myDate" class="squareCalendar"><%= @chosen_date %></p>
-    </div>
-    <div class="col-sm-6 squareCalendar">
+    <div class="col-sm-3">
 
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-7">
+
+    </div>
+    <div class="col-sm-2">
       <%= button_to "Create Event", new_event_url, method: :get, class: 'btn linky'%></p>
     </div>
   </div>
@@ -67,13 +71,3 @@
     </tbody>
   </table>
 </div>
-
-<script>
-  $(document).ready(function(){
-    $('#cool .selectable').click(function(){
-        var selected = $(this).html();
-        var theDate = $('#myDate').text(selected);
-      }
-    );
-  });
-</script>
