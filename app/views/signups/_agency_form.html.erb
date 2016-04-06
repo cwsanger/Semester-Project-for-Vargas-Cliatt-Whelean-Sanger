@@ -1,8 +1,6 @@
-<h1>Business</h1>
-
-<%= form_tag(signups_create_business_url) do %>
+<%= form_tag(signups_create_agency_url) do %>
   <div>
-    <%= fields_for :temp_business, @temp_business do |f| %>
+    <%= fields_for :temp_agency, @temp_agency do |f| %>
       <div class="input-group">
         <div class="field">
           <%= f.label :name %><br>
@@ -20,5 +18,5 @@
     <% end %>
   </div>
 
-  <%= submit_tag 'Submit' %>
+  <%= submit_tag 'Submit', class: 'btn linky' %>
 <% end %>

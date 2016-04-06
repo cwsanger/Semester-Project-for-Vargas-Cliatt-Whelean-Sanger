@@ -1,27 +1,7 @@
 class SignupsController < ApplicationController
   skip_before_action :authenticate
 
-  before_action :initialize_temps, only: [:register_neighborhood, :register_user]
   before_action :set_neighborhood, only: [:join, :register_user]
-
-  def initialize_temps
-    @temp_user = TempUser.new
-    @temp_neighborhood = TempNeighborhood.new
-  end
-
-  def register_neighborhood
-  end
-
-  def register_user
-  end
-
-  def register_business
-    @temp_business = TempBusiness.new
-  end
-
-  def register_agency
-    @temp_agency = TempAgency.new
-  end
 
   def temps
     @temp_users = TempUser.all
@@ -35,9 +15,9 @@ class SignupsController < ApplicationController
 
     respond_to do |format|
       if @temp_business.save
-        format.html { redirect_to temps_path, notice: 'You should be approved soon' }
+        format.html { redirect_to root_path, notice: 'You should be approved soon' }
       else
-        format.html { render :register_business }
+        format.html { redirect_to root_path, alert: 'You should be approved soon' }
       end
     end
   end
@@ -47,9 +27,9 @@ class SignupsController < ApplicationController
 
     respond_to do |format|
       if @temp_agency.save
-        format.html { redirect_to temps_path, notice: 'You should be approved soon' }
+        format.html { redirect_to root_path, notice: 'You should be approved soon' }
       else
-        format.html { render :register_agency }
+        format.html { redirect_to root_path, alert: 'You should be approved soon' }
       end
     end
   end
@@ -60,9 +40,9 @@ class SignupsController < ApplicationController
 
     respond_to do |format|
       if @temp_neighborhood.save
-        format.html { redirect_to temps_path, notice: 'You should be approved soon' }
+        format.html { redirect_to root_path, notice: 'You should be approved soon' }
       else
-        format.html { render :register_neighborhood }
+        format.html { redirect_to root_path, alert: 'Failed to register' }
       end
     end
   end

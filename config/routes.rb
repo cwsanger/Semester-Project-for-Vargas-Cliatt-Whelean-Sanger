@@ -32,13 +32,10 @@ Rails.application.routes.draw do
   post 'admins/accept/agency/:id', to: 'admins#accept_agency', as: :admin_accept_agency
   post 'admins/deny/agency/:id', to: 'admins#deny_agency', as: :admin_deny_agency
 
-  get 'signups/register/business', to: 'signups#register_business', as: :signups_business
   post 'signups/register/business', to: 'signups#create_business', as: :signups_create_business
 
-  get 'signups/register/agency', to: 'signups#register_agency', as: :signups_agency
   post 'signups/register/agency', to: 'signups#create_agency', as: :signups_create_agency
 
-  get 'signups/register/neighborhood', to: 'signups#register_neighborhood', as: :signups_neighborhood
   post 'signups/register/neighborhood', to: 'signups#create', as: :signups
 
   get 'signups/:id/register', to: 'signups#register_user', as: :signups_user
