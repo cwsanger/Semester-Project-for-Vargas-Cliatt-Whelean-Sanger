@@ -1,3 +1,8 @@
 <%= month_calendar events: @events do |date, events| %>
   <%= date.day %>
+  <ul><% @events.each do |event| %>
+    <% if event.start_time.strftime("%B %d %Y") == date.strftime("%B %d %Y")%>
+      <li><%= event.name %></li>
+    <% end %>
+  <% end %></ul>
 <% end %>
