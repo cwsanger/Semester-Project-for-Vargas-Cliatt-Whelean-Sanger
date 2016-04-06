@@ -42,14 +42,30 @@ class AgenciesController < ApplicationController
   # PATCH/PUT /agencies/1
   # PATCH/PUT /agencies/1.json
   def update
-    respond_to do |format|
-      if @agency.update(agency_params)
-        format.html { redirect_to @agency, notice: 'Agency was successfully updated.' }
-        format.json { render :show, status: :ok, location: @agency }
+
+    paramName = params[:updateParam]
+    paramValue = params[ paramName ]
+
+    #Make sure the parameter to be updated is one we have whitelisted
+    if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
+
+      if paramName == 'email'
+        @current_member.account.update_attribute(paramName, paramValue)
+        notice = 'good job, admin was updated'
       else
-        format.html { render :edit }
-        format.json { render json: @agency.errors, status: :unprocessable_entity }
+        @current_member.update_attribute(paramName, paramValue)
+        notice = 'good job, agency was updated'
       end
+
+    elsif paramValue.empty?
+      notice = 'Your ' + paramName + ' can not be blank.'
+    else
+      notice = 'Unexpected parameter'
+    end
+
+    respond_to do |format|
+      format.html { redirect_to edit_agency_path(@current_member), notice: notice }
+      format.json { render :edit, status: :ok, location: @current_member }
     end
   end
 

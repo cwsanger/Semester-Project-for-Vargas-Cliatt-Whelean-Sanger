@@ -41,14 +41,28 @@ class BusinessesController < ApplicationController
   # PATCH/PUT /businesses/1
   # PATCH/PUT /businesses/1.json
   def update
-    respond_to do |format|
-      if @business.update(business_params)
-        format.html { redirect_to @business, notice: 'Business was successfully updated.' }
-        format.json { render :show, status: :ok, location: @business }
+    paramName = params[:updateParam]
+    paramValue = params[ paramName ]
+
+    #Make sure the parameter to be updated is one we have whitelisted
+    if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
+
+      if paramName == 'email'
+        @current_member.account.update_attribute(paramName, paramValue)
+        notice = 'good job, admin was updated'
       else
-        format.html { render :edit }
-        format.json { render json: @business.errors, status: :unprocessable_entity }
+        @current_member.update_attribute(paramName, paramValue)
+        notice = 'good job, business was updated'
       end
+    elsif paramValue.empty?
+      notice = 'Your ' + paramName + ' can not be blank.'
+    else
+      notice = 'Unexpected parameter'
+    end
+
+    respond_to do |format|
+      format.html { redirect_to edit_business_path(@current_member), notice: notice }
+      format.json { render :edit, status: :ok, location: @current_member }
     end
   end
 

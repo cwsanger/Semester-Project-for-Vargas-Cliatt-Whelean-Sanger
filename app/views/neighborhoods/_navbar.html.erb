@@ -27,6 +27,9 @@
                     <%= link_to "", neighborhood_admin_url(@current_member.neighborhood), class: 'page-scroll glyphicon glyphicon-user' %>
                   </li>
                 <% end %>
+                <li>
+                    <%= link_to "", edit_user_url(@current_member.id), class: 'page-scroll glyphicon glyphicon-cog' %>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h1><%= agency.name %></h1>
+  <h4>Agencies don't currently have addresses</h4>
+  <a class="btn btn-primary" href="mailto:<%= agency.account.email %>">
+    <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
+  </a>
+  <%= link_to agency, class:"btn btn-primary" do %>
+    <span class="glyphicon glyphicon-home"></span>
+  <% end %>
+</div>
