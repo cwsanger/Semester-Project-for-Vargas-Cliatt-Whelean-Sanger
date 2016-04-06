@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     paramValue = params[ paramName ]
 
       #Make sure the parameter to be updated is one we have whitelisted
-      if ['name', 'email', 'address'].include? paramName and not paramName.empty?
+      if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
 
         if paramName == 'email'
           @current_member.account.update_attribute(paramName, paramValue)
