@@ -5,10 +5,6 @@ class WelcomeController < ApplicationController
   def start
   end
 
-  def post_start
-    redirect_to "/welcome/search"
-  end
-
   def admin_login
     if account_validated?(Admin)
       redirect_to admins_url
@@ -49,11 +45,13 @@ class WelcomeController < ApplicationController
 
   def search
 
-    @neighborhoods = Neighborhood.all
+    @neighborhoods = Neighborhood.all.to_a
 
     if params[:search]
-      @neighborhoods = Neighborhood.where("name LIKE ? or address LIKE ?",
-                                          params[:search], params[:search])
+      search = params[:search]
+      @neighborhoods.delete_if { |neighborhood|
+        !(neighborhood.name.downcase.include? search)
+      }
     end
 
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|

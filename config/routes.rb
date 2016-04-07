@@ -6,10 +6,8 @@ Rails.application.routes.draw do
 
   controller :welcome do
     post 'logout' => :logout
-
     get 'login' => :login
     get 'start' => :start
-    post 'start' => :post_start
     get 'search' => :search
     post 'search' => :search
     get 'about' => :about
