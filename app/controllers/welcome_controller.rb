@@ -45,12 +45,21 @@ class WelcomeController < ApplicationController
 
   def search
 
+    #Current functionality:
+    # Neighborhoods are returned if the search string is in their name,
+    # or if their name is in the search string, ignoring case.
+    # I did the second case for examples this like:
+    #   search="Kanto, Japan" should still return the neighborhood "Kanto"
+    #
+    # We should implement a gem or algorithm to handle spelling mistakes
+
     @neighborhoods = Neighborhood.all.to_a
 
     if params[:search]
       search = params[:search]
       @neighborhoods.delete_if { |neighborhood|
-        !(neighborhood.name.downcase.include? search)
+        !((search.include? neighborhood.name.downcase) &&
+        (neighborhood.name.downcase.include? search))
       }
     end
 
