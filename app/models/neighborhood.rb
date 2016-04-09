@@ -19,8 +19,31 @@ class Neighborhood < ActiveRecord::Base
     slug
   end
 
+  def self.get_matches_for(searchString)
+    all.to_a.delete_if { |neighborhood| !matches?(searchString, neighborhood) }
+  end
+
   private
     def create_slug
       self.slug = name.parameterize
     end
+
+    def self.matches?(phrase, neighborhood)
+      fields = [neighborhood.name, neighborhood.address]
+
+      fields.map!(&:downcase)
+      phrase.downcase!
+
+      fields.each do |field|
+        if (
+             (phrase.include? field) ||
+             (field.include? phrase)
+            )
+          return true
+        end
+      end
+
+      false
+    end
+
 end
