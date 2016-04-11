@@ -5,10 +5,6 @@ class WelcomeController < ApplicationController
   def start
   end
 
-  def post_start
-    redirect_to "/welcome/search"
-  end
-
   def admin_login
     if account_validated?(Admin)
       redirect_to admins_url
@@ -49,11 +45,19 @@ class WelcomeController < ApplicationController
 
   def search
 
-    @neighborhoods = Neighborhood.all
+    #Current functionality:
+    # Neighborhoods are returned if they pass the search_matches function.
+    # Pass search_matches the search string and a list of fields to test.
+    # Right now the only fields tested against are name and address.
+
+    @neighborhoods = Neighborhood.all.to_a
 
     if params[:search]
-      @neighborhoods = Neighborhood.where("name LIKE ? or address LIKE ?",
-                                          params[:search], params[:search])
+      @neighborhoods.delete_if { |neighborhood|
+        !search_matches(
+          params[:search], [neighborhood.name, neighborhood.address]
+        )
+      }
     end
 
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
@@ -64,6 +68,31 @@ class WelcomeController < ApplicationController
   end
 
   private
+
+    def search_matches(searchString, fields)
+
+      # Returns true if the searchString is in any of the fields or
+      # if any of the fields are in the searchString, ignoring case.
+      # I did the second case for examples this like:
+      #   search="Kanto, Japan" should still return the neighborhood "Kanto"
+      #
+      # We should implement a gem or algorithm to handle spelling mistakes
+
+      searchString = searchString.downcase
+      fields.map!(&:downcase)
+
+      fields.each do |field|
+        if (
+            (field.include? searchString) ||
+            (searchString.include? field)
+           )
+          return true
+        end
+      end
+
+      return false
+    end
+
     def account_validated?(type)
       account = Account.find_by(email: params[:email])
       if account and account.authenticate(params[:password])
