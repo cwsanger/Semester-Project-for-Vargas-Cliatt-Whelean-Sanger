@@ -6,7 +6,7 @@
 <br />
 
 <div class = "col-sm-8 col-sm-offset-1">
-  <div class="simple-calendar row">
+  <div class="simple-calendar">
     <h3><%= link_to calendar.url_for_previous_view do %>
       <i class="glyphicon glyphicon-chevron-left"></i>
     <% end %>
@@ -16,7 +16,7 @@
     <% end %>
     </h3>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="mytable">
       <thead>
         <tr>
           <% date_range.slice(0, 7).each do |day| %>
@@ -45,7 +45,6 @@
       </tbody>
     </table>
   </div>
-  <div class="row">
     <div class="col-sm-3">
 
     </div>
@@ -59,10 +58,8 @@
     </div>
   </div>
 </div>
-
 <div class="scrolling col-sm-3">
   <h2><u><%= I18n.t("date.month_names")[start_date.month] %> Events</u></h2>
-
   <table class="table table-striped">
     <tbody>
       <% @events.each do |event| %>
@@ -80,3 +77,35 @@
     </tbody>
   </table>
 </div>
+<div class="container">
+    <div class="squareCalendar col-sm-2 col-sm-offset-1">
+        <p id="dayEvent"></p>
+    </div>
+    <div class="col-sm-1"></div>    
+        <div class="rectangleCalendar col-sm-6" spellcheck=false id="eventInfo"></div>    
+</div>
+<script>
+$('.rectangleCalendar').css('min-height', '150px');
+  $("#mytable .selectable").hover(function() {
+     $( ".para" ).detach();
+      //alert($(this).find(".myDay").html());
+      var day = $(this).find(".myDay").html();
+      $('#dayEvent').text(day);
+      var events = []
+      var string = "";
+      $(this).each(function( index ) {
+         string= $(this).find('#eventName').text();        
+      });
+      //alert(string);
+      events = string.split(".");
+      var count = 1;
+      var paragraph = "";
+      for(var i = 0;i<events.length;i++){
+          if(count<events.length){
+            paragraph += '<p class="para">'+count+". "+events[i]+'</p>';
+            count++;
+          }        
+      }
+      $('.rectangleCalendar').append(paragraph);       
+  }); 
+</script>
