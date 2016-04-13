@@ -111,6 +111,7 @@
   </div>  
 </div>
 <!-- /.Modal Neighborhoods-->
+
 <div class="container">
     <div class="modal fade" id="myModal2" role="dialog">
     <div class="modal-dialog">    
@@ -124,7 +125,18 @@
           <%= form_tag(signups_url) do %>
             <div class="col-sm-6">
               <h4>User</h4>
-              <%= render 'signups/user_form' %>  
+               <%= fields_for :temp_user, @temp_user do |f| %>
+                <div class="input-group">
+                  <div class="field">
+                    <%= f.label :name %><br>
+                    <%= f.text_field :name %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :email %><br>
+                    <%= f.email_field :email %>
+                  </div>
+                </div>
+              <% end %>
             </div>
             <div class="col-sm-6">
               <h4>Neighborhood</h4>
