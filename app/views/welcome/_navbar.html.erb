@@ -83,7 +83,7 @@
             <%= render 'signups/agency_form'%>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Submit', class: 'btn linky'%>
         </div>
       </div>      
     </div>
@@ -104,7 +104,7 @@
             <%= render 'signups/business_form' %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Submit', class: 'btn linky'%>
         </div>
       </div>      
     </div>
@@ -127,13 +127,13 @@
               <h4>User</h4>
                <%= fields_for :temp_user, @temp_user do |f| %>
                 <div class="input-group">
+                <hr>
                   <div class="field">
-                    <%= f.label :name %><br>
-                    <%= f.text_field :name %>
+                    <%= f.text_area :name,:class=>"myPost",placeholder: 'Type Name here...'%>
                   </div>
+                <hr>
                   <div class="field">
-                    <%= f.label :email %><br>
-                    <%= f.email_field :email %>
+                    <%= f.text_area :email,:class=>"myPost",placeholder: 'Type @email here...'%>
                   </div>
                 </div>
               <% end %>
@@ -142,12 +142,11 @@
               <h4>Neighborhood</h4>
               <%= render 'signups/neighborhood_form' %> 
             </div>
-
-            <%= submit_tag 'Submit', class: 'btn linky'%>
+            <br><br><br><br><br><br><br><br><br><br>
           <% end %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Submit', class: 'btn linky'%>
         </div>
       </div>      
     </div>

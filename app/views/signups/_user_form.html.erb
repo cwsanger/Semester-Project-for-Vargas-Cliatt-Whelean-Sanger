@@ -14,22 +14,18 @@
 <section class="content-section video-section">
   <div class="pattern-overlay">
   <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=4Wee4LASqvE',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
-  <br><br> <br><br>  <br><br>   
+  <br><br> <br><br> <br><br>   
     <div class="container">
      <div class="col-md-offset-5">
         <%= fields_for :temp_user, @temp_user do |f| %>
           <div class="input-group">
           <hr>
             <div class="field">
-              <div class="field">
               <%= f.text_area :name,:class=>"myPosts",placeholder: 'Type Name here...'%>
-              </div>
             </div>
           <hr>  
             <div class="field">
-              <div class="field">
               <%= f.text_area :email,:class=>"myPosts",placeholder: 'Type @email here...'%>
-              </div>
             </div>
           <hr> 
           </div>
