@@ -56,7 +56,8 @@ class WelcomeController < ApplicationController
     @neighborhoods = Neighborhood.all
 
     if params[:search]
-      @neighborhoods = Neighborhood.get_matches_for params[:search].strip
+      #Need to validate/sanitize user input here
+      @neighborhoods = Neighborhood.search_for params[:search].strip
     end
 
 

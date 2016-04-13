@@ -19,8 +19,13 @@ class Neighborhood < ActiveRecord::Base
     slug
   end
 
-  def self.get_matches_for(searchString)
+  def self.search_for(searchString)
+    # Need to validate/sanitize searchString here
     all.to_a.delete_if { |neighborhood| !matches?(searchString, neighborhood) }
+  end
+
+  def search_fields
+    [self.name, self.address]
   end
 
   private
@@ -29,7 +34,7 @@ class Neighborhood < ActiveRecord::Base
     end
 
     def self.matches?(phrase, neighborhood)
-      fields = [neighborhood.name, neighborhood.address]
+      fields = neighborhood.search_fields
 
       fields.map!(&:downcase)
       phrase.downcase!
