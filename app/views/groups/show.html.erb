@@ -9,7 +9,8 @@
 </div>
 
 <div class="col-md-7">
-  <p><%= @group.name %></p>
+  <strong><p>Group: <%= @group.name %></p><strong>
+  <hr>
   <div class= "messages">
     <% @group.messages.each do |message| %>
       <%= render message %>
