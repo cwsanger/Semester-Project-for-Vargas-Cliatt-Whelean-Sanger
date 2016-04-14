@@ -20,8 +20,11 @@ class NeighborhoodsController < ApplicationController
     @broadcasts = @neighborhood.broadcasts
     @advertisements = Advertisement.all
     @categories = Category.all
-
-    @post = Post.new
+    #@posts = @neighborhood.posts
+    #@events = @neighborhood.events
+    @posts = Post.new
+   # @posts = Posts.all
+    #@events = Events.all
   end
 
   def admin

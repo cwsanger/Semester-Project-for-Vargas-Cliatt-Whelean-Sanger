@@ -8,6 +8,7 @@
     <% if @current_member.hoa? %>
       <li><a href="#b" data-toggle="tab">Broadcast</a></li>
     <% end %>
+    <li><a href="#c" data-toggle="tab">Activity</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="a">
@@ -31,7 +32,6 @@
                 <td><%= user.email %></td>
                 <td><%= user.hood.name %></td>
                 <td><%= user.hood.address %></td>
-
                 <td><%= link_to '', neighborhood_lead_accept_url(@current_member.neighborhood, user), method: :post,class:"glyphicon glyphicon-ok accept" %></td>
                 <td><%= link_to '', neighborhood_lead_deny_url(@current_member.neighborhood, user), method: :post,class:"glyphicon glyphicon glyphicon-remove deny"%></td>
               </tr>
@@ -42,8 +42,20 @@
     </div>
     <div class="tab-pane" id="b">
       <%= render 'broadcasts/form' %>
-
       <%= render partial: 'broadcasts/admin_list', locals: { broadcasts: @broadcasts } %>
+    </div>
+    <div class="tab-pane" id="c">
+      <h1><center>Post Activity</center></h1>
+       <hr class="hrPers">
+      <%= render partial: 'posts/admin_list', locals: { broadcasts: @broadcasts } %>
+      <br>
+      <h1><center>Comments Activity</center></h1>
+       <hr class="hrPers">
+      <%= render partial: 'posts/admin_list', locals: { broadcasts: @broadcasts } %>
+      <br>
+      <h1><center>Events Activity</center></h1>
+       <hr class="hrPers">
+      <%= render partial: 'events/admin_list', locals: { broadcasts: @broadcasts } %>
     </div>
   </div>
 </div>
