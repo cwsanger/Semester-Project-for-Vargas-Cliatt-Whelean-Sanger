@@ -10,7 +10,7 @@ class NeighborhoodsController < ApplicationController
   # GET /neighborhoods/neighborhood-slug
   # GET /neighborhoods/neighborhood-slug.json
   def show
-    authorize @neighborhood
+    auth @neighborhood
 
     @posts = Post.joins(:user)
                  .where(users: { neighborhood_id: @neighborhood.id })
@@ -26,7 +26,7 @@ class NeighborhoodsController < ApplicationController
 
   def admin
     @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
-    authorize @neighborhood
+    auth @neighborhood
 
 
     @temp_users = @neighborhood.temp_users

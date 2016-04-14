@@ -4,6 +4,8 @@ class AdminsController < ApplicationController
   before_action :set_temp_agency, only: [:accept_agency, :deny_agency]
 
   def index
+    auth Admin
+
     @temp_users = TempUser.where(hood_type: 'TempNeighborhood')
     @temp_businesses = TempBusiness.all
     @temp_agencies = TempAgency.all

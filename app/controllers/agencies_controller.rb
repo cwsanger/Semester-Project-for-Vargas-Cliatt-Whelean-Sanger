@@ -10,6 +10,8 @@ class AgenciesController < ApplicationController
   # GET /agencies/1
   # GET /agencies/1.json
   def show
+    auth @agency
+
     @alerts = @agency.alerts
     @alert = Alert.new
   end

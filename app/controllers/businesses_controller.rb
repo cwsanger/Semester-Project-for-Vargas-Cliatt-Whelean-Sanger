@@ -10,6 +10,8 @@ class BusinessesController < ApplicationController
   # GET /businesses/1
   # GET /businesses/1.json
   def show
+    auth @business
+
     @advertisements = @business.advertisements
   end
 

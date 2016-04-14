@@ -6,11 +6,13 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
+    auth Group
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
+    auth @group
   end
 
   # GET /groups/new
