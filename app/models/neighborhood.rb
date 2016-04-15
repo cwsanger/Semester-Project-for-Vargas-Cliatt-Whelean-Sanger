@@ -4,6 +4,7 @@ class Neighborhood < ActiveRecord::Base
 
   has_many :advertisements, through: :businesses
   has_many :temp_users, as: :hood
+  has_many :requests
   has_many :users
   has_many :broadcasts
   has_many :groups
