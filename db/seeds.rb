@@ -87,7 +87,7 @@ Post.create(:category_id => item.id, :body => "Gently used championship belt.", 
 #Post.create(:category_id => item.id, :body => "Selling a lightly used clarinet. Serious replies only.", :user_id => squidward.id)
 
 
-bk = Business.create(:name => "Burger King")
+bk = Business.create(:name => "Burger King", :address => "1801 N Ashley Street Valdosta, GA")
 bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
 bk.save
 bk.neighborhoods << wwf
@@ -95,7 +95,7 @@ bk.neighborhoods << wwf
 Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
 Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
 
-police = Agency.create(:name => "The Police Dept.")
+police = Agency.create(:name => "The Police Dept.", :address => "500 N Toombs St Valdosta, GA")
 police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")
 police.save
 
@@ -103,7 +103,7 @@ police.alerts.create(:body => "Bad guy on the loose!", :severity => 10)
 police.alerts.create(:body => "We got that bad guy!", :severity => 1)
 police.alerts.create(:body => "Don't do school, stay in drugs.", :severity => 100)
 
-fire = Agency.create(:name => "Fire dept.")
+fire = Agency.create(:name => "Fire dept.", :address => "106 S Oak St Valdosta, GA")
 fire.build_account(:email => "fire@gmail.com", :password => "password", :password_confirmation => "password")
 fire.save
 

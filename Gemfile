@@ -30,6 +30,9 @@ gem 'geocoder'
 # google maps
 gem 'gmaps4rails'
 
+# distance querying
+gem 'geokit-rails'
+
 # Use validates :email, email: true
 gem 'email_validator'
 
