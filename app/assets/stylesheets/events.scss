@@ -105,3 +105,10 @@
   height: 600px;
   overflow-y: scroll;
 }
+.linkTo:hover{
+  background-color: transparent;
+  text-decoration: none;
+}
+a.linkTo{
+    color: inherit;
+}

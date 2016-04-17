@@ -1,23 +1,12 @@
   <%= form_for(@current_member) do %>
-
     <%= label_tag param %>
-
+     <hr>
     <% if not text.empty? %>
-
-      <%= text_field_tag param, nil,
-        placeholder: text,
-        class: 'form-control'
-      %>
-
+      <%= text_field_tag param, nil,placeholder: text,class: 'myPost'%>
     <% else %>
-
-      <%= text_field_tag param, nil,
-        placeholder: @current_member.read_attribute("#{param}"),
-        class: 'form-control'
-      %>
-
+      <%= text_field_tag param, nil,placeholder: @current_member.read_attribute("#{param}"), class: 'myPost' %>
     <% end %>
-
+    <hr>
     <%= hidden_field_tag 'updateParam', param %>
-    <%= submit_tag "Update!", class: 'btn btn-default linky' %>
+    <%= submit_tag "Update!", class: 'btn linky' %>
   <% end %>

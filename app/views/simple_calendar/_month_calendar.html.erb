@@ -5,14 +5,14 @@
 <br />
 <br />
 
-<div class = "col-sm-8 col-sm-offset-1">
-  <div class="simple-calendar">
-    <h3><%= link_to calendar.url_for_previous_view do %>
-      <i class="glyphicon glyphicon-chevron-left"></i>
+<div class = "cm col-sm-8 col-sm-offset-1">
+  <div class="simple-calendar cm">
+    <h3 class="cm"><%= link_to calendar.url_for_previous_view do %>
+      <i id="monthLeft"class="linkTo glyphicon glyphicon-chevron-left"></i>
     <% end %>
     <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
     <%= link_to calendar.url_for_next_view do %>
-      <i class="glyphicon glyphicon-chevron-right"></i>
+      <i id="monthRight" class="linkTo glyphicon glyphicon-chevron-right"></i>
     <% end %>
     </h3>
 
@@ -65,9 +65,9 @@
       <% @events.each do |event| %>
         <% if event.start_time.month == Date::MONTHNAMES.index(I18n.t("date.month_names")[start_date.month]) %>
           <th>
-            <h4><%= event.name %>
+            <h4 class="cm"><%= event.name %>
               <%= link_to event_url(event), method: :get do %>
-                <i class="glyphicon glyphicon-link"></i>
+                <i class="linkTo glyphicon glyphicon-link"></i>
               <% end %>
             </h4>
           </th>
