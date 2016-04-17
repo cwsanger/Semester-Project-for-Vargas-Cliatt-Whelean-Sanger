@@ -25,6 +25,24 @@
   border-width: 0px 0px 0px 1px;
   border-color: #E0E0E0;
 }
+.left_bar {
+  background: #F0F0F0;
+  height: 100%;
+  width: 16.4%;
+  position: fixed;
+  top: 5%;
+  bottom: 0px;
+  left: 0px;
+  padding: 10px;
+  margin: 10px;
+  padding-left: -4vh;
+  margin-top: 1vh;
+  margin-left: 0px;
+  border-style: solid;
+  border-width: 0px 0px 0px 1px;
+  border-color: #E0E0E0;
+}
+
 
 .alert_div {
   height: 75%;
