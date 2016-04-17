@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'requests/create'
+
   resources :events
-  resources :businesses
+
+  resources :businesses do
+    get 'neighborhoods', to: 'businesses#neighborhoods', as: :neighborhoods
+    post 'request/:neighborhood_id', to: 'businesses#join_request', as: :join_request
+  end
+
   resources :agencies
 
   controller :welcome do

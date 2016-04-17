@@ -1,0 +1,16 @@
+<%= render partial:'navbar'%>
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+  <div class="col-md-6">
+    <% @neighborhoods.each do |neighborhood| %>
+      <p><%= neighborhood.name %></p>
+      <%= button_to "Request", business_join_request_url(@business, neighborhood.id), class: :post %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+   <div id="bar-example"></div>
+  </div>
+</div>

@@ -78,7 +78,25 @@ class BusinessesController < ApplicationController
     end
   end
 
-  def request
+  def neighborhoods
+    @business = Business.find(params[:business_id])
+
+    @neighborhoods = Neighborhood.within(20, origin: @business)
+  end
+
+  def join_request
+    @business = Business.find(params[:business_id])
+    r = Request.create(requestable_id: @business.id,
+                       requestable_type: 'Business',
+                       neighborhood_id: params[:neighborhood_id])
+
+    respond_to do |format|
+      if r.save
+        format.html { redirect_to business_neighborhoods_url(@business) }
+      else
+        format.html { redirect_to business_neighborhoods_url(@business), alert: 'Failed to create request' }
+      end
+    end
   end
 
   private
@@ -90,5 +108,9 @@ class BusinessesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
       params.require(:business).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def request_params
+      params.permit(:business_id, :neighborhood_id)
     end
 end
