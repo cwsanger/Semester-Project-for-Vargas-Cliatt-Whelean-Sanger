@@ -4,9 +4,17 @@
 .hrPers{
 	border-color: #3A66A7;
 }
-.accept{
+.approve{
 	color: green;
 }
 .deny{
 	color: red;
+}
+a.approve:hover{
+	background-color: transparent;
+	text-decoration: none;
+}
+a.deny:hover{
+	background-color: transparent;
+	text-decoration: none;
 }
