@@ -12,66 +12,73 @@
   <div class="tab-content">
     <div class="tab-pane active" id="a">
       <table class="table table-bordered">
-        <caption>Perspective Users</caption>
-
+        <center><h1>Perspective Users</h1></center>
+        <hr>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Neighborhood</th>
-          <th>Address</th>
+          
+            <th><center>Name</center></th>
+            <th><center>Email</center></th>
+            <th><center>Neighborhood</center></th>
+            <th><center>Address</center></th>
+            <th><center>Approve</center></th>
+            <th><center>Deny</center></th>
+
         </tr>
         <% @temp_users.each do |user| %>
           <tr>
-            <td><%= user.name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.hood.name %></td>
-            <td><%= user.hood.address %></td>
+            <td><center><%= user.name %></center></td>
+            <td><center><%= user.email %></center></td>
+            <td><center><%= user.hood.name %></center></td>
+            <td><center><%= user.hood.address %></center></td>
 
-            <td><%= button_to 'Accept', admin_accept_user_url(user), method: :post %></td>
-            <td><%= button_to 'Deny', admin_deny_user_url(user), method: :post %></td>
+            <td><center><%= link_to '', admin_accept_user_url(user), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
+            <td><center><%= link_to '', admin_deny_user_url(user), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
           </tr>
         <% end %>
       </table>
     </div>
     <div class="tab-pane" id="b">
       <table class="table table-bordered">
-        <caption>Perspective Businesses</caption>
+        <center><h1>Perspective Business</h1></center>
+        <hr>
 
         <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Address</th>
+            <th><center>Name</center></th>
+            <th><center>Email</center></th>
+            <th><center>Address</center></th>
+            <th><center>Approve</center></th>
+            <th><center>Deny</center></th>
         </tr>
         <% @temp_businesses.each do |business| %>
           <tr>
-            <td><%= business.name %></td>
-            <td><%= business.email %></td>
-            <td><%= business.address %></td>
-
-            <td><%= button_to 'Accept', admin_accept_business_url(business), method: :post %></td>
-            <td><%= button_to 'Deny', admin_deny_business_url(business), method: :post %></td>
+            <td><center><%= business.name %></center></td>
+            <td><center><%= business.email %></center></td>
+            <td><center><%= business.address %></center></td>
+            <td><center><%= link_to '', admin_accept_business_url(business), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
+            <td><center><%= link_to '', admin_deny_business_url(business), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
           </tr>
         <% end %>
       </table>
     </div>
     <div class="tab-pane" id="c">
       <table class="table table-bordered">
-        <caption>Perspective Agencies</caption>
-
+        <center><h1>Perspective Agencies</h1></center>
+        <hr>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Neighborhood</th>
-          <th>Address</th>
+          <th><center>Name</center></th>
+          <th><center>Email</center></th>
+          <th><center>Neighborhood</center></th>
+          <th><center>Address</center></th>
+          <th><center>Approve</center></th>
+          <th><center>Deny</center></th>
         </tr>
         <% @temp_agencies.each do |agency| %>
           <tr>
-            <td><%= agency.name %></td>
-            <td><%= agency.email %></td>
-            <td><%= agency.address %></td>
-
-            <td><%= button_to 'Accept', admin_accept_agency_url(agency), method: :post %></td>
-            <td><%= button_to 'Deny', admin_deny_agency_url(agency), method: :post %></td>
+            <td><center><%= agency.name %></center></td>
+            <td><center><%= agency.email %></center></td>
+            <td><center><%= agency.address %></center></td>
+            <td><center><%= link_to '', admin_accept_agency_url(agency), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
+            <td><center><%= link_to '', admin_deny_agency_url(agency), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
           </tr>
         <% end %>
       </table>
