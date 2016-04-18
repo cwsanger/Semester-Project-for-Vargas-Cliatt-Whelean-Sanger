@@ -18,7 +18,7 @@ class NeighborhoodsController < ApplicationController
 
     @alerts = Alert.all
     @broadcasts = @neighborhood.broadcasts
-    @advertisements = Advertisement.all
+    @advertisements = @neighborhood.advertisements
     @categories = Category.all
 
     @post = Post.new
@@ -30,6 +30,9 @@ class NeighborhoodsController < ApplicationController
 
 
     @temp_users = @neighborhood.temp_users
+    @businesses = Business.joins('INNER JOIN requests ON businesses.id = requests.requestable_id')
+                          .where("requests.neighborhood_id = #{@neighborhood.id}")
+
     @broadcast = Broadcast.new
     @broadcasts = @neighborhood.broadcasts
   end

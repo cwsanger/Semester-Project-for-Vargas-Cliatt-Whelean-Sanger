@@ -4,7 +4,8 @@
 
 <div class="container">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#a" data-toggle="tab">Lead</a></li>
+    <li class="active"><a href="#a" data-toggle="tab">Users</a></li>
+    <li><a href="#c" data-toggle="tab">Businesses</a></li>
     <% if @current_member.hoa? %>
       <li><a href="#b" data-toggle="tab">Broadcast</a></li>
     <% end %>
@@ -44,6 +45,24 @@
       <%= render 'broadcasts/form' %>
 
       <%= render partial: 'broadcasts/admin_list', locals: { broadcasts: @broadcasts } %>
+    </div>
+    <div class="tab-pane" id="c">
+      <table class="table table-hover table-bordered">
+        <h1><center>Perspective Businesses</center></h1>
+        <hr class="hrPers">
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+        </tr>
+        <% @businesses.each do |business| %>
+          <tr>
+            <td><%= business.name %></td>
+            <td><%= business.address %></td>
+                <td><%= link_to '', neighborhood_lead_accept_business_url(@current_member.neighborhood, business), method: :post,class:"glyphicon glyphicon-ok accept" %></td>
+                <td><%= link_to '', neighborhood_lead_deny_business_url(@current_member.neighborhood, business), method: :post,class:"glyphicon glyphicon glyphicon-remove deny"%></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

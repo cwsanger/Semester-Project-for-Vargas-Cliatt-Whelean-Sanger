@@ -83,6 +83,8 @@ Rails.application.routes.draw do
   resources :neighborhoods do
     post 'lead/:id/accept', to: 'leads#accept', as: :lead_accept
     post 'lead/:id/deny', to: 'leads#deny', as: :lead_deny
+    post 'lead/:id/accept-business', to: 'leads#accept_business', as: :lead_accept_business
+    post 'lead/:id/deny-business', to: 'leads#deny_business', as: :lead_deny_business
     resources :broadcasts, only: [:create, :destroy, :edit]
     get 'admin', to: 'neighborhoods#admin', as: :admin
   end
