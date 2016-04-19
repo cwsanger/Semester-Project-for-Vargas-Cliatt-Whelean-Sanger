@@ -12,9 +12,13 @@
           <%= f.label :category_id, category.title %>
         <% end %>
       </div>
+       <div>       
+        <%= f.file_field :image_url %>
+      </div>
       <div>
         <%= f.submit class: 'btn linky' %>
       </div>
+      
     </div>
   <% end %>
 </div>
