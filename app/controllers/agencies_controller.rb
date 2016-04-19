@@ -81,6 +81,26 @@ class AgenciesController < ApplicationController
     end
   end
 
+  def neighborhoods
+    @agency = Agency.find(params[:agency_id])
+
+    @neighborhoods = Neighborhood.within(20, origin: @agency)
+  end
+
+  def join_request
+    @agency = Agency.find(params[:agency_id])
+    r = Request.create(requestable: @agency,
+                       neighborhood_id: params[:neighborhood_id])
+
+    respond_to do |format|
+      if r.save
+        format.html { redirect_to agency_neighborhoods_url(@agency) }
+      else
+        format.html { redirect_to agency_neighborhoods_url(@agency), alert: 'Failed to create request' }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_agency

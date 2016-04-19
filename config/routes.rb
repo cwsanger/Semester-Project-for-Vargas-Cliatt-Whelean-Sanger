@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     post 'request/:neighborhood_id', to: 'businesses#join_request', as: :join_request
   end
 
-  resources :agencies
+  resources :agencies do
+    get 'neighborhoods', to: 'agencies#neighborhoods', as: :neighborhoods
+    post 'request/:neighborhood_id', to: 'agencies#join_request', as: :join_request
+  end
 
   controller :welcome do
     post 'logout' => :logout

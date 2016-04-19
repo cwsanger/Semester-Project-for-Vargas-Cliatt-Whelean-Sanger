@@ -9,6 +9,8 @@ class Agency < ActiveRecord::Base
   has_many :requests, as: :requestable
   has_many :alerts
 
+  has_and_belongs_to_many :neighborhoods
+
   validates :name, presence: true
   validates :address, presence: true
 end

@@ -86,8 +86,7 @@ class BusinessesController < ApplicationController
 
   def join_request
     @business = Business.find(params[:business_id])
-    r = Request.create(requestable_id: @business.id,
-                       requestable_type: 'Business',
+    r = Request.create(requestable: @business,
                        neighborhood_id: params[:neighborhood_id])
 
     respond_to do |format|

@@ -6,6 +6,8 @@ class Neighborhood < ActiveRecord::Base
                    lng_column_name: :longitude
 
   has_many :advertisements, through: :businesses
+  has_many :alerts, through: :agencies
+
   has_many :temp_users, as: :hood
   has_many :requests
   has_many :users
@@ -14,6 +16,7 @@ class Neighborhood < ActiveRecord::Base
   has_many :events
 
   has_and_belongs_to_many :businesses
+  has_and_belongs_to_many :agencies
 
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true
