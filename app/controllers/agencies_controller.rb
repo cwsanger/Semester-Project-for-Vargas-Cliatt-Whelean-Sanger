@@ -86,6 +86,9 @@ class AgenciesController < ApplicationController
 
     @neighborhoods = Neighborhood.within(20, origin: @agency)
 
+    @requested_neighborhoods = Neighborhood.joins(:requests)
+                                           .where("requests.requestable_id = #{@agency.id}")
+
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
       marker.lat neighborhood.latitude
       marker.lng neighborhood.longitude
