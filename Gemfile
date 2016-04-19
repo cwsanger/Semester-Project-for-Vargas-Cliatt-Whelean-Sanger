@@ -63,6 +63,8 @@ group :development do
   gem 'spring'
   gem 'sqlite3'
 end
+#file upload styling
+gem 'bootstrap-filestyle-rails'
 
 group :production do
   gem 'pg', '0.15.1'

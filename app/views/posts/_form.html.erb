@@ -1,19 +1,17 @@
-<div>
+<div class="col-sm-offset-3">
   <%= form_for(@post) do |f| %>
     <div class="input-group">
     <hr >
       <div class="field">
           <%= f.text_area :body,:class=>"myPost",placeholder: 'Type post here...'%>
+          <%= f.file_field :image_url, type:"file"%> 
       </div>
      <hr>
       <div>
         <% categories.each do |category| %>
           <%= f.radio_button :category_id, category.id %>
-          <%= f.label :category_id, category.title %>
+          <%= f.label :category_id, category.title %>          
         <% end %>
-      </div>
-       <div>       
-        <%= f.file_field :image_url %>
       </div>
       <div>
         <%= f.submit class: 'btn linky' %>
@@ -22,3 +20,16 @@
     </div>
   <% end %>
 </div>
+ 
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
+</script>
+<style>
+
+</style>
