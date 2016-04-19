@@ -85,6 +85,12 @@ class AgenciesController < ApplicationController
     @agency = Agency.find(params[:agency_id])
 
     @neighborhoods = Neighborhood.within(20, origin: @agency)
+
+    @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
+      marker.lat neighborhood.latitude
+      marker.lng neighborhood.longitude
+      marker.title neighborhood.name
+    end
   end
 
   def join_request
