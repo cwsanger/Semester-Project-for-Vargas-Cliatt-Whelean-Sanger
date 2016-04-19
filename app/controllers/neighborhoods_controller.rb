@@ -16,7 +16,7 @@ class NeighborhoodsController < ApplicationController
                  .where(users: { neighborhood_id: @neighborhood.id })
                  .order(created_at: :desc)
 
-    @alerts = Alert.all
+    @alerts = @neighborhood.alerts
     @broadcasts = @neighborhood.broadcasts
     @advertisements = @neighborhood.advertisements
     @categories = Category.all
@@ -31,6 +31,9 @@ class NeighborhoodsController < ApplicationController
 
     @temp_users = @neighborhood.temp_users
     @businesses = Business.joins('INNER JOIN requests ON businesses.id = requests.requestable_id')
+                          .where("requests.neighborhood_id = #{@neighborhood.id}")
+
+    @agencies= Agency.joins('INNER JOIN requests ON agencies.id = requests.requestable_id')
                           .where("requests.neighborhood_id = #{@neighborhood.id}")
 
     @broadcast = Broadcast.new

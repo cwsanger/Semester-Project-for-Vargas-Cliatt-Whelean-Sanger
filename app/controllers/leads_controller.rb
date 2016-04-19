@@ -1,7 +1,7 @@
 class LeadsController < ApplicationController
   before_action :set_temp_user, only: [:accept, :deny]
   before_action :set_business, only: [:accept_business, :deny_business]
-  before_action :set_agency, only: [:accept_agency, :accept_agency]
+  before_action :set_agency, only: [:accept_agency, :deny_agency]
 
   before_action :set_neighborhood
 
@@ -31,7 +31,7 @@ class LeadsController < ApplicationController
 
     if @neighborhood.save
       Request.where(neighborhood_id: @neighborhood.id,
-                    requestable: @business).delete_all
+                    requestable: @business).destroy_all
 
       redirect_to neighborhood_admin_url(@neighborhood)
     else
@@ -42,6 +42,26 @@ class LeadsController < ApplicationController
   def deny_business
     Request.where(neighborhood_id: @neighborhood.id,
                   requestable: @business)
+
+    redirect_to neighborhood_admin_url(@neighborhood)
+  end
+
+  def accept_agency
+    @neighborhood.agencies << @agency
+
+    if @neighborhood.save
+      Request.where(neighborhood_id: @neighborhood.id,
+                    requestable: @agency).destroy_all
+
+      redirect_to neighborhood_admin_url(@neighborhood)
+    else
+      redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed'
+    end
+  end
+
+  def deny_business
+    Request.where(neighborhood_id: @neighborhood.id,
+                  requestable: @agency).destroy_all
 
     redirect_to neighborhood_admin_url(@neighborhood)
   end
