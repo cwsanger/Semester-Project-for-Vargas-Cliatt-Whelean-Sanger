@@ -1,6 +1,6 @@
 class TempUser < ActiveRecord::Base
   belongs_to :hood, polymorphic: true
-  mount_uploader :picture, PictureUploader
+  mount_uploader :image_url, PictureUploader
 
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true

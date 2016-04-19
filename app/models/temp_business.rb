@@ -1,3 +1,3 @@
 class TempBusiness < ActiveRecord::Base
-	mount_uploader :picture, PictureUploader
+	mount_uploader :image_url, PictureUploader
 end
