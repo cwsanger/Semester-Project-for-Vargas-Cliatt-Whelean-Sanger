@@ -15,8 +15,17 @@ class Account < ActiveRecord::Base
   def self.setup(member, email)
     pass = random_pass
     account = create(email: email, password: pass, password_confirmation: pass)
+
     if account
-      AccountNotifier.created(type, email, password).deliver_now
+
+      type = 'User'
+      if member.is_a? Business
+        type = 'Business'
+      elsif member.is_a? Agency
+        type = 'Agency'
+      end
+
+      AccountNotifier.created(type, email, pass).deliver_now
     end
     account
   end
