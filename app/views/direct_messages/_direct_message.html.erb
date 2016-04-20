@@ -7,7 +7,7 @@
 	  </div>
 	</div>
 	<br>
-	<strong><%= direct_message.from.name %></strong>
+	<%= image_tag(direct_message.from.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if direct_message.from.image_url.present?  %>
 <% else %>
 <div class="col-sm-8"></div>
 	<div class="talk-bubble tri-right round btm-right" style="background-color: green">
@@ -16,7 +16,7 @@
 	  </div>
 	</div>
 	<br>
-	<div class="col-md-10"></div><strong><%= direct_message.from.name %></strong>
+	<div class="col-md-10"></div><%= image_tag(direct_message.from.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if direct_message.from.image_url.present?  %>
 <% end %>
 <br> 
 </div>
@@ -32,3 +32,4 @@
     $(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
 });
 </script>
+

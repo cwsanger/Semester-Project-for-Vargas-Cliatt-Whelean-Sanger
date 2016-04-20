@@ -20,14 +20,15 @@
   <%= render partial: 'create_message' %>
 </div>
 
-<div class="col-md-2 cm">
+
+<div class="cm col-md-2">
   <div>
     <h3>Current Members <%= @group.users.length %></h3>
 
     <% @group.users.each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
       <% if user.id == @current_member.id %>
-        <%= link_to "", group_remove_user_url(@group), method: :post,class:" linkTo glyphicon glyphicon-minus" %>
+        <%= link_to "", group_remove_user_url(@group), method: :post,class:"linkTo glyphicon glyphicon-minus" %>
         <% end %>
       <hr>
     <% end %>
@@ -39,7 +40,7 @@
   <% end %>
     <% not_users(@group).each do |user| %>
       <%= render partial: 'users/tag', locals: { user: user } %>
-      <%= link_to "", group_add_user_url(@group, user), method: :post,class:" linkTo glyphicon glyphicon-plus" %>
+      <%= link_to "", group_add_user_url(@group, user), method: :post,class:"linkTo glyphicon glyphicon-plus" %>
       <hr>
     <% end %>
   </div>

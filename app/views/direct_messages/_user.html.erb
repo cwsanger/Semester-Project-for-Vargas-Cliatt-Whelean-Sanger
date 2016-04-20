@@ -14,7 +14,7 @@
      <% @current_member.neighborhood.users.each do |user| %>
       <tr>
         <% unless @current_member.id == user.id %>
-          <td><%= user.name %> <%= link_to '', direct_message_url(user.id),:class=>" linkTo glyphicon glyphicon-circle-arrow-right pull-right" %></td>
+          <td class="cm"><%= user.name %> <%= link_to '', direct_message_url(user.id),:class=>" linkTo glyphicon glyphicon-circle-arrow-right pull-right" %></td>
         <% end %>
       </tr>
     <% end %>
