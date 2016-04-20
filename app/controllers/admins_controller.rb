@@ -13,17 +13,38 @@ class AdminsController < ApplicationController
     hood = @temp_user.hood
     neighborhood = Neighborhood.create(name: hood.name, address: hood.address)
     user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id)
+
+    safe_pass = Account.random_pass
+
     user.build_account(email: @temp_user.email,
-                       password: 'password',
-                       password_confirmation: 'password')
+                       password: safe_pass,
+                       password_confirmation: safe_pass)
 
     if user.save
       @temp_user.hood.destroy
       @temp_user.destroy
 
+      AccountNotifier.created(user.account).deliver
+
       redirect_to admins_url
     else
       redirect_to admins_url, alert: 'failed to create user'
+    end
+  end
+
+  def test_accept_user(test_user)
+    user = User.create(name: test_user.name)
+
+    safe_pass = Account.random_pass
+    user.build_account(email: test_user.email,
+                       password: safe_pass,
+                       password_confirmation: safe_pass)
+
+    if user.save
+      AccountNotifier.created(user.account).deliver
+      puts "User saved, emailing #{user.account.email}"
+    else
+      puts "User not saved! No email for #{user.account.email}"
     end
   end
 
