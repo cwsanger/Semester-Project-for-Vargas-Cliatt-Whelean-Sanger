@@ -40,6 +40,7 @@ class NeighborhoodsController < ApplicationController
     @broadcasts = @neighborhood.broadcasts
 
     @posts = Post.where(status: Post.statuses[:flag])
+    @comments = Comment.where(status: Comment.statuses[:flag])
   end
 
   # GET /neighborhoods/new

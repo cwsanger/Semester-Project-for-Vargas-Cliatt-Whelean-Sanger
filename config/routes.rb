@@ -71,11 +71,15 @@ Rails.application.routes.draw do
 
   put 'posts/:id/remove-flag', to: 'posts#remove_flag', as: :remove_flag_post
 
-  post 'comment/:id/create', to: 'comment#create', as: :create_comment
+  post 'comments/:id/create', to: 'comments#create', as: :create_comment
 
-  put 'comment/:id/like', to: 'comment#like', as: :like_comment
+  put 'comments/:id/like', to: 'comments#like', as: :like_comment
 
-  get 'comment/destroy'
+  put 'comments/:id/flag', to: 'comments#flag', as: :flag_comment
+
+  put 'comments/:id/remove-flag', to: 'comments#remove_flag', as: :remove_flag_comment
+
+  delete 'comments/:id/destroy', to: 'comments#destroy', as: :destroy_comment
 
   post 'login/user', to: 'welcome#user_login', as: :user_login
 

@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  enum status: [:no_flag, :flag]
+
   belongs_to :user
   belongs_to :post
 

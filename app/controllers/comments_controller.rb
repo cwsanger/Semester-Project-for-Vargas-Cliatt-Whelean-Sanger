@@ -1,6 +1,6 @@
-class CommentController < ApplicationController
+class CommentsController < ApplicationController
   before_action :set_post, only: [:create]
-  before_action :set_comment, only: [:like]
+  before_action :set_comment, only: [:destroy, :like, :flag, :remove_flag]
 
   def create
     @current_member.comment(@post, comment_params)
@@ -31,7 +31,34 @@ class CommentController < ApplicationController
 
   end
 
+  def flag
+    @comment.flag!
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @current_member.neighborhood }
+      else
+        format.html { redirect_to @current_member.neighborhood, alert: 'you are bad' }
+      end
+    end
+  end
+
+  def remove_flag
+    @comment.no_flag!
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to neighborhood_admin_url(@current_member.neighborhood) }
+      else
+        format.html { redirect_to neighborhood_admin_url(@current_member.neighborhood) }
+      end
+    end
+  end
+
   def destroy
+    @comment.destroy
+
+    redirect_to neighborhood_admin_url(@current_member.neighborhood)
   end
 
   private
