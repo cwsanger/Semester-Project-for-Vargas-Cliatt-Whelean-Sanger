@@ -87,15 +87,15 @@ Post.create(:category_id => item.id, :body => "Gently used championship belt.", 
 #Post.create(:category_id => item.id, :body => "Selling a lightly used clarinet. Serious replies only.", :user_id => squidward.id)
 
 
-bk = Business.create(:name => "Burger King")
+bk = Business.create(:name => "Burger King", :image_url => open('app/assets/images/king.png'))
 bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
 bk.save
 bk.neighborhoods << wwf
 
-Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
+Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id, :image_url => open('app/assets/images/whopper.png'))
 Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
 
-police = Agency.create(:name => "The Police Dept.")
+police = Agency.create(:name => "The Police Dept.", :image_url => open('app/assets/images/police.png'))
 police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")
 police.save
 
