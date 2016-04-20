@@ -8,18 +8,19 @@
     <li class="active"><a href="#a" data-toggle="tab">Users</a></li>
     <li><a href="#b" data-toggle="tab">Businesses</a></li>
     <li><a href="#c" data-toggle="tab">Agencies</a></li>
-  </ul>   
+  </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="a">
       <table class="table table-bordered">
         <center><h1>Perspective Users</h1></center>
         <hr>
         <tr>
-          
+
             <th><center>Name</center></th>
             <th><center>Email</center></th>
             <th><center>Neighborhood</center></th>
             <th><center>Address</center></th>
+            <th><center>Verification</center></th>
             <th><center>Approve</center></th>
             <th><center>Deny</center></th>
 
@@ -30,6 +31,7 @@
             <td><center><%= user.email %></center></td>
             <td><center><%= user.hood.name %></center></td>
             <td><center><%= user.hood.address %></center></td>
+            <td><center><%= image_tag(user.image_url)%></center></td>
 
             <td><center><%= link_to '', admin_accept_user_url(user), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
             <td><center><%= link_to '', admin_deny_user_url(user), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
@@ -46,6 +48,7 @@
             <th><center>Name</center></th>
             <th><center>Email</center></th>
             <th><center>Address</center></th>
+            <th><center>Verification</center></th>
             <th><center>Approve</center></th>
             <th><center>Deny</center></th>
         </tr>
@@ -54,6 +57,7 @@
             <td><center><%= business.name %></center></td>
             <td><center><%= business.email %></center></td>
             <td><center><%= business.address %></center></td>
+            <td><center><%= image_tag(business.image_url)%></center></td>
             <td><center><%= link_to '', admin_accept_business_url(business), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
             <td><center><%= link_to '', admin_deny_business_url(business), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
           </tr>
@@ -67,8 +71,8 @@
         <tr>
           <th><center>Name</center></th>
           <th><center>Email</center></th>
-          <th><center>Neighborhood</center></th>
           <th><center>Address</center></th>
+          <th><center>Verification</center></th>
           <th><center>Approve</center></th>
           <th><center>Deny</center></th>
         </tr>
@@ -77,6 +81,7 @@
             <td><center><%= agency.name %></center></td>
             <td><center><%= agency.email %></center></td>
             <td><center><%= agency.address %></center></td>
+            <td><center><%= image_tag(agency.image_url)%></center></td>
             <td><center><%= link_to '', admin_accept_agency_url(agency), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
             <td><center><%= link_to '', admin_deny_agency_url(agency), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
           </tr>
@@ -85,4 +90,3 @@
     </div>
   </div>
 </div>
-
