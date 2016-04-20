@@ -31,16 +31,16 @@ wwf = Neighborhood.create(:name => "World Wrestling Federation", :address => '12
 bikini_bottom = Neighborhood.create(:name => "Bikini Bottom", :address => '300 Rodgers Blvd Honolulu, HI')
 bikini_mexico = Neighborhood.create(:name => "Badsfa", :address => '300 Rsdfaers Blvd Honolulu, HI')
 
-dwayne = User.create(:name => "Dwayne Johnson", :neighborhood_id => wwf.id, :points => 98)
+dwayne = User.create(:name => "Dwayne Johnson", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/rock.jpg'))
 dwayne.build_account(:email => "djohnson@gmail.com", :password => 'password', :password_confirmation=> 'password')
 dwayne.save
-daniel = User.create(:name => "Daniel Bryant", :neighborhood_id => wwf.id, :points => 98)
+daniel = User.create(:name => "Daniel Bryant", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/daniel.jpg'))
 daniel.build_account(:email => "dbryant@gmail.com", :password => 'password', :password_confirmation=> 'password')
 daniel.save
-hunter = User.create(:name => "Hunter Helmsley", :neighborhood_id => wwf.id, :role => 2)
+hunter = User.create(:name => "Hunter Helmsley", :neighborhood_id => wwf.id, :role => 2, :image_url => open('app/assets/images/helm.jpg'))
 hunter.build_account(:email => "hhh@gmail.com", :password => 'password', :password_confirmation=> 'password')
 hunter.save
-shawn = User.create(:name => "Shawn Michaels", :neighborhood_id => wwf.id, :points => 98)
+shawn = User.create(:name => "Shawn Michaels", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/shawn.jpg'))
 shawn.build_account(:email => "smichaels@gmail.com", :password => 'password', :password_confirmation=> 'password')
 shawn.save
 

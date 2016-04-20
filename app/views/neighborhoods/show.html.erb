@@ -2,6 +2,7 @@
 <p id="notice"><%= notice %></p>
 <br><br><br><br>
 <div class="col-md-2">
+  <%= render partial: 'profile' %>
 </div>
 
 <div class="col-md-5 col-md-offset-1 ">
@@ -19,20 +20,20 @@
       <tbody class="searchable">
         <% @posts.each do |post| %>
           <tr>
-            <td><%= render post %></td>          
+            <td><%= render post %></td>
           </tr>
         <% end %>
       </tbody>
   </table>
 </div>
 <br>
- 
-  
+
+
 
 <div class="right_bar">
   <div>
     <p class="alert-danger semiTitle "><i class="glyphicon glyphicon-bell"></i> Alerts<i id="closeAlert" class="glyphicon glyphicon-chevron-up pull-right closeAlert close"></i></p>
-  </div>  
+  </div>
   <div class="alert_div">
     <% @alerts.each do |alert| %>
       <%= render alert %>
@@ -41,17 +42,17 @@
   <div class="broadcast_div_bar">
     <div>
       <p class="alert-warning semiTitle "><i class="glyphicon glyphicon-bullhorn"></i> Broadcast<i id="closeBroad" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i></p>
-    </div>  
+    </div>
     <div class="broadcast_div">
       <% @broadcasts.each do |bc| %>
         <%= render bc %>
       <% end %>
     </div>
-  </div>  
+  </div>
   <div  class="advertisement_div_bar">
     <div>
       <p class="alert-info semiTitle"><i class="glyphicon glyphicon-tag"></i> Advertisement<i id="closeAd" class="glyphicon glyphicon-chevron-down pull-right closeAd close"></i></p>
-    </div>  
+    </div>
     <div class="advertisement_div">
       <% @advertisements.each do |ad| %>
         <%= render ad %>
@@ -59,30 +60,7 @@
     </div>
   </div>
 </div>
-<div class="left_bar">
-  <div>
-    <p class="alert-success semiTitle "><i class="glyphicon glyphicon-user"></i> Profile<i id="closeAlert" class="glyphicon glyphicon-chevron-up pull-right closeAlert close"></i></p>
-  </div>  
-  <div class="alert_div">
-    
-  </div>
-  <div class="broadcast_div_bar">
-    <div>
-      <p class="alert-danger semiTitle "><i class="glyphicon glyphicon-calendar"></i> Calendar<i id="closeBroad" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i></p>
-    </div>  
-    <div class="broadcast_div">
-      
-    </div>
-  </div>  
-  <div  class="advertisement_div_bar">
-    <div>
-      <p class="alert-default semiTitle"><i class="glyphicon glyphicon-comment"></i> Chat<i id="closeAd" class="glyphicon glyphicon-chevron-down pull-right closeAd close"></i></p>
-    </div>  
-    <div class="advertisement_div">
-      
-    </div>
-  </div>
-</div>
+
 
 
 <script>
@@ -119,7 +97,7 @@
         $('.broadcast_div').show();
         return;
       }else{
-        $('.broadcast_div').hide();        
+        $('.broadcast_div').hide();
         $('#closeBroad').removeClass('glyphicon glyphicon-chevron-up pull-right closeBroad').addClass('glyphicon glyphicon-chevron-down pull-right closeBroad');
         $('#closeAd').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeAd');
         alertFlag = true;
@@ -163,7 +141,7 @@
         })
 
     }($));
-    
+
 
 
 });
