@@ -3,22 +3,23 @@
     <div class="input-group">
     <hr >
       <div class="field">
-          <%= f.text_area :body,:class=>"myPost",placeholder: 'Type post here...'%>
+          <%= f.text_area :body,:class=>"myPost col-xs-12",placeholder: 'Type post here...'%>
+          <%= f.file_field :image_url, type:"file"%> 
       </div>
      <hr>
       <div>
         <% categories.each do |category| %>
           <%= f.radio_button :category_id, category.id %>
-          <%= f.label :category_id, category.title %>
+          <%= f.label :category_id, category.title %>          
         <% end %>
       </div>
       <div>
         <%= f.submit class: 'btn linky' %>
       </div>
+      
     </div>
   <% end %>
-</div>
- 
+</div> 
 <script>
   $(":file").filestyle({
     input: false

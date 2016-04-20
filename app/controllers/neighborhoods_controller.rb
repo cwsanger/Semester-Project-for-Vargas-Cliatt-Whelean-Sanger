@@ -22,8 +22,7 @@ class NeighborhoodsController < ApplicationController
     @categories = Category.all
     #@posts = @neighborhood.posts
     #@events = @neighborhood.events
-    @posts = Post.new
-   # @posts = Posts.all
+    @post = Post.new
     #@events = Events.all
   end
 
