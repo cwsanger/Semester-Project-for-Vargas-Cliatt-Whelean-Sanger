@@ -13,7 +13,10 @@ class Account < ActiveRecord::Base
   def self.setup(email)
     pass = random_pass
     account = create(email: email, password: pass, password_confirmation: pass)
-    AccountNotifier.created(account).deliver_now
+    if account
+      AccountNotifier.created(account).deliver_now
+    end
+    account
   end
 
 end
