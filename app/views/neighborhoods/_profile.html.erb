@@ -1,12 +1,16 @@
-<div class="profile">
-  <div class="row">
-    <%= image_tag(@current_member.image_url, :width => 120) if @current_member.image_url.present? %>
+  <div class="">
+    <%= image_tag(@current_member.image_url, :width => 120,class:"img-circle img-responsive img-center col-xs-offset-3") if @current_member.image_url.present?  %>
+    <br>
+    <div class="col-xs-offset-1">
+      <p>Name: <%= @current_member.name%></p>
+      <hr class="postComments">
+      <p>Address: <%= @current_member.address%></p>
+      <hr class="postComments">
+      <p>Type: <%= @current_member.role%></p>
+      <hr class="postComments">
+      <p>Points: <%= @current_member.points%></p>
+      <hr class="postComments">
+    </div>  
   </div>
-  <br>
-  <div class="row">
-    <p>Name: <%= @current_member.name%></p>
-    <p>Address: <%= @current_member.address%></p>
-    <p>Type: <%= @current_member.role%></p>
-    <p>Points: <%= @current_member.points%></p>
-  </div>
-</div>
+
+

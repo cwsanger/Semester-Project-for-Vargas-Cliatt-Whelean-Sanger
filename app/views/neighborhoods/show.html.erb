@@ -1,11 +1,7 @@
 <%= render partial:'navbar'%>
 <p id="notice"><%= notice %></p>
 <br><br><br><br>
-<div class="col-md-2">
-  <%= render partial: 'profile' %>
-</div>
-
-<div class="col-md-5 col-md-offset-1 ">
+<div class="col-xs-5 col-sm-offset-3 ">
   <%= render partial: 'posts/form', locals: { categories: @categories } %>
   <br>
   <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
@@ -27,9 +23,6 @@
   </table>
 </div>
 <br>
-
-
-
 <div class="right_bar">
   <div>
     <p class="alert-danger semiTitle "><i class="glyphicon glyphicon-bell"></i> Alerts<i id="closeAlert" class="glyphicon glyphicon-chevron-up pull-right closeAlert close"></i></p>
@@ -60,7 +53,22 @@
     </div>
   </div>
 </div>
-
+<div class="left_bar">
+  <div>
+    <p class="alert-success semiTitle "><i class="glyphicon glyphicon-user"></i> Profile<i id="closeAlert" class="glyphicon glyphicon-chevron-up pull-right closeAlert close"></i></p>
+  </div>
+  <div class="profile_div">
+   <%= render partial: 'profile' %>
+  </div>
+  <div class="broadcast_div_bar">
+    <div>
+      <p class="myPrimary semiTitle "><i class="glyphicon glyphicon-comment"></i> Chat<i id="closeBroad" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i></p>
+    </div>
+    <div class="broadcast_div">
+   
+    </div>
+  </div>
+</div>
 
 
 <script>

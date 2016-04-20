@@ -1,6 +1,6 @@
-<div class="post">
+<div class="post col-sm-12">
   <h2>
-    <u><%= post.user.name %></u>
+    <u><%= image_tag(post.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if post.user.image_url.present?  %><%= post.user.name %></u>
     <small>Category: <%= post.category.title %></small>
     <i id="<%= post.id %>" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i>
   </h2>
@@ -13,9 +13,11 @@
     </p>
     <p class="body"><%= post.body %></p>
    <hr class="postComments">
-    <p class="col-sm-offset-3"><%= image_tag(post.image_url, :width => "70%", class:"picture") if post.image_url.present? %></p>
-    
-      
+
+      <p class="col-xs-offset-4">       
+        <img src=" <%=post.image_url%>" id="imgSmile<%= post.id %>"></img>
+      </p>
+   
     <div id="<%= post.id %>x" class="hideComments"><small><%=post.comments.length%> Comments</small></div>
       <div id="<%= post.id %>y" class="theComments">
         <hr class="hrComments">
@@ -28,7 +30,7 @@
     <%= render partial: 'create_comment', locals: { post: post } %> 
 
   </div>
- </div> 
+</div> </div> </div> 
 <script>
   var alertFlag = true;
   $("#<%= post.id %>").click(function(){
@@ -48,5 +50,23 @@
   $('#<%= post.id %>x').click(function(){
       $('#<%= post.id %>y').toggle();
   })
+</script>
+<script>
+   $(document).ready(function(){
+       $('#imgSmile<%= post.id %>').width(200);
+       
+       $('#imgSmile<%= post.id %>').click(function()
+       {
+          $(this).css("cursor","pointer");
+          $(this).animate({width: "100%"}, 'slow');
+          $(this).css("margin-left","-110px");
+       });
+    
+      $('#imgSmile<%= post.id %>').mouseout(function()
+      {   
+        $(this).animate({width: "45%"}, 'fast');
+        $(this).css("margin-left","-20px");
+       });
+   });
 </script>
 
