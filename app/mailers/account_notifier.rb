@@ -5,10 +5,11 @@ class AccountNotifier < ApplicationMailer
   #
   #   en.account_notifier.created.subject
   #
-  def created(account)
-    @greeting = "Hi"
+  def created(type, email, password)
+    @password = password
+    @type = type
 
-    mail to: account.email, subject: 'Account created' do |format|
+    mail to: email, subject: 'Account created' do |format|
       format.html
     end
   end

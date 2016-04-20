@@ -14,7 +14,7 @@ class AdminsController < ApplicationController
     neighborhood = Neighborhood.create(name: hood.name, address: hood.address)
 
     user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id)
-    user.account = Account.setup(@temp_user.email)
+    user.account = Account.setup(user, @temp_user.email)
 
     #user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id)
 
@@ -46,11 +46,13 @@ class AdminsController < ApplicationController
 
   def accept_business
     business = Business.new(name: @temp_business.name)
-    business.build_account(email: @temp_business.email,
-                           password: 'password',
-                           password_confirmation: 'password')
+    business.account = Account.setup(business, @temp_business.email)
+    #business.build_account(email: @temp_business.email,
+    #                       password: 'password',
+    #                       password_confirmation: 'password')
 
-    if business.save
+    #if business.save
+    if business.account
       @temp_business.destroy
 
       redirect_to admins_url
@@ -67,11 +69,13 @@ class AdminsController < ApplicationController
 
   def accept_agency
     agency = Agency.new(name: @temp_agency.name)
-    agency.build_account(email: @temp_agency.email,
-                           password: 'password',
-                           password_confirmation: 'password')
+    agency.account = Account.setup(agency, @temp_agency.email)
+    #agency.build_account(email: @temp_agency.email,
+    #                       password: 'password',
+    #                       password_confirmation: 'password')
 
-    if agency.save
+    #if agency.save
+    if agency.account
       @temp_agency.destroy
 
       redirect_to admins_url
