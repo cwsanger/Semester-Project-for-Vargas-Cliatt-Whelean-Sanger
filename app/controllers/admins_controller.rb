@@ -45,7 +45,7 @@ class AdminsController < ApplicationController
   end
 
   def accept_business
-    business = Business.new(name: @temp_business.name)
+    business = Business.create(name: @temp_business.name)
     business.account = Account.setup(business, @temp_business.email)
     #business.build_account(email: @temp_business.email,
     #                       password: 'password',
@@ -68,7 +68,7 @@ class AdminsController < ApplicationController
   end
 
   def accept_agency
-    agency = Agency.new(name: @temp_agency.name)
+    agency = Agency.create(name: @temp_agency.name)
     agency.account = Account.setup(agency, @temp_agency.email)
     #agency.build_account(email: @temp_agency.email,
     #                       password: 'password',
