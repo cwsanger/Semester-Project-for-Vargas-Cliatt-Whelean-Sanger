@@ -12,7 +12,7 @@ class AdminsController < ApplicationController
   def accept_user
     hood = @temp_user.hood
     neighborhood = Neighborhood.create(name: hood.name, address: hood.address)
-    user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id)
+    user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id, image_url: open('app/assets/images/placeholder.png'))
     user.build_account(email: @temp_user.email,
                        password: 'password',
                        password_confirmation: 'password')
@@ -35,7 +35,7 @@ class AdminsController < ApplicationController
   end
 
   def accept_business
-    business = Business.new(name: @temp_business.name)
+    business = Business.new(name: @temp_business.name, image_url: open('app/assets/images/placeholder.png'))
     business.build_account(email: @temp_business.email,
                            password: 'password',
                            password_confirmation: 'password')
@@ -56,7 +56,7 @@ class AdminsController < ApplicationController
   end
 
   def accept_agency
-    agency = Agency.new(name: @temp_agency.name)
+    agency = Agency.new(name: @temp_agency.name, image_url: open('app/assets/images/placeholder.png'))
     agency.build_account(email: @temp_agency.email,
                            password: 'password',
                            password_confirmation: 'password')

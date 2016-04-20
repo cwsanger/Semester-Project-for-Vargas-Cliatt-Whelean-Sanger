@@ -1,6 +1,6 @@
 <%= render partial: 'navbar' %>
 <br><br><br><br><br><br>
-
+<%= image_tag(@current_member.image_url, :width => 80) if @current_member.image_url.present? %>
 <%= button_to 'Edit agency details',
     edit_agency_path(@current_member), class: 'btn linky', method: :get %>
 
@@ -12,5 +12,3 @@
       <%= render partial: 'alerts/agencyAlert' %>
   </div>
 </div>
-
-
