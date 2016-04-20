@@ -24,3 +24,6 @@ node_modules/**
 *.swp
 *.swo
 .*.sw*
+
+# Ignore application configuration
+/config/application.yml
