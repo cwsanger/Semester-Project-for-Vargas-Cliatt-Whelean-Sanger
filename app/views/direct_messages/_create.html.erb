@@ -4,6 +4,7 @@
   <%= form_tag(create_direct_message_url(@to_user)) do %>   
      <div class="field">
           <%= text_area_tag :body,nil, placeholder: 'message',:id=>"mytext",:class=>"myPost"%>
+          <%= file_field_tag :image_url, type:"file"%> 
           <br>
           <%= submit_tag "Send", class: 'btn linky' %>
         <hr>
@@ -21,4 +22,13 @@ var chars= 22;
     count++;
     }
 });
+</script>
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
 </script>

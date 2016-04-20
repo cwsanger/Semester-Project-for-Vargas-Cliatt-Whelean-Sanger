@@ -54,17 +54,13 @@
   </div>
 </div>
 <div class="left_bar">
-  <div>
-    <p class="alert-success semiTitle "><i class="glyphicon glyphicon-user"></i> Profile<i id="closeAlert" class="glyphicon glyphicon-chevron-up pull-right closeAlert close"></i></p>
-  </div>
+    <p class="alert-success semiTitle "><i class="glyphicon glyphicon-user"></i> Profile<i id="closeProfile" class="glyphicon glyphicon-chevron-up pull-right closeprofile close"></i></p>
   <div class="profile_div">
    <%= render partial: 'profile' %>
   </div>
-  <div class="broadcast_div_bar">
-    <div>
-      <p class="myPrimary semiTitle "><i class="glyphicon glyphicon-comment"></i> Chat<i id="closeBroad" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i></p>
-    </div>
-    <div class="broadcast_div">
+  <div class="chat_div_bar">
+      <p class="myPrimary semiTitle "><i class="glyphicon glyphicon-comment"></i> Chat<i id="closeChat" class="glyphicon glyphicon-chevron-down pull-right closeChat close"></i></p>
+    <div class="chat_div">
    
     </div>
   </div>
@@ -131,6 +127,37 @@
       }
 
     });
+    $('#closeProfile').click(function(){
+      if(alertFlag){
+        $('.profile_div').hide();
+        $('#closeProfile').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeProfile');
+        alertFlag = false;
+        return;
+      }else{
+        $('.profile_div').show();
+        $('.chat_div').hide();
+        $('#closeChat').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeChat');
+        $('#closeProfile').removeClass('glyphicon glyphicon-chevron-down pull-right closeProfile').addClass('glyphicon glyphicon-chevron-up pull-right closeProfile');
+        alertFlag = true;
+        return;
+      }
+    });
+    $('#closeChat').click(function(){
+      if(alertFlag){
+        $('.chat_div').hide();
+        $('#closeChat').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeChat');
+        alertFlag = false;
+        return;
+      }else{
+        $('.chat_div').show();
+        $('.profile_div').hide();
+        $('#closeProfile').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeProfile');
+        $('#closeChat').removeClass('glyphicon glyphicon-chevron-down pull-right closeChat').addClass('glyphicon glyphicon-chevron-up pull-right closeChat');
+        alertFlag = true;
+        return;
+      }
+    });
+    
   }
 </script>
 <script>
