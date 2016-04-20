@@ -1,19 +1,24 @@
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+<%= render partial:'neighborhoods/navbar'%>
+<div class='backDiv2'></div>
+  
+<div class="container centralBox">
+	<p>
+	  <strong>Name:</strong>
+	  <%= @event.name %>
+	</p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @event.body %>
-</p>
+	<p>
+	  <strong>Body:</strong>
+	  <%= @event.body %>
+	</p>
 
-<p>
-  <strong>Neighborhood:</strong>
-  <%= @event.neighborhood.name %>
-</p>
+	<p>
+	  <strong>Neighborhood:</strong>
+	  <%= @event.neighborhood.name %>
+	</p>
 
-<p>
-  <strong>Host:</strong>
-  <%= @event.user.name %>
-</p>
+	<p>
+	  <strong>Host:</strong>
+	  <%= @event.user.name %>
+	</p>
+</div>
