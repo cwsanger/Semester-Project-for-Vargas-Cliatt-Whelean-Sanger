@@ -67,6 +67,10 @@ Rails.application.routes.draw do
 
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
+  put 'posts/:id/flag', to: 'posts#flag', as: :flag_post
+
+  put 'posts/:id/remove-flag', to: 'posts#remove_flag', as: :remove_flag_post
+
   post 'comment/:id/create', to: 'comment#create', as: :create_comment
 
   put 'comment/:id/like', to: 'comment#like', as: :like_comment

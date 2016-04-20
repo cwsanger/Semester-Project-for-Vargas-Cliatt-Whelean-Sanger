@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  enum status: [:no_flag, :flag]
+
   belongs_to :user
   belongs_to :category
 

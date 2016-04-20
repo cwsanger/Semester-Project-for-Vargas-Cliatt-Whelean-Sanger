@@ -38,6 +38,8 @@ class NeighborhoodsController < ApplicationController
 
     @broadcast = Broadcast.new
     @broadcasts = @neighborhood.broadcasts
+
+    @posts = Post.where(status: Post.statuses[:flag])
   end
 
   # GET /neighborhoods/new
