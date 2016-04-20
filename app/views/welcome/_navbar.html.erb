@@ -97,8 +97,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Business Registration</h4>
-        </div>
+          <h4 class="modal-title">Business Registration </h4> 
+       </div>
         <div class="modal-body">
             <div class="col-sm-4"></div>
             <%= render 'signups/business_form' %>
@@ -134,6 +134,8 @@
                 <hr>
                   <div class="field">
                     <%= f.text_area :email,:class=>"myPost",placeholder: 'Type @email here...'%>
+                    <br> <br>
+                    <%= f.file_field :image_url, type:"file"%><label>Profile Picture</label>
                   </div>
                 </div>
               <% end %>
@@ -152,3 +154,12 @@
     </div>
   </div>  
 </div>
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
+</script>

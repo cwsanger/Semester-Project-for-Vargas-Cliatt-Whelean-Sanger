@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @chosen_date = Integer(Time.now.strftime("%d"))
+    @event = Event.new
   end
 
   # GET /events/1
