@@ -15,7 +15,11 @@ class CommentController < ApplicationController
   end
 
   def like
-    @current_member.like(@comment)
+    unless @comment.has_like(@current_member)
+      @current_member.like(@comment)
+    else
+      @current_member.unlike(@comment)
+    end
 
     respond_to do |format|
       if @current_member.save
