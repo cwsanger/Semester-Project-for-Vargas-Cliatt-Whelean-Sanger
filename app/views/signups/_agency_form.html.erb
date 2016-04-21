@@ -1,4 +1,4 @@
-<%= form_tag(signups_create_agency_url) do %>
+<%= form_tag(signups_create_agency_url, multipart: true) do %>
   <div>
     <%= fields_for :temp_agency, @temp_agency do |f| %>
       <div class="input-group">
@@ -21,4 +21,5 @@
       </div>
     <% end %>
   </div>
+    <%= submit_tag 'Submit', class: 'btn linky' %>
 <% end %>
