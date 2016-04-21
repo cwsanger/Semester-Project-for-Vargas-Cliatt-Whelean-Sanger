@@ -14,11 +14,14 @@ class Account < ActiveRecord::Base
 
   def self.setup(member, email)
     pass = random_pass
-    account = create(email: email, password: pass, password_confirmation: pass)
+    account = new(email: email, password: pass, password_confirmation: pass)
 
-    if account
+    if account.save
 
       type = 'User'
+
+      puts "\n\n\nACCOUNT.SETUP Made account\n\n"
+
       if member.is_a? Business
         type = 'Business'
       elsif member.is_a? Agency
@@ -26,6 +29,8 @@ class Account < ActiveRecord::Base
       end
 
       AccountNotifier.created(member, email, pass).deliver_now
+    else
+      puts "\n\n\nACCOUNT.SETUP COULD NOT MAKE THE #{type} ACCOUNT\n\n"
     end
 
     account
