@@ -19,6 +19,9 @@ gem 'jquery-rails'
 # Need that sick turbo boost
 gem 'jquery-turbolinks'
 
+gem 'mini_magick'
+gem 'fog'
+
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
