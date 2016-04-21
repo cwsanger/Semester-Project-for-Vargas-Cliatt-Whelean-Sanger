@@ -52,7 +52,7 @@ class SignupsController < ApplicationController
 
     respond_to do |format|
       if @neighborhood.save
-        format.html { redirect_to temps_path, notice: 'You should be approved soon' }
+        format.html { redirect_to root_path, notice: 'You should be approved soon' }
         format.json { render :show, status: :created, location: @registrant }
       else
         format.html { render :register_user }
