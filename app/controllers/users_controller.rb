@@ -101,6 +101,6 @@ class UsersController < ApplicationController
     end
 
     def account_params
-      params.require(:account).permit(:updateParam, :email)
+      params.require(:account).permit(:updateParam, :image_url, :email)
     end
 end

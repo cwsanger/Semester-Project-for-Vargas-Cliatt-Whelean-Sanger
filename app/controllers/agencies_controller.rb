@@ -10,6 +10,8 @@ class AgenciesController < ApplicationController
   # GET /agencies/1
   # GET /agencies/1.json
   def show
+    auth @agency
+
     @alerts = @agency.alerts
     @alert = Alert.new
   end
@@ -79,6 +81,35 @@ class AgenciesController < ApplicationController
     end
   end
 
+  def neighborhoods
+    @agency = Agency.find(params[:agency_id])
+
+    @neighborhoods = Neighborhood.within(20, origin: @agency)
+
+    @requested_neighborhoods = Neighborhood.joins(:requests)
+                                           .where("requests.requestable_id = #{@agency.id}")
+
+    @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
+      marker.lat neighborhood.latitude
+      marker.lng neighborhood.longitude
+      marker.title neighborhood.name
+    end
+  end
+
+  def join_request
+    @agency = Agency.find(params[:agency_id])
+    r = Request.create(requestable: @agency,
+                       neighborhood_id: params[:neighborhood_id])
+
+    respond_to do |format|
+      if r.save
+        format.html { redirect_to agency_neighborhoods_url(@agency) }
+      else
+        format.html { redirect_to agency_neighborhoods_url(@agency), alert: 'Failed to create request' }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_agency
@@ -87,6 +118,6 @@ class AgenciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agency_params
-      params.require(:agency).permit(:name, :email, :password, :password_confirmation)
+      params.require(:agency).permit(:name, :email, :image_url, :password, :password_confirmation)
     end
 end

@@ -1,10 +1,7 @@
 <%= render partial:'navbar'%>
 <p id="notice"><%= notice %></p>
 <br><br><br><br>
-<div class="col-md-2">
-</div>
-
-<div class="col-md-5 col-md-offset-1 ">
+<div class="col-xs-5 col-sm-offset-3 ">
   <%= render partial: 'posts/form', locals: { categories: @categories } %>
   <br>
   <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
@@ -19,20 +16,17 @@
       <tbody class="searchable">
         <% @posts.each do |post| %>
           <tr>
-            <td><%= render post %></td>          
+            <td><%= render post %></td>
           </tr>
         <% end %>
       </tbody>
   </table>
 </div>
 <br>
- 
-  
-
 <div class="right_bar">
   <div>
     <p class="alert-danger semiTitle "><i class="glyphicon glyphicon-bell"></i> Alerts<i id="closeAlert" class="glyphicon glyphicon-chevron-up pull-right closeAlert close"></i></p>
-  </div>  
+  </div>
   <div class="alert_div">
     <% @alerts.each do |alert| %>
       <%= render alert %>
@@ -41,17 +35,17 @@
   <div class="broadcast_div_bar">
     <div>
       <p class="alert-warning semiTitle "><i class="glyphicon glyphicon-bullhorn"></i> Broadcast<i id="closeBroad" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i></p>
-    </div>  
+    </div>
     <div class="broadcast_div">
       <% @broadcasts.each do |bc| %>
         <%= render bc %>
       <% end %>
     </div>
-  </div>  
+  </div>
   <div  class="advertisement_div_bar">
     <div>
       <p class="alert-info semiTitle"><i class="glyphicon glyphicon-tag"></i> Advertisement<i id="closeAd" class="glyphicon glyphicon-chevron-down pull-right closeAd close"></i></p>
-    </div>  
+    </div>
     <div class="advertisement_div">
       <% @advertisements.each do |ad| %>
         <%= render ad %>
@@ -59,6 +53,37 @@
     </div>
   </div>
 </div>
+<div class="left_bar">
+    <p class="alert-success semiTitle "><i class="glyphicon glyphicon-user"></i> Profile<i id="closeProfile" class="glyphicon glyphicon-chevron-up pull-right closeprofile close"></i></p>
+  <div class="profile_div">
+   <%= render partial: 'profile' %>
+  </div>
+  <div class="chat_div_bar">
+      <p class="myPrimary semiTitle "><i class="glyphicon glyphicon-comment"></i> Chat<i id="closeChat" class="glyphicon glyphicon-chevron-down pull-right closeChat close"></i></p>
+    <div class="chat_div">
+      <br>
+      <table class="table table-striped table-hover">
+        <thead >
+          <tr>
+            <th>Neighbors</th>
+          </tr>
+        </thead>
+
+        <tbody class="searchable cm ">
+           <% @current_member.neighborhood.users.each do |user| %>
+            <tr>
+              <% unless @current_member.id == user.id %>
+                <td class="cm"><%= user.name %> <%= link_to '', direct_message_url(user.id),:class=>" linkTo glyphicon glyphicon-circle-arrow-right pull-right" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+</div>
+
 
 <script>
   $('.broadcast_div_').hide();
@@ -94,7 +119,7 @@
         $('.broadcast_div').show();
         return;
       }else{
-        $('.broadcast_div').hide();        
+        $('.broadcast_div').hide();
         $('#closeBroad').removeClass('glyphicon glyphicon-chevron-up pull-right closeBroad').addClass('glyphicon glyphicon-chevron-down pull-right closeBroad');
         $('#closeAd').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeAd');
         alertFlag = true;
@@ -120,6 +145,37 @@
       }
 
     });
+    $('#closeProfile').click(function(){
+      if(alertFlag){
+        $('.profile_div').hide();
+        $('#closeProfile').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeProfile');
+        alertFlag = false;
+        return;
+      }else{
+        $('.profile_div').show();
+        $('.chat_div').hide();
+        $('#closeChat').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeChat');
+        $('#closeProfile').removeClass('glyphicon glyphicon-chevron-down pull-right closeProfile').addClass('glyphicon glyphicon-chevron-up pull-right closeProfile');
+        alertFlag = true;
+        return;
+      }
+    });
+    $('#closeChat').click(function(){
+      if(alertFlag){
+        $('.chat_div').hide();
+        $('#closeChat').removeClass('glyphicon glyphicon-chevron-up pull-right closeAd').addClass('glyphicon glyphicon-chevron-down pull-right closeChat');
+        alertFlag = false;
+        return;
+      }else{
+        $('.chat_div').show();
+        $('.profile_div').hide();
+        $('#closeProfile').removeClass('glyphicon glyphicon-chevron-up pull-right closeAlert').addClass('glyphicon glyphicon-chevron-down pull-right closeProfile');
+        $('#closeChat').removeClass('glyphicon glyphicon-chevron-down pull-right closeChat').addClass('glyphicon glyphicon-chevron-up pull-right closeChat');
+        alertFlag = true;
+        return;
+      }
+    });
+    
   }
 </script>
 <script>
@@ -137,7 +193,11 @@
 
         })
 
-    }(jQuery));
+    }($));
+
+
 
 });
 </script>
+
+

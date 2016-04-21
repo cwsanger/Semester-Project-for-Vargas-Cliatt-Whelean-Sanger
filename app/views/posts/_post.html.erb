@@ -1,6 +1,6 @@
-<div class="post">
+<div class="post col-sm-12">
   <h2>
-    <u><%= post.user.name %></u>
+    <u><%= image_tag(post.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if post.user.image_url.present?  %><%= post.user.name %></u>
     <small>Category: <%= post.category.title %></small>
     <i id="<%= post.id %>" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i>
   </h2>
@@ -9,11 +9,22 @@
       <small>
         <i><%= post.created_at.strftime("%A, %B #{post.created_at.day.ordinalize} - %l:%M%P") %></i>
       </small>
-      <%= link_to "", like_post_path(post), method: :put,:class=>'glyphicon glyphicon-hand-right likes'%>  <%= post.likes.count %>
+      <%= link_to "", like_post_path(post), method: :put, :class=>'glyphicon glyphicon-hand-right likes'%>  <%= post.likes.count %>
+      <%= link_to flag_post_path(post), method: :put do %>
+        <span class="glyphicon glyphicon-flag" style="<% if post.flag? %>color: red;<% end %>"></span>
+      <% end %>
     </p>
-    <p class="body"><%= post.body %></p>
+    <p class="body">
+          <%= post.body %>
+           <hr class="postComments">
+      <div class="col-xs-offset-4">       
+        <img src=" <%=post.image_url%>" id="imgSmile<%= post.id %>"></img>
+      </div>
+    </p>
+  
+
     
-      
+   
     <div id="<%= post.id %>x" class="hideComments"><small><%=post.comments.length%> Comments</small></div>
       <div id="<%= post.id %>y" class="theComments">
         <hr class="hrComments">
@@ -26,7 +37,7 @@
     <%= render partial: 'create_comment', locals: { post: post } %> 
 
   </div>
- </div> 
+</div> </div> </div> 
 <script>
   var alertFlag = true;
   $("#<%= post.id %>").click(function(){
@@ -46,5 +57,23 @@
   $('#<%= post.id %>x').click(function(){
       $('#<%= post.id %>y').toggle();
   })
+</script>
+<script>
+   $(document).ready(function(){
+       $('#imgSmile<%= post.id %>').width(200);
+       
+       $('#imgSmile<%= post.id %>').click(function()
+       {
+          $(this).css("cursor","pointer");
+          $(this).animate({width: "100%"}, 'slow');
+          $(this).css("margin-left","-110px");
+       });
+    
+      $('#imgSmile<%= post.id %>').mouseout(function()
+      {   
+        $(this).animate({width: "45%"}, 'fast');
+        $(this).css("margin-left","-20px");
+       });
+   });
 </script>
 

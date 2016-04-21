@@ -27,3 +27,6 @@ node_modules/**
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore image uploads
+/uploads

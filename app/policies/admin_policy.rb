@@ -1,7 +1,7 @@
 class AdminPolicy
   attr_reader :current_member
 
-  def initialize(current_member)
+  def initialize(current_member, arg)
     @current_member = current_member
   end
 

@@ -7,7 +7,7 @@
 		  </div>
 		</div>
 		<br>
-		<strong><%= message.user.name %></strong>
+		<%= image_tag(message.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if message.user.image_url.present?  %>
 	<% else %>
 	<div class="col-sm-8"></div>
 		<div class="talk-bubble tri-right round btm-right" style="background-color: green">
@@ -16,7 +16,7 @@
 		  </div>
 		</div>
 		<br>
-		 <div class="col-md-10"></div><strong><%= message.user.name %></strong> 
+		 <div class="col-md-10"></div><%= image_tag(message.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if message.user.image_url.present?  %>
 	<% end %>	
 <br> 
 </div>

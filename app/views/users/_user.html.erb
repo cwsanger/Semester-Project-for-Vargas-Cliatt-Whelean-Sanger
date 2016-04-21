@@ -1,11 +1,10 @@
+
 <div class="jumbotron">
-  <h1><%= user.name %></h1>
-  <h4><%= user.address %></h4>
-  <a class="btn btn-primary" href="mailto:<%= user.account.email %>">
+	<center><%= image_tag(@current_member.image_url, :width => 120,:height => 120,class:"img-circle img-center ") if @current_member.image_url.present?  %>
+	
+  <h1 class=""><%= user.name %></h1>
+  <a class="btn linky mail" href="mailto:<%= user.account.email %>">
     <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
   </a>
-  <%= link_to user.neighborhood, class:"btn btn-primary" do %>
-    <span class="glyphicon glyphicon-home"></span>
-    <%= user.neighborhood.name %>
-  <% end %>
+</center>
 </div>

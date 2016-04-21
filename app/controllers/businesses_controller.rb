@@ -10,6 +10,8 @@ class BusinessesController < ApplicationController
   # GET /businesses/1
   # GET /businesses/1.json
   def show
+    auth @business
+
     @advertisements = @business.advertisements
   end
 
@@ -76,6 +78,35 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def neighborhoods
+    @business = Business.find(params[:business_id])
+
+    @neighborhoods = Neighborhood.within(20, origin: @business)
+
+    @requested_neighborhoods = Neighborhood.joins(:requests)
+                                           .where("requests.requestable_id = #{@business.id}")
+
+    @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
+      marker.lat neighborhood.latitude
+      marker.lng neighborhood.longitude
+      marker.title neighborhood.name
+    end
+  end
+
+  def join_request
+    @business = Business.find(params[:business_id])
+    r = Request.create(requestable: @business,
+                       neighborhood_id: params[:neighborhood_id])
+
+    respond_to do |format|
+      if r.save
+        format.html { redirect_to business_neighborhoods_url(@business) }
+      else
+        format.html { redirect_to business_neighborhoods_url(@business), alert: 'Failed to create request' }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_business
@@ -84,6 +115,10 @@ class BusinessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
-      params.require(:business).permit(:name, :email, :password, :password_confirmation)
+      params.require(:business).permit(:name, :email, :image_url, :password, :password_confirmation)
+    end
+
+    def request_params
+      params.permit(:business_id, :neighborhood_id)
     end
 end

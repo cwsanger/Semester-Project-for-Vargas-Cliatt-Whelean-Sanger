@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406001424) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160420054322) do
+=======
+ActiveRecord::Schema.define(version: 20160421011417) do
+>>>>>>> 5e1108621f00574c41e899b90566de5c4cd3d254
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -33,12 +37,23 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "business_id"
+    t.string   "image_url"
   end
 
   create_table "agencies", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+    t.string   "address"
+    t.float    "longitude"
+    t.float    "latitude"
+  end
+
+  create_table "agencies_neighborhoods", force: :cascade do |t|
+    t.integer "agency_id"
+    t.integer "neighborhood_id"
+    t.string   "image_url"
   end
 
   create_table "alerts", force: :cascade do |t|
@@ -60,6 +75,10 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "address"
+    t.float    "longitude"
+    t.float    "latitude"
+    t.string   "image_url"
   end
 
   create_table "businesses_neighborhoods", force: :cascade do |t|
@@ -77,8 +96,12 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.string   "body"
     t.integer  "post_id"
     t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "status",     default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
   end
 
   create_table "direct_messages", force: :cascade do |t|
@@ -87,6 +110,7 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.string   "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
   end
 
   create_table "events", force: :cascade do |t|
@@ -98,6 +122,7 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.string   "body"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "image_url"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -142,10 +167,20 @@ ActiveRecord::Schema.define(version: 20160406001424) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "body"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "user_id"
     t.integer  "category_id"
+    t.integer  "status",      default: 0
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "requestable_id"
+    t.string   "requestable_type"
+    t.integer  "neighborhood_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "image_url"
   end
 
   create_table "temp_agencies", force: :cascade do |t|
@@ -154,6 +189,7 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.string   "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
   end
 
   create_table "temp_businesses", force: :cascade do |t|
@@ -162,6 +198,7 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
   end
 
   create_table "temp_neighborhoods", force: :cascade do |t|
@@ -175,6 +212,7 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.string  "email"
     t.integer "hood_id"
     t.string  "hood_type"
+    t.string  "image_url"
   end
 
   create_table "users", force: :cascade do |t|
@@ -188,6 +226,7 @@ ActiveRecord::Schema.define(version: 20160406001424) do
     t.integer  "account_id"
     t.integer  "role",            default: 0
     t.integer  "points",          default: 0
+    t.string   "image_url"
   end
 
 end

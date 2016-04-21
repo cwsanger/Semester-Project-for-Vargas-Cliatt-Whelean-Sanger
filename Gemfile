@@ -15,6 +15,10 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+
+# Need that sick turbo boost
+gem 'jquery-turbolinks'
+
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -29,6 +33,9 @@ gem 'geocoder'
 
 # google maps
 gem 'gmaps4rails'
+
+# distance querying
+gem 'geokit-rails'
 
 # Use validates :email, email: true
 gem 'email_validator'
@@ -54,6 +61,9 @@ group :development, :test do
   gem 'byebug'
 end
 
+#carrier wave
+gem 'carrierwave'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -62,6 +72,11 @@ group :development do
   gem 'spring'
   gem 'sqlite3'
 end
+#file upload styling
+gem 'bootstrap-filestyle-rails'
+
+#zoom images
+ gem 'elevatezoom-rails'
 
 group :production do
   gem 'pg', '0.15.1'

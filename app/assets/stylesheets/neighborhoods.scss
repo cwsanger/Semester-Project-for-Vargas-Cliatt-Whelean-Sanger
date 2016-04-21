@@ -18,14 +18,35 @@
   right: 0px;
   padding: 10px;
   margin: 10px;
-  padding-right: -4vh;
+
   margin-top: 1vh;
   margin-right: 0px;
   border-style: solid;
   border-width: 0px 0px 0px 1px;
   border-color: #E0E0E0;
 }
+.left_bar {
+  background: #F0F0F0;
+  height: 100%;
+  width: 17.5%;
+  position: fixed;
+  top: 5%;
+  bottom: 0px;
+  left: 0px;
+  padding: 10px;
+  margin: 10px;
+  padding-left: -2vh;
+  margin-top: 1vh;
+  margin-left: 0px;
+  border-style: solid;
+  border-width: 0px 0px 0px 1px;
+  border-color: #E0E0E0;
+}
 
+.myPrimary{
+  background-color: #754C78;
+  color: #4F2F4F  ;
+}
 .alert_div {
   height: 75%;
   overflow-y: scroll;
@@ -79,7 +100,8 @@
 .semiTitle{
   padding-top: 1vh;
   padding-left: 2vh;
-  margin-left: -.8vh;
+  padding-right: 0vh;
+  margin-left: -1vh;
   height: 3.5vh;
 }
 .alert{
@@ -90,6 +112,11 @@
   border-style:solid;
   border-color: black;
 }
+.pp{
+  margin-left: 30%;
+}
+
+
 //***********************************************************************
 
   iHover

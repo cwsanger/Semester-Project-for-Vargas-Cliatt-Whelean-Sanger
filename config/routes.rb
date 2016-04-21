@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'requests/create'
+
   resources :events
-  resources :businesses
-  resources :agencies
+
+  resources :businesses do
+    get 'neighborhoods', to: 'businesses#neighborhoods', as: :neighborhoods
+    post 'request/:neighborhood_id', to: 'businesses#join_request', as: :join_request
+  end
+
+  resources :agencies do
+    get 'neighborhoods', to: 'agencies#neighborhoods', as: :neighborhoods
+    post 'request/:neighborhood_id', to: 'agencies#join_request', as: :join_request
+  end
 
   controller :welcome do
     post 'logout' => :logout
@@ -57,11 +67,19 @@ Rails.application.routes.draw do
 
   put 'posts/:id/like', to: 'posts#like', as: :like_post
 
-  post 'comment/:id/create', to: 'comment#create', as: :create_comment
+  put 'posts/:id/flag', to: 'posts#flag', as: :flag_post
 
-  put 'comment/:id/like', to: 'comment#like', as: :like_comment
+  put 'posts/:id/remove-flag', to: 'posts#remove_flag', as: :remove_flag_post
 
-  get 'comment/destroy'
+  post 'comments/:id/create', to: 'comments#create', as: :create_comment
+
+  put 'comments/:id/like', to: 'comments#like', as: :like_comment
+
+  put 'comments/:id/flag', to: 'comments#flag', as: :flag_comment
+
+  put 'comments/:id/remove-flag', to: 'comments#remove_flag', as: :remove_flag_comment
+
+  delete 'comments/:id/destroy', to: 'comments#destroy', as: :destroy_comment
 
   post 'login/user', to: 'welcome#user_login', as: :user_login
 
@@ -74,9 +92,16 @@ Rails.application.routes.draw do
   root 'welcome#start'
 
   resources :neighborhoods do
+    resources :broadcasts, only: [:create, :destroy, :edit]
+
     post 'lead/:id/accept', to: 'leads#accept', as: :lead_accept
     post 'lead/:id/deny', to: 'leads#deny', as: :lead_deny
-    resources :broadcasts, only: [:create, :destroy, :edit]
+
+    post 'lead/:id/accept-business', to: 'leads#accept_business', as: :lead_accept_business
+    post 'lead/:id/deny-business', to: 'leads#deny_business', as: :lead_deny_business
+
+    post 'lead/:id/accept-agency', to: 'leads#accept_agency', as: :lead_accept_agency
+    post 'lead/:id/deny-agency', to: 'leads#deny_agency', as: :lead_deny_agency
     get 'admin', to: 'neighborhoods#admin', as: :admin
   end
 

@@ -4,10 +4,14 @@
 
 <div class="container">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#a" data-toggle="tab">Lead</a></li>
+    <li class="active"><a href="#a" data-toggle="tab">Users</a></li>
+    <li><a href="#c" data-toggle="tab">Businesses</a></li>
+    <li><a href="#d" data-toggle="tab">Agencies</a></li>
+    <li><a href="#e" data-toggle="tab">Flags</a></li>
     <% if @current_member.hoa? %>
       <li><a href="#b" data-toggle="tab">Broadcast</a></li>
     <% end %>
+    <li><a href="#c" data-toggle="tab">Activity</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="a">
@@ -23,6 +27,8 @@
             <th>Email</th>
             <th>Neighborhood</th>
             <th>Address</th>
+            <th>Accept</th>
+            <th>Deny</th>
           </tr>
           <tbody class="searchable">
             <% @temp_users.each do |user| %>
@@ -31,7 +37,6 @@
                 <td><%= user.email %></td>
                 <td><%= user.hood.name %></td>
                 <td><%= user.hood.address %></td>
-
                 <td><%= link_to '', neighborhood_lead_accept_url(@current_member.neighborhood, user), method: :post,class:"glyphicon glyphicon-ok accept" %></td>
                 <td><%= link_to '', neighborhood_lead_deny_url(@current_member.neighborhood, user), method: :post,class:"glyphicon glyphicon glyphicon-remove deny"%></td>
               </tr>
@@ -42,8 +47,99 @@
     </div>
     <div class="tab-pane" id="b">
       <%= render 'broadcasts/form' %>
-
       <%= render partial: 'broadcasts/admin_list', locals: { broadcasts: @broadcasts } %>
+    </div>
+    <div class="tab-pane" id="c">
+      <table class="table table-hover table-bordered">
+        <h1><center>Perspective Businesses</center></h1>
+        <hr class="hrPers">
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Accept</th>
+          <th>Deny</th>
+        </tr>
+        <% @businesses.each do |business| %>
+          <tr>
+            <td><%= business.name %></td>
+            <td><%= business.address %></td>
+            <td><%= link_to '', neighborhood_lead_accept_business_url(@current_member.neighborhood, business), method: :post,class:"glyphicon glyphicon-ok accept" %></td>
+            <td><%= link_to '', neighborhood_lead_deny_business_url(@current_member.neighborhood, business), method: :post,class:"glyphicon glyphicon glyphicon-remove deny"%></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="d">
+      <table class="table table-hover table-bordered">
+        <h1><center>Perspective Agencies</center></h1>
+        <hr class="hrPers">
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Accept</th>
+          <th>Deny</th>
+        </tr>
+        <% @agencies.each do |agency| %>
+          <tr>
+            <td><%= agency.name %></td>
+            <td><%= agency.address %></td>
+            <td><%= link_to '', neighborhood_lead_accept_agency_url(@current_member.neighborhood, agency), method: :post,class:"glyphicon glyphicon-ok accept" %></td>
+            <td><%= link_to '', neighborhood_lead_deny_agency_url(@current_member.neighborhood, agency), method: :post,class:"glyphicon glyphicon glyphicon-remove deny"%></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="e">
+      <h1><center>Flagged Content</center></h1>
+      <hr class="hrPers">
+      <h3>Posts</h3>
+      <table class="table table-hover table-bordered">
+        <tr>
+          <th>Name</th>
+          <th>Body</th>
+          <th>Okay</th>
+          <th>Delete</th>
+        </tr>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.user.name %></td>
+            <td><%= post.body%></td>
+
+            <td><%= link_to '', remove_flag_post_url(post), method: :put, class:"glyphicon glyphicon-ok accept" %></td>
+            <td><%= link_to '', post, method: :delete, class:"glyphicon glyphicon glyphicon-remove deny"%></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <h3>Comments</h3>
+      <table class="table table-hover table-bordered">
+        <tr>
+          <th>Name</th>
+          <th>Body</th>
+          <th>Okay</th>
+          <th>Delete</th>
+        </tr>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= comment.user.name %></td>
+            <td><%= comment.body%></td>
+
+            <td><%= link_to '', remove_flag_comment_url(comment), method: :put, class:"glyphicon glyphicon-ok accept" %></td>
+            <td><%= link_to '', destroy_comment_url(comment), method: :delete, class:"glyphicon glyphicon glyphicon-remove deny"%></td>
+          </tr>
+        <% end %>
+      </table>
+      <h1><center>Post Activity</center></h1>
+       <hr class="hrPers">
+      <%= render partial: 'posts/admin_list', locals: { broadcasts: @broadcasts } %>
+      <br>
+      <h1><center>Comments Activity</center></h1>
+       <hr class="hrPers">
+      <%= render partial: 'posts/admin_list', locals: { broadcasts: @broadcasts } %>
+      <br>
+      <h1><center>Events Activity</center></h1>
+       <hr class="hrPers">
+      <%= render partial: 'events/admin_list', locals: { broadcasts: @broadcasts } %>
     </div>
   </div>
 </div>
@@ -52,7 +148,6 @@
   $(document).ready(function () {
     (function ($) {
         $('#filter').keyup(function () {
-
             var rex = new RegExp($(this).val(), 'i');
             $('.searchable tr').hide();
             $('.searchable tr').filter(function () {
