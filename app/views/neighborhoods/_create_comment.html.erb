@@ -1,8 +1,9 @@
 <div>
   <%= form_tag(create_comment_path(post)) do %>
-    <div class="input-group">
+    <div class="input-group col-xs-6">
       <div>
         <%= text_area_tag :body, params[:body], placeholder: 'Type comment here',:class=>'myComment' %> 
+         <%= file_field_tag :image_url, type:"file"%> 
       </div>
       <div>
         <%= submit_tag "Comment", class: 'btn' %>
@@ -11,3 +12,13 @@
   <% end %>
   <br>
 </div>
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
+</script>
+

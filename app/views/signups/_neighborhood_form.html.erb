@@ -1,12 +1,12 @@
   <%= fields_for :temp_neighborhood, @temp_neighborhood do |f| %>
+    <hr>
     <div class="input-group">
       <div class="field">
-        <%= f.label :name %><br>
-        <%= f.text_field :name %>
+              <%= f.text_area :name,:class=>"myPost",placeholder: 'Type Name here...'%>
       </div>
+      <hr>
       <div class="field">
-        <%= f.label :address %><br>
-        <%= f.text_field :address %>
+        <%= f.text_area :address,:class=>"myPost",placeholder: 'Type address here...'%>
       </div>
     </div>
   <% end %>

@@ -1,7 +1,10 @@
 
 <div class="jumbotron">
-  <h1><%= user.name %></h1>
-  <a class="btn linky" href="mailto:<%= user.account.email %>">
+	<center><%= image_tag(@current_member.image_url, :width => 120,:height => 120,class:"img-circle img-center ") if @current_member.image_url.present?  %>
+	
+  <h1 class=""><%= user.name %></h1>
+  <a class="btn linky mail" href="mailto:<%= user.account.email %>">
     <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
   </a>
+</center>
 </div>

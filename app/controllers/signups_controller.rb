@@ -63,7 +63,7 @@ class SignupsController < ApplicationController
 
   private
     def temp_user_params
-      params.require(:temp_user).permit(:name, :email)
+      params.require(:temp_user).permit(:name, :email, :image_url)
     end
 
     def temp_neighborhood_params
@@ -71,11 +71,11 @@ class SignupsController < ApplicationController
     end
 
     def temp_business_params
-      params.require(:temp_business).permit(:name, :email, :address)
+      params.require(:temp_business).permit(:name, :email, :address, :image_url)
     end
 
     def temp_agency_params
-      params.require(:temp_agency).permit(:name, :email, :address)
+      params.require(:temp_agency).permit(:name, :email, :address, :image_url)
     end
 
     def set_neighborhood
