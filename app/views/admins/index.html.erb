@@ -31,11 +31,26 @@
             <td><center><%= user.email %></center></td>
             <td><center><%= user.hood.name %></center></td>
             <td><center><%= user.hood.address %></center></td>
-            <td><center><%= image_tag(user.image_url)%></center></td>
+            <td><center>
+            <a href=""data-toggle="modal" data-target="#myModal<%= user.id %>"><%= image_tag(user.image_url, :width => 40 ,:height=>"40",class:"img-center verification") if user.image_url.present?  %></a></center></td>
 
             <td><center><%= link_to '', admin_accept_user_url(user), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
             <td><center><%= link_to '', admin_deny_user_url(user), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
           </tr>
+          <div id="myModal<%= user.id %>" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Verification Picture</h4>
+                </div>
+                <div class="modal-body ">
+                  <%= image_tag(user.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center verification") if user.image_url.present?  %>        
+                </div>
+              </div>
+            </div>
+          </div>
         <% end %>
       </table>
     </div>
