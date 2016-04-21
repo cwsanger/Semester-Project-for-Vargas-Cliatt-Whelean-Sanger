@@ -10,15 +10,15 @@ class NeighborhoodsController < ApplicationController
   # GET /neighborhoods/neighborhood-slug
   # GET /neighborhoods/neighborhood-slug.json
   def show
-    authorize @neighborhood
+    auth @neighborhood
 
     @posts = Post.joins(:user)
                  .where(users: { neighborhood_id: @neighborhood.id })
                  .order(created_at: :desc)
 
-    @alerts = Alert.all
+    @alerts = @neighborhood.alerts
     @broadcasts = @neighborhood.broadcasts
-    @advertisements = Advertisement.all
+    @advertisements = @neighborhood.advertisements
     @categories = Category.all
     #@posts = @neighborhood.posts
     #@events = @neighborhood.events
@@ -28,12 +28,21 @@ class NeighborhoodsController < ApplicationController
 
   def admin
     @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
-    authorize @neighborhood
+    auth @neighborhood
 
 
     @temp_users = @neighborhood.temp_users
+    @businesses = Business.joins('INNER JOIN requests ON businesses.id = requests.requestable_id')
+                          .where("requests.neighborhood_id = #{@neighborhood.id}")
+
+    @agencies= Agency.joins('INNER JOIN requests ON agencies.id = requests.requestable_id')
+                          .where("requests.neighborhood_id = #{@neighborhood.id}")
+
     @broadcast = Broadcast.new
     @broadcasts = @neighborhood.broadcasts
+
+    @posts = Post.where(status: Post.statuses[:flag])
+    @comments = Comment.where(status: Comment.statuses[:flag])
   end
 
   # GET /neighborhoods/new

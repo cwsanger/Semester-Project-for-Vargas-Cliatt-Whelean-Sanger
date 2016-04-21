@@ -1,5 +1,13 @@
 <div class="comment">
   <p><%= comment.body %></p>
+  <p>
+    <%= link_to "", like_comment_path(comment), method: :put,:class=>'glyphicon glyphicon-hand-right likes' %>
+    <%= comment.likes.count %>
+
+      <%= link_to flag_comment_path(comment), method: :put do %>
+        <span class="glyphicon glyphicon-flag" style="<% if comment.flag? %>color: red;<% end %>"></span>
+      <% end %>
+  </p>
   <p><%= image_tag(comment.image_url, :width => 120,:height=>120,class:" img-center col-xs-offset-1") if comment.image_url.present?  %></p>
   <p><%= link_to "", like_comment_path(comment), method: :put,:class=>'glyphicon glyphicon-hand-right likes' %><%= comment.likes.count %> </p>
 </div>

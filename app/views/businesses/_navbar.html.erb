@@ -21,6 +21,7 @@
                     <a class="page-scroll" href="#page-top"></a>
                 </li>
                 <li>
+                  <%= link_to "Neighborhoods", business_neighborhoods_url(@current_member) %>
                     <%= link_to "", edit_business_path(@current_member.id),
                   method: :get,  class: 'page-scroll glyphicon glyphicon-cog'%>
                 </li>

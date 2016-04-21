@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  requestable_id: 1
+  requestable_type: MyString
+  neighborhood_id: 1
+
+two:
+  requestable_id: 1
+  requestable_type: MyString
+  neighborhood_id: 1

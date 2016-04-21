@@ -4,6 +4,8 @@ class AdminsController < ApplicationController
   before_action :set_temp_agency, only: [:accept_agency, :deny_agency]
 
   def index
+    auth Admin
+
     @temp_users = TempUser.where(hood_type: 'TempNeighborhood')
     @temp_businesses = TempBusiness.all
     @temp_agencies = TempAgency.all
@@ -35,7 +37,7 @@ class AdminsController < ApplicationController
   end
 
   def accept_business
-    business = Business.new(name: @temp_business.name, image_url: open('app/assets/images/placeholder.png'))
+    business = Business.new(name: @temp_business.name, address: @temp_business.address, image_url: open('app/assets/images/placeholder.png'))
     business.build_account(email: @temp_business.email,
                            password: 'password',
                            password_confirmation: 'password')
@@ -56,10 +58,10 @@ class AdminsController < ApplicationController
   end
 
   def accept_agency
-    agency = Agency.new(name: @temp_agency.name, image_url: open('app/assets/images/placeholder.png'))
+    agency = Agency.new(name: @temp_agency.name, address: @temp_agency.address, image_url: open('app/assets/images/placeholder.png'))
     agency.build_account(email: @temp_agency.email,
-                           password: 'password',
-                           password_confirmation: 'password')
+                         password: 'password',
+                         password_confirmation: 'password')
 
     if agency.save
       @temp_agency.destroy

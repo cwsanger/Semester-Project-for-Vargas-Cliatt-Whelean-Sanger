@@ -21,7 +21,11 @@ class AdvertisementController < ApplicationController
   end
 
   def like
-    @current_member.like(@advertisement)
+    unless @advertisement.has_like(@current_member)
+      @current_member.like(@advertisement)
+    else
+      @current_member.unlike(@advertisement)
+    end
 
     respond_to do |format|
       if @current_member.save

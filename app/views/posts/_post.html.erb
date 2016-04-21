@@ -9,7 +9,10 @@
       <small>
         <i><%= post.created_at.strftime("%A, %B #{post.created_at.day.ordinalize} - %l:%M%P") %></i>
       </small>
-      <%= link_to "", like_post_path(post), method: :put,:class=>'glyphicon glyphicon-hand-right likes'%>  <%= post.likes.count %>
+      <%= link_to "", like_post_path(post), method: :put, :class=>'glyphicon glyphicon-hand-right likes'%>  <%= post.likes.count %>
+      <%= link_to flag_post_path(post), method: :put do %>
+        <span class="glyphicon glyphicon-flag" style="<% if post.flag? %>color: red;<% end %>"></span>
+      <% end %>
     </p>
     <p class="body">
           <%= post.body %>

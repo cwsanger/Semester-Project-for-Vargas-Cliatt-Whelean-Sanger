@@ -15,6 +15,10 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+
+# Need that sick turbo boost
+gem 'jquery-turbolinks'
+
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -29,6 +33,9 @@ gem 'geocoder'
 
 # google maps
 gem 'gmaps4rails'
+
+# distance querying
+gem 'geokit-rails'
 
 # Use validates :email, email: true
 gem 'email_validator'
