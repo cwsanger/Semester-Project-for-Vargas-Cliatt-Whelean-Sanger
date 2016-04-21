@@ -16,23 +16,15 @@ class AdminsController < ApplicationController
     user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id)
     user.account = Account.setup(user, @temp_user.email)
 
-    #user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id)
-
-    #safe_pass = Account.random_pass
-
-    #user.build_account(email: @temp_user.email,
-    #                   password: safe_pass,
-    #                   password_confirmation: safe_pass)
-
-
-
-    #if Account.setup(@temp_user.email)
     if user.account
       @temp_user.hood.destroy
       @temp_user.destroy
 
       redirect_to admins_url
     else
+      user.destroy
+      neighborhood.destroy
+
       redirect_to admins_url, alert: 'failed to create user'
     end
   end
@@ -47,16 +39,14 @@ class AdminsController < ApplicationController
   def accept_business
     business = Business.create(name: @temp_business.name)
     business.account = Account.setup(business, @temp_business.email)
-    #business.build_account(email: @temp_business.email,
-    #                       password: 'password',
-    #                       password_confirmation: 'password')
 
-    #if business.save
     if business.account
       @temp_business.destroy
 
       redirect_to admins_url
     else
+      business.destroy
+
       redirect_to admins_url, alert: 'failed to create business'
     end
   end
@@ -70,16 +60,14 @@ class AdminsController < ApplicationController
   def accept_agency
     agency = Agency.create(name: @temp_agency.name)
     agency.account = Account.setup(agency, @temp_agency.email)
-    #agency.build_account(email: @temp_agency.email,
-    #                       password: 'password',
-    #                       password_confirmation: 'password')
 
-    #if agency.save
     if agency.account
       @temp_agency.destroy
 
       redirect_to admins_url
     else
+      agency.destroy
+
       redirect_to admins_url, alert: 'failed to create agency'
     end
   end

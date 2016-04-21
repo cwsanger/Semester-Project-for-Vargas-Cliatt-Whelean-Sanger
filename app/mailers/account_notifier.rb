@@ -5,9 +5,16 @@ class AccountNotifier < ApplicationMailer
   #
   #   en.account_notifier.created.subject
   #
-  def created(type, email, password)
+  def created(member, email, password)
     @password = password
-    @type = type
+    @type = 'User'
+    @name = member.name
+
+    if member.is_a? Business
+      @type = 'Business'
+    elsif member.is_a? Agency
+      @type = 'Agency'
+    end
 
     mail to: email, subject: 'Account created' do |format|
       format.html

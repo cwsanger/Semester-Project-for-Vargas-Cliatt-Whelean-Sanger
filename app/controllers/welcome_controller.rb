@@ -71,7 +71,7 @@ class WelcomeController < ApplicationController
   private
 
     def account_validated?(type)
-      account = Account.find_by(email: params[:email])
+      account = Account.find_by(email: params[:email], member_type: type.to_s)
       if account and account.authenticate(params[:password])
         @member = account.member
 

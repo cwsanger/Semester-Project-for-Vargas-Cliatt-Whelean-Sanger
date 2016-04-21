@@ -3,9 +3,10 @@ class Account < ActiveRecord::Base
 
   belongs_to :member, polymorphic: true
 
-  #validates :email, presence: true, uniqueness: true, email: true
-  # Only for testing the email sending feature
-  validates :email, presence: true, email: true
+  validates :email, presence: true, uniqueness: true, email: true
+  # Only for testing the email sending feature,
+  # uncomment below, comment out above
+  #validates :email, presence: true, email: true
 
   def self.random_pass
     #('!'..'~').to_a.shuffle[0,8].join
@@ -25,7 +26,7 @@ class Account < ActiveRecord::Base
         type = 'Agency'
       end
 
-      AccountNotifier.created(type, email, pass).deliver_now
+      AccountNotifier.created(member, email, pass).deliver_now
     end
     account
   end
