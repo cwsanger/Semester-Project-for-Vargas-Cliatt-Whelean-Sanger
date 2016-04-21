@@ -14,16 +14,12 @@ class AdminsController < ApplicationController
   def accept_user
     hood = @temp_user.hood
     neighborhood = Neighborhood.create(name: hood.name, address: hood.address)
-<<<<<<< HEAD
 
-    user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id)
+    user = User.create(name: @temp_user.name,
+                       neighborhood_id: neighborhood.id,
+                       image_url: open('app/assets/images/placeholder.png'))
+
     user.account = Account.setup(user, @temp_user.email)
-=======
-    user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id, image_url: open('app/assets/images/placeholder.png'))
-    user.build_account(email: @temp_user.email,
-                       password: 'password',
-                       password_confirmation: 'password')
->>>>>>> ec956de41f4a73be06212d5f77c0806235211b15
 
     if user.account
       @temp_user.hood.destroy
@@ -46,15 +42,15 @@ class AdminsController < ApplicationController
   end
 
   def accept_business
-<<<<<<< HEAD
-    business = Business.create(name: @temp_business.name)
+
+    #business = Business.create(name: @temp_business.name)
+
+    #THIS SHOULD BE Business.create!!! Right??????
+    business = Business.new(name: @temp_business.name,
+                            address: @temp_business.address,
+                            image_url: open('app/assets/images/placeholder.png'))
+
     business.account = Account.setup(business, @temp_business.email)
-=======
-    business = Business.new(name: @temp_business.name, address: @temp_business.address, image_url: open('app/assets/images/placeholder.png'))
-    business.build_account(email: @temp_business.email,
-                           password: 'password',
-                           password_confirmation: 'password')
->>>>>>> ec956de41f4a73be06212d5f77c0806235211b15
 
     if business.account
       @temp_business.destroy
@@ -74,15 +70,15 @@ class AdminsController < ApplicationController
   end
 
   def accept_agency
-<<<<<<< HEAD
-    agency = Agency.create(name: @temp_agency.name)
+
+    #agency = Agency.create(name: @temp_agency.name)
+
+    #THIS should be Agency.create!!!! RIGHT?????
+    agency = Agency.new(name: @temp_agency.name,
+                        address: @temp_agency.address,
+                        image_url: open('app/assets/images/placeholder.png'))
+
     agency.account = Account.setup(agency, @temp_agency.email)
-=======
-    agency = Agency.new(name: @temp_agency.name, address: @temp_agency.address, image_url: open('app/assets/images/placeholder.png'))
-    agency.build_account(email: @temp_agency.email,
-                         password: 'password',
-                         password_confirmation: 'password')
->>>>>>> ec956de41f4a73be06212d5f77c0806235211b15
 
     if agency.account
       @temp_agency.destroy
