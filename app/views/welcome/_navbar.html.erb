@@ -83,7 +83,6 @@
             <%= render 'signups/agency_form'%>
         </div>
         <div class="modal-footer">
-          <%= submit_tag 'Submit', class: 'btn linky'%>
         </div>
       </div>      
     </div>
@@ -104,7 +103,7 @@
             <%= render 'signups/business_form' %>
         </div>
         <div class="modal-footer">
-          <%= submit_tag 'Submit', class: 'btn linky'%>
+
         </div>
       </div>      
     </div>
@@ -122,7 +121,7 @@
           <h4 class="modal-title">Neighborhoods Registration</h4>
         </div>
         <div class="modal-body">
-          <%= form_tag(signups_url) do %>
+          <%= form_tag(signups_url, multipart: true) do %>
             <div class="col-sm-6">
               <h4>User</h4>
                <%= fields_for :temp_user, @temp_user do |f| %>
@@ -135,7 +134,7 @@
                   <div class="field">
                     <%= f.text_area :email,:class=>"myPost",placeholder: 'Type @email here...'%>
                     <br> <br>
-                    <%= f.file_field :image_url, type:"file"%><label>Profile Picture</label>
+                    <%= f.file_field :image_url, type:"file"%><label>Credentials</label>
                   </div>
                 </div>
               <% end %>
@@ -145,11 +144,12 @@
               <%= render 'signups/neighborhood_form' %> 
             </div>
             <br><br><br><br><br><br><br><br><br><br>
-          <% end %>
+          
         </div>
         <div class="modal-footer">
-          <%= submit_tag 'Submit', class: 'btn linky'%>
+            <%= submit_tag 'Submit' %>
         </div>
+        <% end %>
       </div>      
     </div>
   </div>  
