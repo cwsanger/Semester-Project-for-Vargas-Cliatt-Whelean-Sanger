@@ -1,11 +1,7 @@
+
 <div class="jumbotron">
   <h1><%= user.name %></h1>
-  <h4><%= user.address %></h4>
-  <a class="btn btn-primary" href="mailto:<%= user.account.email %>">
+  <a class="btn linky" href="mailto:<%= user.account.email %>">
     <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
   </a>
-  <%= link_to user.neighborhood, class:"btn btn-primary" do %>
-    <span class="glyphicon glyphicon-home"></span>
-    <%= user.neighborhood.name %>
-  <% end %>
 </div>
