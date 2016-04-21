@@ -16,7 +16,9 @@ class DirectMessagesController < ApplicationController
     @messages = DirectMessage.where(to_id: [@current_member.id, @to_user.id])
                              .where(from_id: [@current_member.id, @to_user.id])
                              .order(:created_at)
+    @message = DirectMessage.new
   end
+
 
   private
     def set_to_user
