@@ -9,8 +9,7 @@ class Account < ActiveRecord::Base
   #validates :email, presence: true, email: true
 
   def self.random_pass
-    #('!'..'~').to_a.shuffle[0,8].join
-    'asspass'
+    ('!'..'~').to_a.shuffle[0,8].join
   end
 
   def self.setup(member, email)
@@ -28,7 +27,33 @@ class Account < ActiveRecord::Base
 
       AccountNotifier.created(member, email, pass).deliver_now
     end
+
     account
+  end
+
+  def change_pass(old_pass, new_pass)
+    if !self.authenticate(old_pass)
+      return 'Authentication failed.'
+    end
+
+    self.password = new_pass
+    self.password_confirmation = new_pass
+
+    self.save
+
+    return true
+  end
+
+  def request_new_pass
+    new_pass = Account.random_pass
+
+    self.password = new_pass
+    self.password_confirmation = new_pass
+
+    AccountNotifier.password_requested(self.email, new_pass).deliver_now
+
+    self.save
+
   end
 
 end

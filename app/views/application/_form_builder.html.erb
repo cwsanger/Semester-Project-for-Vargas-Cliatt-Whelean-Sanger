@@ -2,9 +2,10 @@
     <%= label_tag param %>
      <hr>
     <% if not text.empty? %>
-      <%= text_field_tag param, nil,placeholder: text,class: 'myPost'%>
+      <%= text_field_tag param, nil,placeholder: text, class: 'myPost'%>
     <% else %>
-      <%= text_field_tag param, nil,placeholder: @current_member.read_attribute("#{param}"), class: 'myPost' %>
+      <%= text_field_tag param, nil, placeholder: 
+          @current_member.read_attribute("#{param}"), class: 'myPost' %>
     <% end %>
     <hr>
     <%= hidden_field_tag 'updateParam', param %>
