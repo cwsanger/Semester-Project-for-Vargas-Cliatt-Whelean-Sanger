@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def comment(post, comment_params)
-    post.comments.build(comment_params.merge(user_id: id))
+    post.comments.build(comment_params.merge(user_id: self.id))
 
     if post.save
       add_points(2)
@@ -42,9 +42,23 @@ class User < ActiveRecord::Base
   end
 
   def like(likeable)
-    if likeable.like(id)
+    if likeable.like(self)
       add_points(1)
     end
+  end
+
+  def unlike(likeable)
+    if likeable.unlike(self)
+      remove_points(1)
+    end
+  end
+
+  def remove_post_callback
+    remove_points(3)
+  end
+
+  def remove_comment_callback
+    remove_points(2)
   end
 
   private
@@ -53,6 +67,14 @@ class User < ActiveRecord::Base
 
       if self.points >= 100 and self.normy?
         self.lead!
+      end
+    end
+
+    def remove_points(value)
+      self.points -= value
+
+      if self.points < 100 and self.lead?
+        self.normy!
       end
     end
 end

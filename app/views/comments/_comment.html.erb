@@ -1,4 +1,11 @@
 <div class="comment">
   <p><%= comment.body %></p>
-  <p><%= link_to "", like_comment_path(comment), method: :put,:class=>'glyphicon glyphicon-hand-right likes' %><%= comment.likes.count %> </p>
+  <p>
+    <%= link_to "", like_comment_path(comment), method: :put,:class=>'glyphicon glyphicon-hand-right likes' %>
+    <%= comment.likes.count %> 
+
+      <%= link_to flag_comment_path(comment), method: :put do %>
+        <span class="glyphicon glyphicon-flag" style="<% if comment.flag? %>color: red;<% end %>"></span>
+      <% end %>
+  </p>
 </div>
