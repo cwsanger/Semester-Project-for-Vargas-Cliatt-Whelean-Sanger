@@ -30,3 +30,7 @@ node_modules/**
 
 # Ignore uploaded test images.
 /public/uploads
+
+# Ignore keys
+/config/application.yml
+/config/secrets.yml
