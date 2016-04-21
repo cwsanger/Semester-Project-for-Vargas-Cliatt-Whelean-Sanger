@@ -11,12 +11,16 @@
       </small>
       <%= link_to "", like_post_path(post), method: :put,:class=>'glyphicon glyphicon-hand-right likes'%>  <%= post.likes.count %>
     </p>
-    <p class="body"><%= post.body %></p>
-   <hr class="postComments">
-
-      <p class="col-xs-offset-4">       
+    <p class="body">
+          <%= post.body %>
+           <hr class="postComments">
+      <div class="col-xs-offset-4">       
         <img src=" <%=post.image_url%>" id="imgSmile<%= post.id %>"></img>
-      </p>
+      </div>
+    </p>
+  
+
+    
    
     <div id="<%= post.id %>x" class="hideComments"><small><%=post.comments.length%> Comments</small></div>
       <div id="<%= post.id %>y" class="theComments">

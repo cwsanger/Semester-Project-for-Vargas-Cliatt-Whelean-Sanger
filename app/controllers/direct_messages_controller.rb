@@ -24,6 +24,6 @@ class DirectMessagesController < ApplicationController
     end
 
     def direct_message_params
-      params.permit(:body)
+      params.permit(:body,:image_url)
     end
 end
