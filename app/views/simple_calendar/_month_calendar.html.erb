@@ -1,10 +1,8 @@
 <%= render 'neighborhoods/navbar' %>
-
 <br />
 <br />
 <br />
 <br />
-
 <div class = "cm col-sm-8 col-sm-offset-1">
   <div class="simple-calendar cm">
     <h3 class="cm"><%= link_to calendar.url_for_previous_view do %>
@@ -53,7 +51,7 @@
     </div>
     <div class="col-sm-2">
       <% unless @current_member.normy? %>
-        <%= button_to "Create Event", new_event_url, method: :get, class: 'btn linky'%></p>
+        <button type="button" class="btn linky" data-toggle="modal" data-target="#myModal">Create Event</button>
       <% end%>
     </div>
   </div>
@@ -83,6 +81,23 @@
     </div>
     <div class="col-sm-1"></div>    
         <div class="rectangleCalendar col-sm-6" spellcheck=false id="eventInfo"></div>    
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Event</h4>
+      </div>
+      <div class="modal-body ">
+        <%= render 'form' %>        
+      </div>
+
+    </div>
+
+  </div>
 </div>
 <script>
 $('.rectangleCalendar').css('min-height', '150px');

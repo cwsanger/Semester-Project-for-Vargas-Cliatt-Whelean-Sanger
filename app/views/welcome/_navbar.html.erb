@@ -83,7 +83,7 @@
             <%= render 'signups/agency_form'%>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Submit', class: 'btn linky'%>
         </div>
       </div>      
     </div>
@@ -97,20 +97,21 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Business Registration</h4>
-        </div>
+          <h4 class="modal-title">Business Registration </h4> 
+       </div>
         <div class="modal-body">
             <div class="col-sm-4"></div>
             <%= render 'signups/business_form' %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Submit', class: 'btn linky'%>
         </div>
       </div>      
     </div>
   </div>  
 </div>
 <!-- /.Modal Neighborhoods-->
+
 <div class="container">
     <div class="modal fade" id="myModal2" role="dialog">
     <div class="modal-dialog">    
@@ -124,20 +125,41 @@
           <%= form_tag(signups_url) do %>
             <div class="col-sm-6">
               <h4>User</h4>
-              <%= render 'signups/user_form' %>  
+               <%= fields_for :temp_user, @temp_user do |f| %>
+                <div class="input-group">
+                <hr>
+                  <div class="field">
+                    <%= f.text_area :name,:class=>"myPost",placeholder: 'Type Name here...'%>
+                  </div>
+                <hr>
+                  <div class="field">
+                    <%= f.text_area :email,:class=>"myPost",placeholder: 'Type @email here...'%>
+                    <br> <br>
+                    <%= f.file_field :image_url, type:"file"%><label>Profile Picture</label>
+                  </div>
+                </div>
+              <% end %>
             </div>
             <div class="col-sm-6">
               <h4>Neighborhood</h4>
               <%= render 'signups/neighborhood_form' %> 
             </div>
-
-            <%= submit_tag 'Submit', class: 'btn linky'%>
+            <br><br><br><br><br><br><br><br><br><br>
           <% end %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Submit', class: 'btn linky'%>
         </div>
       </div>      
     </div>
   </div>  
 </div>
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
+</script>

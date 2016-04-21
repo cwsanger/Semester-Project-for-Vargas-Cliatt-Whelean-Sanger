@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   #  to be uncommented and integrated after the demo
 #  geocoded_by :address
 #  after_validation :geocode
+  
+  mount_uploader :image_url, PictureUploader  
 
   enum role: [:normy, :lead, :hoa]
 

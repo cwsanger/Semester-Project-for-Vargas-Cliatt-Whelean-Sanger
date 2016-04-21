@@ -2,19 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .postArea{
-	  width: 135%;
-	 resize: none;
+  width: 135%;
+  resize: none;
 }
 .post{
 	background-color:#F0F0F0;
-	width: 100%;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #E8E8E8;
 	padding-left: 2vh;
 }
 .myPost{
-	width: 100%;
+  
 	height: 35px;
 	border-style:none;
 	resize: none;
@@ -22,6 +21,22 @@
 }
 .myPost:active{
 	border-style:none;
+	outline:none !important;
+}
+.myPosts{
+	color: white;
+	width: 100%;
+	height: 35px;
+	border-style:none;
+	resize: none;
+	outline: none;
+	background-color:transparent;
+}
+.myPosts::-webkit-input-placeholder {
+	  color: white;
+	}
+.myPosts:active{
+	 border-style:none;
 	 outline:none !important;
 }
 input{
@@ -35,5 +50,96 @@ input{
 	background-color: transparent;
 	text-decoration: none;
 }
+span label{
+	cursor:pointer;
+}
+.picture{
+	margin-left: -10px;
+}
+/*
+			zoom picture
 
+*/
+
+.sz-overlay {
+    position:fixed;
+    display:none;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url('../images/load.gif') center no-repeat #fff;
+}
+.sz-zoomed {
+    display:block;
+    text-decoration: none;
+    background-size:contain!important;
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+    position:fixed;
+    cursor:zoom-out;
+}
+#lightzoomed {
+    opacity:0;
+}
+
+.sz-caption {
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#fff;
+    text-align:center;
+    display:none;
+}
+.sz-caption span {
+    display: inline-block;
+    padding: 5px;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+.sz-close {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    padding: 10px;
+    color: #666;
+    text-decoration: none;
+    font-size: 20px;
+    background: #FFF;
+    border-radius: 25px;
+}
+.sz-left, .sz-right {
+    position: fixed;
+    top: 50%;
+    left:0;
+    margin-top: -25px;
+    text-decoration: none;
+    height: 40px;    
+    width: 5%;
+    background: #FFF;
+    color: #666;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 0 25px 25px 0;
+    display:none;
+}
+
+.sz-right {
+    right:0;
+    left:auto;
+    border-radius: 25px 0 0 25px;
+}
+
+ul {
+    display:inline-block;
+    text-align:left;
+    padding:0;
+    margin:0;
+}
+@media screen and (max-width: 414px){
+    .sz-left, .sz-right {
+        width:50px;
+    }
+}
 

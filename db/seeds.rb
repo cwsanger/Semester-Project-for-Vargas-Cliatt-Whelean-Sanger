@@ -34,16 +34,16 @@ wwf = Neighborhood.create(:name => "World Wrestling Federation", :address => '15
 bikini_bottom = Neighborhood.create(:name => "Bikini Bottom", :address => '300 Rodgers Blvd Honolulu, HI')
 bikini_mexico = Neighborhood.create(:name => "Badsfa", :address => '300 Rsdfaers Blvd Honolulu, HI')
 
-dwayne = User.create(:name => "Dwayne Johnson", :neighborhood_id => wwf.id, :points => 98)
+dwayne = User.create(:name => "Dwayne Johnson", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/rock.jpg'))
 dwayne.build_account(:email => "djohnson@gmail.com", :password => 'password', :password_confirmation=> 'password')
 dwayne.save
-daniel = User.create(:name => "Daniel Bryant", :neighborhood_id => wwf.id, :points => 98)
+daniel = User.create(:name => "Daniel Bryant", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/daniel.jpg'))
 daniel.build_account(:email => "dbryant@gmail.com", :password => 'password', :password_confirmation=> 'password')
 daniel.save
-hunter = User.create(:name => "Hunter Helmsley", :neighborhood_id => wwf.id, :role => 2)
+hunter = User.create(:name => "Hunter Helmsley", :neighborhood_id => wwf.id, :role => 2, :image_url => open('app/assets/images/helm.jpg'))
 hunter.build_account(:email => "hhh@gmail.com", :password => 'password', :password_confirmation=> 'password')
 hunter.save
-shawn = User.create(:name => "Shawn Michaels", :neighborhood_id => wwf.id, :points => 98)
+shawn = User.create(:name => "Shawn Michaels", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/shawn.jpg'))
 shawn.build_account(:email => "smichaels@gmail.com", :password => 'password', :password_confirmation=> 'password')
 shawn.save
 
@@ -90,15 +90,15 @@ Post.create(:category_id => item.id, :body => "Gently used championship belt.", 
 #Post.create(:category_id => item.id, :body => "Selling a lightly used clarinet. Serious replies only.", :user_id => squidward.id)
 
 
-bk = Business.create(:name => "Burger King", :address => "1801 N Ashley Street Valdosta, GA")
+bk = Business.create(:name => "Burger King", :address => "1801 N Ashley Street Valdosta, GA", :image_url => open('app/assets/images/king.png'))
 bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
 bk.save
 bk.neighborhoods << wwf
 
-Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id)
+Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id, :image_url => open('app/assets/images/whopper.png'))
 Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
 
-police = Agency.create(:name => "The Police Dept.", :address => "500 N Toombs St Valdosta, GA")
+police = Agency.create(:name => "The Police Dept.",  :address => "500 N Toombs St Valdosta, GA", :image_url => open('app/assets/images/police.png'))
 police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")
 police.save
 

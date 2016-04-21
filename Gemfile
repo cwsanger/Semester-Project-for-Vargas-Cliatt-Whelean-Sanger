@@ -59,6 +59,9 @@ group :development, :test do
   gem 'byebug'
 end
 
+#carrier wave
+gem 'carrierwave'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -67,6 +70,11 @@ group :development do
   gem 'spring'
   gem 'sqlite3'
 end
+#file upload styling
+gem 'bootstrap-filestyle-rails'
+
+#zoom images
+ gem 'elevatezoom-rails'
 
 group :production do
   gem 'pg', '0.15.1'
