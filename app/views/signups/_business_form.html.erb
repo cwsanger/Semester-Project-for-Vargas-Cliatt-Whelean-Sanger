@@ -1,4 +1,4 @@
-<%= form_tag(signups_create_business_url) do %>
+<%= form_tag(signups_create_business_url, multipart: true) do %>
   <div>
     <%= fields_for :temp_business, @temp_business do |f| %>
       <div class="input-group">
