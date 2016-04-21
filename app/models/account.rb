@@ -9,8 +9,7 @@ class Account < ActiveRecord::Base
   #validates :email, presence: true, email: true
 
   def self.random_pass
-    #('!'..'~').to_a.shuffle[0,8].join
-    'asspass'
+    ('!'..'~').to_a.shuffle[0,8].join
   end
 
   def self.setup(member, email)
