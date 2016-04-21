@@ -53,6 +53,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def remove_post_callback
+    remove_points(3)
+  end
+
+  def remove_comment_callback
+    remove_points(2)
+  end
+
   private
     def add_points(value)
       self.points += value
@@ -63,7 +71,7 @@ class User < ActiveRecord::Base
     end
 
     def remove_points(value)
-      self.points += value
+      self.points -= value
 
       if self.points < 100 and self.lead?
         self.normy!

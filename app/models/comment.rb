@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  before_destroy :user_remove_comment_callback
+
   enum status: [:no_flag, :flag]
 
   belongs_to :user
@@ -23,4 +25,11 @@ class Comment < ActiveRecord::Base
 
     return save
   end
+
+  private
+    def user_remove_comment_callback
+      u = self.user
+      u.remove_comment_callback
+      u.save
+    end
 end

@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  before_destroy :user_remove_post_callback
+
   enum status: [:no_flag, :flag]
 
   belongs_to :user
@@ -24,4 +26,11 @@ class Post < ActiveRecord::Base
 
     return save
   end
+
+  private
+    def user_remove_post_callback
+      u = self.user
+      u.remove_post_callback
+      u.save
+    end
 end
