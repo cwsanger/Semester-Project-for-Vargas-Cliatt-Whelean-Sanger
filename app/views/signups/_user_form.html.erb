@@ -1,20 +1,7 @@
-<%= render partial:'welcome/navbar'%>
-<br><br><br>
-<script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
- 
-
-<script >
-  $(document).ready(function () {
-
-    $(".player").mb_YTPlayer();
-    //https://www.youtube.com/watch?v=MtCMtC50gwY
-});
-</script>
-
 <section class="content-section video-section">
   <div class="pattern-overlay">
   <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=4Wee4LASqvE',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
-  <br><br> <br><br> <br><br>   
+  <br><br> <br><br> <br><br>
     <div class="container">
      <div class="col-md-offset-5">
         <%= fields_for :temp_user, @temp_user do |f| %>
@@ -23,20 +10,15 @@
             <div class="field">
               <%= f.text_area :name,:class=>"myPosts",placeholder: 'Type Name here...'%>
             </div>
-          <hr>  
+          <hr>
             <div class="field">
               <%= f.text_area :email,:class=>"myPosts",placeholder: 'Type @email here...'%>
             </div>
-          <hr> 
+          <hr>
           </div>
             <%= submit_tag 'Submit', class: 'btn linky' %>
         <% end %>
-        
-
       </div>
-    </div>  
+    </div>
   </div>
 </section>
-<footer class="footer">
-  <%= render partial:'welcome/footer'%>
-</footer>

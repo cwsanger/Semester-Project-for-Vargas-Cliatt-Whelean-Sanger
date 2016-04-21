@@ -1,4 +1,20 @@
+<%= render partial:'welcome/navbar'%>
+<br><br><br>
+<script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
+
+
+<script >
+  $(document).ready(function () {
+
+    $(".player").mb_YTPlayer();
+    //https://www.youtube.com/watch?v=MtCMtC50gwY
+});
+</script>
+
 <%= form_tag(signups_join_url(@neighborhood))  do%>
   <%= render 'user_form' %>
 
+  <footer class="footer">
+    <%= render partial:'welcome/footer'%>
+  </footer>
 <% end %>
