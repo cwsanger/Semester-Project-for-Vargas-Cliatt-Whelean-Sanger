@@ -27,3 +27,9 @@ node_modules/**
 
 # Ignore image uploads
 /uploads
+
+# Ignore uploaded test images.
+/public/uploads
+
+# Ignore keys
+/config/secrets.yml
