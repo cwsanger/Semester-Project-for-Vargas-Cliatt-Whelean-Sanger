@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160420054322) do
-=======
 ActiveRecord::Schema.define(version: 20160421011417) do
->>>>>>> 5e1108621f00574c41e899b90566de5c4cd3d254
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -44,16 +40,15 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
     t.string   "address"
     t.float    "longitude"
     t.float    "latitude"
+    t.string   "image_url"
   end
 
   create_table "agencies_neighborhoods", force: :cascade do |t|
     t.integer "agency_id"
     t.integer "neighborhood_id"
-    t.string   "image_url"
   end
 
   create_table "alerts", force: :cascade do |t|
@@ -99,8 +94,6 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "status",     default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string   "image_url"
   end
 
@@ -171,6 +164,7 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.datetime "updated_at",              null: false
     t.integer  "user_id"
     t.integer  "category_id"
+    t.string   "image_url"
     t.integer  "status",      default: 0
   end
 
@@ -180,7 +174,6 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.integer  "neighborhood_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "image_url"
   end
 
   create_table "temp_agencies", force: :cascade do |t|

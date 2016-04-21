@@ -43,10 +43,7 @@ class AdminsController < ApplicationController
 
   def accept_business
 
-    #business = Business.create(name: @temp_business.name)
-
-    #THIS SHOULD BE Business.create!!! Right??????
-    business = Business.new(name: @temp_business.name,
+    business = Business.create(name: @temp_business.name,
                             address: @temp_business.address,
                             image_url: open('app/assets/images/placeholder.png'))
 
@@ -71,10 +68,7 @@ class AdminsController < ApplicationController
 
   def accept_agency
 
-    #agency = Agency.create(name: @temp_agency.name)
-
-    #THIS should be Agency.create!!!! RIGHT?????
-    agency = Agency.new(name: @temp_agency.name,
+    agency = Agency.create(name: @temp_agency.name,
                         address: @temp_agency.address,
                         image_url: open('app/assets/images/placeholder.png'))
 
