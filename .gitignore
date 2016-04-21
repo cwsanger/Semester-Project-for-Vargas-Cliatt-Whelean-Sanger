@@ -32,5 +32,4 @@ node_modules/**
 /public/uploads
 
 # Ignore keys
-/config/application.yml
 /config/secrets.yml
