@@ -27,11 +27,22 @@ class AccountNotifier < ApplicationMailer
   #   en.account_notifier.updated.subject
   #
   def updated(account)
-    @greeting = "Hi"
 
     mail to: account.email, subject: 'Account was updated' do |format|
       format.html
     end
 
   end
+
+
+  def password_requested(email, password)
+
+    @password = password
+
+    mail to: email, subject: 'New password requested' do |format|
+      format.html
+    end
+
+  end
+
 end

@@ -28,7 +28,33 @@ class Account < ActiveRecord::Base
 
       AccountNotifier.created(member, email, pass).deliver_now
     end
+
     account
+  end
+
+  def change_pass(old_pass, new_pass)
+    if !self.authenticate(old_pass)
+      return 'Authentication failed.'
+    end
+
+    self.password = new_pass
+    self.password_confirmation = new_pass
+
+    self.save
+
+    return true
+  end
+
+  def request_new_pass
+    new_pass = Account.random_pass
+
+    self.password = new_pass
+    self.password_confirmation = new_pass
+
+    AccountNotifier.password_requested(self.email, new_pass).deliver_now
+
+    self.save
+
   end
 
 end

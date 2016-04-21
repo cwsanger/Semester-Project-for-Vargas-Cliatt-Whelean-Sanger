@@ -56,6 +56,29 @@ class UsersController < ApplicationController
     paramName = params[:updateParam]
     paramValue = params[ paramName ]
 
+    if paramName == 'password'
+
+      old_pass = params[:old_pass]
+      new_pass = params[:new_pass]
+
+      status = @current_member.account.change_pass(old_pass, new_pass)
+
+      if status == true
+        puts "\n\n\n#{status}\n\n\n"
+        notice = 'Password successfully changed!'
+      else
+        puts "\n\n\n#{status} for password: '#{old_pass}'\n\n\n"
+        notice = 'Password could not be!'
+      end
+
+      respond_to do |format|
+        format.html { redirect_to edit_user_path(@current_member), notice: notice }
+        format.json { render :edit, status: :ok, location: @current_member }
+      end
+
+      return
+    end
+
     #Make sure the parameter to be updated is one we have whitelisted
     if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
 
