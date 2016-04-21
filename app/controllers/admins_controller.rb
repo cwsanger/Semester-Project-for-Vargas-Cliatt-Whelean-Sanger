@@ -37,7 +37,7 @@ class AdminsController < ApplicationController
   end
 
   def accept_business
-    business = Business.new(name: @temp_business.name)
+    business = Business.new(name: @temp_business.name, address: @temp_business.address)
     business.build_account(email: @temp_business.email,
                            password: 'password',
                            password_confirmation: 'password')
@@ -58,10 +58,10 @@ class AdminsController < ApplicationController
   end
 
   def accept_agency
-    agency = Agency.new(name: @temp_agency.name)
+    agency = Agency.new(name: @temp_agency.name, address: @temp_agency.address)
     agency.build_account(email: @temp_agency.email,
-                           password: 'password',
-                           password_confirmation: 'password')
+                         password: 'password',
+                         password_confirmation: 'password')
 
     if agency.save
       @temp_agency.destroy

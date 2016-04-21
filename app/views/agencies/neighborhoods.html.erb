@@ -21,7 +21,7 @@
           <td>Joined</td>
         </tr>
       <% end %>
-      <% (@neighborhoods - @agency.neighborhoods).each do |neighborhood| %>
+      <% ((@neighborhoods - @requested_neighborhoods) - @agency.neighborhoods).each do |neighborhood| %>
         <tr>
           <td><%= neighborhood.name %></td>
           <td><%= button_to "Request", agency_join_request_url(@agency, neighborhood.id), class: :post %></td>
