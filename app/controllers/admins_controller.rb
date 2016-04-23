@@ -14,7 +14,7 @@ class AdminsController < ApplicationController
   def accept_user
     hood = @temp_user.hood
     neighborhood = Neighborhood.create(name: hood.name, address: hood.address)
-    user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id, image_url: open('app/assets/images/placeholder.png'))
+    user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id, image_url: open('app/assets/images/placeholder.png'), role: User.roles[:lead])
     user.build_account(email: @temp_user.email,
                        password: 'password',
                        password_confirmation: 'password')
