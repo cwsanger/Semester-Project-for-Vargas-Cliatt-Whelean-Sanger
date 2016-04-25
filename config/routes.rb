@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     get 'about' => :about
     get 'contact' => :contact
     get 'doc' => :doc
+    get 'password', as: 'password_request'
+    post 'password' => :request_pass
   end
 
   resources :alerts

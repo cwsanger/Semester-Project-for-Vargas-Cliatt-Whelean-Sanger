@@ -68,6 +68,25 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def request_pass
+    success = false
+    account = Account.find_by email: params[:email]
+
+    if !account.nil?
+      success = true
+      account.request_new_pass
+    end
+
+    respond_to do |format|
+      if success
+        format.html { redirect_to password_request_path, notice: 'New password requested' }
+      else
+        format.html { redirect_to password_request_path, alert: 'Email not found!' }
+      end
+    end
+
+  end
+
   private
 
     def account_validated?(type)

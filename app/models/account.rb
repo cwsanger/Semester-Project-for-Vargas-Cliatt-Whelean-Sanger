@@ -47,7 +47,7 @@ class Account < ActiveRecord::Base
 
   def change_pass(old_pass, new_pass)
     if !self.authenticate(old_pass)
-      return 'Authentication failed.'
+      return false
     end
 
     self.password = new_pass
@@ -63,11 +63,9 @@ class Account < ActiveRecord::Base
 
     self.password = new_pass
     self.password_confirmation = new_pass
-
-    AccountNotifier.password_requested(self.email, new_pass).deliver_now
-
     self.save
 
+    AccountNotifier.password_requested(self.email, new_pass).deliver_now
   end
 
 end
