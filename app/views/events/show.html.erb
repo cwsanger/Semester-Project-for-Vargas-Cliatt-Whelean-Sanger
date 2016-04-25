@@ -1,7 +1,14 @@
 <%= render partial:'neighborhoods/navbar'%>
-<div class='backDiv2'></div>
+<br />
+<br />
+<br />
+<br />
 
-<div class="container centralBox">
+<div class="row">
+  cool<%= image_tag(@event.image_url, :width => 120,:height=>120) if @event.image_url.present?  %>
+</div>
+
+<div class="row">
 	<p>
 	  <strong>Name:</strong>
 	  <%= @event.name %>
