@@ -15,6 +15,11 @@ class AdminsController < ApplicationController
     hood = @temp_user.hood
     neighborhood = Neighborhood.create(name: hood.name, address: hood.address)
 
+    #code from master
+    #
+    #user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id, image_url: open('app/assets/images/placeholder.png'), role: User.roles[:lead])
+
+    #my code
     user = User.create(name: @temp_user.name,
                        neighborhood_id: neighborhood.id,
                        image_url: open('app/assets/images/placeholder.png'))
