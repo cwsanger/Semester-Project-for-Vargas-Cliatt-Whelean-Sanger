@@ -23,6 +23,16 @@ class NeighborhoodsController < ApplicationController
     @post = Post.new
   end
 
+  def category
+    @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
+    @category = Category.find(params[:id])
+    @posts = Post.where(category_id: @category.id)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def admin
     @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
     auth @neighborhood
