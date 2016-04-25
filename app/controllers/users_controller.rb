@@ -56,47 +56,42 @@ class UsersController < ApplicationController
     paramName = params[:updateParam]
     paramValue = params[ paramName ]
 
-    if paramName == 'password'
-
-      old_pass = params[:old_pass]
-      new_pass = params[:new_pass]
-
-      status = @current_member.account.change_pass(old_pass, new_pass)
-
-      if status == true
-        puts "\n\n\n#{status}\n\n\n"
-        notice = 'Password successfully changed!'
-      else
-        puts "\n\n\n#{status} for password: '#{old_pass}'\n\n\n"
-        notice = 'Password could not be!'
-      end
-
-      respond_to do |format|
-        format.html { redirect_to edit_user_path(@current_member), notice: notice }
-        format.json { render :edit, status: :ok, location: @current_member }
-      end
-
-      return
-    end
-
     #Make sure the parameter to be updated is one we have whitelisted
     if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
 
       if paramName == 'email'
         @current_member.account.update_attribute(paramName, paramValue)
-        notice = 'good job, admin was updated'
+        notice = 'Email updated!'
       else
         @current_member.update_attribute(paramName, paramValue)
-        notice = 'good job, user was updated'
+        notice = 'Update successful!'
       end
+
+    elsif paramName == 'password'
+
+      old_pass = params[:old_pass]
+      new_pass = params[:new_pass]
+
+      if @current_member.account.authenticate(old_pass)
+
+        if @current_member.account.change_pass(old_pass, new_pass)
+          notice = 'Password successfully changed!'
+        else
+          alert = 'Something went wrong.'
+        end
+
+      else
+        alert = 'Current password was incorrect!'
+      end
+
     elsif paramValue.empty?
-      notice = 'Your ' + paramName + ' can not be blank.'
+      notice = 'Bad request can not be blank.'
     else
-      notice = 'Unexpected parameter'
+      notice = 'Bad request'
     end
 
     respond_to do |format|
-      format.html { redirect_to edit_user_path(@current_member), notice: notice }
+      format.html { redirect_to edit_user_path(@current_member), notice: notice, alert: alert }
       format.json { render :edit, status: :ok, location: @current_member }
     end
 
