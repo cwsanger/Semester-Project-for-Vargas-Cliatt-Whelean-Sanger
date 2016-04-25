@@ -1,23 +1,20 @@
 <div class="message">
-	<br>
-	<% if message.user.id == @current_member.id %>
-		<div class="talk-bubble tri-right round btm-left">
-		  <div class="talktext">
-		    <p class="messageSent"><%= message.body %></p>
-		  </div>
-		</div>
-		<br>
-		<%= image_tag(message.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if message.user.image_url.present?  %>
-	<% else %>
-	<div class="col-sm-8"></div>
-		<div class="talk-bubble tri-right round btm-right" style="background-color: green">
-		  <div class="talktext">
-		    <p class="messageSent"><%= message.body %></p>
-		  </div>
-		</div>
-		<br>
-		 <div class="col-md-10"></div><%= image_tag(message.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if message.user.image_url.present?  %>
-	<% end %>	
+  <br>
+  <% if message.user_id == @current_member.id %>
+  <div class="talk-bubble tri-right round btm-left">
+  <% else %>
+  <div class="col-sm-8"></div>
+  <div class="talk-bubble tri-right round btm-right" style="background-color: green;">
+  <% end %>
+    <div class="talktext">
+      <p class="messageSent"><%= message.body %></p>
+    </div>
+  </div>
+  <br>
+  <% unless message.user_id == @current_member.id %>
+    <div class="col-md-11"></div>
+  <% end %>
+  <%= image_tag(message.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if message.user.image_url.present?  %>
 <br> 
 </div>
 <script>
