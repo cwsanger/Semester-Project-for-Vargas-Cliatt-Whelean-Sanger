@@ -4,9 +4,18 @@ class Account < ActiveRecord::Base
   belongs_to :member, polymorphic: true
 
   validates :email, presence: true, uniqueness: true, email: true
-  # Only for testing the email sending feature,
-  # uncomment below, comment out above
-  #validates :email, presence: true, email: true
+
+  def self.email_taken(email)
+
+    if Account.exists?(email: email) ||
+       TempUser.exists?(email: email) ||
+       TempAgency.exists?(email: email) ||
+       TempBusiness.exists?(email: email)
+      return true
+    end
+
+    return false
+  end
 
   def self.random_pass
     ('!'..'~').to_a.shuffle[0,8].join
