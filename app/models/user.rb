@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   #  to be uncommented and integrated after the demo
 #  geocoded_by :address
 #  after_validation :geocode
-  
-  mount_uploader :image_url, PictureUploader  
+
+  mount_uploader :image_url, PictureUploader
 
   enum role: [:normy, :lead, :hoa]
 
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 #  validates :address, presence: true
 
-  def is_in_group(group)
+  def is_in_group?(group)
     self.groups.inject(false) {|acc, g| acc || (g.id == group.id)}
   end
 
