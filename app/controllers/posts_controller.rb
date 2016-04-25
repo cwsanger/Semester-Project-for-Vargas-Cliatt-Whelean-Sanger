@@ -48,8 +48,10 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @current_member.save
           format.html { redirect_to @current_member.neighborhood }
+          format.js { render action: 'flag' }
         else
           format.html { redirect_to @current_member.neighborhood, alert: 'you are bad' }
+          format.js { render action: 'flag' }
       end
     end
   end
