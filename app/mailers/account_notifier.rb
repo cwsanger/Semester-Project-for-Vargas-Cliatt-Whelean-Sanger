@@ -45,4 +45,20 @@ class AccountNotifier < ApplicationMailer
 
   end
 
+  def became_lead(user)
+    @name = user.name
+    @neighborhood = user.neighborhood.name
+    mail to: user.account.email, subject: "You've got a new role!" do |format|
+      format.html
+    end
+  end
+
+  def lost_lead(user)
+    @name = user.name
+    @neighborhood = user.neighborhood.name
+    mail to: user.account.email, subject: "You've lost the lead role!" do |format|
+      format.html
+    end
+  end
+
 end
