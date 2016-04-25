@@ -3,84 +3,79 @@
 <br />
 <br />
 <br />
-<div class = "cm col-sm-8 col-sm-offset-1">
-  <div class="simple-calendar cm">
-    <h3 class="cm"><%= link_to calendar.url_for_previous_view do %>
-      <i id="monthLeft"class="linkTo glyphicon glyphicon-chevron-left"></i>
-    <% end %>
-    <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
-    <%= link_to calendar.url_for_next_view do %>
-      <i id="monthRight" class="linkTo glyphicon glyphicon-chevron-right"></i>
-    <% end %>
-    </h3>
+<div class = "row">
+  <div class = "col-sm-8 col-sm-offset-1">
+    <div class="simple-calendar">
+      <h3><%= link_to calendar.url_for_previous_view do %>
+        <i id="monthLeft"class="linkTo glyphicon glyphicon-chevron-left"></i>
+      <% end %>
+      <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
+      <%= link_to calendar.url_for_next_view do %>
+        <i id="monthRight" class="linkTo glyphicon glyphicon-chevron-right"></i>
+      <% end %>
+      </h3>
 
-    <table class="table table-bordered" id="mytable">
-      <thead>
-        <tr>
-          <% date_range.slice(0, 7).each do |day| %>
-            <th><%= I18n.t("date.abbr_day_names")[day.wday] %></th>
-          <% end %>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% date_range.each_slice(7) do |week| %>
+      <table class="table table-bordered" id="mytable">
+        <thead>
           <tr>
-            <% week.each do |day| %>
-              <%= content_tag :td, class: [calendar.td_classes_for(day), "selectable"] do %>
-                <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
-                  <% capture_haml do %>
-                    <% block.call day, sorted_events.fetch(day, []) %>
-                  <% end %>
-                <% else %>
-                  <% block.call day, sorted_events.fetch(day, []) %>
-                <% end %>
-
-              <% end %>
+            <% date_range.slice(0, 7).each do |day| %>
+              <th><%= I18n.t("date.abbr_day_names")[day.wday] %></th>
             <% end %>
           </tr>
+        </thead>
+
+        <tbody>
+          <% date_range.each_slice(7) do |week| %>
+            <tr>
+              <% week.each do |day| %>
+                <%= content_tag :td, class: [calendar.td_classes_for(day), "selectable"] do %>
+                  <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
+                    <% capture_haml do %>
+                      <% block.call day, sorted_events.fetch(day, []) %>
+                    <% end %>
+                  <% else %>
+                    <% block.call day, sorted_events.fetch(day, []) %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="scrolling col-sm-3">
+    <h2><u><%= I18n.t("date.month_names")[start_date.month] %> Events</u></h2>
+    <table class="table table-striped">
+      <tbody>
+        <% @events.each do |event| %>
+          <% if event.start_time.month == Date::MONTHNAMES.index(I18n.t("date.month_names")[start_date.month]) %>
+            <th>
+              <h4><%= event.name %>
+                <%= link_to event_url(event), method: :get do %>
+                  <i class="linkTo glyphicon glyphicon-link"></i>
+                <% end %>
+              </h4>
+            </th>
+            <tr><td><%= event.body %></td></tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
   </div>
-    <div class="col-sm-3">
-
-    </div>
-    <div class="col-sm-7">
-
-    </div>
-    <div class="col-sm-2">
-      <% unless @current_member.normy? %>
-        <button type="button" class="btn linky" data-toggle="modal" data-target="#myModal">Create Event</button>
-      <% end%>
-    </div>
+</div>
+<div class="row">
+  <div class="container">
+      <div class="squareCalendar col-sm-2">
+          <p id="dayEvent"></p>
+      </div>
+      <div class="rectangleCalendar col-sm-6 col-sm-offset-1" spellcheck=false id="eventInfo"></div>
+      <div class="col-sm-3">
+        <% unless @current_member.normy? %>
+          <button type="button" class="btn linky" data-toggle="modal" data-target="#myModal">Create Event</button>
+        <% end%>
+      </div>
   </div>
-</div>
-<div class="scrolling col-sm-3">
-  <h2><u><%= I18n.t("date.month_names")[start_date.month] %> Events</u></h2>
-  <table class="table table-striped">
-    <tbody>
-      <% @events.each do |event| %>
-        <% if event.start_time.month == Date::MONTHNAMES.index(I18n.t("date.month_names")[start_date.month]) %>
-          <th>
-            <h4 class="cm"><%= event.name %>
-              <%= link_to event_url(event), method: :get do %>
-                <i class="linkTo glyphicon glyphicon-link"></i>
-              <% end %>
-            </h4>
-          </th>
-          <tr><td><%= event.body %></td></tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-<div class="container">
-    <div class="squareCalendar col-sm-2 col-sm-offset-1">
-        <p id="dayEvent"></p>
-    </div>
-    <div class="col-sm-1"></div>    
-        <div class="rectangleCalendar col-sm-6" spellcheck=false id="eventInfo"></div>    
 </div>
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -92,7 +87,7 @@
         <h4 class="modal-title">Create Event</h4>
       </div>
       <div class="modal-body ">
-        <%= render 'form' %>        
+        <%= render 'form' %>
       </div>
 
     </div>
@@ -100,8 +95,8 @@
   </div>
 </div>
 <script>
-$('.rectangleCalendar').css('min-height', '150px');
-  $("#mytable .selectable").hover(function() {
+  $('.rectangleCalendar').css('min-height', '150px');
+  $("#mytable .selectable").click(function() {
      $( ".para" ).detach();
       //alert($(this).find(".myDay").html());
       var day = $(this).find(".myDay").html();
@@ -109,7 +104,7 @@ $('.rectangleCalendar').css('min-height', '150px');
       var events = []
       var string = "";
       $(this).each(function( index ) {
-         string= $(this).find('#eventName').text();        
+         string= $(this).find('#eventName').text();
       });
       //alert(string);
       events = string.split(".");
@@ -119,8 +114,8 @@ $('.rectangleCalendar').css('min-height', '150px');
           if(count<events.length){
             paragraph += '<p class="para">'+count+". "+events[i]+'</p>';
             count++;
-          }        
+          }
       }
-      $('.rectangleCalendar').append(paragraph);       
-  }); 
+      $('.rectangleCalendar').append(paragraph);
+  });
 </script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421011417) do
+ActiveRecord::Schema.define(version: 20160425061925) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
     t.string   "address"
     t.float    "longitude"
     t.float    "latitude"
@@ -48,7 +49,6 @@ ActiveRecord::Schema.define(version: 20160421011417) do
   create_table "agencies_neighborhoods", force: :cascade do |t|
     t.integer "agency_id"
     t.integer "neighborhood_id"
-    t.string   "image_url"
   end
 
   create_table "alerts", force: :cascade do |t|
@@ -70,10 +70,10 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
     t.string   "address"
     t.float    "longitude"
     t.float    "latitude"
-    t.string   "image_url"
   end
 
   create_table "businesses_neighborhoods", force: :cascade do |t|
@@ -94,8 +94,6 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "status",     default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string   "image_url"
   end
 
@@ -118,6 +116,9 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "image_url"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -166,6 +167,7 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.datetime "updated_at",              null: false
     t.integer  "user_id"
     t.integer  "category_id"
+    t.string   "image_url"
     t.integer  "status",      default: 0
   end
 
@@ -175,7 +177,6 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.integer  "neighborhood_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "image_url"
   end
 
   create_table "temp_agencies", force: :cascade do |t|

@@ -93,7 +93,7 @@
 #eventInfo{
   background: #ff4c4c;
   color: white;
-  border-color:#ff4c4c; 
+  border-color:#ff4c4c;
   resize: auto;
   font-size: 24px;
   outline: none !important;
@@ -111,4 +111,8 @@ a.i.linkTo:hover{
 }
 a.i.linkTo{
     color: inherit;
+}
+
+#map {
+  height: 400px;
 }
