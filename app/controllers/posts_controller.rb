@@ -3,13 +3,18 @@ class PostsController < ApplicationController
 
   def create
     @current_member.post(post_params)
+    @posts = Post.joins(:user)
+                 .where(users: { neighborhood_id: @current_member.neighborhood_id })
+                 .order(created_at: :desc)
 
     respond_to do |format|
       if @current_member.save
         format.html { redirect_to @current_member.neighborhood }
+        format.js
       else
         format.html { redirect_to @current_member.neighborhood, notice: 'you are bad' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
