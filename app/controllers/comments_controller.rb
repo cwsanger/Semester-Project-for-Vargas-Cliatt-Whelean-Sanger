@@ -8,8 +8,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @current_member.save
         format.html { redirect_to @current_member.neighborhood }
+        format.js
       else
         format.html { redirect_to @current_member,neighborhood, notice: 'your comments are bad' }
+        format.js
       end
     end
   end

@@ -25,13 +25,12 @@
 
     
    
-    <div id="<%= post.id %>x" class="hideComments"><small><%=post.comments.length%> Comments</small></div>
+    <div id="<%= post.id %>x" class="hideComments"><small id="post-comment-length<%= post.id %>"><%=post.comments.length%> Comments</small></div>
       <div id="<%= post.id %>y" class="theComments">
         <hr class="hrComments">
-        <% post.comments.each do |comment| %>
-            <%= render comment %>
-            <hr class="hrComments">
-        <% end %>
+        <div id="comment-list<%= post.id %>">
+          <%= render partial: 'comments/comment_list', locals: { post: post } %>
+        </div>
     </div>
      <hr class="postComments">
     <%= render partial: 'neighborhoods/create_comment', locals: { post: post } %> 
