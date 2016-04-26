@@ -5,18 +5,6 @@ class Account < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true, email: true
 
-  def self.email_taken(email)
-
-    if Account.exists?(email: email) ||
-       TempUser.exists?(email: email) ||
-       TempAgency.exists?(email: email) ||
-       TempBusiness.exists?(email: email)
-      return true
-    end
-
-    return false
-  end
-
   def self.random_pass
     ('!'..'~').to_a.shuffle[0,8].join
   end
@@ -26,10 +14,7 @@ class Account < ActiveRecord::Base
     account = new(email: email, password: pass, password_confirmation: pass)
 
     if account.save
-
       type = 'User'
-
-      puts "\n\n\nACCOUNT.SETUP Made account\n\n"
 
       if member.is_a? Business
         type = 'Business'
@@ -51,8 +36,6 @@ class Account < ActiveRecord::Base
     end
 
     self.password = new_pass
-    self.password_confirmation = new_pass
-
     self.save
 
     return true
@@ -62,7 +45,6 @@ class Account < ActiveRecord::Base
     new_pass = Account.random_pass
 
     self.password = new_pass
-    self.password_confirmation = new_pass
     self.save
 
     AccountNotifier.password_requested(self.email, new_pass).deliver_now

@@ -1,4 +1,5 @@
 class AgenciesController < ApplicationController
+  include UpdateHelper
   before_action :set_agency, only: [:show, :edit, :update, :destroy]
 
   # GET /agencies
@@ -45,30 +46,8 @@ class AgenciesController < ApplicationController
   # PATCH/PUT /agencies/1.json
   def update
 
-    paramName = params[:updateParam]
-    paramValue = params[ paramName ]
+    update_account(@current_member, params[:updateParam], params)
 
-    #Make sure the parameter to be updated is one we have whitelisted
-    if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
-
-      if paramName == 'email'
-        @current_member.account.update_attribute(paramName, paramValue)
-        notice = 'good job, admin was updated'
-      else
-        @current_member.update_attribute(paramName, paramValue)
-        notice = 'good job, agency was updated'
-      end
-
-    elsif paramValue.empty?
-      notice = 'Your ' + paramName + ' can not be blank.'
-    else
-      notice = 'Unexpected parameter'
-    end
-
-    respond_to do |format|
-      format.html { redirect_to edit_agency_path(@current_member), notice: notice }
-      format.json { render :edit, status: :ok, location: @current_member }
-    end
   end
 
   # DELETE /agencies/1
