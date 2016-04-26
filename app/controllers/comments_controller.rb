@@ -24,8 +24,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @current_member.save
         format.html { redirect_to @current_member.neighborhood }
+        format.js { render action: 'rerender_comment' }
       else
         format.html { redirect_to @currnet_user.neighborhood, notice: 'your like was bad' }
+        format.js { render action: 'rerender_comment' }
       end
     end
 
@@ -37,8 +39,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @current_member.neighborhood }
+        format.js { render action: 'rerender_comment' }
       else
         format.html { redirect_to @current_member.neighborhood, alert: 'you are bad' }
+        format.js { render action: 'rerender_comment' }
       end
     end
   end
