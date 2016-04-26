@@ -1,0 +1,177 @@
+<%= render 'navbar' %>
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#a" data-toggle="tab">Users</a></li>
+    <li><a href="#b" data-toggle="tab">Businesses</a></li>
+    <li><a href="#c" data-toggle="tab">Agencies</a></li>
+    <li><a href="#d" data-toggle="tab">Admins</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="a">
+      <table class="table table-bordered">
+        <center><h1>Users</h1></center>
+
+        <tr>
+            <th><center>Log in</center></th>
+            <th><center>Name</center></th>
+            <th><center>Email</center></th>
+            <th><center>Neighborhood</center></th>
+            <th><center>Picture</center></th>
+        </tr>
+
+        <% @users.each do |user| %>
+          <tr>
+            <td><center>
+                <%= button_to 'Log in', 
+                  {controller: "demo", action: "demo_login", id: user.account.id},
+                  method: :post, class: 'btn btn-linky'
+                %>
+            </center</td>
+            <td><center><%= user.name %></center></td>
+            <td><center><%= user.account.email %></center></td>
+            <td><center><%= user.neighborhood.name %></center></td>
+            <td><center>
+                <a href=""data-toggle="modal" data-target="#myModal<%= user.id %>">
+                  <%= image_tag(user.image_url, 
+                                width: 40 , height: 50, 
+                                class:"img-center verification") if user.image_url.present? %>
+                </a></center></td>
+          </tr>
+
+          <div id="myModal<%= user.id %>" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">User Picture</h4>
+                </div>
+                <div class="modal-body ">
+                  <%= image_tag(user.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center verification") if user.image_url.present?  %>        
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="b">
+      <table class="table table-bordered">
+        <center><h1>Business</h1></center>
+        <hr>
+
+        <tr>
+            <th><center>Name</center></th>
+            <th><center>Email</center></th>
+            <th><center>Verification</center></th>
+        </tr>
+        <% @businesses.each do |business| %>
+          <tr>
+            <td><center>
+                <%= button_to 'Log in', 
+                  {controller: "demo", action: "demo_login", id: business.account.id},
+                  method: :post, class: 'btn btn-linky'
+                %>
+            </center</td>
+            <td><center><%= business.name %></center></td>
+            <td><center><%= business.account.email %></center></td>
+            <td><center>
+                <a href=""data-toggle="modal" data-target="#myModal<%= business.id %>">
+                  <%= image_tag(business.image_url, 
+                                width: 40 , height: 50, 
+                                class:"img-center verification") if business.image_url.present? %>
+                </a></center></td>
+          </tr>
+
+          <div id="myModal<%= business.id %>" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Business picture</h4>
+                </div>
+                <div class="modal-body ">
+                  <%= image_tag(business.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center verification") if business.image_url.present?  %>        
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="c">
+      <table class="table table-bordered">
+        <center><h1>Agencies</h1></center>
+        <hr>
+        <tr>
+          <th><center>Name</center></th>
+          <th><center>Email</center></th>
+          <th><center>Verification</center></th>
+        </tr>
+        <% @agencies.each do |agency| %>
+          <tr>
+            <td><center>
+                <%= button_to 'Log in', 
+                  {controller: "demo", action: "demo_login", id: agency.account.id},
+                  method: :post, class: 'btn btn-linky'
+                %>
+            </center</td>
+            <td><center><%= agency.name %></center></td>
+            <td><center><%= agency.account.email %></center></td>
+            <td><center>
+                <a href=""data-toggle="modal" data-target="#myModal<%= agency.id %>">
+                  <%= image_tag(agency.image_url, 
+                                width: 40 , height: 50, 
+                                class:"img-center verification") if agency.image_url.present? %>
+                </a></center></td>
+          </tr>
+
+          <div id="myModal<%= agency.id %>" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Agency picture</h4>
+                </div>
+                <div class="modal-body ">
+                  <%= image_tag(agency.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center verification") if agency.image_url.present?  %>        
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="d">
+      <table class="table table-bordered">
+        <center><h1>Admins</h1></center>
+
+        <tr>
+            <th><center>Log in</center></th>
+            <th><center>Email</center></th>
+        </tr>
+
+        <% @admins.each do |admin| %>
+          <tr>
+            <td><center>
+                <%= button_to 'Log in', 
+                  {controller: "demo", action: "demo_login", id: admin.account.id},
+                  method: :post, class: 'btn btn-linky'
+                %>
+            </center</td>
+            <td><center><%= admin.account.email %></center></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

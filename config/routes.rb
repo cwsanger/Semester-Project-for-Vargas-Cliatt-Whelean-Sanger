@@ -31,6 +31,9 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:destroy, :edit, :create]
 
+  get 'demo/' => 'demo#demo_list', as: :demo
+  post 'demo/' => 'demo#demo_login'
+
   get 'admins/', to: 'admins#index', as: :admins
 
   post 'admins/accept/user/:id', to: 'admins#accept_user', as: :admin_accept_user
