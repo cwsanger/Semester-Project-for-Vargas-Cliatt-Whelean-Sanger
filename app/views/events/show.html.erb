@@ -4,11 +4,11 @@
 <br />
 <br />
 
-<div class="row">
-  cool<%= image_tag(@event.image_url, :width => 120,:height=>120) if @event.image_url.present?  %>
+<div class="row picture col-sm-offset-3 col-sm-6">
+  <%= image_tag(@event.image_url, :width => 120,:height=>120) if @event.image_url.present?  %>
 </div>
 
-<div class="row">
+<div class="col-sm-offset-1 col-sm-6">
 	<p>
 	  <strong>Name:</strong>
 	  <%= @event.name %>
@@ -30,7 +30,7 @@
 	</p>
 </div>
 
-<div id="map"></div>
+<div id="map" class="col-sm-offset-1 col-sm-6"></div>
 
 <script type="text/javascript">
   handler = Gmaps.build('Google');

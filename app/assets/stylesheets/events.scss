@@ -8,6 +8,8 @@
     text-align: left;
     height: 80px;
     width: 80px;
+    overflow-y:auto;
+    overflow-x:auto;
 
     &:hover{
       background-color: #F9F9F9;
@@ -56,7 +58,8 @@
 }
 
 .tbody{
-  overflow-y:auto
+  overflow-y:auto;
+  overflow-x:auto;
 }
 
 .selectable{
@@ -113,6 +116,10 @@ a.i.linkTo{
     color: inherit;
 }
 
+.picture{
+  margin:auto;
+}
+
 #map {
-  height: 400px;
+  height: 40px;
 }
