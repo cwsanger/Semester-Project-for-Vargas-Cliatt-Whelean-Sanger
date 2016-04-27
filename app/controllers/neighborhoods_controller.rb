@@ -21,6 +21,11 @@ class NeighborhoodsController < ApplicationController
     @advertisements = @neighborhood.advertisements
     @categories = Category.all
     @post = Post.new
+
+    respond_to do |format|
+      format.html
+      format.js { render action: 'category' }
+    end
   end
 
   def category

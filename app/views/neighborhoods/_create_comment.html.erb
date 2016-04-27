@@ -14,6 +14,13 @@
 </div>
 
 <script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("#comment-form<%= post.id %>").find("span label").text("").addClass("glyphicon glyphicon-camera").removeClass("btn btn-default");
+</script>
+
+<script>
   $(document).ready(function() {
     $('#comment-form<%= post.id %>').bind('ajax:complete', function() {
       $('#comment-form<%= post.id %>')[0].reset(); 
