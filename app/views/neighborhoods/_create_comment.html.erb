@@ -3,7 +3,7 @@
     <div class="input-group col-xs-6">
       <div>
         <%= text_area_tag :body, params[:body], id: "comment-form-body#{post.id}", placeholder: 'Type comment here',:class=>'myComment' %> 
-         <%= file_field_tag :image_url, type:"file"%> 
+        <%= file_field_tag :image_url, type:"file", id: "comment-form-img#{post.id}"%> 
       </div>
       <div>
         <%= submit_tag "Comment", class: 'btn' %>
@@ -12,20 +12,11 @@
   <% end %>
   <br>
 </div>
-<script>
-  $(":file").filestyle({
-    input: false
-  })
-  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
-  $("span label").text("");
-  $("span label").addClass("glyphicon glyphicon-camera");
-  $("span label").removeClass("btn btn-default");
-</script>
 
 <script>
   $(document).ready(function() {
     $('#comment-form<%= post.id %>').bind('ajax:complete', function() {
-      $('#comment-form-body<%= post.id %>').val(''); 
+      $('#comment-form<%= post.id %>')[0].reset(); 
     });
   });
 </script>
