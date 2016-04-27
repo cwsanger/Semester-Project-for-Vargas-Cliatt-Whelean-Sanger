@@ -9,6 +9,7 @@ User.delete_all
 Account.delete_all
 Neighborhood.delete_all
 Post.delete_all
+Comment.delete_all
 Category.delete_all
 Alert.delete_all
 Admin.delete_all
@@ -93,7 +94,6 @@ Post.create(:category_id => item.id, :body => "Gently used championship belt.", 
 bk = Business.create(:name => "Burger King", :address => "1801 N Ashley Street Valdosta, GA", :image_url => open('app/assets/images/king.png'))
 bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
 bk.save
-bk.neighborhoods << wwf
 
 Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id, :image_url => open('app/assets/images/whopper.png'))
 Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
