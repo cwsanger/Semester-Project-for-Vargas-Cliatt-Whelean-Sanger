@@ -51,15 +51,15 @@ Rails.application.routes.draw do
 
   get 'signups/temps' => 'signups#temps', as: 'temps'
 
-  post 'advertisement/create'
+  post 'advertisements/create'
 
-  get 'advertisement/create'
+  get 'advertisements/create'
 
-  get 'advertisement/destroy'
+  get 'advertisements/destroy'
 
-  get 'advertisement/edit'
+  get 'advertisements/edit'
 
-  put 'advertisement/:id/like', to: 'advertisement#like', as: :like_advertisement
+  put 'advertisements/:id/like', to: 'advertisements#like', as: :like_advertisement
 
   get 'alerts/agencyAlert'
 
