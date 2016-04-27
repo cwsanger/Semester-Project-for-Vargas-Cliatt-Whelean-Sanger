@@ -6,7 +6,11 @@ class LeadsController < ApplicationController
   before_action :set_neighborhood
 
   def accept
-    user = User.create(name: @temp_user.name, neighborhood_id: @neighborhood.id, image_url: open('app/assets/images/placeholder.png'))
+    role = (if @temp_user.hoa then :hoa else :normy end)
+    user = User.create(name: @temp_user.name,
+                       role: User.roles[role],
+                       neighborhood_id: @neighborhood.id,
+                       image_url: open('app/assets/images/placeholder.png'))
     user.build_account(email: @temp_user.email,
                        password: 'password',
                        password_confirmation: 'password')

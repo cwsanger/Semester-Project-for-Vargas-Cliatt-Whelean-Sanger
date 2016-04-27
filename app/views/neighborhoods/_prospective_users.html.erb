@@ -8,8 +8,7 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Neighborhood</th>
-      <th>Address</th>
+      <th>HOA?</th>
       <th>Accept</th>
       <th>Deny</th>
     </tr>
@@ -18,8 +17,7 @@
         <tr>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
-          <td><%= user.hood.name %></td>
-          <td><%= user.hood.address %></td>
+          <td><%= user.hoa %></td>
           <td><%= link_to '', neighborhood_lead_accept_url(@current_member.neighborhood, user), method: :post, class:"glyphicon glyphicon-ok accept", remote: true %></td>
           <td><%= link_to '', neighborhood_lead_deny_url(@current_member.neighborhood, user), method: :post, class:"glyphicon glyphicon glyphicon-remove deny", remote: true%></td>
         </tr>
