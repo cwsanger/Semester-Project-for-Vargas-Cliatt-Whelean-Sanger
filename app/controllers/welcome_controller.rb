@@ -98,7 +98,7 @@ class WelcomeController < ApplicationController
         format.html { redirect_to password_request_path,
                       notice: 'A new password has been emailed to you.' }
       else
-        format.html { redirect_to password_request_path, alert: 'Email not found!' }
+        format.html { redirect_to password_request_path, alert: 'Oops, something went wrong!' }
       end
     end
   end

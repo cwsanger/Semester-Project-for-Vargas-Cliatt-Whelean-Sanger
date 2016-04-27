@@ -5,7 +5,9 @@ class PasswordRequest < ActiveRecord::Base
       account = Account.find(request.account_id)
       account.request_new_pass
       request.destroy
+      return true
+    else
+      return false
     end
-    true
   end
 end
