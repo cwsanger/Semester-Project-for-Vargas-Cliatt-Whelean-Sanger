@@ -1,5 +1,13 @@
 <%= render partial:'navbar'%>
-<p id="notice"><%= notice %></p>
+
+<% if notice %>
+  <div class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
+
+<% if alert %>
+  <div class="alert alert-success" role="alert"><%= alert %></div>
+<% end %>
+
 <br><br><br><br>
 
 <div class="container">

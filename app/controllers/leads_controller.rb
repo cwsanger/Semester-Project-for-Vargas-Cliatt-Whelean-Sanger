@@ -6,17 +6,21 @@ class LeadsController < ApplicationController
   before_action :set_neighborhood
 
   def accept
-    user = User.create(name: @temp_user.name, neighborhood_id: @neighborhood.id, image_url: open('app/assets/images/placeholder.png'))
-    user.build_account(email: @temp_user.email,
-                       password: 'password',
-                       password_confirmation: 'password')
+    user = User.create(name: @temp_user.name,
+                       neighborhood_id: @neighborhood.id,
+                       image_url: open('app/assets/images/placeholder.png'))
 
-    if user.save
+    user.account = Account.setup(user, @temp_user.email)
+
+
+    if user.account
       @temp_user.destroy
 
-      redirect_to neighborhood_admin_url(@neighborhood)
+      redirect_to neighborhood_admin_url(@neighborhood),
+        notice: 'Neighbor accepted.'
     else
-      redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed'
+      redirect_to neighborhood_admin_url(@neighborhood),
+        alert: 'User could not be accepted at this time.'
     end
   end
 
