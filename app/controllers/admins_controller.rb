@@ -19,13 +19,18 @@ class AdminsController < ApplicationController
                        password: 'password',
                        password_confirmation: 'password')
 
-    if user.save
-      @temp_user.hood.destroy
-      @temp_user.destroy
+    respond_to do |format|
+      if user.save
+        @temp_user.hood.destroy
+        @temp_user.destroy
 
-      redirect_to admins_url
-    else
-      redirect_to admins_url, alert: 'failed to create user'
+        format.html { redirect_to admins_url }
+      else
+        format.html { redirect_to admins_url, alert: 'failed to create user' }
+      end
+
+      @temp_users = TempUser.where(hood_type: 'TempNeighborhood')
+      format.js { render action: 'rerender_prospective_users' }
     end
   end
 
@@ -33,7 +38,12 @@ class AdminsController < ApplicationController
     @temp_user.hood.destroy
     @temp_user.destroy
 
-    redirect_to admins_url
+    respond_to do |format|
+      format.html { redirect_to admins_url }
+
+      @temp_users = TempUser.where(hood_type: 'TempNeighborhood')
+      format.js { render action: 'rerender_prospective_users' }
+    end
   end
 
   def accept_business
@@ -42,19 +52,29 @@ class AdminsController < ApplicationController
                            password: 'password',
                            password_confirmation: 'password')
 
-    if business.save
-      @temp_business.destroy
+    respond_to do |format|
+      if business.save
+        @temp_business.destroy
 
-      redirect_to admins_url
-    else
-      redirect_to admins_url, alert: 'failed to create business'
+        format.html { redirect_to admins_url }
+      else
+        format.html { redirect_to admins_url, alert: 'failed to create business' }
+      end
+
+      @temp_businesses = TempBusiness.all
+      format.js { render action: 'rerender_prospective_businesses' }
     end
   end
 
   def deny_business
     @temp_business.destroy
 
-    redirect_to admins_url
+    respond_to do |format|
+      format.html { redirect_to admins_url }
+
+      @temp_businesses = TempBusiness.all
+      format.js { render action: 'rerender_prospective_businesses' }
+    end
   end
 
   def accept_agency
@@ -63,19 +83,29 @@ class AdminsController < ApplicationController
                          password: 'password',
                          password_confirmation: 'password')
 
-    if agency.save
-      @temp_agency.destroy
+    respond_to do |format|
+      if agency.save
+        @temp_agency.destroy
 
-      redirect_to admins_url
-    else
-      redirect_to admins_url, alert: 'failed to create agency'
+        format.html { redirect_to admins_url }
+      else
+        format.html { redirect_to admins_url, alert: 'failed to create agency' }
+      end
+
+      @temp_agencies = TempAgency.all
+      format.js { render action: 'rerender_prospective_agencies' }
     end
   end
 
   def deny_agency
     @temp_agency.destroy
 
-    redirect_to admins_url
+    respond_to do |format|
+      format.html { redirect_to admins_url }
+
+      @temp_agencies = TempAgency.all
+      format.js { render action: 'rerender_prospective_agencies' }
+    end
   end
 
   private
