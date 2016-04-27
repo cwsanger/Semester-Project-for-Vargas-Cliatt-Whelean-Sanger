@@ -11,19 +11,29 @@ class LeadsController < ApplicationController
                        password: 'password',
                        password_confirmation: 'password')
 
-    if user.save
-      @temp_user.destroy
+    respond_to do |format|
+      if user.save
+        @temp_user.destroy
+        @temp_users = @neighborhood.temp_users
 
-      redirect_to neighborhood_admin_url(@neighborhood)
-    else
-      redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed'
+        format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+        format.js { render action: 'rerender_temp_users' }
+      else
+        @temp_users = @neighborhood.temp_users
+        format.html { redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed' }
+        format.js { render action: 'rerender_temp_users' }
+      end
     end
   end
 
   def deny
     @temp_user.destroy
+    @temp_users = @neighborhood.temp_users
 
-    redirect_to neighborhood_admin_url(@neighborhood)
+    respond_to do |format|
+      format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+      format.js { render action: 'rerender_temp_users' }
+    end
   end
 
   def accept_business
