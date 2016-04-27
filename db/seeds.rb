@@ -23,6 +23,7 @@ TempNeighborhood.delete_all
 TempBusiness.delete_all
 TempAgency.delete_all
 Request.delete_all
+PasswordRequest.delete_all
 
 admin = Admin.create(:name => "admin")
 admin.build_account(:email => "admin@gmail.com", :password => "password", :password_confirmation => "password")

@@ -74,17 +74,33 @@ class WelcomeController < ApplicationController
 
     if !account.nil?
       success = true
-      account.request_new_pass
+      account.request_reset_pass
     end
 
     respond_to do |format|
       if success
-        format.html { redirect_to password_request_path, notice: 'New password requested' }
+        format.html { redirect_to password_request_path,
+                      notice: 'Instructions for password reset have been emailed to you.' }
       else
         format.html { redirect_to password_request_path, alert: 'Email not found!' }
       end
     end
 
+  end
+
+  def confirm
+    @number = params[:cn]
+
+    success = PasswordRequest.confirm(@number)
+
+    respond_to do |format|
+      if success
+        format.html { redirect_to password_request_path,
+                      notice: 'A new password has been emailed to you.' }
+      else
+        format.html { redirect_to password_request_path, alert: 'Email not found!' }
+      end
+    end
   end
 
   private

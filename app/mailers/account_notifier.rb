@@ -45,6 +45,14 @@ class AccountNotifier < ApplicationMailer
 
   end
 
+  def password_reset(email, str)
+    @str = str
+
+    mail to: email, subject: 'Password reset instructions' do |format|
+      format.html
+    end
+  end
+
   def became_lead(user)
     @name = user.name
     @neighborhood = user.neighborhood.name

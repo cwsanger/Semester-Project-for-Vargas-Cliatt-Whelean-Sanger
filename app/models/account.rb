@@ -9,6 +9,11 @@ class Account < ActiveRecord::Base
     ('!'..'~').to_a.shuffle[0,8].join
   end
 
+  def self.random_key
+    chars = ('0'..'9').to_a * 10
+    chars.shuffle[0,31].join
+  end
+
   def self.setup(member, email)
     pass = random_pass
     account = new(email: email, password: pass, password_confirmation: pass)
@@ -48,6 +53,11 @@ class Account < ActiveRecord::Base
     self.save
 
     AccountNotifier.password_requested(self.email, new_pass).deliver_now
+  end
+
+  def request_reset_pass
+    request = PasswordRequest.create(account_id: self.id, key: Account.random_key)
+    AccountNotifier.password_reset(self.email, request.key).deliver_now
   end
 
 end

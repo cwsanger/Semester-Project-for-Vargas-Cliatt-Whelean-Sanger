@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'doc' => :doc
     get 'password', as: 'password_request'
     post 'password' => :request_pass
+    get 'password_reset/:cn' => :confirm, as: 'confirm'
   end
 
   resources :alerts
