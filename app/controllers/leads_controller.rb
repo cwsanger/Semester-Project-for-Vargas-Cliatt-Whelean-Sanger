@@ -72,13 +72,20 @@ class LeadsController < ApplicationController
   def accept_agency
     @neighborhood.agencies << @agency
 
-    if @neighborhood.save
-      Request.where(neighborhood_id: @neighborhood.id,
-                    requestable: @agency).destroy_all
+    respond_to do |format|
+      if @neighborhood.save
+        Request.where(neighborhood_id: @neighborhood.id,
+                      requestable: @agency).destroy_all
 
-      redirect_to neighborhood_admin_url(@neighborhood)
-    else
-      redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed'
+        format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+      else
+        format.html { redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed' }
+      end
+
+      @agencies= Agency.joins('INNER JOIN requests ON agencies.id = requests.requestable_id')
+                            .where("requests.neighborhood_id = #{@neighborhood.id}")
+
+      format.js { render action: 'rerender_agencies' }
     end
   end
 
@@ -86,7 +93,13 @@ class LeadsController < ApplicationController
     Request.where(neighborhood_id: @neighborhood.id,
                   requestable: @agency).destroy_all
 
-    redirect_to neighborhood_admin_url(@neighborhood)
+    @agencies= Agency.joins('INNER JOIN requests ON agencies.id = requests.requestable_id')
+                          .where("requests.neighborhood_id = #{@neighborhood.id}")
+
+    respond_to do |format|
+      format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+      format.js { render action: 'rerender_agencies' }
+    end
   end
 
   private
