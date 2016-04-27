@@ -9,9 +9,22 @@
       <hr class="postComments">
       <p>Type: <%= @current_member.role%></p>
       <hr class="postComments">
-      <p>Points: <%= @current_member.points%></p>
+      <p>Points: 
+      <div class="progress">
+      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="1000" >
+        <%= @current_member.points%>
+      </div>
+      </div>
+      </p>
       <hr class="postComments">
     </div>  
   </div>
 
 
+<script>
+  $( document ).ready(function() {
+    var points = <%= @current_member.points%>+"%";
+    $(".progress-bar").css('width',points);
+    $(".myPoints").text(points);
+  });
+</script>

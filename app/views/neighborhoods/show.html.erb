@@ -58,18 +58,18 @@
   <div class="profile_div">
    <%= render partial: 'profile' %>
   </div>
-  <div class="chat_div_bar">
+  <div class="chat_div_bar scrolling">
       <p class="myPrimary semiTitle "><i class="glyphicon glyphicon-comment"></i> Chat<i id="closeChat" class="glyphicon glyphicon-chevron-down pull-right closeChat close"></i></p>
     <div class="chat_div">
       <br>
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover ">
         <thead >
           <tr>
             <th>Neighbors</th>
           </tr>
         </thead>
 
-        <tbody class="searchable cm ">
+        <tbody class="searchable cm  ">
            <% @current_member.neighborhood.users.each do |user| %>
             <tr>
               <% unless @current_member.id == user.id %>
