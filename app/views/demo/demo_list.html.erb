@@ -21,6 +21,8 @@
             <th><center>Email</center></th>
             <th><center>Neighborhood</center></th>
             <th><center>Picture</center></th>
+            <th><center>Has lead?</center></th>
+            <th><center>Has HOA?</center></th>
         </tr>
 
         <% @users.each do |user| %>
@@ -40,6 +42,23 @@
                                 width: 40 , height: 50, 
                                 class:"img-center verification") if user.image_url.present? %>
                 </a></center></td>
+            <td><center>
+
+                <% if user.role == 'lead' %>
+                  <span class="approve glyphicon glyphicon-ok"></span>
+                <% else %>
+                  <span class="deny glyphicon glyphicon-remove"></span>
+                <% end %>
+
+            </center></td>
+            <td><center>
+
+                <% if user.role == 'hoa' %>
+                  <span class="approve glyphicon glyphicon-ok"></span>
+                <% else %>
+                  <span class="deny glyphicon glyphicon-remove"></span>
+                <% end %>
+            </center></td>
           </tr>
 
           <div id="myModal<%= user.id %>" class="modal fade" role="dialog">
