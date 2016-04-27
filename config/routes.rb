@@ -63,7 +63,7 @@ Rails.application.routes.draw do
 
   post 'advertisement/create'
 
-  get 'advertisement/create'
+  get 'advertisement/create', as: :create_advertisement
 
   get 'advertisement/destroy'
 
