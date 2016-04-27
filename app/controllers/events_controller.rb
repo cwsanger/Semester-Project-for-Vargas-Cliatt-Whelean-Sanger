@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = @current_member.neighborhood.events
     @chosen_date = Integer(Time.now.strftime("%d"))
     @event = Event.new
   end
