@@ -31,42 +31,13 @@
       <h1><center>Flagged Content</center></h1>
       <hr class="hrPers">
       <h3>Posts</h3>
-      <table class="table table-hover table-bordered">
-        <tr>
-          <th>Name</th>
-          <th>Body</th>
-          <th>Okay</th>
-          <th>Delete</th>
-        </tr>
-        <% @posts.each do |post| %>
-          <tr>
-            <td><%= post.user.name %></td>
-            <td><%= post.body%></td>
-
-            <td><%= link_to '', remove_flag_post_url(post), method: :put, class:"glyphicon glyphicon-ok accept" %></td>
-            <td><%= link_to '', post, method: :delete, class:"glyphicon glyphicon glyphicon-remove deny"%></td>
-          </tr>
-        <% end %>
-      </table>
-
+      <div id="flagged-posts">
+        <%= render 'neighborhoods/flagged_posts' %> 
+      </div>
       <h3>Comments</h3>
-      <table class="table table-hover table-bordered">
-        <tr>
-          <th>Name</th>
-          <th>Body</th>
-          <th>Okay</th>
-          <th>Delete</th>
-        </tr>
-        <% @comments.each do |comment| %>
-          <tr>
-            <td><%= comment.user.name %></td>
-            <td><%= comment.body%></td>
-
-            <td><%= link_to '', remove_flag_comment_url(comment), method: :put, class:"glyphicon glyphicon-ok accept" %></td>
-            <td><%= link_to '', destroy_comment_url(comment), method: :delete, class:"glyphicon glyphicon glyphicon-remove deny"%></td>
-          </tr>
-        <% end %>
-      </table>
+      <div id="flagged-comments">
+        <%= render 'neighborhoods/flagged_comments' %>
+      </div>
     </div>
   </div>
 </div>

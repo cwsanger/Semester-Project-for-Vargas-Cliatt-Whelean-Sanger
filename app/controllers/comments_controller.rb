@@ -51,20 +51,27 @@ class CommentsController < ApplicationController
 
   def remove_flag
     @comment.no_flag!
+    @comments = Comment.where(status: Comment.statuses[:flag])
 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to neighborhood_admin_url(@current_member.neighborhood) }
+        format.js { render action: 'rerender_flagged_comments' }
       else
         format.html { redirect_to neighborhood_admin_url(@current_member.neighborhood) }
+        format.js { render action: 'rerender_flagged_comments' }
       end
     end
   end
 
   def destroy
     @comment.destroy
+    @comments = Comment.where(status: Comment.statuses[:flag])
 
-    redirect_to neighborhood_admin_url(@current_member.neighborhood)
+    respond_to do |format|
+      format.html { redirect_to neighborhood_admin_url(@current_member.neighborhood) }
+      format.js { render action: 'rerender_flagged_comments' }
+    end
   end
 
   private
