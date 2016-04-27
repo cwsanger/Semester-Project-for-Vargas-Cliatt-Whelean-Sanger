@@ -36,6 +36,11 @@ Rails.application.routes.draw do
 
   get 'admins/', to: 'admins#index', as: :admins
 
+  get 'admins/:id/edit' => 'admins#edit', as: :edit_admin
+  get 'admins/:id' => 'admins#edit', as: :admin
+  post 'admins/:id' => 'admins#update'
+  patch 'admins/:id' => 'admins#update'
+
   post 'admins/accept/user/:id', to: 'admins#accept_user', as: :admin_accept_user
   post 'admins/deny/user/:id', to: 'admins#deny_user', as: :admin_deny_user
 

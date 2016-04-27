@@ -1,4 +1,6 @@
 class AdminsController < ApplicationController
+  include UpdateHelper
+
   before_action :set_temp_user, only: [:accept_user, :deny_user]
   before_action :set_temp_business, only: [:accept_business, :deny_business]
   before_action :set_temp_agency, only: [:accept_agency, :deny_agency]
@@ -94,6 +96,13 @@ class AdminsController < ApplicationController
     @temp_agency.destroy
 
     redirect_to admins_url
+  end
+
+  def edit
+  end
+
+  def update
+    update_account(@current_member, params[:updateParam], params)
   end
 
   private

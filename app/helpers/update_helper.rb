@@ -60,6 +60,9 @@ module UpdateHelper
       elsif user.is_a? Agency
         format.html { redirect_to edit_agency_path(user),
                       notice: notice, alert: alert }
+      elsif user.is_a? Admin
+        format.html { redirect_to edit_admin_path(user),
+                      notice: notice, alert: alert }
       else
         format.html { redirect_to edit_business_path(user),
                       notice: notice, alert: alert }
