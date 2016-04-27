@@ -2,6 +2,12 @@ module UpdateHelper
 
   def update_account(user, attribute, parameters)
 
+    #For testing
+    #puts "Received update request!\n---------------------------\n"
+    #puts "Attribute - #{attribute}\n"
+    #puts "Value - #{parameters[attribute]}\n"
+    #puts "--------------------------\n\n\n"
+
     #Make sure the attribute is valid, i.e. - email, address, not ID etc
     if editable attribute
 
@@ -13,8 +19,6 @@ module UpdateHelper
 
         #Special case for password
         if attribute == 'password'
-          puts "\n\nattempt to change pass from #{parameters[:old_pass]} to
-                #{parameters[:new_pass]}.\n\n\n"
           if user.account.change_pass(parameters[:old_pass],
                                       parameters[:new_pass])
             success = true
@@ -26,7 +30,6 @@ module UpdateHelper
             success = true
           end
 
-        #Just a regular old editable attribute like name or address
         else
           if user.update_attribute(attribute, value)
             success = true
