@@ -4,7 +4,7 @@
   <h3>
       <%= image_tag(post.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if post.user.image_url.present?  %> <%= post.user.name %>
       <small class="categoryPost"> Category: <%= post.category.title %></small>
-      <i id="<%= post.id %>" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i>
+      <i id="<%= post.id %>" class="glyphicon glyphicon-chevron-up pull-right closeBroad close"></i>
   </h3>
   </div>
   <div id="<%= post.id %>a">
