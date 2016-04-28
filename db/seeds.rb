@@ -30,7 +30,7 @@ admin = Admin.create(:name => "admin")
 admin.build_account(:email => "admin@gmail.com", :password => "password", :password_confirmation => "password")
 admin.save
 
-kanto = Neighborhood.create(:name => "Kanto", :address => '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto, Japan')
+kanto = Neighborhood.create(:name => "Kanto", :address => 'Chadwick Drive Valdosta, GA')
 #wwf = Neighborhood.create(:name => "World Wrestling Federation", :address => '1241 East Main Street Stamford, CT')
 wwf = Neighborhood.create(:name => "World Wrestling Federation", :address => '1500 N Patterson St Valdosta, GA')
 bikini_bottom = Neighborhood.create(:name => "Bikini Bottom", :address => '300 Rodgers Blvd Honolulu, HI')

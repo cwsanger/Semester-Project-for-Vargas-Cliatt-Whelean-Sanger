@@ -1,25 +1,29 @@
 <table class="table table-bordered">
-  <center><h1>Prospective Users</h1></center>
+  <center><h1>Prospective Neighborhoods</h1></center>
   <hr>
   <tr>
+    <th colspan="3"><center>Neighborhood</center></th>
+    <th colspan="2"><center>Creator</center></th>
+    <th colspan="2"><center>Take action</center></th>
+  </tr>
+  <tr>
 
+      <th><center>Address</center></th>
+      <th><center>Neighborhood</center></th>
+      <th><center>Verification</center></th>
       <th><center>Name</center></th>
       <th><center>Email</center></th>
-      <th><center>Neighborhood</center></th>
-      <th><center>Address</center></th>
-      <th><center>Verification</center></th>
       <th><center>Approve</center></th>
       <th><center>Deny</center></th>
 
   </tr>
   <% @temp_users.each do |user| %>
     <tr>
+      <td><center><%= user.hood.address %></center></td>
+      <td><center><%= user.hood.name %></center></td>
+      <a href=""data-toggle="modal" data-target="#myModal<%= user.id %>"><%= image_tag(user.image_url, :width => 40 ,:height=>"40", class:"img-center verification") if user.image_url.present?  %></a></center></td>
       <td><center><%= user.name %></center></td>
       <td><center><%= user.email %></center></td>
-      <td><center><%= user.hood.name %></center></td>
-      <td><center><%= user.hood.address %></center></td>
-      <td><center>
-      <a href=""data-toggle="modal" data-target="#myModal<%= user.id %>"><%= image_tag(user.image_url, :width => 40 ,:height=>"40", class:"img-center verification") if user.image_url.present?  %></a></center></td>
 
       <td><center><%= link_to '', admin_accept_user_url(user), method: :post, class:"approve glyphicon glyphicon-ok", remote: true %></center></td>
       <td><center><%= link_to '', admin_deny_user_url(user), method: :post, class:"deny glyphicon glyphicon-remove", remote: true %></center></td>
