@@ -15,6 +15,10 @@
               <%= f.text_area :email,:class=>"myPosts",placeholder: 'Type @email here...'%>
             </div>
           <hr>
+            <div class="field">
+              <%= f.file_field :image_url, type: "file"%>
+            </div>
+          <hr>
           <%= f.label 'HOA Member?' %>
           <%= f.check_box :hoa %>
           </div>
@@ -24,3 +28,13 @@
     </div>
   </div>
 </section>
+
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open");
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
+</script>

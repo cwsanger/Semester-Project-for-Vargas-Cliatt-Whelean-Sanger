@@ -11,7 +11,7 @@
 });
 </script>
 
-<%= form_tag(signups_join_url(@neighborhood))  do%>
+<%= form_tag signups_join_url(@neighborhood), multipart: true  do%>
   <%= render 'user_form' %>
 
   <footer class="footer">
