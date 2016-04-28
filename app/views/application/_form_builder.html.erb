@@ -1,14 +1,14 @@
   <%= form_for(@current_member) do %>
 
     <div class="row">
-      <div class="col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2">
+      <div class="col-md-2 col-lg-offset-2">
         <center>
-          <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+          <%= button_tag(type: 'submit', class: 'btn linky') do %>
             <span class="glyphicon glyphicon-floppy-save"></span>
           <% end %>
         </center>
       </div>
-      <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-2">
+      <div class="col-md-offset-1 col-lg-4">
         <center>
         <% if not text.empty? %>
           <%= text_field_tag param, nil,placeholder: text, class: 'myPost'%>
@@ -17,8 +17,9 @@
               @current_member.read_attribute("#{param}"), class: 'myPost' %>
         <% end %>
         </center>
+         <hr>
       </div>
       <%= hidden_field_tag 'updateParam', param %>
-      <hr>
+     
     </div>
   <% end %>
