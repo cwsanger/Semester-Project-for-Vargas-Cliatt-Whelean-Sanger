@@ -21,6 +21,7 @@ gem 'jquery-turbolinks'
 
 gem 'mini_magick'
 gem 'fog'
+gem 'remotipart'
 
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

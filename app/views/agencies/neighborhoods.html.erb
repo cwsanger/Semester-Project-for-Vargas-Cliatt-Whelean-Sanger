@@ -6,30 +6,9 @@
 <div class="container">
   <div class="col-md-6">
     <h2>Neighborhoods</h2>
-    <table class="table table-hover table-bordered">
-      <tr>
-        <th>Name</th>
-        <th>Status</th>
-      </tr>
-      <% @agency.neighborhoods.each do |neighborhood| %>
-        <tr>
-          <td><%= neighborhood.name %></td>
-          <td>Joined</td>
-        </tr>
-      <% end %>
-      <% ((@neighborhoods - @requested_neighborhoods) - @agency.neighborhoods).each do |neighborhood| %>
-        <tr>
-          <td><%= neighborhood.name %></td>
-          <td><%= button_to "Request", agency_join_request_url(@agency, neighborhood.id), class: :post %></td>
-        </tr>
-      <% end %>
-      <% @requested_neighborhoods.each do |neighborhood| %>
-        <tr>
-          <td><%= neighborhood.name %></td>
-          <td>Pending...</td>
-        </tr>
-      <% end %>
-    </table>
+    <div id="neighborhoods">
+      <%= render 'agencies/neighborhoods' %>
+    </div>
   </div>
   <div id="map" class="col-sm-offset-1 col-sm-5"></div>
 </div>

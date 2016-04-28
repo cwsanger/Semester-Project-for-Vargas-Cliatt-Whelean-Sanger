@@ -21,6 +21,21 @@ class NeighborhoodsController < ApplicationController
     @advertisements = @neighborhood.advertisements
     @categories = Category.all
     @post = Post.new
+
+    respond_to do |format|
+      format.html
+      format.js { render action: 'category' }
+    end
+  end
+
+  def category
+    @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
+    @category = Category.find(params[:id])
+    @posts = Post.where(category_id: @category.id)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def admin

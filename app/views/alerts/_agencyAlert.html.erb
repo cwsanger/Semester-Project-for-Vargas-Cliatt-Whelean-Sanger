@@ -16,7 +16,7 @@
 	        <td><%= alert.severity %></td>
 	        <td><%= alert.body %></td>
 	        <td><%= alert.updated_at.strftime("%A, %B #{alert.created_at.day.ordinalize} - %l:%M%P") %></td>
-          <td><%= link_to '', alert, method: :delete, data: { confirm: 'Are you sure?' },class:"glyphicon glyphicon-minus delete"%></td>
+          <td><%= link_to '', alert, method: :delete, data: { confirm: 'Are you sure?' }, class:"glyphicon glyphicon-minus delete", remote:true %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>

@@ -1,0 +1,27 @@
+<table class="table table-hover table-bordered">
+  <h1><center>Prospective Users</center></h1>
+  <hr class="hrPers">
+  <% if @temp_users.length > 0%>
+    <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
+       <input id="filter" type="text" class="form-control" placeholder="Find broadcast...">
+    </div>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>HOA?</th>
+      <th>Accept</th>
+      <th>Deny</th>
+    </tr>
+    <tbody class="searchable">
+      <% @temp_users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.hoa %></td>
+          <td><%= link_to '', neighborhood_lead_accept_url(@current_member.neighborhood, user), method: :post, class:"glyphicon glyphicon-ok accept", remote: true %></td>
+          <td><%= link_to '', neighborhood_lead_deny_url(@current_member.neighborhood, user), method: :post, class:"glyphicon glyphicon glyphicon-remove deny", remote: true%></td>
+        </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>

@@ -1,10 +1,10 @@
 <div class="col-sm-offset-3">
-  <%= form_for(@post) do |f| %>
+  <%= form_for(@post, remote: true, multipart: true) do |f| %>
     <div class="input-group">
     <hr >
       <div class="field">
-          <%= f.text_area :body,:class=>"myPost col-xs-12",placeholder: 'Type post here...'%>
-          <%= f.file_field :image_url, type:"file"%> 
+          <%= f.text_area :body, id: 'post-form-body', :class=>"myPost col-xs-12", placeholder: 'Type post here...' %>
+          <%= f.file_field :image_url, type:"file", class: 'post-form-img'%> 
       </div>
      <hr>
       <div>
@@ -24,9 +24,15 @@
   $(":file").filestyle({
     input: false
   })
-  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
   $("span label").text("");
   $("span label").addClass("glyphicon glyphicon-camera");
   $("span label").removeClass("btn btn-default");
 </script>
 
+<script>
+  $(document).ready(function() {
+    $('#new_post').bind('ajax:complete', function() {
+      $('#new_post')[0].reset(); 
+    });
+  });
+</script>

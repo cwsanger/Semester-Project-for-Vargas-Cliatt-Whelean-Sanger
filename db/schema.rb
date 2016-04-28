@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421011417) do
+ActiveRecord::Schema.define(version: 20160427160703) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.string   "address"
     t.float    "longitude"
     t.float    "latitude"
+    t.string   "image_url"
   end
 
   create_table "agencies_neighborhoods", force: :cascade do |t|
     t.integer "agency_id"
     t.integer "neighborhood_id"
-    t.string   "image_url"
   end
 
   create_table "alerts", force: :cascade do |t|
@@ -94,8 +94,6 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "status",     default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string   "image_url"
   end
 
@@ -167,6 +165,7 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.integer  "user_id"
     t.integer  "category_id"
     t.integer  "status",      default: 0
+    t.string   "image_url"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -175,7 +174,6 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.integer  "neighborhood_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "image_url"
   end
 
   create_table "temp_agencies", force: :cascade do |t|
@@ -208,6 +206,7 @@ ActiveRecord::Schema.define(version: 20160421011417) do
     t.integer "hood_id"
     t.string  "hood_type"
     t.string  "image_url"
+    t.boolean "hoa",       default: false
   end
 
   create_table "users", force: :cascade do |t|
