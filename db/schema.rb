@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 20160427160703) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
     t.string   "address"
     t.float    "longitude"
     t.float    "latitude"
-    t.string   "image_url"
   end
 
   create_table "agencies_neighborhoods", force: :cascade do |t|
@@ -70,10 +70,10 @@ ActiveRecord::Schema.define(version: 20160427160703) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
     t.string   "address"
     t.float    "longitude"
     t.float    "latitude"
-    t.string   "image_url"
   end
 
   create_table "businesses_neighborhoods", force: :cascade do |t|
@@ -116,6 +116,9 @@ ActiveRecord::Schema.define(version: 20160427160703) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "image_url"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
   end
 
   create_table "groups", force: :cascade do |t|

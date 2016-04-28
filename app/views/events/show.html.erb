@@ -1,7 +1,14 @@
 <%= render partial:'neighborhoods/navbar'%>
-<div class='backDiv2'></div>
-  
-<div class="container centralBox">
+<br />
+<br />
+<br />
+<br />
+
+<div class="row picture">
+  <%= image_tag(@event.image_url, :width => 120,:height=>120) if @event.image_url.present?  %>
+</div>
+
+<div class="col-sm-offset-1 col-sm-6">
 	<p>
 	  <strong>Name:</strong>
 	  <%= @event.name %>
@@ -22,3 +29,14 @@
 	  <%= @event.user.name %>
 	</p>
 </div>
+
+<div id="map" class="col-sm-offset-1 col-sm-6"></div>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+</script>

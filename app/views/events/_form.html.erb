@@ -12,14 +12,6 @@
   <% end %>
 <div class="col-xs-offset-3">
     <div class="field">
-      <%= f.label :start_time %><br>
-      <%= f.datetime_select :start_time %>
-    </div>
-    <div class="field">
-      <%= f.label :end_time %><br>
-      <%= f.datetime_select :end_time %>
-    </div>
-    <div class="field">
       <%= f.label :name %><br>
       <%= f.text_field :name %>
     </div>
@@ -28,10 +20,18 @@
       <%= f.text_field :body %>
     </div>
     <div class="field">
-       <label><%= f.file_field :image_url, type:"file"%> Event  Picture</label>
+       <label><%= f.file_field :image_url, type:"file"%>Picture</label>
     </div>
- </div>   
-   <div class="modal-footer ">    
+    <div class="field">
+      <%= f.label :start_time %><br>
+      <%= f.datetime_select :start_time %>
+    </div>
+    <div class="field">
+      <%= f.label :end_time %><br>
+      <%= f.datetime_select :end_time %>
+    </div>
+ </div>
+   <div class="modal-footer ">
     <%= f.submit'Submit', class: 'btn linky'%>
   </div>
 <% end %>
@@ -39,9 +39,8 @@
   $(":file").filestyle({
     input: false
   })
-  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
+  $("span label").removeClass("glyphicon glyphicon-folder-open");
   $("span label").text("");
   $("span label").addClass("glyphicon glyphicon-camera");
   $("span label").removeClass("btn btn-default");
 </script>
-
