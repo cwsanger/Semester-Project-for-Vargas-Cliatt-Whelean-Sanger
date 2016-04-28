@@ -53,12 +53,8 @@ class WelcomeController < ApplicationController
 
     """
 
-    @neighborhoods = Neighborhood.all
-
-    if params[:search]
-      #Need to validate/sanitize user input here
-      @neighborhoods = Neighborhood.search_for params[:search].strip
-    end
+    coords = Geocoder.coordinates(params[:search]);
+    @neighborhoods = Neighborhood.near(coords, 20)
 
 
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|

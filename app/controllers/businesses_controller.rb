@@ -15,6 +15,36 @@ class BusinessesController < ApplicationController
     auth @business
     @advertisements = @business.advertisements
     @advertisement = Advertisement.new
+
+    @neighborhood_likes = {}
+    @business.neighborhoods.each do |neighborhood|
+      query = "SELECT DISTINCT * FROM likes l INNER JOIN advertisements ad ON l.likeable_id = ad.id INNER JOIN users u ON l.user_id = u.id WHERE l.likeable_type = 'Advertisement' AND u.neighborhood_id = #{neighborhood.id} AND ad.business_id = #{@business.id}"
+      likes = Like.find_by_sql(query)
+      @neighborhood_likes[neighborhood.name] = likes.count;
+    end
+
+    respond_to do |format|
+      format.html
+      format.js { render action: 'display_stats' }
+    end
+  end
+
+  def display_stats
+    @business = Business.find(params[:business_id])
+    @advertisements = @business.advertisements
+
+    @advertisement = Advertisement.find(params[:id])
+
+    @neighborhood_likes = {}
+    @business.neighborhoods.each do |neighborhood|
+      query = "SELECT DISTINCT * FROM likes l INNER JOIN advertisements ad ON l.likeable_id = ad.id INNER JOIN users u ON l.user_id = u.id WHERE l.likeable_type = 'Advertisement' AND u.neighborhood_id = #{neighborhood.id} AND ad.business_id = #{@business.id} AND ad.id = #{@advertisement.id}"
+      likes = Like.find_by_sql(query)
+      @neighborhood_likes[neighborhood.name] = likes.count;
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /businesses/new

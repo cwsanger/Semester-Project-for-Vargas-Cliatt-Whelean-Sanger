@@ -111,25 +111,29 @@
     <div class="modal-dialog">    
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-eader">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Neighborhoods Registration</h4>
+          <h4 class="modal-title">Neighborhood Registration</h4>
         </div>
         <div class="modal-body">
           <%= form_tag(signups_url, multipart: true) do %>
             <div class="col-sm-6">
-              <h4>User</h4>
+              <h4>Neighborhood information</h4>
+              <%= render 'signups/neighborhood_form' %> 
+            </div>
+            <div class="col-sm-6">
+              <h4>Your information</h4>
                <%= fields_for :temp_user, @temp_user do |f| %>
                 <div class="input-group">
                 <hr>
                   <div class="field">
-                    <%= f.text_area :name,:class=>"myPost",placeholder: 'Type Name here...'%>
+                    <%= f.text_area :name,:class=>"myPost",placeholder: 'Your name'%>
                   </div>
                 <hr>
                   <div class="field">
-                    <%= f.text_area :email,:class=>"myPost",placeholder: 'Type @email here...'%>
+                    <%= f.text_area :email,:class=>"myPost",placeholder: 'Your email address'%>
                     <br><br>
-                    <%= f.label 'HOA Member?' %>
+                    <%= f.label 'Signing up as HOA?' %>
                     <%= f.check_box :hoa %>
                     <br> <br>
                     <%= f.file_field :image_url, type:"file"%><label>Credentials</label>
@@ -137,15 +141,11 @@
                 </div>
               <% end %>
             </div>
-            <div class="col-sm-6">
-              <h4>Neighborhood</h4>
-              <%= render 'signups/neighborhood_form' %> 
-            </div>
             <br><br><br><br><br><br><br><br><br><br>
           
         </div>
         <div class="modal-footer">
-            <%= submit_tag 'Submit',class:"btn linky" %>
+            <%= submit_tag 'Submit', class:"btn linky" %>
         </div>
         <% end %>
       </div>      

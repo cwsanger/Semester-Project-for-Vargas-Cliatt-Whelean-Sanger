@@ -1,23 +1,25 @@
 <%= form_tag(signups_create_business_url, multipart: true) do %>
   <div>
-    <%= fields_for :temp_business, @temp_business do |f| %>
+    <%= fields_for :temp_business do |f| %>
       <div class="input-group">
         <div class="field">
           <hr>
-          <%= f.text_field :name,class:"myPost",placeholder:"Type name here..." %>
+          <%= text_field_tag :name, nil, class:"myPost",placeholder:"Business name" %>
         </div>
         <div class="field">
           <hr>
-          <%= f.text_field :address,class:"myPost",placeholder:"Type adress here..." %>
+          <%= text_field_tag :address_street, nil, class:"myPost", placeholder:"Street name" %>
+          <%= text_field_tag :address_city, nil, class:"myPost", placeholder:"City" %>
+          <%= text_field_tag :address_state, nil, class:"myPost", placeholder:"State" %>
         </div>
         <div class="field">
           <hr>
-          <%= f.email_field :email,class:"myPost",placeholder:"Type @email here..." %>
+          <%= email_field_tag :email, nil, class:"myPost",placeholder:"Email address" %>
           <hr>
         </div>
         <div class="field">
-          <%= f.label :image_url, "Credentials" %><br>
-          <%= f.file_field :image_url %>
+          <%= label_tag :image_url, "Credentials" %><br>
+          <%= file_field_tag :image_url %>
         </div>
       </div>
     <% end %>

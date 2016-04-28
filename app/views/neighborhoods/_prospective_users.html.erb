@@ -9,6 +9,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>HOA?</th>
+      <th>Credentials</th>
       <th>Accept</th>
       <th>Deny</th>
     </tr>
@@ -18,6 +19,10 @@
           <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td><%= user.hoa %></td>
+          <td><%= image_tag(user.image_url,
+                            width: 40, height: 50,
+                            class: 'img-center verification') if user.image_url.present? %>
+          </td>
           <td><%= link_to '', neighborhood_lead_accept_url(@current_member.neighborhood, user), method: :post, class:"glyphicon glyphicon-ok accept", remote: true %></td>
           <td><%= link_to '', neighborhood_lead_deny_url(@current_member.neighborhood, user), method: :post, class:"glyphicon glyphicon glyphicon-remove deny", remote: true%></td>
         </tr>

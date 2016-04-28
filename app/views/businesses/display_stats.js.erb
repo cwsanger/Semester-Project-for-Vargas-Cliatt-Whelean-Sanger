@@ -1,0 +1,16 @@
+$('#advertisement-list').html(
+  '<%= escape_javascript render 'businesses/ad_list' %>' 
+);
+
+$('#bar-example').html('');
+Morris.Bar({
+  element: 'bar-example',
+  data: [
+    <% @neighborhood_likes.each do |neighborhood, likes| %>
+      { 'y': '<%= neighborhood %>', 'a': <%= likes %> },
+    <% end %>
+  ],
+  xkey: 'y',
+  ykeys: ['a'],
+  labels: ['Likes']
+});

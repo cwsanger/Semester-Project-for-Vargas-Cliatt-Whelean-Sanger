@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :messages
   has_many :events
+  has_many :likes
 
   has_many :sent_messages, class_name: 'DirectMessage', foreign_key: 'from_id'
   has_many :received_messages, class_name: 'DirectMessage', foreign_key: 'to_id'
