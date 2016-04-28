@@ -5,6 +5,10 @@ class Advertisement < ActiveRecord::Base
 
   mount_uploader :image_url, PictureUploader
 
+  def likes_by_neighborhood(neighborhood)
+    likes.includes(:user).where(users: { neighborhood_id: neighborhood.id })
+  end
+
   def has_like(user)
     !likes.where(user_id: user.id).count.zero?
   end

@@ -16,12 +16,9 @@ class BusinessesController < ApplicationController
     @advertisements = @business.advertisements
     @advertisement = Advertisement.new
 
-    @neighborhood_likes = {}
-    @business.neighborhoods.each do |neighborhood|
-      query = "SELECT DISTINCT * FROM likes l INNER JOIN advertisements ad ON l.likeable_id = ad.id INNER JOIN users u ON l.user_id = u.id WHERE l.likeable_type = 'Advertisement' AND u.neighborhood_id = #{neighborhood.id} AND ad.business_id = #{@business.id}"
-      likes = Like.find_by_sql(query)
-      @neighborhood_likes[neighborhood.name] = likes.count;
-    end
+    b = @business
+    ns = @business.neighborhoods
+    @neighborhood_likes = ns.zip(ns.map{ |n| b.likes_by_neighborhood(n).count })
 
     respond_to do |format|
       format.html
@@ -31,16 +28,12 @@ class BusinessesController < ApplicationController
 
   def display_stats
     @business = Business.find(params[:business_id])
+    @advertisement = Advertisement.find(params[:id])
     @advertisements = @business.advertisements
 
-    @advertisement = Advertisement.find(params[:id])
-
-    @neighborhood_likes = {}
-    @business.neighborhoods.each do |neighborhood|
-      query = "SELECT DISTINCT * FROM likes l INNER JOIN advertisements ad ON l.likeable_id = ad.id INNER JOIN users u ON l.user_id = u.id WHERE l.likeable_type = 'Advertisement' AND u.neighborhood_id = #{neighborhood.id} AND ad.business_id = #{@business.id} AND ad.id = #{@advertisement.id}"
-      likes = Like.find_by_sql(query)
-      @neighborhood_likes[neighborhood.name] = likes.count;
-    end
+    a = @advertisement
+    ns = @business.neighborhoods
+    @neighborhood_likes = ns.zip(ns.map{ |n| a.likes_by_neighborhood(n).count })
 
     respond_to do |format|
       format.js
