@@ -117,10 +117,10 @@ a.i.linkTo{
 }
 
 .picture{
-  margin:auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  -webkit-transition: translateX(-50%);
 }
 
 #map {

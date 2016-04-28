@@ -181,11 +181,6 @@ fire.alerts.create(:body => "There is a big fire!", :severity => 100)
 fire.alerts.create(:body => "We got that fire.", :severity => 10)
 fire.alerts.create(:body => "Cats are in trees.", :severity => 1000)
 
-Alert.create(:body => "Alert 1", :severity => 1)
-Alert.create(:body => "Alert 2", :severity => 1)
-Alert.create(:body => "Alert 3", :severity => 1)
-Alert.create(:body => "Alert 9", :severity => 1)
-
 Broadcast.create(:body => "Broadcast 1")
 Broadcast.create(:body => "Broadcast 2")
 Broadcast.create(:body => "Broadcast 3")
