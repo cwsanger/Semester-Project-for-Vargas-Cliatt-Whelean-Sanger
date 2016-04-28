@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Description</th>
-      <th>Last updated</th>
+      <th>Created</th>
     </tr>
   </thead>
 	  <tbody class="searchable">
@@ -14,6 +14,11 @@
 	      <tr>
 	        <td><%= advertisement.body %></td>
 	        <td><%= advertisement.created_at.strftime("%A, %B #{advertisement.created_at.day.ordinalize} - %l:%M%P") %></td>
+          <td>
+            <%= image_tag(advertisement.image_url,
+            width: 120, height: 120, 
+            class: 'img-center') if advertisement.image_url.present? %>
+          </td>
 	      </tr>
 	    <% end %>
 	  </tbody>

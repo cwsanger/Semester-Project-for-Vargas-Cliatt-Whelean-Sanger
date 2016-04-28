@@ -8,6 +8,7 @@
 .inbox:hover{
   color: red
 }
+
 .right_bar {
   background: #F0F0F0;
   height: 100%;
@@ -115,8 +116,17 @@
 .pp{
   margin-left: 30%;
 }
+.scrolling{
+  overflow-y: scroll;
+  height: 400px;
 
-
+}
+.linky:visited{
+  color:white
+}
+.linky:hover{
+  background-color:#3A66A7;
+}
 //***********************************************************************
 
   iHover

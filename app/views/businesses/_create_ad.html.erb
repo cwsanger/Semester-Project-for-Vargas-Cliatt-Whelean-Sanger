@@ -1,14 +1,17 @@
 <div>
-  <%= form_tag(advertisements_create_url) do %>
+  <%= form_for(Advertisement.new,
+               url: create_advertisement_path,
+               html: {multipart: true}, method: :post) do |f| %>
     <div class="input-group">
     <hr class="hrAd">
       <div>
-        <%= text_area_tag :body, params[:body], placeholder: 'Type advertisement here', :class=>"myPostAd" %>
-        <%= file_field_tag :image_url, type:"file"%> 
+        <%= f.text_area :body, placeholder: 'Type advertisement here', :class=>"myPostAd" %>
+        <%= f.file_field :image_url, type:"file"%> 
+        <%= f.hidden_field :business_id, value: @current_member.id %>
       </div>
      <hr class="hrAd"> 
      <div class="action">
-         <%= submit_tag "Advertise", class: 'btn linky' %>
+         <%= f.submit "Advertise", class: 'btn linky' %>
       </div>
     </div>
   <% end %>
@@ -17,8 +20,8 @@
   $(":file").filestyle({
     input: false
   })
-  $("input").removeClass("glyphicon glyphicon-folder-open"); 
-  $("input").text("");
-  $("input").addClass("glyphicon glyphicon-camera");
-  $("input").removeClass("btn btn-default");
+  $("input span label").removeClass("glyphicon glyphicon-folder-open"); 
+  $("input span label").text("");
+  $("input span label").addClass("glyphicon glyphicon-camera");
+  $("input span label").removeClass("btn btn-default");
 </script>

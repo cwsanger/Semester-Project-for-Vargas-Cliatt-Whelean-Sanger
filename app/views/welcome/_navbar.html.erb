@@ -22,12 +22,7 @@
                 <li>
                     <a class="page-scroll" href="<%= about_path %>">About</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="<%= contact_path %>">Contact</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="<%= doc_path %>">Documentation</a>
-                </li>
+                
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -133,7 +128,7 @@
                 <hr>
                   <div class="field">
                     <%= f.text_area :email,:class=>"myPost",placeholder: 'Type @email here...'%>
-                    <hr>
+                    <br><br>
                     <%= f.label 'HOA Member?' %>
                     <%= f.check_box :hoa %>
                     <br> <br>
@@ -150,7 +145,7 @@
           
         </div>
         <div class="modal-footer">
-            <%= submit_tag 'Submit' %>
+            <%= submit_tag 'Submit',class:"btn linky" %>
         </div>
         <% end %>
       </div>      

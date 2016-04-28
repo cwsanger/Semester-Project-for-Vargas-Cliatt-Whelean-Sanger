@@ -11,9 +11,8 @@ class LeadsController < ApplicationController
                        role: User.roles[role],
                        neighborhood_id: @neighborhood.id,
                        image_url: open('app/assets/images/placeholder.png'))
-    user.build_account(email: @temp_user.email,
-                       password: 'password',
-                       password_confirmation: 'password')
+
+    user.account = Account.setup(user, @temp_user.email)
 
     respond_to do |format|
       if user.save

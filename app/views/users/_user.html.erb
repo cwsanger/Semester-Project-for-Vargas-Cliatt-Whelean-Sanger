@@ -1,10 +1,27 @@
-
-<div class="jumbotron">
+<div class="jumbotron cover">
 	<center><%= image_tag(@current_member.image_url, :width => 120,:height => 120,class:"img-circle img-center ") if @current_member.image_url.present?  %>
-	
-  <h1 class=""><%= user.name %></h1>
-  <a class="btn linky mail" href="mailto:<%= user.account.email %>">
-    <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
-  </a>
+    <h1 class=""><%= user.name %></h1>
+    <%= form_for(@current_member, html: {id: 'image_form', multipart: true}) do %>
+    <%= file_field_tag :image_url, 
+      type: 'file', html: {id: 'file_field'}
+    %>
+    <%= hidden_field_tag 'updateParam', 'image_url' %>
+  <% end %>
 </center>
 </div>
+
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open");
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
+</script>
+
+<script>
+  document.getElementById("image_url").onchange = function() {
+    document.getElementById("image_form").submit();
+  };
+</script>

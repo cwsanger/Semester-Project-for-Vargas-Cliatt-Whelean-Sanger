@@ -10,7 +10,6 @@
                 <span class="icon-bar"></span>
             </button>
             <%= link_to @business.name, @current_member, class: 'navbar-brand page-scroll maHood' %>
-
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,14 +21,18 @@
                 </li>
                 <li>
                   <%= link_to "Neighborhoods", business_neighborhoods_url(@current_member) %>
-                    <%= link_to "", edit_business_path(@current_member.id),
-                  method: :get,  class: 'page-scroll glyphicon glyphicon-cog'%>
+                   
                 </li>
+                 <li>
+                     <%= link_to "", edit_business_path(@current_member.id),
+                  method: :get,  class: 'page-scroll glyphicon glyphicon-cog'%>
+              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li>
                 <%= link_to "", logout_path, method: :post, class: 'page-scroll glyphicon glyphicon-log-out' %>
               </li>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
