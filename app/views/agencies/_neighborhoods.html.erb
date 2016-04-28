@@ -1,0 +1,24 @@
+<table class="table table-hover table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+  </tr>
+  <% @agency.neighborhoods.each do |neighborhood| %>
+    <tr>
+      <td><%= neighborhood.name %></td>
+      <td>Joined</td>
+    </tr>
+  <% end %>
+  <% ((@neighborhoods - @requested_neighborhoods) - @agency.neighborhoods).each do |neighborhood| %>
+    <tr>
+      <td><%= neighborhood.name %></td>
+      <td><%= button_to "Request", agency_join_request_url(@agency, neighborhood.id), class: :post, remote: true %></td>
+    </tr>
+  <% end %>
+  <% @requested_neighborhoods.each do |neighborhood| %>
+    <tr>
+      <td><%= neighborhood.name %></td>
+      <td>Pending...</td>
+    </tr>
+  <% end %>
+</table>

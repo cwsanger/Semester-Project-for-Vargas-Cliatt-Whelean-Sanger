@@ -1,9 +1,9 @@
 <div>
-  <%= form_tag(create_comment_path(post)) do %>
+<%= form_tag(create_comment_path(post), id: "comment-form#{post.id}", remote: true) do %>
     <div class="input-group col-xs-6">
       <div>
-        <%= text_area_tag :body, params[:body], placeholder: 'Type comment here',:class=>'myComment' %> 
-         <%= file_field_tag :image_url, type:"file"%> 
+        <%= text_area_tag :body, params[:body], id: "comment-form-body#{post.id}", placeholder: 'Type comment here',:class=>'myComment' %> 
+        <%= file_field_tag :image_url, type:"file", id: "comment-form-img#{post.id}"%> 
       </div>
       <div>
         <%= submit_tag "Comment", class: 'btn' %>
@@ -12,13 +12,19 @@
   <% end %>
   <br>
 </div>
+
 <script>
   $(":file").filestyle({
     input: false
   })
-  $("span label").removeClass("glyphicon glyphicon-folder-open"); 
-  $("span label").text("");
-  $("span label").addClass("glyphicon glyphicon-camera");
-  $("span label").removeClass("btn btn-default");
+  $("#comment-form<%= post.id %>").find("span label").text("").addClass("glyphicon glyphicon-camera").removeClass("btn btn-default");
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#comment-form<%= post.id %>').bind('ajax:complete', function() {
+      $('#comment-form<%= post.id %>')[0].reset(); 
+    });
+  });
 </script>
 

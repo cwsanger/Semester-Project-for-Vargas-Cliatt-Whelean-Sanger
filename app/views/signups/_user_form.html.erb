@@ -15,6 +15,8 @@
               <%= f.text_area :email,:class=>"myPosts",placeholder: 'Type @email here...'%>
             </div>
           <hr>
+          <%= f.label 'HOA Member?' %>
+          <%= f.check_box :hoa %>
           </div>
             <%= submit_tag 'Submit', class: 'btn linky' %>
         <% end %>
