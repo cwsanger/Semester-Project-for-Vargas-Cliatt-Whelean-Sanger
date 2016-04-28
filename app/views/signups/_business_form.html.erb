@@ -4,17 +4,17 @@
       <div class="input-group">
         <div class="field">
           <hr>
-          <%= f.text_field :name,class:"myPost",placeholder:"Business name" %>
+          <%= text_field_tag :name, nil, class:"myPost",placeholder:"Business name" %>
         </div>
         <div class="field">
           <hr>
-          <%= f.text_field :address_street, class:"myPost", placeholder:"Street name" %>
-          <%= f.text_field :address_city, class:"myPost", placeholder:"City" %>
-          <%= f.text_field :address_state, class:"myPost", placeholder:"State" %>
+          <%= text_field_tag :address_street, nil, class:"myPost", placeholder:"Street name" %>
+          <%= text_field_tag :address_city, nil, class:"myPost", placeholder:"City" %>
+          <%= text_field_tag :address_state, nil, class:"myPost", placeholder:"State" %>
         </div>
         <div class="field">
           <hr>
-          <%= f.email_field :email,class:"myPost",placeholder:"Email address" %>
+          <%= email_field_tag :email, nil, class:"myPost",placeholder:"Email address" %>
           <hr>
         </div>
         <div class="field">
