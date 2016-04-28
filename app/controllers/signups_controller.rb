@@ -11,7 +11,16 @@ class SignupsController < ApplicationController
   end
 
   def create_business
-    @temp_business = TempBusiness.new(temp_business_params)
+
+    address = params[:address_street] + " " +
+              params[:address_city] + " " +
+              params[:address_state]
+
+    @temp_business = TempBusiness.new(
+                           name: params[:name],
+                           email: params[:email],
+                           address: address,
+                           image_url: params[:image_url])
 
     respond_to do |format|
       if @temp_business.save
@@ -23,7 +32,16 @@ class SignupsController < ApplicationController
   end
 
   def create_agency
-    @temp_agency = TempAgency.new(temp_agency_params)
+
+    address = params[:address_street] + " " +
+              params[:address_city] + " " +
+              params[:address_state]
+
+    @temp_agency = TempAgency.new(
+                           name: params[:name],
+                           email: params[:email],
+                           address: address,
+                           image_url: params[:image_url])
 
     respond_to do |format|
       if @temp_agency.save
@@ -35,29 +53,15 @@ class SignupsController < ApplicationController
   end
 
   def create
-    #
-    # Have to test email before user is built so correct error message can be shown
-    #
-    # Have to test if address is valid or what or at least there
-    #
-
-    success = false
 
     address = params[:address_street] + " " +
               params[:address_city] + " " +
               params[:address_state]
 
-    puts "\n\n\n\n\nParams passed:\n"
-    puts params.merge(address: address)
-    puts "\n\n\n\n\n\n"
-
     @temp_neighborhood = TempNeighborhood.new(
                            name: params[:name],
                            contact_email: params[:temp_user][:email],
                            address: address)
-
-    #@temp_neighborhood = TempNeighborhood.new(
-    #                       temp_neighborhood_params.merge(address: address))
 
     @temp_neighborhood.temp_users.build(temp_user_params)
 

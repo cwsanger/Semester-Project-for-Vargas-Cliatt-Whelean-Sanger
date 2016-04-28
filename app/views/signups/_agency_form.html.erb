@@ -1,22 +1,30 @@
 <%= form_tag(signups_create_agency_url, multipart: true) do %>
   <div>
-    <%= fields_for :temp_agency, @temp_agency do |f| %>
+    <%= fields_for :temp_agency do |f| %>
       <div class="input-group">
         <div class="field">
-          <%= f.label :name %><br>
-          <%= f.text_field :name %>
+          <%= label_tag :name %><br>
+          <%= text_field_tag :name %>
         </div>
         <div class="field">
-          <%= f.label :address %><br>
-          <%= f.text_field :address %>
+          <%= label_tag :address_street %><br>
+          <%= text_field_tag :address_street %>
         </div>
         <div class="field">
-          <%= f.label :email %><br>
-          <%= f.email_field :email %>
+          <%= label_tag :address_city %><br>
+          <%= text_field_tag :address_city %>
         </div>
         <div class="field">
-          <%= f.label :image_url, "Credentials" %><br>
-          <%= f.file_field :image_url %>
+          <%= label_tag :address_state %><br>
+          <%= text_field_tag :address_state %>
+        </div>
+        <div class="field">
+          <%= label_tag :email %><br>
+          <%= email_field_tag :email %>
+        </div>
+        <div class="field">
+          <%= label_tag :image_url, "Credentials" %><br>
+          <%= file_field_tag :image_url %>
         </div>
       </div>
     <% end %>
