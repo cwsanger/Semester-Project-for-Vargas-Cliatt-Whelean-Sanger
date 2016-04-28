@@ -72,7 +72,7 @@ flair = User.create(:name => "Ric Flair", :neighborhood_id => wwf.id, :points =>
 flair.build_account(:email => "rflair@gmail.com", :password => 'password', :password_confirmation=> 'password')
 flair.save
 
-austin = User.create(:name => "Steve Austin", :neighborhood_id => wwf.id, :points => 99, :image_url => open('app/assets/images/austin.jpg'), :address => "901 Pineridge Dr, Valdosta, GA 31602")
+austin = User.create(:name => "Steve Austin", :neighborhood_id => wwf.id, :role => 2, :points => 105, :image_url => open('app/assets/images/austin.jpg'), :address => "901 Pineridge Dr, Valdosta, GA 31602")
 austin.build_account(:email => "saustin@gmail.com", :password => 'password', :password_confirmation=> 'password')
 austin.save
 
@@ -169,6 +169,7 @@ Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yours
 
 police = Agency.create(:name => "The Police Dept.",  :address => "500 N Toombs St Valdosta, GA", :image_url => open('app/assets/images/police.png'))
 police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")
+police.neighborhoods << wwf
 police.save
 
 police.alerts.create(:body => "Bad guy on the loose!", :severity => 10)
@@ -183,14 +184,14 @@ fire.alerts.create(:body => "There is a big fire!", :severity => 100)
 fire.alerts.create(:body => "We got that fire.", :severity => 10)
 fire.alerts.create(:body => "Cats are in trees.", :severity => 1000)
 
-Broadcast.create(:body => "Broadcast 1")
-Broadcast.create(:body => "Broadcast 2")
-Broadcast.create(:body => "Broadcast 3")
-Broadcast.create(:body => "Broadcast 4")
-Broadcast.create(:body => "Broadcast 5")
-Broadcast.create(:body => "Broadcast 6")
-Broadcast.create(:body => "Broadcast 7")
-Broadcast.create(:body => "Broadcast 8")
+Broadcast.create(:body => "Broadcast 1" :neighborhood_id => wwf.id)
+Broadcast.create(:body => "Broadcast 2" :neighborhood_id => wwf.id)
+Broadcast.create(:body => "Broadcast 3" :neighborhood_id => wwf.id)
+Broadcast.create(:body => "Broadcast 4" :neighborhood_id => wwf.id)
+Broadcast.create(:body => "Broadcast 5" :neighborhood_id => wwf.id)
+Broadcast.create(:body => "Broadcast 6" :neighborhood_id => wwf.id)
+Broadcast.create(:body => "Broadcast 7" :neighborhood_id => wwf.id)
+Broadcast.create(:body => "Broadcast 8" :neighborhood_id => wwf.id)
 
 Event.create(:name => "Pool Party", :body => "Suntan lotion will be provided", :start_time => Time.now, :end_time => Time.now + 2.days, :neighborhood_id => wwf.id, :user_id => daniel.id, :address => '703 W Cranford Ave, Valdosta, GA 31602', :image_url => open('app/assets/images/pool_party.jpg'))
 Event.create(:name => "BBQ", :body => "Bring your own beef", :start_time => Time.now + 3.days, :end_time => Time.now + 3.days, :neighborhood_id => wwf.id, :user_id => dwayne.id, :address => '200 High St, Valdosta, GA 31602', :image_url => open('app/assets/images/bbq.jpg'))
