@@ -4,7 +4,7 @@
     <hr class="hrAd">
       <div>
         <%= text_area_tag :body, params[:body], placeholder: 'Type advertisement here', :class=>"myPostAd" %>
-        <%= file_field_tag :image_url, type:"file"%> 
+        <%= file_field_tag :image_url, type:"file" , class:"filestyle"%> 
       </div>
      <hr class="hrAd"> 
      <div class="action">
@@ -17,8 +17,8 @@
   $(":file").filestyle({
     input: false
   })
-  $("input").removeClass("glyphicon glyphicon-folder-open"); 
-  $("input").text("");
-  $("input").addClass("glyphicon glyphicon-camera");
-  $("input").removeClass("btn btn-default");
+  $("input span label").removeClass("glyphicon glyphicon-folder-open"); 
+  $("input span label").text("");
+  $("input span label").addClass("glyphicon glyphicon-camera");
+  $("input span label").removeClass("btn btn-default");
 </script>
