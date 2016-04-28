@@ -1,12 +1,20 @@
-  <%= fields_for :temp_neighborhood, @temp_neighborhood do |f| %>
+  <%= fields_for :temp_neighborhood do |f| %>
     <hr>
     <div class="input-group">
       <div class="field">
-              <%= f.text_area :name,:class=>"myPost",placeholder: 'Type Name here...'%>
+        <%= text_area_tag :name, nil, :class=>"myPost",placeholder: 'Neighborhood title...'%>
       </div>
       <hr>
       <div class="field">
-        <%= f.text_area :address,:class=>"myPost",placeholder: 'Type address here...'%>
+        <%= text_area_tag 'address_street', nil, :class=>"myPost",placeholder: 'Street Name'%>
+      </div>
+      <hr>
+      <div class="field">
+        <%= text_area_tag 'address_city', nil, :class=>"myPost",placeholder: 'City or town'%>
+      </div>
+      <hr>
+      <div class="field">
+        <%= text_area_tag 'address_state', nil, :class=>"myPost",placeholder: 'State'%>
       </div>
     </div>
   <% end %>

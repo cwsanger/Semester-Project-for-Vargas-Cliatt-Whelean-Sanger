@@ -38,7 +38,27 @@ class SignupsController < ApplicationController
     #
     # Have to test email before user is built so correct error message can be shown
     #
-    @temp_neighborhood = TempNeighborhood.new(temp_neighborhood_params)
+    # Have to test if address is valid or what or at least there
+    #
+
+    success = false
+
+    address = params[:address_street] + " " +
+              params[:address_city] + " " +
+              params[:address_state]
+
+    puts "\n\n\n\n\nParams passed:\n"
+    puts params.merge(address: address)
+    puts "\n\n\n\n\n\n"
+
+    @temp_neighborhood = TempNeighborhood.new(
+                           name: params[:name],
+                           contact_email: params[:temp_user][:email],
+                           address: address)
+
+    #@temp_neighborhood = TempNeighborhood.new(
+    #                       temp_neighborhood_params.merge(address: address))
+
     @temp_neighborhood.temp_users.build(temp_user_params)
 
     respond_to do |format|
@@ -48,6 +68,7 @@ class SignupsController < ApplicationController
         format.html { redirect_to root_path, alert: 'Failed to register' }
       end
     end
+
   end
 
   def join
@@ -70,7 +91,8 @@ class SignupsController < ApplicationController
     end
 
     def temp_neighborhood_params
-      params.require(:temp_neighborhood).permit(:name, :address)
+      params.require(:temp_neighborhood).permit(:name, :address_street,
+                                                :address_city, :address_state)
     end
 
     def temp_business_params
