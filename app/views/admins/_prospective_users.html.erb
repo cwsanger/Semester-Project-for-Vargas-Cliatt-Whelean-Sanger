@@ -21,7 +21,9 @@
     <tr>
       <td><center><%= user.hood.address %></center></td>
       <td><center><%= user.hood.name %></center></td>
+      <td><center>
       <a href=""data-toggle="modal" data-target="#myModal<%= user.id %>"><%= image_tag(user.image_url, :width => 40 ,:height=>"40", class:"img-center verification") if user.image_url.present?  %></a></center></td>
+      </center></td>
       <td><center><%= user.name %></center></td>
       <td><center><%= user.email %></center></td>
 
