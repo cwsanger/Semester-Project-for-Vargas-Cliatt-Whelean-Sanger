@@ -2,5 +2,24 @@ $('#posts').html(
   '<%= escape_javascript render 'neighborhoods/post_list' %>'
 );
 $('#profile').html('<%= escape_javascript render 'neighborhoods/profile' %>');
-
+$( document ).ready(function() {
+    var points = <%= @current_member.points%>+"%";
+    var thePoints = <%= @current_member.points%>;
+    if(thePoints >= 100 ){
+    	$("#myBar").removeAttr('class');
+		$("#myBar").addClass("progress-bar progress-bar-warning progress-bar-striped");
+    	$(".leader").addClass("glyphicon glyphicon-star");       
+    }else if( thePoints > 75){
+    	$("#myBar").removeAttr('class');	
+    	$("#myBar").addClass("progress-bar progress-bar-danger");   	 
+    }else if( thePoints > 50){
+    	$("#myBar").removeAttr('class');
+    	$("#myBar").addClass("progress-bar progress-bar");    	
+    }else if( thePoints > 25){
+    	$("#myBar").removeAttr('class');
+    	$("#myBar").addClass("progress-bar progress-bar-success");          
+    }
+    $("#myBar").css('width',thePoints);
+    $("#myBar").text(thePoints);
+  });
 

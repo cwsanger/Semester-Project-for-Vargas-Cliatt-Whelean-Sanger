@@ -6,7 +6,9 @@
 #map {
   height: 400px;
 }
-
+.forgotPass:hover{
+  background-color:white;
+}
 .background-div {
   z-index: -5;
   position: fixed;
@@ -203,4 +205,8 @@ p{
 }
 .searchy{
   margin-top:0px;
+}
+.browser{
+  width: 7000px;
+  height: 7000px;
 }

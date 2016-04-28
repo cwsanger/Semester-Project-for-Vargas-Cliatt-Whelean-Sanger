@@ -116,7 +116,7 @@
     <div class="modal-dialog">    
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-eader">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Neighborhood Registration</h4>
         </div>
@@ -137,7 +137,7 @@
                 <hr>
                   <div class="field">
                     <%= f.text_area :email,:class=>"myPost",placeholder: 'Your email address'%>
-                    <hr>
+                    <br><br>
                     <%= f.label 'Signing up as HOA?' %>
                     <%= f.check_box :hoa %>
                     <br> <br>
@@ -150,7 +150,7 @@
           
         </div>
         <div class="modal-footer">
-            <%= submit_tag 'Submit', class: 'btn btn-default linky' %>
+            <%= submit_tag 'Submit', class:"btn linky" %>
         </div>
         <% end %>
       </div>      

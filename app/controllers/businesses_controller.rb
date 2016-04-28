@@ -6,6 +6,7 @@ class BusinessesController < ApplicationController
   # GET /businesses.json
   def index
     @businesses = Business.all
+
   end
 
   # GET /businesses/1
@@ -107,6 +108,6 @@ class BusinessesController < ApplicationController
     end
 
     def request_params
-      params.permit(:business_id, :neighborhood_id)
+      params.permit(:business_id, :neighborhood_id,:advertisement_id)
     end
 end

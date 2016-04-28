@@ -1,5 +1,5 @@
 <table class="table table-bordered">
-  <center><h1>Prospective Agencies</h1></center>
+  <center><h1>Perspective Agencies</h1></center>
   <hr>
   <tr>
     <th><center>Name</center></th>
@@ -14,17 +14,17 @@
       <td><center><%= agency.name %></center></td>
       <td><center><%= agency.email %></center></td>
       <td><center><%= agency.address %></center></td>
-      <td><center><a href=""data-toggle="modal" data-target="#myModal<%= agency.id %>"><%= image_tag(agency.image_url, :width => "40" ,:height=>"40",class:"img-center verification") if agency.image_url.present?  %></a></center></td>
-      <td><center><%= link_to '', admin_accept_agency_url(agency), method: :post, class:"approve glyphicon glyphicon-ok", remote: true %></center></td>
-      <td><center><%= link_to '', admin_deny_agency_url(agency), method: :post, class:"deny glyphicon glyphicon-remove", remote: true %></center></td>
+      <td><center><a href=""data-toggle="modal" data-target="#<%= agency.id %>a"><%= image_tag(agency.image_url, :width => "40" ,:height=>"40",class:"img-center verification") if agency.image_url.present?  %></a></center></td>
+      <td><center><%= link_to '', admin_accept_agency_url(agency), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
+      <td><center><%= link_to '', admin_deny_agency_url(agency), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
     </tr>
-    <div id="myModal<%= agency.id %>" class="modal fade" role="dialog">
+    <div id="<%= agency.id %>a" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Verification Picture</h4>
+            <h4 class="modal-title">Verification Picture Agency</h4>
           </div>
           <div class="modal-body ">
             <%= image_tag(agency.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center verification") if agency.image_url.present?  %>        
@@ -34,4 +34,3 @@
     </div>
   <% end %>
 </table>
-

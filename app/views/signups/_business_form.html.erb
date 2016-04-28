@@ -3,24 +3,19 @@
     <%= fields_for :temp_business do |f| %>
       <div class="input-group">
         <div class="field">
-          <%= label_tag :name %><br>
-          <%= text_field_tag :name %>
+          <hr>
+          <%= f.text_field :name,class:"myPost",placeholder:"Business name" %>
         </div>
         <div class="field">
-          <%= label_tag :address_street %><br>
-          <%= text_field_tag :address_street %>
+          <hr>
+          <%= f.text_field :address_street, class:"myPost", placeholder:"Street name" %>
+          <%= f.text_field :address_city, class:"myPost", placeholder:"City" %>
+          <%= f.text_field :address_state, class:"myPost", placeholder:"State" %>
         </div>
         <div class="field">
-          <%= label_tag :address_city %><br>
-          <%= text_field_tag :address_city %>
-        </div>
-        <div class="field">
-          <%= label_tag :address_state %><br>
-          <%= text_field_tag :address_state %>
-        </div>
-        <div class="field">
-          <%= label_tag :email %><br>
-          <%= email_field_tag :email %>
+          <hr>
+          <%= f.email_field :email,class:"myPost",placeholder:"Email address" %>
+          <hr>
         </div>
         <div class="field">
           <%= label_tag :image_url, "Credentials" %><br>
