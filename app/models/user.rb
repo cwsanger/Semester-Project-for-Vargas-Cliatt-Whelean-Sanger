@@ -32,7 +32,11 @@ class User < ActiveRecord::Base
   end
 
   def post(post_params)
-    posts.build(post_params)
+    if post_params[:category_id].present?
+      posts.build(post_params)
+    else
+      posts.build(post_params.merge({ category_id: Category.all.first.id }))
+    end
     add_points(3)
   end
 
