@@ -1,1 +1,17 @@
-
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Last updated</th>
+    </tr>
+  </thead>
+	  <tbody class="searchable">
+	   <% @advertisements.each do |advertisement| %>
+             <tr class="<% if advertisement == @advertisement %>selected<% end %>">
+	        <td><%= advertisement.body %></td>
+	        <td><%= advertisement.created_at.strftime("%A, %B #{advertisement.created_at.day.ordinalize} - %l:%M%P") %></td>
+                <td><%= link_to 'Stats', business_display_stats_url(@business, advertisement), method: :get, remote: true %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+</table>

@@ -21,14 +21,14 @@
     </div>
   </div>
 </div>
+
 <script>
   Morris.Bar({
     element: 'bar-example',
     data: [
-      { y: 'World', a: 100},
-      { y: 'Kanto', a: 75},
-      { y: 'Bikini Bottom', a: 50},
-      { y: 'Badsfa', a: 63}
+      <% @neighborhood_likes.each do |neighborhood, likes| %>
+        { 'y': '<%= neighborhood %>', 'a': <%= likes %> },
+      <% end %>
     ],
     xkey: 'y',
     ykeys: ['a'],

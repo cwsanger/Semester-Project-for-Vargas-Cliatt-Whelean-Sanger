@@ -2,22 +2,9 @@
 <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
    <input id="filter" type="text" class="form-control" placeholder="Find advertisement...">
 </div>
-<table class="table table-striped table-hover table-bordered">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Last updated</th>
-    </tr>
-  </thead>
-	  <tbody class="searchable">
-	   <% @advertisements.each do |advertisement| %>
-	      <tr>
-	        <td><%= advertisement.body %></td>
-	        <td><%= advertisement.created_at.strftime("%A, %B #{advertisement.created_at.day.ordinalize} - %l:%M%P") %></td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-</table>
+<div id="advertisement-list">
+  <%= render 'businesses/ad_list' %>
+</div>
 <script>
   $(document).ready(function () {
     (function ($) {
@@ -27,7 +14,7 @@
             $('.searchable tr').filter(function () {
                 return rex.test($(this).text());
             }).show();
-        }
+        });
     }($));
 });
 </script>

@@ -13,6 +13,31 @@ class BusinessesController < ApplicationController
     auth @business
 
     @advertisements = @business.advertisements
+
+    @neighborhood_likes = {}
+    @business.neighborhoods.each do |neighborhood|
+      @neighborhood_likes[neighborhood.name] =
+        Like.find_by_sql(
+          "SELECT * FROM likes, advertisements, users, neighborhoods, businesses WHERE likes.likeable_id = advertisements.id AND likes.likeable_type = 'Advertisement' AND likes.user_id = users.id AND users.neighborhood_id = #{neighborhood.id} AND advertisements.business_id = #{@business.id}").count / 10
+    end
+  end
+
+  def display_stats
+    @business = Business.find(params[:business_id])
+    @advertisements = @business.advertisements
+
+    @advertisement = Advertisement.find(params[:id])
+
+    @neighborhood_likes = {}
+    @business.neighborhoods.each do |neighborhood|
+      @neighborhood_likes[neighborhood.name] =
+        Like.find_by_sql(
+          "SELECT * FROM likes, advertisements, users, neighborhoods, businesses WHERE likes.likeable_id = advertisements.id AND likes.likeable_type = 'Advertisement' AND advertisements.id = #{@advertisement.id} AND likes.user_id = users.id AND users.neighborhood_id = #{neighborhood.id} AND advertisements.business_id = #{@business.id}").count / 10
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /businesses/new
