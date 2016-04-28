@@ -1,2 +1,3 @@
 $('#post<%= @post.id %>').replaceWith("<%= escape_javascript render @post %>");
+$('#profile').html('<%= escape_javascript render 'neighborhoods/profile' %>');
 
