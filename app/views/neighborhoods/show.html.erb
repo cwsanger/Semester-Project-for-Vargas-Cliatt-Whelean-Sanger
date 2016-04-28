@@ -2,7 +2,9 @@
 <p id="notice"><%= notice %></p>
 <br><br><br><br>
 <div class="col-xs-5 col-sm-offset-3 ">
+  <div id="post-form-container">
   <%= render partial: 'posts/form', locals: { categories: @categories } %>
+  </div>
   <br>
   <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
    <input id="filter" type="text" class="form-control" placeholder="Search here...">
