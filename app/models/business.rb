@@ -14,4 +14,13 @@ class Business < ActiveRecord::Base
   validates :name, presence: true
   validates :address, presence: true
   mount_uploader :image_url, PictureUploader
+
+  def likes_by_neighborhood(neighborhood)
+    join = 'INNER JOIN advertisements ON likes.likeable_id = advertisements.id ' \
+           'INNER JOIN users ON likes.user_id = users.id'
+    Like.joins(join)
+        .where(likeable_type: 'Advertisement',
+               users: { neighborhood_id: neighborhood.id },
+               advertisements: { business_id: self.id })
+  end
 end
