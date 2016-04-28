@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20160427160703) do
     t.string   "address"
     t.float    "longitude"
     t.float    "latitude"
-    t.string   "image_url"
   end
 
   create_table "agencies_neighborhoods", force: :cascade do |t|
@@ -170,7 +169,6 @@ ActiveRecord::Schema.define(version: 20160427160703) do
     t.integer  "category_id"
     t.string   "image_url"
     t.integer  "status",      default: 0
-    t.string   "image_url"
   end
 
   create_table "requests", force: :cascade do |t|

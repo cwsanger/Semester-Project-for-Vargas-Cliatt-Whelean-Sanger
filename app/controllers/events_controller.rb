@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @events = Event.all
-    @hash = Gmaps4rails.build_markers(@events) do |event, marker|
+    @hash = Gmaps4rails.build_markers(@event) do |event, marker|
       marker.lat event.latitude
       marker.lng event.longitude
       marker.title event.name
