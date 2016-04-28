@@ -164,8 +164,9 @@ bk = Business.create(:name => "Burger King", :address => "1801 N Ashley Street V
 bk.build_account(:email => "bk@gmail.com", :password => 'password', :password_confirmation=> 'password')
 bk.save
 
-Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id, :image_url => open('app/assets/images/whopper.png'))
-Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
+ad1 = Advertisement.create(:body => "Come try our juicy burgers", :business_id => bk.id, :image_url => open('app/assets/images/whopper.png'))
+ad2 = Advertisement.create(:body => "We have a new strawberry milkshake. Prepare yourself.", :business_id => bk.id)
+
 
 police = Agency.create(:name => "The Police Dept.",  :address => "500 N Toombs St Valdosta, GA", :image_url => open('app/assets/images/police.png'))
 police.build_account(:email => "popo@gmail.com", :password => "password", :password_confirmation => "password")

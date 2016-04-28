@@ -55,7 +55,7 @@ class WelcomeController < ApplicationController
 
     coords = Geocoder.coordinates(params[:search]);
     if coords.present?
-      @neighborhoods = Neighborhood.near(coords, 20)
+      @neighborhoods = Neighborhood.near(coords, 20, order: false)
     else
       @neighborhoods = Neighborhood.all
     end
