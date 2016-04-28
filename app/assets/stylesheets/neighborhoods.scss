@@ -119,7 +119,10 @@
 .scrolling{
   overflow-y: scroll;
   height: 400px;
-
+}
+.chat_div{
+  overflow-y: scroll;
+  height: 30vh;
 }
 .linky:visited{
   color:white
