@@ -63,9 +63,9 @@ Rails.application.routes.draw do
 
   get 'signups/temps' => 'signups#temps', as: 'temps'
 
-  post 'advertisements/create'
+  post 'advertisements/create', as: :create_advertisement
 
-  get 'advertisement/create', as: :create_advertisement
+  get 'advertisements/create'
 
   get 'advertisements/destroy'
 

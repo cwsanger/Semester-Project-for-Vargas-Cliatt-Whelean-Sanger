@@ -3,6 +3,7 @@
     <tr>
       <th>Description</th>
       <th>Created</th>
+      <th>Image</th>
     </tr>
   </thead>
 	  <tbody class="searchable">
@@ -10,13 +11,11 @@
              <tr class="<% if advertisement == @advertisement %>selected<% end %>">
 	        <td><%= advertisement.body %></td>
 	        <td><%= advertisement.created_at.strftime("%A, %B #{advertisement.created_at.day.ordinalize} - %l:%M%P") %></td>
-                <% if advertisement.image_url.present? %>
                 <td>
                   <%= image_tag(advertisement.image_url,
                   width: 120, height: 120, 
-                  class: 'img-center') %>
+                  class: 'img-center') if advertisement.image_url.present? %>
                 </td>
-                <% end %>
                 <td><%= button_to 'Stats', business_display_stats_url(@business, advertisement), method: :get, remote: true, class: 'btn' %></td>
 	      </tr>
 	    <% end %>
