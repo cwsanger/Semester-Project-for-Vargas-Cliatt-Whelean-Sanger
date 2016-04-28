@@ -17,6 +17,7 @@
       <%= render partial: 'advertisements/adv', locals: { categories: @categories } %>
     </div>
     <div class="col-md-6">
+      <%= button_to 'All Ads', @business, class: 'btn', method: :get, remote: true %>
      <div id="bar-example"></div>
     </div>
   </div>

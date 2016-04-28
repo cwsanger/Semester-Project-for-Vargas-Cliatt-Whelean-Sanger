@@ -21,6 +21,11 @@ class BusinessesController < ApplicationController
         Like.find_by_sql(
           "SELECT * FROM likes, advertisements, users, neighborhoods, businesses WHERE likes.likeable_id = advertisements.id AND likes.likeable_type = 'Advertisement' AND likes.user_id = users.id AND users.neighborhood_id = #{neighborhood.id} AND advertisements.business_id = #{@business.id}").count / 10
     end
+
+    respond_to do |format|
+      format.html
+      format.js { render action: 'display_stats' }
+    end
   end
 
   def display_stats

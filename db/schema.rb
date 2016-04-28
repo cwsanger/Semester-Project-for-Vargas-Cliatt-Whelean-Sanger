@@ -171,8 +171,8 @@ ActiveRecord::Schema.define(version: 20160427160703) do
     t.datetime "updated_at",              null: false
     t.integer  "user_id"
     t.integer  "category_id"
-    t.string   "image_url"
     t.integer  "status",      default: 0
+    t.string   "image_url"
   end
 
   create_table "requests", force: :cascade do |t|
