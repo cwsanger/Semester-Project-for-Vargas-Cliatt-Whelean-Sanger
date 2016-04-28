@@ -5,14 +5,18 @@
   <%= render partial: 'posts/form', locals: { categories: @categories } %>
   <br>
   <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
-   <input id="filter" type="text" class="form-control" placeholder="Type here...">
+   <input id="filter" type="text" class="form-control" placeholder="Search here...">
+   <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li data-toggle="dropdown"><%= link_to 'All', @neighborhood, method: :get, class: 'dropdown-toggle', remote: true %></li>
+          <% @categories.each do |category|%>
+            <li data-toggle="dropdown"><%= link_to category.title, neighborhood_category_url(@neighborhood, category.id), method: :get, class: '', remote: true %></li> 
+          <% end %>
+        </ul>
+      </div><!-- /btn-group -->
   </div>
   <div>
-    <%= link_to 'All', @neighborhood, method: :get, class: 'btn btn-primary linky', remote: true %> 
-    <% @categories.each do |category|%>
-      <%= link_to category.title, neighborhood_category_url(@neighborhood, category.id), method: :get, class: 'btn btn-primary linky', remote: true %> 
-    <% end %>
-  </div>
   <table class="table table-striped">
       <thead>
         <tr>
