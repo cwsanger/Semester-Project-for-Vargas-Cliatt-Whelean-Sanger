@@ -21,7 +21,7 @@
       <%= post.body %>
       <hr class="postComments">
       <div class="col-xs-offset-4">       
-        <img src=" <%=post.image_url%>" id="imgSmile<%= post.id %>"></img>
+        <img src="<%=post.image_url%>" id="imgSmile<%= post.id %>" class=""></img>
       </div>
     </p>
     <div id="<%= post.id %>x" class="hideComments"><small id="post-comment-length<%= post.id %>"><%=post.comments.length%> <i class= "glyphicon glyphicon-comment"></i></small></div>
@@ -59,19 +59,12 @@
    $(document).ready(function(){
        $('#imgSmile<%= post.id %>').width(200);
        
-       $('#imgSmile<%= post.id %>').click(function()
-       {
-          $(this).css("cursor","pointer");
-          $(this).animate({width: "100%"}, 'slow');
-          $(this).css("margin-left","-110px");
-       });
-    
-      $('#imgSmile<%= post.id %>').mouseout(function()
-      {   
-        $(this).animate({width: "45%"}, 'fast');
-        $(this).css("margin-left","-20px");
-       });
+       
    });
 </script>
+<style>
+
+
+</style>
 
 </div> 

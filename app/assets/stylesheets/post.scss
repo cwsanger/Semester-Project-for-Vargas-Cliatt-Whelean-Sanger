@@ -160,3 +160,16 @@ ul {
 a.flaggy:hover{
     background-color :transparent;
 }
+.square {
+  background: darkturquoise;
+  border-radius: 5px;
+  height: 100px;
+  margin: 100px;
+  transition: transform 1s;
+  width: 100px;
+  
+  &:hover {
+    transform: scale(2);
+  }
+}
+  
