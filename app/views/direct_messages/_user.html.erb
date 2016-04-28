@@ -14,7 +14,12 @@
      <% @current_member.neighborhood.users.each do |user| %>
       <tr>
         <% unless @current_member.id == user.id %>
-          <td class="cm"><%= user.name %> <%= link_to '', direct_message_url(user.id),:class=>" linkTo glyphicon glyphicon-circle-arrow-right pull-right" %></td>
+          <td class="cm">
+            <%= user.name %> 
+            <%= link_to direct_message_url(user.id) do %>
+              <span class="linkTo glyphicon glyphicon-circle-arrow-right pull-right" style="<% if user.lead? %>color: purple;<% elsif user.hoa? %>color: yellow;<% end %>"></span>
+            <% end %>
+          </td>
         <% end %>
       </tr>
     <% end %>
