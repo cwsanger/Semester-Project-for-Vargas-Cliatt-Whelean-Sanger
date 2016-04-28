@@ -133,7 +133,7 @@
                 <hr>
                   <div class="field">
                     <%= f.text_area :email,:class=>"myPost",placeholder: 'Type @email here...'%>
-                    <hr>
+                    <br><br>
                     <%= f.label 'HOA Member?' %>
                     <%= f.check_box :hoa %>
                     <br> <br>
@@ -150,7 +150,7 @@
           
         </div>
         <div class="modal-footer">
-            <%= submit_tag 'Submit' %>
+            <%= submit_tag 'Submit',class:"btn linky" %>
         </div>
         <% end %>
       </div>      

@@ -3,16 +3,17 @@
     <%= fields_for :temp_business, @temp_business do |f| %>
       <div class="input-group">
         <div class="field">
-          <%= f.label :name %><br>
-          <%= f.text_field :name %>
+          <hr>
+          <%= f.text_field :name,class:"myPost",placeholder:"Type name here..." %>
         </div>
         <div class="field">
-          <%= f.label :address %><br>
-          <%= f.text_field :address %>
+          <hr>
+          <%= f.text_field :address,class:"myPost",placeholder:"Type adress here..." %>
         </div>
         <div class="field">
-          <%= f.label :email %><br>
-          <%= f.email_field :email %>
+          <hr>
+          <%= f.email_field :email,class:"myPost",placeholder:"Type @email here..." %>
+          <hr>
         </div>
         <div class="field">
           <%= f.label :image_url, "Credentials" %><br>
