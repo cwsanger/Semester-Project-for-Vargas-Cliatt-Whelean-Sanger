@@ -20,6 +20,11 @@
                 <li class="hidden">
                     <a class="page-scroll" href="#page-top"></a>
                 </li>
+                <li>
+                  <%= link_to '', edit_admin_path(@current_member),
+                      class: 'page-scroll glyphicon glyphicon-cog',
+                      method: :get %>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

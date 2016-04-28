@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UpdateHelper
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -47,36 +48,12 @@ class UsersController < ApplicationController
         so updateParam is also passed to this method and its value is
         the name of that unknown parameter.
 
-        params[:updateParam] gives us the string value of the name of the
-        unknown parameter and so we can use that to get value of the unknown
-        parameter with params[ params[:updateParam] ]
+        e.g. params: {updateParam: 'email', email: 'myNewEmail@email.com'}
+        e.g. params: {updateParam: 'name', name: 'Kristofur Kolowmbust'}
 
     """
 
-    paramName = params[:updateParam]
-    paramValue = params[ paramName ]
-
-    #Make sure the parameter to be updated is one we have whitelisted
-    if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
-
-      if paramName == 'email'
-        @current_member.account.update_attribute(paramName, paramValue)
-        notice = 'good job, admin was updated'
-      else
-        @current_member.update_attribute(paramName, paramValue)
-        notice = 'good job, user was updated'
-      end
-    elsif paramValue.empty?
-      notice = 'Your ' + paramName + ' can not be blank.'
-    else
-      notice = 'Unexpected parameter'
-    end
-
-    respond_to do |format|
-      format.html { redirect_to edit_user_path(@current_member), notice: notice }
-      format.json { render :edit, status: :ok, location: @current_member }
-    end
-
+    update_account(@current_member, params[:updateParam], params)
   end
 
   # DELETE /users/1

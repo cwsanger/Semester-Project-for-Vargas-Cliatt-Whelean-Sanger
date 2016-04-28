@@ -1,4 +1,6 @@
 class AdminsController < ApplicationController
+  include UpdateHelper
+
   before_action :set_temp_user, only: [:accept_user, :deny_user]
   before_action :set_temp_business, only: [:accept_business, :deny_business]
   before_action :set_temp_agency, only: [:accept_agency, :deny_agency]
@@ -20,17 +22,17 @@ class AdminsController < ApplicationController
                        neighborhood_id: neighborhood.id,
                        image_url: open('app/assets/images/placeholder.png'),
                        role: User.roles[role])
-    user.build_account(email: @temp_user.email,
-                       password: 'password',
-                       password_confirmation: 'password')
+
+    user.account = Account.setup(user, @temp_user.email)
 
     respond_to do |format|
-      if user.save
+      if user.account
         @temp_user.hood.destroy
         @temp_user.destroy
 
         format.html { redirect_to admins_url }
       else
+        user.destroy
         format.html { redirect_to admins_url, alert: 'failed to create user' }
       end
 
@@ -52,17 +54,20 @@ class AdminsController < ApplicationController
   end
 
   def accept_business
-    business = Business.new(name: @temp_business.name, address: @temp_business.address, image_url: open('app/assets/images/placeholder.png'))
-    business.build_account(email: @temp_business.email,
-                           password: 'password',
-                           password_confirmation: 'password')
+
+    business = Business.create(name: @temp_business.name,
+                            address: @temp_business.address,
+                            image_url: open('app/assets/images/placeholder.png'))
+
+    business.account = Account.setup(business, @temp_business.email)
 
     respond_to do |format|
-      if business.save
+      if business.account
         @temp_business.destroy
 
         format.html { redirect_to admins_url }
       else
+        business.destroy
         format.html { redirect_to admins_url, alert: 'failed to create business' }
       end
 
@@ -83,17 +88,20 @@ class AdminsController < ApplicationController
   end
 
   def accept_agency
-    agency = Agency.new(name: @temp_agency.name, address: @temp_agency.address, image_url: open('app/assets/images/placeholder.png'))
-    agency.build_account(email: @temp_agency.email,
-                         password: 'password',
-                         password_confirmation: 'password')
+
+    agency = Agency.create(name: @temp_agency.name,
+                        address: @temp_agency.address,
+                        image_url: open('app/assets/images/placeholder.png'))
+
+    agency.account = Account.setup(agency, @temp_agency.email)
 
     respond_to do |format|
-      if agency.save
+      if agency.account
         @temp_agency.destroy
 
         format.html { redirect_to admins_url }
       else
+      agency.destroy
         format.html { redirect_to admins_url, alert: 'failed to create agency' }
       end
 
@@ -111,6 +119,13 @@ class AdminsController < ApplicationController
       @temp_agencies = TempAgency.all
       format.js { render action: 'rerender_prospective_agencies' }
     end
+  end
+
+  def edit
+  end
+
+  def update
+    update_account(@current_member, params[:updateParam], params)
   end
 
   private

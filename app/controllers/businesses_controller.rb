@@ -1,4 +1,5 @@
 class BusinessesController < ApplicationController
+  include UpdateHelper
   before_action :set_business, only: [:show, :edit, :update, :destroy]
 
   # GET /businesses
@@ -11,8 +12,8 @@ class BusinessesController < ApplicationController
   # GET /businesses/1.json
   def show
     auth @business
-
     @advertisements = @business.advertisements
+    @advertisement = Advertisement.new
 
     @neighborhood_likes = {}
     @business.neighborhoods.each do |neighborhood|
@@ -68,29 +69,9 @@ class BusinessesController < ApplicationController
   # PATCH/PUT /businesses/1
   # PATCH/PUT /businesses/1.json
   def update
-    paramName = params[:updateParam]
-    paramValue = params[ paramName ]
 
-    #Make sure the parameter to be updated is one we have whitelisted
-    if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
+    update_account(@current_member, params[:updateParam], params)
 
-      if paramName == 'email'
-        @current_member.account.update_attribute(paramName, paramValue)
-        notice = 'good job, admin was updated'
-      else
-        @current_member.update_attribute(paramName, paramValue)
-        notice = 'good job, business was updated'
-      end
-    elsif paramValue.empty?
-      notice = 'Your ' + paramName + ' can not be blank.'
-    else
-      notice = 'Unexpected parameter'
-    end
-
-    respond_to do |format|
-      format.html { redirect_to edit_business_path(@current_member), notice: notice }
-      format.json { render :edit, status: :ok, location: @current_member }
-    end
   end
 
   # DELETE /businesses/1
