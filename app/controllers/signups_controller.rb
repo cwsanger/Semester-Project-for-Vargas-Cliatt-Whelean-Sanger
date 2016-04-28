@@ -66,7 +66,7 @@ class SignupsController < ApplicationController
 
   private
     def temp_user_params
-      params.require(:temp_user).permit(:name, :email, :image_url)
+      params.require(:temp_user).permit(:name, :email, :image_url, :hoa)
     end
 
     def temp_neighborhood_params

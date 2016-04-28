@@ -1,4 +1,4 @@
-class AdvertisementController < ApplicationController
+class AdvertisementsController < ApplicationController
   before_action :set_advertisement, only: [:like]
 
   def create

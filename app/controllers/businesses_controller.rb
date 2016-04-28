@@ -79,11 +79,18 @@ class BusinessesController < ApplicationController
     r = Request.create(requestable: @business,
                        neighborhood_id: params[:neighborhood_id])
 
+    @neighborhoods = Neighborhood.within(20, origin: @business)
+
+    @requested_neighborhoods = Neighborhood.joins(:requests)
+                                           .where("requests.requestable_id = #{@business.id}")
+
     respond_to do |format|
       if r.save
         format.html { redirect_to business_neighborhoods_url(@business) }
+        format.js
       else
         format.html { redirect_to business_neighborhoods_url(@business), alert: 'Failed to create request' }
+        format.js
       end
     end
   end

@@ -1,14 +1,14 @@
 <div>
   <h3>Create Alert!</h3>
-  <%= form_for(@alert) do |f| %>
+  <%= form_for(@alert, remote: true) do |f| %>
     <div class="input-group">
     <hr>
       <div class="field">
-        <%= f.text_field :body,placeholder:"Description", :class=>"myPost" %>
+        <%= f.text_field :body,placeholder:"Description", :class=>"myPost", id: 'new-alert-body' %>
       </div>
       <hr>
         <div class="field">
-          <%= f.number_field :severity,placeholder:"Severity",:class=>"myPost" %>
+          <%= f.number_field :severity,placeholder:"Severity",:class=>"myPost", id: 'new-alert-severity' %>
         </div>
       <hr>
       <div class="action">
@@ -18,3 +18,11 @@
   <% end %>
 </div>
 
+<script>
+  $(document).ready(function() {
+    $('#new_alert').bind('ajax:complete', function() {
+      $('#new-alert-body').val('');
+      $('#new-alert-severity').val('');
+    });
+  });
+</script>

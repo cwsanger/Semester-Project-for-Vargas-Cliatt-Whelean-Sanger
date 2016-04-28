@@ -1,0 +1,7 @@
+$('#comment-list<%= @post.id %>').html(
+  '<%= escape_javascript render partial: 'comments/comment_list', locals: {post: @post} %>'
+);
+
+$('#post-comment-length<%= @post.id %>').html('<%= @post.comments.length %> Comments');
+
+$('#profile').html('<%= escape_javascript render 'neighborhoods/profile' %>');

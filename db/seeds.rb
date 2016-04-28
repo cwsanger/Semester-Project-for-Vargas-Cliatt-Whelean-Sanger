@@ -9,6 +9,7 @@ User.delete_all
 Account.delete_all
 Neighborhood.delete_all
 Post.delete_all
+Comment.delete_all
 Category.delete_all
 Alert.delete_all
 Admin.delete_all

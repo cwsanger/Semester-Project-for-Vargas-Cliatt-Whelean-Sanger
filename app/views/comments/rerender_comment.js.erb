@@ -1,0 +1,2 @@
+$('#comment<%= @comment.id %>').replaceWith('<%= escape_javascript render @comment %>');
+$('#profile').html('<%= escape_javascript render 'neighborhoods/profile' %>');

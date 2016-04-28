@@ -62,15 +62,15 @@ Rails.application.routes.draw do
 
   get 'signups/temps' => 'signups#temps', as: 'temps'
 
-  post 'advertisement/create'
+  post 'advertisements/create'
 
   get 'advertisement/create', as: :create_advertisement
 
-  get 'advertisement/destroy'
+  get 'advertisements/destroy'
 
-  get 'advertisement/edit'
+  get 'advertisements/edit'
 
-  put 'advertisement/:id/like', to: 'advertisement#like', as: :like_advertisement
+  put 'advertisements/:id/like', to: 'advertisements#like', as: :like_advertisement
 
   get 'alerts/agencyAlert'
 
@@ -113,6 +113,9 @@ Rails.application.routes.draw do
 
     post 'lead/:id/accept-agency', to: 'leads#accept_agency', as: :lead_accept_agency
     post 'lead/:id/deny-agency', to: 'leads#deny_agency', as: :lead_deny_agency
+
+    get 'category/:id', to: 'neighborhoods#category', as: :category
+
     get 'admin', to: 'neighborhoods#admin', as: :admin
   end
 
