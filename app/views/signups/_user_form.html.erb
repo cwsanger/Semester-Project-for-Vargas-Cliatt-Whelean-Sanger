@@ -8,14 +8,18 @@
           <div class="input-group">
           <hr>
             <div class="field">
-              <%= f.text_area :name,:class=>"myPosts",placeholder: 'Type Name here...'%>
+              <%= f.text_area :name,:class=>"myPosts",placeholder: 'Your name'%>
             </div>
           <hr>
             <div class="field">
-              <%= f.text_area :email,:class=>"myPosts",placeholder: 'Type @email here...'%>
+              <%= f.text_area :email,:class=>"myPosts",placeholder: 'Your email address'%>
             </div>
           <hr>
-          <%= f.label 'HOA Member?',class:"hoa" %>
+            <div class="field">
+              <%= f.file_field :image_url, type: "file"%> Credentials
+            </div>
+          <hr>
+          <%= f.label 'Signing up as an HOA Member?',class:"hoa" %>
           <%= f.check_box :hoa %>
           </div>
             <%= submit_tag 'Submit', class: 'btn linky' %>
@@ -24,3 +28,13 @@
     </div>
   </div>
 </section>
+
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open");
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
+</script>
