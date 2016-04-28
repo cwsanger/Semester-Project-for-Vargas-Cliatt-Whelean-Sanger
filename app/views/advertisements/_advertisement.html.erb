@@ -7,4 +7,7 @@
   <p>
   <%= link_to "",like_advertisement_path(advertisement), method: :put,:class=>'glyphicon glyphicon-hand-right likes' %><%= advertisement.likes.count%>
   </p>
+  <%= image_tag(advertisement.image_url,
+      width: 120, height: 120,
+      class: 'img-center') if advertisement.image_url.present? %>
 </div>

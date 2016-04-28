@@ -158,12 +158,20 @@ ActiveRecord::Schema.define(version: 20160427160703) do
     t.float    "longitude"
   end
 
+  create_table "password_requests", force: :cascade do |t|
+    t.string   "key"
+    t.integer  "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "body"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "user_id"
     t.integer  "category_id"
+    t.string   "image_url"
     t.integer  "status",      default: 0
     t.string   "image_url"
   end

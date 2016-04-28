@@ -1,4 +1,6 @@
 class AdminsController < ApplicationController
+  include UpdateHelper
+
   before_action :set_temp_user, only: [:accept_user, :deny_user]
   before_action :set_temp_business, only: [:accept_business, :deny_business]
   before_action :set_temp_agency, only: [:accept_agency, :deny_agency]
@@ -14,6 +16,30 @@ class AdminsController < ApplicationController
   def accept_user
     hood = @temp_user.hood
     neighborhood = Neighborhood.create(name: hood.name, address: hood.address)
+<<<<<<< HEAD
+
+    #code from master
+    #
+    #user = User.create(name: @temp_user.name, neighborhood_id: neighborhood.id, image_url: open('app/assets/images/placeholder.png'), role: User.roles[:lead])
+
+    #my code
+    user = User.create(name: @temp_user.name,
+                       neighborhood_id: neighborhood.id,
+                       image_url: open('app/assets/images/placeholder.png'))
+
+    user.account = Account.setup(user, @temp_user.email)
+
+    if user.account
+      @temp_user.hood.destroy
+      @temp_user.destroy
+
+      redirect_to admins_url
+    else
+      user.destroy
+      neighborhood.destroy
+
+      redirect_to admins_url, alert: 'failed to create user'
+=======
 
     role = (if @temp_user.hoa then :hoa else :lead end)
     user = User.create(name: @temp_user.name,
@@ -36,6 +62,7 @@ class AdminsController < ApplicationController
 
       @temp_users = TempUser.where(hood_type: 'TempNeighborhood')
       format.js { render action: 'rerender_prospective_users' }
+>>>>>>> 97adc6cbfaa789091c6f26023f447d8d0cf93b92
     end
   end
 
@@ -52,11 +79,23 @@ class AdminsController < ApplicationController
   end
 
   def accept_business
-    business = Business.new(name: @temp_business.name, address: @temp_business.address, image_url: open('app/assets/images/placeholder.png'))
-    business.build_account(email: @temp_business.email,
-                           password: 'password',
-                           password_confirmation: 'password')
 
+<<<<<<< HEAD
+    business = Business.create(name: @temp_business.name,
+                            address: @temp_business.address,
+                            image_url: open('app/assets/images/placeholder.png'))
+
+    business.account = Account.setup(business, @temp_business.email)
+
+    if business.account
+      @temp_business.destroy
+
+      redirect_to admins_url
+    else
+      business.destroy
+
+      redirect_to admins_url, alert: 'failed to create business'
+=======
     respond_to do |format|
       if business.save
         @temp_business.destroy
@@ -68,6 +107,7 @@ class AdminsController < ApplicationController
 
       @temp_businesses = TempBusiness.all
       format.js { render action: 'rerender_prospective_businesses' }
+>>>>>>> 97adc6cbfaa789091c6f26023f447d8d0cf93b92
     end
   end
 
@@ -83,11 +123,23 @@ class AdminsController < ApplicationController
   end
 
   def accept_agency
-    agency = Agency.new(name: @temp_agency.name, address: @temp_agency.address, image_url: open('app/assets/images/placeholder.png'))
-    agency.build_account(email: @temp_agency.email,
-                         password: 'password',
-                         password_confirmation: 'password')
 
+<<<<<<< HEAD
+    agency = Agency.create(name: @temp_agency.name,
+                        address: @temp_agency.address,
+                        image_url: open('app/assets/images/placeholder.png'))
+
+    agency.account = Account.setup(agency, @temp_agency.email)
+
+    if agency.account
+      @temp_agency.destroy
+
+      redirect_to admins_url
+    else
+      agency.destroy
+
+      redirect_to admins_url, alert: 'failed to create agency'
+=======
     respond_to do |format|
       if agency.save
         @temp_agency.destroy
@@ -99,6 +151,7 @@ class AdminsController < ApplicationController
 
       @temp_agencies = TempAgency.all
       format.js { render action: 'rerender_prospective_agencies' }
+>>>>>>> 97adc6cbfaa789091c6f26023f447d8d0cf93b92
     end
   end
 
@@ -111,6 +164,13 @@ class AdminsController < ApplicationController
       @temp_agencies = TempAgency.all
       format.js { render action: 'rerender_prospective_agencies' }
     end
+  end
+
+  def edit
+  end
+
+  def update
+    update_account(@current_member, params[:updateParam], params)
   end
 
   private

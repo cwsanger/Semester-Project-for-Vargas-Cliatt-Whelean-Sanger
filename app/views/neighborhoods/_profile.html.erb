@@ -3,12 +3,27 @@
     <br>
     <br>
     <div class="col-xs-offset-1">
-      <p>Name: <%= @current_member.name%></p>
+      <p><b><%= @current_member.name%></b></p>
       <hr class="postComments">
-      <p>Address: <%= @current_member.address%></p>
+
+      <% if @current_member.address.present? %>
+        <p>Address: <%= @current_member.address%></p>
+        <hr class="postComments">
+      <% end %>
+
+      <% if @current_member.role == 'lead' %>
+        <p>Role: Leader <span class="glyphicon glyphicon-star"></span>
+        </p>
+      <% elsif @current_member.role == 'hoa' %>
+        <p>Role: HOA <span class="glyphicon glyphicon-home"></span>
+        </p>
+      <% else %>
+        <p>Role: Neighbor <span class="glyphicon glyphicon-user"></span>
+        </p>
+      <% end %>
+
       <hr class="postComments">
-      <p>Type: <%= @current_member.role%></p>
-      <hr class="postComments">
+
       <p>Points: <%= @current_member.points%></p>
       <hr class="postComments">
     </div>  
