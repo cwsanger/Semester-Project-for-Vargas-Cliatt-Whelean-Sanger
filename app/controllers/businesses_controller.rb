@@ -17,9 +17,9 @@ class BusinessesController < ApplicationController
 
     @neighborhood_likes = {}
     @business.neighborhoods.each do |neighborhood|
-      @neighborhood_likes[neighborhood.name] =
-        Like.find_by_sql(
-          "SELECT * FROM likes, advertisements, users, neighborhoods, businesses WHERE likes.likeable_id = advertisements.id AND likes.likeable_type = 'Advertisement' AND likes.user_id = users.id AND users.neighborhood_id = #{neighborhood.id} AND advertisements.business_id = #{@business.id}").count / 10
+      query = "SELECT DISTINCT * FROM likes l INNER JOIN advertisements ad ON l.likeable_id = ad.id INNER JOIN users u ON l.user_id = u.id WHERE l.likeable_type = 'Advertisement' AND u.neighborhood_id = #{neighborhood.id} AND ad.business_id = #{@business.id}"
+      likes = Like.find_by_sql(query)
+      @neighborhood_likes[neighborhood.name] = likes.count;
     end
 
     respond_to do |format|
@@ -36,9 +36,9 @@ class BusinessesController < ApplicationController
 
     @neighborhood_likes = {}
     @business.neighborhoods.each do |neighborhood|
-      @neighborhood_likes[neighborhood.name] =
-        Like.find_by_sql(
-          "SELECT * FROM likes, advertisements, users, neighborhoods, businesses WHERE likes.likeable_id = advertisements.id AND likes.likeable_type = 'Advertisement' AND advertisements.id = #{@advertisement.id} AND likes.user_id = users.id AND users.neighborhood_id = #{neighborhood.id} AND advertisements.business_id = #{@business.id}").count / 10
+      query = "SELECT DISTINCT * FROM likes l INNER JOIN advertisements ad ON l.likeable_id = ad.id INNER JOIN users u ON l.user_id = u.id WHERE l.likeable_type = 'Advertisement' AND u.neighborhood_id = #{neighborhood.id} AND ad.business_id = #{@business.id} AND ad.id = #{@advertisement.id}"
+      likes = Like.find_by_sql(query)
+      @neighborhood_likes[neighborhood.name] = likes.count;
     end
 
     respond_to do |format|

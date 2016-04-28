@@ -19,6 +19,7 @@ Broadcast.delete_all
 Advertisement.delete_all
 Group.delete_all
 Event.delete_all
+Like.delete_all
 TempUser.delete_all
 TempNeighborhood.delete_all
 TempBusiness.delete_all
