@@ -86,7 +86,7 @@ class BusinessesController < ApplicationController
   def neighborhoods
     @business = Business.find(params[:business_id])
 
-    @neighborhoods = Neighborhood.within(20, origin: @business)
+    @neighborhoods = Neighborhood.within(10, origin: @business, order: false)
 
     @requested_neighborhoods = Neighborhood.joins(:requests)
                                            .where("requests.requestable_id = #{@business.id}")
