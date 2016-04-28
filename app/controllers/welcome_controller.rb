@@ -54,7 +54,11 @@ class WelcomeController < ApplicationController
     """
 
     coords = Geocoder.coordinates(params[:search]);
-    @neighborhoods = Neighborhood.near(coords, 20)
+    if coords.present?
+      @neighborhoods = Neighborhood.near(coords, 20)
+    else
+      @neighborhoods = Neighborhood.all
+    end
 
 
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
