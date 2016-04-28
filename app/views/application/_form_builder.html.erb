@@ -1,13 +1,24 @@
   <%= form_for(@current_member) do %>
-    <%= label_tag param %>
-     <hr>
-    <% if not text.empty? %>
-      <%= text_field_tag param, nil,placeholder: text, class: 'myPost'%>
-    <% else %>
-      <%= text_field_tag param, nil, placeholder: 
-          @current_member.read_attribute("#{param}"), class: 'myPost' %>
-    <% end %>
-    <hr>
-    <%= hidden_field_tag 'updateParam', param %>
-    <%= submit_tag "Update!", class: 'btn linky' %>
+
+    <div class="row">
+      <div class="col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2">
+        <center>
+          <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+            <span class="glyphicon glyphicon-floppy-save"></span>
+          <% end %>
+        </center>
+      </div>
+      <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-2">
+        <center>
+        <% if not text.empty? %>
+          <%= text_field_tag param, nil,placeholder: text, class: 'myPost'%>
+        <% else %>
+          <%= text_field_tag param, nil, placeholder: 
+              @current_member.read_attribute("#{param}"), class: 'myPost' %>
+        <% end %>
+        </center>
+      </div>
+      <%= hidden_field_tag 'updateParam', param %>
+      <hr>
+    </div>
   <% end %>
