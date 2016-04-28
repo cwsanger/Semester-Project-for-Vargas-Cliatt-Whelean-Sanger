@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :businesses do
     get 'neighborhoods', to: 'businesses#neighborhoods', as: :neighborhoods
     post 'request/:neighborhood_id', to: 'businesses#join_request', as: :join_request
+    get 'display/:id', to: 'businesses#display_stats', as: :display_stats
   end
 
   resources :agencies do
