@@ -15,7 +15,8 @@
 
 <script>
   $(":file").filestyle({
-    input: false
+    input: false,
+    badge:false
   })
   $("#comment-form<%= post.id %>").find("span label").text("").addClass("glyphicon glyphicon-camera").removeClass("btn btn-default");
 </script>

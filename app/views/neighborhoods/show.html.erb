@@ -5,14 +5,18 @@
   <%= render partial: 'posts/form', locals: { categories: @categories } %>
   <br>
   <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
-   <input id="filter" type="text" class="form-control" placeholder="Type here...">
+   <input id="filter" type="text" class="form-control" placeholder="Search here...">
+   <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li data-toggle="dropdown"><%= link_to 'All', @neighborhood, method: :get, class: 'dropdown-toggle', remote: true %></li>
+          <% @categories.each do |category|%>
+            <li data-toggle="dropdown"><%= link_to category.title, neighborhood_category_url(@neighborhood, category.id), method: :get, class: '', remote: true %></li> 
+          <% end %>
+        </ul>
+      </div><!-- /btn-group -->
   </div>
   <div>
-    <%= link_to 'All', @neighborhood, method: :get, class: 'btn btn-primary linky', remote: true %> 
-    <% @categories.each do |category|%>
-      <%= link_to category.title, neighborhood_category_url(@neighborhood, category.id), method: :get, class: 'btn btn-primary linky', remote: true %> 
-    <% end %>
-  </div>
   <table class="table table-striped">
       <thead>
         <tr>
@@ -56,21 +60,21 @@
   </div>
 </div>
 <div class="left_bar">
-    <p class="alert-success semiTitle "><i class="glyphicon glyphicon-user"></i> Profile<i id="closeProfile" class="glyphicon glyphicon-chevron-up pull-right closeprofile close"></i></p>
-  <div id="profile" class="profile_div">
+    <p class="alert-success semiTitle "><i class="glyphicon glyphicon-user"></i> Profile</p>
+  <div class="profile_div">
    <%= render partial: 'neighborhoods/profile' %>
+
   </div>
-  <div class="chat_div_bar">
-      <p class="myPrimary semiTitle "><i class="glyphicon glyphicon-comment"></i> Chat<i id="closeChat" class="glyphicon glyphicon-chevron-down pull-right closeChat close"></i></p>
-    <div class="chat_div">
+  <div class="chat_div_bar ">
+      <p class="myPrimary semiTitle "><i class="glyphicon glyphicon-comment"></i> Chat</p>
+    <div class="chat_div scrolling">
       <br>
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover ">
         <thead >
           <tr>
             <th>Neighbors</th>
           </tr>
         </thead>
-
         <tbody class="cm">
            <% @current_member.neighborhood.users.each do |user| %>
             <tr>
@@ -196,8 +200,5 @@
         })
 
     }($));
-
-
-
 });
 </script>

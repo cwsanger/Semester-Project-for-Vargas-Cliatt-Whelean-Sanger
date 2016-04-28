@@ -3,21 +3,21 @@
 <% if direct_message.from_id == @current_member.id %>
   <div class="talk-bubble tri-right round btm-left">
 <% else %>
-  <div class="col-sm-8"></div>
-  <div class="talk-bubble tri-right round btm-right" style="background-color: green;">
+  
+  <div class="talk-bubble tri-right round btm-right col-xs-offset-9" style="background-color: #3CB371;">
 <% end %>
 <div class="talktext">
   <p class="messageSent"><%= direct_message.body %>
   <br>
-  <a href=""data-toggle="modal" data-target="#myModal<%= direct_message.id %>">
+  <i data-toggle="modal" data-target="#myModal<%= direct_message.id %>">
       <%= image_tag(direct_message.image_url, :width => 120,:height=>120,class:" img-center col-xs-offset-1") if direct_message.image_url.present?  %>
-  </a>	
+  </i>	
   </p>
 </div>
 </div>
 <br>
 <% unless direct_message.from_id == @current_member.id %>
-  <div class="col-md-11"></div>
+  <div class="col-sm-11"></div>
 <% end %>
 <%= image_tag(direct_message.from.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if direct_message.from.image_url.present?  %>
 <div id="myModal<%= direct_message.id %>" class="modal fade" role="dialog">
@@ -26,9 +26,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title modalChat">asdfa</h4>
+        <h4 class="modal-title modalChat">Message  <%= image_tag(direct_message.from.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if direct_message.from.image_url.present?  %>
+</h4>
       </div>
       <div class="modal-body ">
+        <p class="dmModal"=><%= direct_message.body %></p>
         <p><%= image_tag(direct_message.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center") if direct_message.image_url.present?  %><p>        
       </div>
     </div>

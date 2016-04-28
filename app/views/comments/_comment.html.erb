@@ -8,5 +8,5 @@
         <span class="glyphicon glyphicon-flag" style="<% if comment.flag? %>color: red;<% end %>"></span>
       <% end %>
   </p>
-  <p><%= image_tag(comment.image_url, :width => 120,:height=>120, class:" img-center col-xs-offset-1") if comment.image_url.present?  %></p>
+  <p class= "col-xs-offset-4"><%= image_tag(comment.image_url, :width => 120,:height=>120, class:" img-center col-xs-offset-1") if comment.image_url.present?  %></p>
 </div>

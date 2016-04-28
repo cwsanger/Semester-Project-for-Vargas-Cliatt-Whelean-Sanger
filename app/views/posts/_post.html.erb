@@ -1,9 +1,12 @@
+
 <div id="post<%= post.id %>" class="post col-sm-12">
-  <h2>
-    <u><%= image_tag(post.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if post.user.image_url.present?  %><%= post.user.name %></u>
-    <small>Category: <%= post.category.title %></small>
-    <i id="<%= post.id %>" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i>
-  </h2>
+  <div class="headerPost">
+  <h3>
+      <%= image_tag(post.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if post.user.image_url.present?  %> <%= post.user.name %>
+      <small class="categoryPost"> Category: <%= post.category.title %></small>
+      <i id="<%= post.id %>" class="glyphicon glyphicon-chevron-up pull-right closeBroad close"></i>
+  </h3>
+  </div>
   <div id="<%= post.id %>a">
     <p class="date">
       <small>
@@ -15,17 +18,13 @@
       <% end %>
     </p>
     <p class="body">
-          <%= post.body %>
-           <hr class="postComments">
+      <%= post.body %>
+      <hr class="postComments">
       <div class="col-xs-offset-4">       
-        <img src=" <%=post.image_url%>" id="imgSmile<%= post.id %>"></img>
+        <img src="<%=post.image_url%>" id="imgSmile<%= post.id %>" class=""></img>
       </div>
     </p>
-  
-
-    
-   
-    <div id="<%= post.id %>x" class="hideComments"><small id="post-comment-length<%= post.id %>"><%=post.comments.length%> Comments</small></div>
+    <div id="<%= post.id %>x" class="hideComments"><small id="post-comment-length<%= post.id %>"><%=post.comments.length%> <i class= "glyphicon glyphicon-comment"></i></small></div>
       <div id="<%= post.id %>y" class="theComments">
         <hr class="hrComments">
         <div id="comment-list<%= post.id %>">
@@ -60,19 +59,12 @@
    $(document).ready(function(){
        $('#imgSmile<%= post.id %>').width(200);
        
-       $('#imgSmile<%= post.id %>').click(function()
-       {
-          $(this).css("cursor","pointer");
-          $(this).animate({width: "100%"}, 'slow');
-          $(this).css("margin-left","-110px");
-       });
-    
-      $('#imgSmile<%= post.id %>').mouseout(function()
-      {   
-        $(this).animate({width: "45%"}, 'fast');
-        $(this).css("margin-left","-20px");
-       });
+       
    });
 </script>
+<style>
+
+
+</style>
 
 </div> 
