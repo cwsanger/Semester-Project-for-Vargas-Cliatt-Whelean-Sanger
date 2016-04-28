@@ -1,9 +1,6 @@
-<div class="jumbotron">
+<div class="jumbotron cover">
 	<center><%= image_tag(@current_member.image_url, :width => 120,:height => 120,class:"img-circle img-center ") if @current_member.image_url.present?  %>
-  
-
-
-  <h1 class=""><%= user.name %></h1>
+    <h1 class=""><%= user.name %></h1>
     <%= form_for(@current_member, html: {id: 'image_form', multipart: true}) do %>
     <%= file_field_tag :image_url, 
       type: 'file', html: {id: 'file_field'}
