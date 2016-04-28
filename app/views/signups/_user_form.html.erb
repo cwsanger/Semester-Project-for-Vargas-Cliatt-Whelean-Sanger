@@ -1,6 +1,6 @@
 <section class="content-section video-section">
   <div class="pattern-overlay">
-  <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=4Wee4LASqvE',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+  <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=4Wee4LASqvE',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}"></a>
   <br><br> <br><br> <br><br>
     <div class="container">
      <div class="col-md-offset-5">
@@ -19,7 +19,7 @@
               <%= f.file_field :image_url, type: "file"%> Credentials
             </div>
           <hr>
-          <%= f.label 'Signing up as HOA member?' %>
+          <%= f.label 'Signing up as an HOA Member?',class:"hoa" %>
           <%= f.check_box :hoa %>
           </div>
             <%= submit_tag 'Submit', class: 'btn linky' %>
