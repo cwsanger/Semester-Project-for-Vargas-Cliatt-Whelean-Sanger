@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = @current_member.neighborhood.events
     @chosen_date = Integer(Time.now.strftime("%d"))
     @event = Event.new
   end
@@ -12,6 +12,12 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @events = Event.all
+    @hash = Gmaps4rails.build_markers(@event) do |event, marker|
+      marker.lat event.latitude
+      marker.lng event.longitude
+      marker.title event.name
+    end
   end
 
   # GET /events/new

@@ -34,20 +34,51 @@ admin.save
 kanto = Neighborhood.create(:name => "Kanto", :address => '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto, Japan')
 wwf = Neighborhood.create(:name => "World Wrestling Federation", :address => '1500 North Patterson St. Valdosta, GA')
 bikini_bottom = Neighborhood.create(:name => "Bikini Bottom", :address => '300 Rodgers Blvd Honolulu, HI')
-bikini_mexico = Neighborhood.create(:name => "Badsfa", :address => '300 Rsdfaers Blvd Honolulu, HI')
+#bikini_mexico = Neighborhood.create(:name => "Badsfa", :address => '300 Rsdfaers Blvd Honolulu, HI')
 
-dwayne = User.create(:name => "Dwayne Johnson", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/rock.jpg'))
+dwayne = User.create(:name => "Dwayne Johnson", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/rock.jpg'), :address => "601 River St, Valdosta, GA 31601")
 dwayne.build_account(:email => "djohnson@gmail.com", :password => 'password', :password_confirmation=> 'password')
 dwayne.save
-daniel = User.create(:name => "Daniel Bryant", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/daniel.jpg'))
+
+daniel = User.create(:name => "Daniel Bryant", :neighborhood_id => wwf.id, :points => 12, :image_url => open('app/assets/images/daniel.jpg'), :address => "505 N Toombs St, Valdosta, GA 31601")
 daniel.build_account(:email => "dbryant@gmail.com", :password => 'password', :password_confirmation=> 'password')
 daniel.save
-hunter = User.create(:name => "Hunter Helmsley", :neighborhood_id => wwf.id, :role => 2, :image_url => open('app/assets/images/helm.jpg'))
+
+hunter = User.create(:name => "Hunter Helmsley", :neighborhood_id => wwf.id, :role => 2, :points => 150, :image_url => open('app/assets/images/helm.jpg'), :address => "400 E Jane St, Valdosta, GA 31601")
 hunter.build_account(:email => "hhh@gmail.com", :password => 'password', :password_confirmation=> 'password')
 hunter.save
-shawn = User.create(:name => "Shawn Michaels", :neighborhood_id => wwf.id, :points => 98, :image_url => open('app/assets/images/shawn.jpg'))
+
+shawn = User.create(:name => "Shawn Michaels", :neighborhood_id => wwf.id, :points => 30, :image_url => open('app/assets/images/shawn.jpg'), :address => "1501 Williams St, Valdosta, GA 31602")
 shawn.build_account(:email => "smichaels@gmail.com", :password => 'password', :password_confirmation=> 'password')
 shawn.save
+
+mrt = User.create(:name => "Mr. T", :neighborhood_id => wwf.id, :points => 22, :image_url => open('app/assets/images/mrt.jpg'), :address => "104 E Brookwood Pl, Valdosta, GA 31602")
+mrt.build_account(:email => "mrt@gmail.com", :password => 'password', :password_confirmation=> 'password')
+mrt.save
+
+andre = User.create(:name => "Andre the Giant", :neighborhood_id => wwf.id, :points => 44, :image_url => open('app/assets/images/andre.jpg'), :address => "1618 Beauford Pl, Valdosta, GA 31602")
+andre.build_account(:email => "andre@gmail.com", :password => 'password', :password_confirmation=> 'password')
+andre.save
+
+goldberg = User.create(:name => "Goldberg", :neighborhood_id => wwf.id, :points => 68, :image_url => open('app/assets/images/goldberg.jpg'), :address => "802 Cherokee Ave, Valdosta, GA 31602")
+goldberg.build_account(:email => "goldberg@gmail.com", :password => 'password', :password_confirmation=> 'password')
+goldberg.save
+
+hulk = User.create(:name => "Hulk Hogan", :neighborhood_id => wwf.id, :points => 78, :image_url => open('app/assets/images/hulk.jpg'), :address => "809 W Park Ave, Valdosta, GA 31602")
+hulk.build_account(:email => "hhogan@gmail.com", :password => 'password', :password_confirmation=> 'password')
+hulk.save
+
+flair = User.create(:name => "Ric Flair", :neighborhood_id => wwf.id, :points => 62, :image_url => open('app/assets/images/flair.jpg'), :address => "2106 Azalea Dr, Valdosta, GA 31602")
+flair.build_account(:email => "rflair@gmail.com", :password => 'password', :password_confirmation=> 'password')
+flair.save
+
+austin = User.create(:name => "Steve Austin", :neighborhood_id => wwf.id, :points => 99, :image_url => open('app/assets/images/austin.jpg'), :address => "901 Pineridge Dr, Valdosta, GA 31602")
+austin.build_account(:email => "saustin@gmail.com", :password => 'password', :password_confirmation=> 'password')
+austin.save
+
+undertaker = User.create(:name => "The Undertaker", :neighborhood_id => wwf.id, :points => 32, :image_url => open('app/assets/images/undertaker.jpg'), :address => "1401 Iola Dr, Valdosta, GA 31602")
+undertaker.build_account(:email => "undertaker@gmail.com", :password => 'password', :password_confirmation=> 'password')
+undertaker.save
 
 #ash = User.create(:email => "aketchum@gmail.com", :name => "Ash Ketchum",  :password => 'password', :password_confirmation=> 'password', :neighborhood_id => kanto.id)
 #misty = User.create(:email => "misty@gmail.com", :name => "Misty",  :password => 'password', :password_confirmation=> 'password', :neighborhood_id => kanto.id)
@@ -67,9 +98,46 @@ misc = Category.create(:title => "Miscellaneous")
 item = Category.create(:title => "Item for Sale")
 job = Category.create(:title => "Job Posting")
 
-Post.create(:category_id => lost.id, :body => "My labradoodle Rover has been missing for three days. I am lost without his touch. Please help.", :user_id => shawn.id)
-Post.create(:category_id => misc.id, :body => "The Rock is overrated.", :user_id => daniel.id)
-Post.create(:category_id => item.id, :body => "Gently used championship belt.", :user_id => hunter.id)
+Post.create(:category_id => misc.id,
+            :body => "WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+            :user_id => flair.id)
+
+Post.create(:category_id => lost.id,
+            :body => "I have found someone's cat. He is black with white spots, and is very friendly. Call me at 404-555-2536 for more info.",
+            :user_id => goldberg.id,
+            :image_url => open('app/assets/images/tuxedo.jpg'))
+
+Post.create(:category_id => job.id,
+            :body => "I am looking for someone to repair my broken chair. If you can help or know someone who can, contact me immediately.",
+            :user_id => andre.id)
+
+Post.create(:category_id => job.id,
+            :body => "I am looking for part-time emplyment while I am between careers. Direct message me if you have any opportunities.",
+            :user_id => hulk.id)
+
+Post.create(:category_id => item.id,
+            :body => "Casket for sale.",
+            :user_id => undertaker.id,
+            :image_url => open('app/assets/images/casket.jpg'))
+
+Post.create(:category_id => item.id,
+            :body => "Gold chains for sale. One for $100 and two for $150. I pity the fool who doesn't appreciate these savings.",
+            :user_id => mrt.id,
+            :image_url => open('app/assets/images/chains.jpg'))
+
+Post.create(:category_id => lost.id,
+            :body => "My labradoodle Rover has been missing for three days. I am lost without his touch. Please help.",
+            :user_id => shawn.id,
+            :image_url => open('app/assets/images/labradoodle.jpg'))
+
+Post.create(:category_id => misc.id,
+            :body => "The Rock is overrated.",
+            :user_id => daniel.id)
+
+Post.create(:category_id => item.id,
+            :body => "Gently used championship belt.",
+            :user_id => hunter.id,
+            :image_url => open('app/assets/images/belt.jpg'))
 
 #Post.create(:category_id => lost.id, :body => "Missing Butterfree. He responds to the name Dave. You can find me in a tent by the river if you find him.", :user_id => brock.id)
 #Post.create(:category_id => item.id, :body => "Selling a gold nugget. $5000 OBO; no trades.", :user_id => misty.id)
@@ -115,11 +183,6 @@ fire.alerts.create(:body => "There is a big fire!", :severity => 100)
 fire.alerts.create(:body => "We got that fire.", :severity => 10)
 fire.alerts.create(:body => "Cats are in trees.", :severity => 1000)
 
-Alert.create(:body => "Alert 1", :severity => 1)
-Alert.create(:body => "Alert 2", :severity => 1)
-Alert.create(:body => "Alert 3", :severity => 1)
-Alert.create(:body => "Alert 9", :severity => 1)
-
 Broadcast.create(:body => "Broadcast 1")
 Broadcast.create(:body => "Broadcast 2")
 Broadcast.create(:body => "Broadcast 3")
@@ -129,8 +192,8 @@ Broadcast.create(:body => "Broadcast 6")
 Broadcast.create(:body => "Broadcast 7")
 Broadcast.create(:body => "Broadcast 8")
 
-Event.create(:name => "Pool Party", :body => "Suntan lotion will be provided", :start_time => Time.now, :end_time => Time.now + 2.days, :neighborhood_id => wwf.id, :user_id => daniel.id)
-Event.create(:name => "BBQ", :body => "Bring your own beef", :start_time => Time.now + 3.days, :end_time => Time.now + 3.days, :neighborhood_id => wwf.id, :user_id => dwayne.id)
-Event.create(:name => "Salsa Dancing Lessons", :body => "Learn to dance at Maggie's house this week", :start_time => Time.now - 6.days, :end_time => Time.now - 6.days, :neighborhood_id => wwf.id, :user_id => hunter.id)
-Event.create(:name => "Block Party", :body => "Fireworks and music for the whole neighborhood", :start_time => Time.now - 16.days, :end_time => Time.now - 16.days, :neighborhood_id => wwf.id, :user_id => hunter.id)
-Event.create(:name => "Battle of the Bands", :body => "Come support your local artists", :start_time => Time.now + 12.days, :end_time => Time.now + 12.days, :neighborhood_id => wwf.id, :user_id => daniel.id)
+Event.create(:name => "Pool Party", :body => "Suntan lotion will be provided", :start_time => Time.now, :end_time => Time.now + 2.days, :neighborhood_id => wwf.id, :user_id => daniel.id, :address => '703 W Cranford Ave, Valdosta, GA 31602', :image_url => open('app/assets/images/pool_party.jpg'))
+Event.create(:name => "BBQ", :body => "Bring your own beef", :start_time => Time.now + 3.days, :end_time => Time.now + 3.days, :neighborhood_id => wwf.id, :user_id => dwayne.id, :address => '200 High St, Valdosta, GA 31602', :image_url => open('app/assets/images/bbq.jpg'))
+Event.create(:name => "Salsa Dancing Lessons", :body => "Learn to dance at Maggie's house this week", :start_time => Time.now - 6.days, :end_time => Time.now - 6.days, :neighborhood_id => wwf.id, :user_id => hunter.id, :address => '107 W Moore St, Valdosta, GA 31602', :image_url => open('app/assets/images/salsa.jpg'))
+Event.create(:name => "Block Party", :body => "Fireworks and music for the whole neighborhood", :start_time => Time.now - 16.days, :end_time => Time.now - 16.days, :neighborhood_id => wwf.id, :user_id => hunter.id, :address => '116 E Moore St, Valdosta, GA 31602', :image_url => open('app/assets/images/block.png'))
+Event.create(:name => "Battle of the Bands", :body => "Come support your local artists", :start_time => Time.now + 12.days, :end_time => Time.now + 12.days, :neighborhood_id => wwf.id, :user_id => daniel.id, :address => '1609 Slater St, Valdosta, GA 31602', :image_url => open('app/assets/images/bands.png'))
