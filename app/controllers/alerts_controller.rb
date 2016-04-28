@@ -25,14 +25,17 @@ class AlertsController < ApplicationController
   # POST /agencies.json
   def create
     @alert = Alert.new(alert_params.merge(agency_id: @current_member.id))
+    @alerts = @current_member.alerts
 
     respond_to do |format|
       if @alert.save
         format.html { redirect_to @current_member, notice: 'Alert was successfully created.' }
         format.json { render :show, status: :created, location: @alert}
+        format.js { render action: 'rerender_alerts' }
       else
         format.html { render :new }
         format.json { render json: @alert.errors, status: :unprocessable_entity }
+        format.js { render action: 'rerender_alerts' }
       end
     end
   end
@@ -55,9 +58,12 @@ class AlertsController < ApplicationController
   # DELETE /agencies/1.json
   def destroy
     @alert.destroy
+    @alerts = @current_member.alerts
+
     respond_to do |format|
       format.html { redirect_to @current_member, notice: 'Alert was successfully destroyed.' }
       format.json { head :no_content }
+      format.js { render action: 'rerender_alerts' }
     end
   end
 

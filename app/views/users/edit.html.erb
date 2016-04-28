@@ -5,7 +5,13 @@
 <br />
 <%= render @current_member %>
 
-<% if notice %><p><%= notice %></p><% end %>
+<% if notice %>
+  <div class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
+
+<% if alert %>
+  <div class="alert alert-danger" role="alert"><%= alert %></div>
+<% end %>
 
 <div class="col-md-4 col-md-offset-4">
 
@@ -22,4 +28,6 @@
   <%= render partial: 'form_builder', locals: 
               {param: 'email', text: @current_member.account.email} %>
             
+  <%= render partial: 'form_password_builder' %>
+
 </div>

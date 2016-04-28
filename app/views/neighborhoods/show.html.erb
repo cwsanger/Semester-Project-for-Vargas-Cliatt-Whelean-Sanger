@@ -7,18 +7,20 @@
   <div class="input-group"> <span class="input-group-addon"><i class='glyphicon glyphicon-search'></i></span>
    <input id="filter" type="text" class="form-control" placeholder="Type here...">
   </div>
+  <div>
+    <%= link_to 'All', @neighborhood, method: :get, class: 'btn btn-primary linky', remote: true %> 
+    <% @categories.each do |category|%>
+      <%= link_to category.title, neighborhood_category_url(@neighborhood, category.id), method: :get, class: 'btn btn-primary linky', remote: true %> 
+    <% end %>
+  </div>
   <table class="table table-striped">
       <thead>
         <tr>
           <th></th>
         </tr>
       </thead>
-      <tbody class="searchable">
-        <% @posts.each do |post| %>
-          <tr>
-            <td><%= render post %></td>
-          </tr>
-        <% end %>
+      <tbody id="posts" class="searchable">
+        <%= render 'post_list' %>
       </tbody>
   </table>
 </div>
@@ -56,7 +58,8 @@
 <div class="left_bar">
     <p class="alert-success semiTitle "><i class="glyphicon glyphicon-user"></i> Profile</p>
   <div class="profile_div">
-   <%= render partial: 'profile' %>
+   <%= render partial: 'neighborhoods/profile' %>
+
   </div>
   <div class="chat_div_bar ">
       <p class="myPrimary semiTitle "><i class="glyphicon glyphicon-comment"></i> Chat</p>
@@ -68,8 +71,7 @@
             <th>Neighbors</th>
           </tr>
         </thead>
-
-        <tbody class="searchable cm  ">
+        <tbody class="cm">
            <% @current_member.neighborhood.users.each do |user| %>
             <tr>
               <% unless @current_member.id == user.id %>
@@ -194,10 +196,5 @@
         })
 
     }($));
-
-
-
 });
 </script>
-
-

@@ -1,19 +1,20 @@
-<div class="post col-sm-12">
-  <div class ="headerPost" >
-    <h3>
+
+<div id="post<%= post.id %>" class="post col-sm-12">
+  <div class="headerPost">
+  <h3>
       <%= image_tag(post.user.image_url, :width => 30 ,:height=>"30",class:"img-circle  img-center") if post.user.image_url.present?  %> <%= post.user.name %>
-      <small class="categoryPost">Category: <%= post.category.title %></small>
+      <small class="categoryPost"> Category: <%= post.category.title %></small>
       <i id="<%= post.id %>" class="glyphicon glyphicon-chevron-down pull-right closeBroad close"></i>
-    </h3>
+  </h3>
   </div>
   <div id="<%= post.id %>a">
     <p class="date">
       <small>
         <i><%= post.created_at.strftime("%A, %B #{post.created_at.day.ordinalize} - %l:%M%P") %></i>
       </small>
-      <%= link_to "", like_post_path(post), method: :put, :class=>'glyphicon glyphicon-hand-right likes'%>  <%= post.likes.count %>
-      <%= link_to flag_post_path(post), method: :put do %>
-        <span class="glyphicon glyphicon-flag flaggy" style="<% if post.flag? %>color: red;<% end %>"></span>
+      <%= link_to "", like_post_path(post), method: :put, :class=>'glyphicon glyphicon-hand-right likes', remote: true %>  <%= post.likes.count %>
+      <%= link_to flag_post_path(post), method: :put, remote: true do %>
+        <span class="glyphicon glyphicon-flag flag" style="<% if post.flag? %>color: red;<% end %>"></span>
       <% end %>
     </p>
     <p class="body">
@@ -23,20 +24,17 @@
         <img src=" <%=post.image_url%>" id="imgSmile<%= post.id %>"></img>
       </div>
     </p>
-    <div id="<%= post.id %>x" class="hideComments"><small><%=post.comments.length%> <i class= "glyphicon glyphicon-comment"></i></small></div>
+    <div id="<%= post.id %>x" class="hideComments"><small id="post-comment-length<%= post.id %>"><%=post.comments.length%> <i class= "glyphicon glyphicon-comment"></i></small></div>
       <div id="<%= post.id %>y" class="theComments">
         <hr class="hrComments">
-        <% post.comments.each do |comment| %>
-            <%= render comment %>
-            <hr class="hrComments">
-        <% end %>
+        <div id="comment-list<%= post.id %>">
+          <%= render partial: 'comments/comment_list', locals: { post: post } %>
+        </div>
     </div>
      <hr class="postComments">
-    <%= render partial: 'create_comment', locals: { post: post } %>
+    <%= render partial: 'neighborhoods/create_comment', locals: { post: post } %> 
+
   </div>
-  </div>
-  </div>
-</div> 
 <script>
   var alertFlag = true;
   $("#<%= post.id %>").click(function(){
@@ -76,3 +74,4 @@
    });
 </script>
 
+</div> 

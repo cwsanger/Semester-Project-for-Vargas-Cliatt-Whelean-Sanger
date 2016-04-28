@@ -45,20 +45,21 @@ class WelcomeController < ApplicationController
 
   def search
 
+    """
     #Current functionality:
-    # Neighborhoods are returned if they pass the search_matches function.
-    # Pass search_matches the search string and a list of fields to test.
-    # Right now the only fields tested against are name and address.
+    # The model is asked for a list of neighborhoods that match
+    # the search string. The model handles deciding if a neighborhood
+    # fits the criteria or not.
 
-    @neighborhoods = Neighborhood.all.to_a
+    """
+
+    @neighborhoods = Neighborhood.all
 
     if params[:search]
-      @neighborhoods.delete_if { |neighborhood|
-        !search_matches(
-          params[:search], [neighborhood.name, neighborhood.address]
-        )
-      }
+      #Need to validate/sanitize user input here
+      @neighborhoods = Neighborhood.search_for params[:search].strip
     end
+
 
     @hash = Gmaps4rails.build_markers(@neighborhoods) do |neighborhood, marker|
       marker.lat neighborhood.latitude
@@ -67,34 +68,45 @@ class WelcomeController < ApplicationController
     end
   end
 
-  private
+  def request_pass
+    success = false
+    account = Account.find_by email: params[:email]
 
-    def search_matches(searchString, fields)
-
-      # Returns true if the searchString is in any of the fields or
-      # if any of the fields are in the searchString, ignoring case.
-      # I did the second case for examples this like:
-      #   search="Kanto, Japan" should still return the neighborhood "Kanto"
-      #
-      # We should implement a gem or algorithm to handle spelling mistakes
-
-      searchString = searchString.downcase
-      fields.map!(&:downcase)
-
-      fields.each do |field|
-        if (
-            (field.include? searchString) ||
-            (searchString.include? field)
-           )
-          return true
-        end
-      end
-
-      return false
+    if !account.nil?
+      success = true
+      account.request_reset_pass
     end
 
+    respond_to do |format|
+      if success
+        format.html { redirect_to password_request_path,
+                      notice: 'Instructions for password reset have been emailed to you.' }
+      else
+        format.html { redirect_to password_request_path, alert: 'Email not found!' }
+      end
+    end
+
+  end
+
+  def confirm
+    @number = params[:cn]
+
+    success = PasswordRequest.confirm(@number)
+
+    respond_to do |format|
+      if success
+        format.html { redirect_to password_request_path,
+                      notice: 'A new password has been emailed to you.' }
+      else
+        format.html { redirect_to password_request_path, alert: 'Oops, something went wrong!' }
+      end
+    end
+  end
+
+  private
+
     def account_validated?(type)
-      account = Account.find_by(email: params[:email])
+      account = Account.find_by(email: params[:email], member_type: type.to_s)
       if account and account.authenticate(params[:password])
         @member = account.member
 

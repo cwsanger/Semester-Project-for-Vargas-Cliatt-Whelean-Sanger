@@ -1,14 +1,17 @@
-class AdvertisementController < ApplicationController
+class AdvertisementsController < ApplicationController
   before_action :set_advertisement, only: [:like]
 
   def create
-    @advertisement = Advertisement.new(body: params[:body],
-                     business_id: @current_member.id)
+    @advertisement = Advertisement.new(body: params[:advertisement][:body],
+                                       business_id: params[:advertisement][:business_id],
+                                       image_url: params[:advertisement][:image_url])
+
+
     respond_to do |format|
      if @advertisement.save
-       format.html { redirect_to @current_member }
+       format.html { redirect_to @current_member, notice: 'Ad created' }
      else
-       format.html { redirect_to @current_member, notice: 'you are worse' }
+       format.html { redirect_to @current_member, notice: 'Ad could not be created' }
        format.json { render json: @post.errors, status: :unprocessable_entity }
      end
     end
@@ -40,4 +43,9 @@ class AdvertisementController < ApplicationController
     def set_advertisement
       @advertisement = Advertisement.find(params[:id])
     end
+
+    def advertisement_params
+      params.require(:advertisement).permit(:business_id, :body, :image_url)
+    end
+
 end

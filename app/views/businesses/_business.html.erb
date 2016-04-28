@@ -1,8 +1,35 @@
 <div class="jumbotron">
-  <h1><%= business.name %></h1>
-  <h4>Businesses don't currently have addresses</h4>
-  <a class="btn btn-primary" href="mailto:<%= business.account.email %>">
-    <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
-  </a>
- 
+  <center>
+    <%= image_tag(@current_member.image_url,
+        width: 120, height: 120, class: 'img-circle img-center') if 
+        @current_member.image_url.present? %>
+
+    <%= form_for(@current_member, html: {id: 'image_form', multipart: true}) do %>
+      <%= file_field_tag :image_url,
+        type: 'file', html: {id: 'file_field'}
+      %>
+      <%= hidden_field_tag 'updateParam', 'image_url' %>
+    <% end %>
+
+    <h1><%= business.name %></h1>
+    <a class="btn btn-primary" href="mailto:<%= business.account.email %>">
+      <span class="glyphicon glyphicon-envelope">&nbsp;Email</span>
+    </a>
+  </center>
 </div>
+
+<script>
+  $(":file").filestyle({
+    input: false
+  })
+  $("span label").removeClass("glyphicon glyphicon-folder-open");
+  $("span label").text("");
+  $("span label").addClass("glyphicon glyphicon-camera");
+  $("span label").removeClass("btn btn-default");
+</script>
+
+<script>
+  document.getElementById("image_url").onchange = function() {
+    document.getElementById("image_form").submit();
+  };
+</script>

@@ -1,0 +1,32 @@
+$('#comment-list<%= @post.id %>').html(
+  '<%= escape_javascript render partial: 'comments/comment_list', locals: {post: @post} %>'
+);
+
+$('#post-comment-length<%= @post.id %>').html('<%= @post.comments.length%> <i class= "glyphicon glyphicon-comment"></i>');
+
+$('#profile').html('<%= escape_javascript render 'neighborhoods/profile' %>');
+$( document ).ready(function() {
+    var points = <%= @current_member.points%>+"%";
+    var thePoints = <%= @current_member.points%>;
+    if(thePoints >= 100 ){
+      $("#myBar").removeAttr('class');
+    $("#myBar").addClass("progress-bar progress-bar-warning progress-bar-striped");
+      $(".leader").addClass("glyphicon glyphicon-star");       
+    }else if( thePoints > 75){
+      $("#myBar").removeAttr('class');  
+      $("#myBar").addClass("progress-bar progress-bar-danger");
+      $(".leader").removeClass("glyphicon glyphicon-star");  
+    }else if( thePoints > 50){
+      $("#myBar").removeAttr('class');
+      $("#myBar").addClass("progress-bar progress-bar");
+      $(".leader").removeClass("glyphicon glyphicon-star");  
+    }else if( thePoints > 25){
+      $("#myBar").removeAttr('class');
+      $("#myBar").addClass("progress-bar progress-bar-success"); 
+      $(".leader").removeClass("glyphicon glyphicon-star");        
+    }
+    $("#myBar").css('width',thePoints);
+    $("#myBar").text(thePoints);
+  });
+
+

@@ -17,7 +17,7 @@ class SignupsController < ApplicationController
       if @temp_business.save
         format.html { redirect_to root_path, notice: 'You should be approved soon' }
       else
-        format.html { redirect_to root_path, alert: 'You should be approved soon' }
+        format.html { redirect_to root_path, alert: @temp_business.errors.full_messages }
       end
     end
   end
@@ -29,12 +29,15 @@ class SignupsController < ApplicationController
       if @temp_agency.save
         format.html { redirect_to root_path, notice: 'You should be approved soon' }
       else
-        format.html { redirect_to root_path, alert: 'You should be approved soon' }
+        format.html { redirect_to root_path, alert: @temp_agency.errors.full_messages }
       end
     end
   end
 
   def create
+    #
+    # Have to test email before user is built so correct error message can be shown
+    #
     @temp_neighborhood = TempNeighborhood.new(temp_neighborhood_params)
     @temp_neighborhood.temp_users.build(temp_user_params)
 
@@ -63,7 +66,7 @@ class SignupsController < ApplicationController
 
   private
     def temp_user_params
-      params.require(:temp_user).permit(:name, :email, :image_url)
+      params.require(:temp_user).permit(:name, :email, :image_url, :hoa)
     end
 
     def temp_neighborhood_params

@@ -23,13 +23,24 @@ Rails.application.routes.draw do
     get 'about' => :about
     get 'contact' => :contact
     get 'doc' => :doc
+    get 'password', as: 'password_request'
+    post 'password' => :request_pass
+    get 'password_reset/:cn' => :confirm, as: 'confirm'
   end
 
   resources :alerts
 
   resources :posts, only: [:destroy, :edit, :create]
 
+  get 'demo/' => 'demo#demo_list', as: :demo
+  post 'demo/' => 'demo#demo_login'
+
   get 'admins/', to: 'admins#index', as: :admins
+
+  get 'admins/:id/edit' => 'admins#edit', as: :edit_admin
+  get 'admins/:id' => 'admins#edit', as: :admin
+  post 'admins/:id' => 'admins#update'
+  patch 'admins/:id' => 'admins#update'
 
   post 'admins/accept/user/:id', to: 'admins#accept_user', as: :admin_accept_user
   post 'admins/deny/user/:id', to: 'admins#deny_user', as: :admin_deny_user
@@ -51,15 +62,15 @@ Rails.application.routes.draw do
 
   get 'signups/temps' => 'signups#temps', as: 'temps'
 
-  post 'advertisement/create'
+  post 'advertisements/create'
 
-  get 'advertisement/create'
+  get 'advertisement/create', as: :create_advertisement
 
-  get 'advertisement/destroy'
+  get 'advertisements/destroy'
 
-  get 'advertisement/edit'
+  get 'advertisements/edit'
 
-  put 'advertisement/:id/like', to: 'advertisement#like', as: :like_advertisement
+  put 'advertisements/:id/like', to: 'advertisements#like', as: :like_advertisement
 
   get 'alerts/agencyAlert'
 
@@ -102,6 +113,9 @@ Rails.application.routes.draw do
 
     post 'lead/:id/accept-agency', to: 'leads#accept_agency', as: :lead_accept_agency
     post 'lead/:id/deny-agency', to: 'leads#deny_agency', as: :lead_deny_agency
+
+    get 'category/:id', to: 'neighborhoods#category', as: :category
+
     get 'admin', to: 'neighborhoods#admin', as: :admin
   end
 

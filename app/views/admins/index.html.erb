@@ -10,126 +10,14 @@
     <li><a href="#c" data-toggle="tab">Agencies</a></li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="a">
-      <table class="table table-bordered">
-        <center><h1>Perspective Users</h1></center>
-        <hr>
-        <tr>
-
-            <th><center>Name</center></th>
-            <th><center>Email</center></th>
-            <th><center>Neighborhood</center></th>
-            <th><center>Address</center></th>
-            <th><center>Verification</center></th>
-            <th><center>Approve</center></th>
-            <th><center>Deny</center></th>
-
-        </tr>
-        <% @temp_users.each do |user| %>
-          <tr>
-            <td><center><%= user.name %></center></td>
-            <td><center><%= user.email %></center></td>
-            <td><center><%= user.hood.name %></center></td>
-            <td><center><%= user.hood.address %></center></td>
-            <td><center>
-            <a href=""data-toggle="modal" data-target="#myModal<%= user.id %>"><%= image_tag(user.image_url, :width => 40 ,:height=>"40",class:"img-center verification") if user.image_url.present?  %></a></center></td>
-
-            <td><center><%= link_to '', admin_accept_user_url(user), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
-            <td><center><%= link_to '', admin_deny_user_url(user), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
-          </tr>
-          <div id="myModal<%= user.id %>" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Verification Picture User</h4>
-                </div>
-                <div class="modal-body ">
-                  <%= image_tag(user.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center verification") if user.image_url.present?  %>        
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </table>
+    <div class="tab-pane" id="a">      
+      <%= render 'admins/prospective_users' %>
     </div>
     <div class="tab-pane" id="b">
-      <table class="table table-bordered">
-        <center><h1>Perspective Business</h1></center>
-        <hr>
-
-        <tr>
-            <th><center>Name</center></th>
-            <th><center>Email</center></th>
-            <th><center>Address</center></th>
-            <th><center>Verification</center></th>
-            <th><center>Approve</center></th>
-            <th><center>Deny</center></th>
-        </tr>
-        <% @temp_businesses.each do |business| %>
-          <tr>
-            <td><center><%= business.name %></center></td>
-            <td><center><%= business.email %></center></td>
-            <td><center><%= business.address %></center></td>
-             <td><center><a href=""data-toggle="modal" data-target="#<%= business.id %>"><%= image_tag(business.image_url, :width => "40" ,:height=>"40",class:"img-center verification") if business.image_url.present?  %></a></center></td>
-            <td><center><%= link_to '', admin_accept_business_url(business), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
-            <td><center><%= link_to '', admin_deny_business_url(business), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
-          </tr>
-          <div id="<%= business.id %>" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Verification Picture Business</h4>
-                </div>
-                <div class="modal-body ">
-                  <%= image_tag(business.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center verification") if business.image_url.present?  %>        
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </table>
+      <%= render 'admins/prospective_businesses' %>
     </div>
     <div class="tab-pane" id="c">
-      <table class="table table-bordered">
-        <center><h1>Perspective Agencies</h1></center>
-        <hr>
-        <tr>
-          <th><center>Name</center></th>
-          <th><center>Email</center></th>
-          <th><center>Address</center></th>
-          <th><center>Verification</center></th>
-          <th><center>Approve</center></th>
-          <th><center>Deny</center></th>
-        </tr>
-        <% @temp_agencies.each do |agency| %>
-          <tr>
-            <td><center><%= agency.name %></center></td>
-            <td><center><%= agency.email %></center></td>
-            <td><center><%= agency.address %></center></td>
-            <td><center><a href=""data-toggle="modal" data-target="#<%= agency.id %>a"><%= image_tag(agency.image_url, :width => "40" ,:height=>"40",class:"img-center verification") if agency.image_url.present?  %></a></center></td>
-            <td><center><%= link_to '', admin_accept_agency_url(agency), method: :post,class:"approve glyphicon glyphicon-ok" %></center></td>
-            <td><center><%= link_to '', admin_deny_agency_url(agency), method: :post,class:"deny glyphicon glyphicon-remove" %></center></td>
-          </tr>
-          <div id="<%= agency.id %>a" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Verification Picture Agency</h4>
-                </div>
-                <div class="modal-body ">
-                  <%= image_tag(agency.image_url, :width => "400" ,:height=>"400",class:" col-xs-offset-2 img-center verification") if agency.image_url.present?  %>        
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </table>
+      <%= render 'admins/prospective_agencies' %>
     </div>
   </div>
 </div>

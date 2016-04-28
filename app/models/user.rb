@@ -69,6 +69,7 @@ class User < ActiveRecord::Base
 
       if self.points >= 100 and self.normy?
         self.lead!
+        AccountNotifier.became_lead(self).deliver_now
       end
     end
 
@@ -77,6 +78,7 @@ class User < ActiveRecord::Base
 
       if self.points < 100 and self.lead?
         self.normy!
+        AccountNotifier.lost_lead(self).deliver_now
       end
     end
 end

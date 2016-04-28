@@ -133,6 +133,9 @@
                 <hr>
                   <div class="field">
                     <%= f.text_area :email,:class=>"myPost",placeholder: 'Type @email here...'%>
+                    <hr>
+                    <%= f.label 'HOA Member?' %>
+                    <%= f.check_box :hoa %>
                     <br> <br>
                     <%= f.file_field :image_url, type:"file"%><label>Credentials</label>
                   </div>

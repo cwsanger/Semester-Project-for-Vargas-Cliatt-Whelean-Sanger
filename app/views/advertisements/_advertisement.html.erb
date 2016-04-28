@@ -1,10 +1,13 @@
-<div class="alert alert-info" role="alert">
+<div id="advertisement<%= advertisement.id %>" class="alert alert-info" role="alert">
   <%= advertisement.body %>
   <br />
   <small>
     <%= advertisement.created_at.strftime("%A, %B #{advertisement.created_at.day.ordinalize} - %l:%M%P") %>
   </small>
   <p>
-  <%= link_to "",like_advertisement_path(advertisement), method: :put,:class=>'glyphicon glyphicon-hand-right likes'%><%= advertisement.likes.count%>
+  <%= link_to "",like_advertisement_path(advertisement), method: :put,:class=>'glyphicon glyphicon-hand-right likes' %><%= advertisement.likes.count%>
   </p>
+  <%= image_tag(advertisement.image_url,
+      width: 120, height: 120,
+      class: 'img-center') if advertisement.image_url.present? %>
 </div>

@@ -1,4 +1,5 @@
 class AgenciesController < ApplicationController
+  include UpdateHelper
   before_action :set_agency, only: [:show, :edit, :update, :destroy]
 
   # GET /agencies
@@ -45,30 +46,8 @@ class AgenciesController < ApplicationController
   # PATCH/PUT /agencies/1.json
   def update
 
-    paramName = params[:updateParam]
-    paramValue = params[ paramName ]
+    update_account(@current_member, params[:updateParam], params)
 
-    #Make sure the parameter to be updated is one we have whitelisted
-    if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
-
-      if paramName == 'email'
-        @current_member.account.update_attribute(paramName, paramValue)
-        notice = 'good job, admin was updated'
-      else
-        @current_member.update_attribute(paramName, paramValue)
-        notice = 'good job, agency was updated'
-      end
-
-    elsif paramValue.empty?
-      notice = 'Your ' + paramName + ' can not be blank.'
-    else
-      notice = 'Unexpected parameter'
-    end
-
-    respond_to do |format|
-      format.html { redirect_to edit_agency_path(@current_member), notice: notice }
-      format.json { render :edit, status: :ok, location: @current_member }
-    end
   end
 
   # DELETE /agencies/1
@@ -101,11 +80,18 @@ class AgenciesController < ApplicationController
     r = Request.create(requestable: @agency,
                        neighborhood_id: params[:neighborhood_id])
 
+    @neighborhoods = Neighborhood.within(20, origin: @agency)
+
+    @requested_neighborhoods = Neighborhood.joins(:requests)
+                                           .where("requests.requestable_id = #{@agency.id}")
+
     respond_to do |format|
       if r.save
         format.html { redirect_to agency_neighborhoods_url(@agency) }
+        format.js
       else
         format.html { redirect_to agency_neighborhoods_url(@agency), alert: 'Failed to create request' }
+        format.js
       end
     end
   end

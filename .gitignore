@@ -25,6 +25,13 @@ node_modules/**
 *.swo
 .*.sw*
 
+# Ignore application configuration
+# 
+# THIS IS NOT GOOD REMOVE THE COMMENT ASAP!!!!!!
+#
+#
+#/config/application.yml
+
 # Ignore image uploads
 /uploads
 

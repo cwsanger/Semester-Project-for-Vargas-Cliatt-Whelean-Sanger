@@ -6,64 +6,103 @@ class LeadsController < ApplicationController
   before_action :set_neighborhood
 
   def accept
-    user = User.create(name: @temp_user.name, neighborhood_id: @neighborhood.id, image_url: open('app/assets/images/placeholder.png'))
-    user.build_account(email: @temp_user.email,
-                       password: 'password',
-                       password_confirmation: 'password')
+    role = (if @temp_user.hoa then :hoa else :normy end)
+    user = User.create(name: @temp_user.name,
+                       role: User.roles[role],
+                       neighborhood_id: @neighborhood.id,
+                       image_url: open('app/assets/images/placeholder.png'))
 
-    if user.save
-      @temp_user.destroy
+    user.account = Account.setup(user, @temp_user.email)
 
-      redirect_to neighborhood_admin_url(@neighborhood)
-    else
-      redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed'
+    respond_to do |format|
+      if user.save
+        @temp_user.destroy
+        @temp_users = @neighborhood.temp_users
+
+        format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+        format.js { render action: 'rerender_temp_users' }
+      else
+        @temp_users = @neighborhood.temp_users
+        format.html { redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed' }
+        format.js { render action: 'rerender_temp_users' }
+      end
     end
   end
 
   def deny
     @temp_user.destroy
+    @temp_users = @neighborhood.temp_users
 
-    redirect_to neighborhood_admin_url(@neighborhood)
+    respond_to do |format|
+      format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+      format.js { render action: 'rerender_temp_users' }
+    end
   end
 
   def accept_business
     @neighborhood.businesses << @business
 
-    if @neighborhood.save
-      Request.where(neighborhood_id: @neighborhood.id,
-                    requestable: @business).destroy_all
+    respond_to do |format|
+      if @neighborhood.save
+        Request.where(neighborhood_id: @neighborhood.id,
+                      requestable: @business).destroy_all
 
-      redirect_to neighborhood_admin_url(@neighborhood)
-    else
-      redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed'
+        format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+      else
+        format.html { redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed' }
+      end
+
+      @businesses = Business.joins('INNER JOIN requests ON businesses.id = requests.requestable_id')
+                            .where("requests.neighborhood_id = #{@neighborhood.id}")
+
+      format.js { render action: 'rerender_businesses' }
     end
   end
 
   def deny_business
     Request.where(neighborhood_id: @neighborhood.id,
-                  requestable: @business)
+                  requestable: @business).destroy_all
 
-    redirect_to neighborhood_admin_url(@neighborhood)
+    respond_to do |format|
+      format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+      @businesses = Business.joins('INNER JOIN requests ON businesses.id = requests.requestable_id')
+                            .where("requests.neighborhood_id = #{@neighborhood.id}")
+
+      format.js { render action: 'rerender_businesses' }
+    end
   end
 
   def accept_agency
     @neighborhood.agencies << @agency
 
-    if @neighborhood.save
-      Request.where(neighborhood_id: @neighborhood.id,
-                    requestable: @agency).destroy_all
+    respond_to do |format|
+      if @neighborhood.save
+        Request.where(neighborhood_id: @neighborhood.id,
+                      requestable: @agency).destroy_all
 
-      redirect_to neighborhood_admin_url(@neighborhood)
-    else
-      redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed'
+        format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+      else
+        format.html { redirect_to neighborhood_admin_url(@neighborhood), alert: 'failed' }
+      end
+
+      @agencies= Agency.joins('INNER JOIN requests ON agencies.id = requests.requestable_id')
+                            .where("requests.neighborhood_id = #{@neighborhood.id}")
+
+      format.js { render action: 'rerender_agencies' }
     end
   end
 
-  def deny_business
+  def deny_agency
     Request.where(neighborhood_id: @neighborhood.id,
                   requestable: @agency).destroy_all
 
-    redirect_to neighborhood_admin_url(@neighborhood)
+    @agencies= Agency.joins('INNER JOIN requests ON agencies.id = requests.requestable_id')
+                          .where("requests.neighborhood_id = #{@neighborhood.id}")
+
+    respond_to do |format|
+      format.html { redirect_to neighborhood_admin_url(@neighborhood) }
+      format.js { render action: 'rerender_agencies' }
+    end
   end
 
   private

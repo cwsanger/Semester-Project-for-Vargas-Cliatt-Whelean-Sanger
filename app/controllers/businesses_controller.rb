@@ -1,4 +1,5 @@
 class BusinessesController < ApplicationController
+  include UpdateHelper
   before_action :set_business, only: [:show, :edit, :update, :destroy]
 
   # GET /businesses
@@ -12,9 +13,8 @@ class BusinessesController < ApplicationController
   # GET /businesses/1.json
   def show
     auth @business
-
     @advertisements = @business.advertisements
-    Like.joins(:users).where("user.neighborhood_id = #{neighborhood.id}").count 
+    @advertisement = Advertisement.new
   end
 
   # GET /businesses/new
@@ -45,29 +45,9 @@ class BusinessesController < ApplicationController
   # PATCH/PUT /businesses/1
   # PATCH/PUT /businesses/1.json
   def update
-    paramName = params[:updateParam]
-    paramValue = params[ paramName ]
 
-    #Make sure the parameter to be updated is one we have whitelisted
-    if ['name', 'email', 'address'].include? paramName and not paramValue.empty?
+    update_account(@current_member, params[:updateParam], params)
 
-      if paramName == 'email'
-        @current_member.account.update_attribute(paramName, paramValue)
-        notice = 'good job, admin was updated'
-      else
-        @current_member.update_attribute(paramName, paramValue)
-        notice = 'good job, business was updated'
-      end
-    elsif paramValue.empty?
-      notice = 'Your ' + paramName + ' can not be blank.'
-    else
-      notice = 'Unexpected parameter'
-    end
-
-    respond_to do |format|
-      format.html { redirect_to edit_business_path(@current_member), notice: notice }
-      format.json { render :edit, status: :ok, location: @current_member }
-    end
   end
 
   # DELETE /businesses/1
@@ -100,11 +80,18 @@ class BusinessesController < ApplicationController
     r = Request.create(requestable: @business,
                        neighborhood_id: params[:neighborhood_id])
 
+    @neighborhoods = Neighborhood.within(20, origin: @business)
+
+    @requested_neighborhoods = Neighborhood.joins(:requests)
+                                           .where("requests.requestable_id = #{@business.id}")
+
     respond_to do |format|
       if r.save
         format.html { redirect_to business_neighborhoods_url(@business) }
+        format.js
       else
         format.html { redirect_to business_neighborhoods_url(@business), alert: 'Failed to create request' }
+        format.js
       end
     end
   end
